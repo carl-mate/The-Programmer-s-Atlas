@@ -29,6 +29,16 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private OrthographicCamera camera;
     private TheoreticalQ[] theoreticalQ;
 
+    private String question;
+    private String choiceA;
+    private String choiceB;
+    private String choiceC;
+    private String choiceD;
+    private boolean isCorrectChoiceA;
+    private boolean isCorrectChoiceB;
+    private boolean isCorrectChoiceC;
+    private boolean isCorrectChoiceD;
+
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.difficulty = difficulty;
@@ -43,6 +53,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
         this.questions = programmerGame.getQuestions();
         this.theoreticalQ = questions.getTheoreticalQuestion();
         Assets.instance.font.setViewport(this.viewport);
+        initTheoreticalQuestions();
+
         Gdx.input.setInputProcessor(this);
     }
 
@@ -71,43 +83,23 @@ public class GameplayScreen extends InputAdapter implements Screen {
         if(difficulty == Difficulty.THEORETICAL_VERY_EASY){
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", theoreticalQ[0].getQuestion());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", theoreticalQ[0].getChoice().get(0).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", theoreticalQ[0].getChoice().get(1).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", theoreticalQ[0].getChoice().get(2).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", theoreticalQ[0].getChoice().get(3).getChoice());
+            renderChoices();
         } else if(difficulty == Difficulty.THEORETICAL_EASY){
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", theoreticalQ[1].getQuestion());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", theoreticalQ[1].getChoice().get(0).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", theoreticalQ[1].getChoice().get(1).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", theoreticalQ[1].getChoice().get(2).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", theoreticalQ[1].getChoice().get(3).getChoice());
+            renderChoices();
         } else if(difficulty == Difficulty.THEORETICAL_MEDIUM){
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", theoreticalQ[2].getQuestion());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", theoreticalQ[2].getChoice().get(0).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", theoreticalQ[2].getChoice().get(1).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", theoreticalQ[2].getChoice().get(2).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", theoreticalQ[2].getChoice().get(3).getChoice());
+            renderChoices();
         } else if(difficulty == Difficulty.THEORETICAL_HARD){
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", theoreticalQ[3].getQuestion());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", theoreticalQ[3].getChoice().get(0).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", theoreticalQ[3].getChoice().get(1).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", theoreticalQ[3].getChoice().get(2).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", theoreticalQ[3].getChoice().get(3).getChoice());
+            renderChoices();
         } else if(difficulty == Difficulty.THEORETICAL_VERY_HARD){
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", theoreticalQ[4].getQuestion());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", theoreticalQ[4].getChoice().get(0).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", theoreticalQ[4].getChoice().get(1).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", theoreticalQ[4].getChoice().get(2).getChoice());
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", theoreticalQ[4].getChoice().get(3).getChoice());
+            renderChoices();
         } else if(difficulty == Difficulty.PROGRAMMING_VERY_EASY){
 //            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
         } else if(difficulty == Difficulty.PROGRAMMING_EASY){
@@ -119,6 +111,14 @@ public class GameplayScreen extends InputAdapter implements Screen {
         } else if(difficulty == Difficulty.PROGRAMMING_VERY_HARD){
 
         }
+    }
+
+    private void renderChoices(){
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", question);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", choiceA);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", choiceC);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", choiceB);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", choiceD);
     }
 
     private void renderAnswerBubbles(){
@@ -143,41 +143,41 @@ public class GameplayScreen extends InputAdapter implements Screen {
         Vector2 choiceAButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f);
         Rectangle choiceAButtonBoundingBox = new Rectangle(choiceAButtonCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceAButtonCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
 
-        //choiceB
-        Vector2 choiceBButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f);
-        Rectangle choiceBButtonBoundingBox = new Rectangle(choiceBButtonCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceBButtonCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
-
         //choiceC
         Vector2 choiceCButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100);
         Rectangle choiceCButtonBoundingBox = new Rectangle(choiceCButtonCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceCButtonCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
+
+        //choiceB
+        Vector2 choiceBButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f);
+        Rectangle choiceBButtonBoundingBox = new Rectangle(choiceBButtonCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceBButtonCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
 
         //choiceD
         Vector2 choiceDButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100);
         Rectangle choiceDButtonBoundingBox = new Rectangle(choiceDButtonCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH  / 2, choiceDButtonCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
 
         if (choiceAButtonBoundingBox.contains(worldTouch) || choiceBButtonBoundingBox.contains(worldTouch) || choiceCButtonBoundingBox.contains(worldTouch) || choiceDButtonBoundingBox.contains(worldTouch)) {
-            if (theoreticalQ[0].getChoice().get(0).isCorrectChoice() && choiceAButtonBoundingBox.contains(worldTouch)) {
+            if (this.isCorrectChoiceA && choiceAButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(true);
-            } else if (theoreticalQ[0].getChoice().get(0).isCorrectChoice() && !choiceAButtonBoundingBox.contains(worldTouch)) {
+            } else if (this.isCorrectChoiceA && !choiceAButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(false);
 
             }
-            if (theoreticalQ[0].getChoice().get(2).isCorrectChoice() && choiceBButtonBoundingBox.contains(worldTouch)) {
+            if (this.isCorrectChoiceB && choiceBButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(true);
-            } else if (theoreticalQ[0].getChoice().get(2).isCorrectChoice() && !choiceBButtonBoundingBox.contains(worldTouch)) {
+            } else if (this.isCorrectChoiceB && !choiceBButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(false);
 
             }
-            if (theoreticalQ[0].getChoice().get(1).isCorrectChoice() && choiceCButtonBoundingBox.contains(worldTouch)) {
+            if (this.isCorrectChoiceC && choiceCButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(true);
-            } else if (theoreticalQ[0].getChoice().get(1).isCorrectChoice() && !choiceCButtonBoundingBox.contains(worldTouch)) {
+            } else if (this.isCorrectChoiceC && !choiceCButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(false);
 
 
             }
-            if (theoreticalQ[0].getChoice().get(3).isCorrectChoice() && choiceDButtonBoundingBox.contains(worldTouch)) {
+            if (this.isCorrectChoiceD && choiceDButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(true);
-            } else if (theoreticalQ[0].getChoice().get(3).isCorrectChoice() && !choiceDButtonBoundingBox.contains(worldTouch)) {
+            } else if (this.isCorrectChoiceD && !choiceDButtonBoundingBox.contains(worldTouch)) {
                 judgeAnswer(false);
 
             }
@@ -188,7 +188,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private void judgeAnswer(boolean correct) {
         if (correct) {
-            if (this.difficulty == Difficulty.THEORETICAL_VERY_EASY) {  //easy question
+            if (this.difficulty == Difficulty.THEORETICAL_VERY_EASY) {
                 Gdx.app.log(TAG, "THEORETICAL VERY EASY CORRECT");
             } else if(this.difficulty == Difficulty.THEORETICAL_EASY){
                 Gdx.app.log(TAG, "THEORETICAL EASY CORRECT");
@@ -208,6 +208,61 @@ public class GameplayScreen extends InputAdapter implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+    }
+
+    private void initTheoreticalQuestions(){
+        if(difficulty == Difficulty.THEORETICAL_VERY_EASY){
+            this.question = theoreticalQ[0].getQuestion();
+            this.choiceA = theoreticalQ[0].getChoice().get(0).getChoice();
+            this.choiceC = theoreticalQ[0].getChoice().get(1).getChoice();
+            this.choiceB = theoreticalQ[0].getChoice().get(2).getChoice();
+            this.choiceD = theoreticalQ[0].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = theoreticalQ[0].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = theoreticalQ[0].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = theoreticalQ[0].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = theoreticalQ[0].getChoice().get(3).isCorrectChoice();
+        } else if(difficulty == Difficulty.THEORETICAL_EASY){
+            this.question = theoreticalQ[1].getQuestion();
+            this.choiceA = theoreticalQ[1].getChoice().get(0).getChoice();
+            this.choiceC = theoreticalQ[1].getChoice().get(1).getChoice();
+            this.choiceB = theoreticalQ[1].getChoice().get(2).getChoice();
+            this.choiceD = theoreticalQ[1].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = theoreticalQ[1].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = theoreticalQ[1].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = theoreticalQ[1].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = theoreticalQ[1].getChoice().get(3).isCorrectChoice();
+        } else if(difficulty == Difficulty.THEORETICAL_MEDIUM){
+            this.question = theoreticalQ[2].getQuestion();
+            this.choiceA = theoreticalQ[2].getChoice().get(0).getChoice();
+            this.choiceC = theoreticalQ[2].getChoice().get(1).getChoice();
+            this.choiceB = theoreticalQ[2].getChoice().get(2).getChoice();
+            this.choiceD = theoreticalQ[2].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = theoreticalQ[2].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = theoreticalQ[2].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = theoreticalQ[2].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = theoreticalQ[2].getChoice().get(3).isCorrectChoice();
+        } else if(difficulty == Difficulty.THEORETICAL_HARD){
+            this.question = theoreticalQ[3].getQuestion();
+            this.choiceA = theoreticalQ[3].getChoice().get(0).getChoice();
+            this.choiceC = theoreticalQ[3].getChoice().get(1).getChoice();
+            this.choiceB = theoreticalQ[3].getChoice().get(2).getChoice();
+            this.choiceD = theoreticalQ[3].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = theoreticalQ[3].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = theoreticalQ[3].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = theoreticalQ[3].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = theoreticalQ[3].getChoice().get(3).isCorrectChoice();
+        } else if(difficulty == Difficulty.THEORETICAL_VERY_HARD){
+            this.question = theoreticalQ[4].getQuestion();
+            this.choiceA = theoreticalQ[4].getChoice().get(0).getChoice();
+            this.choiceC = theoreticalQ[4].getChoice().get(1).getChoice();
+            this.choiceB = theoreticalQ[4].getChoice().get(2).getChoice();
+            this.choiceD = theoreticalQ[4].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = theoreticalQ[4].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = theoreticalQ[4].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = theoreticalQ[4].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = theoreticalQ[4].getChoice().get(3).isCorrectChoice();
+        }
+
     }
 
     @Override
