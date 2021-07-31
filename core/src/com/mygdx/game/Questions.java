@@ -12,7 +12,6 @@ import java.util.HashMap;
 
 import util.Enums.Difficulty;
 import util.QuestionsManager.TheoreticalQ;
-import util.QuestionsManager.ProgrammingQ;
 import util.QuestionsManager;
 
 public class Questions {
@@ -28,99 +27,97 @@ public class Questions {
     private String imageFileName;
     private String questionDifficulty;
 
-//    private String theoreticalVeryEasyQuestion;
-//    private String theoreticalEasyQuestion;
-//    private String theoreticalMediumQuestion;
-//    private String theoreticalHardQuestion;
-//    private String theoreticalVeryHardQuestion;
+
 //    private String programmingVeryEasyQuestion;
 //    private String programmingEasyQuestion;
 //    private String programmingMediumQuestion;
 //    private String programmingHardQuestion;
 //    private String programmingVeryHardQuestion;
 
-    private HashMap<QuestionTheoretical, ArrayList<Choice>> theoreticalQArrayListHashMap;
-
     private ArrayList<TheoreticalQ> theoreticalQArrayList;
-    private ArrayList<ProgrammingQ> programmingQArrayList;
+    private TheoreticalQ[] theoreticalQuestion;
+    private int theoreticalQuestionsCounter;
+
+
+    //    private String theoreticalVeryHardQuestion;
+//    private ArrayList<ProgrammingQ> programmingQArrayList;
     private long startTime;
 
     public Questions() throws IOException {
+        //initialize QuestionsManager to convert the Excel File to ArrayList
         QuestionsManager.instance.init();
+
+        //gets the generated ArrayList from QuestionsManager
         theoreticalQArrayList = QuestionsManager.instance.getTheoreticalQItemArrayList();
-//        programmingQArrayList = QuestionsManager.instance.getP
+
+        /*
+            questions are ordered from 0 - 4 i.e. Very Easy - Very Hard respectively
+            index 0 = Very Easy
+            index 1 = Easy
+            index 2 = Medium
+            index 3 = Hard
+            index 4 = Very Hard
+         */
+        theoreticalQuestion = new TheoreticalQ[5];
 
 
-        //shuffle questions to ensure randomness
+        //shuffle total pool of theoretical questions to ensure randomness
         Collections.shuffle(theoreticalQArrayList);
 
         initializeTheoreticalQuestions();
-
     }
 
-    public void initializeTheoreticalQuestions(){
+    public void initializeTheoreticalQuestions() {
          /*
             1 THEORETICAL VERY EASY
             1 THEORETICAL EASY
             1 THEORETICAL MEDIUM
             1 THEORETICAL HARD
             1 THEORETICAL VERY HARD
-            1 PROGRAMMING VERY EASY
-            1 PROGRAMMING EASY
-            1 PROGRAMMING MEDIUM
-            1 PROGRAMMING HARD
-            1 PROGRAMMING VERY HARD
-            1 MYSTERY QUESTION (CHOSEN FROM THE TOTAL POOL OF QUESTIONS)
          */
-        for(TheoreticalQ x: theoreticalQArrayList){
-            if(x.getDifficulty().equals("VERY EASY")){
-//                theoreticalQArrayListHashMap.put(new QuestionTheoretical(x.getQuestion()), )
+
+        //iterate through the total pool of randomly arranged theoretical questions and store 5 questions to display
+        for (TheoreticalQ x : theoreticalQArrayList) {
+            if(theoreticalQuestionsCounter <= 5){
+                if (x.getDifficulty().equals("VERY EASY") && theoreticalQuestion[0] == null) {
+                    Gdx.app.log(TAG, "ADDED VERY EASY");
+                    theoreticalQuestion[0] = x;
+                    theoreticalQuestionsCounter++;
+                }
+                if (x.getDifficulty().equals("EASY") && theoreticalQuestion[1] == null) {
+                    Gdx.app.log(TAG, "ADDED EASY");
+                    theoreticalQuestion[1] = x;
+                    theoreticalQuestionsCounter++;
+                }
+                if (x.getDifficulty().equals("MEDIUM") && theoreticalQuestion[2] == null) {
+                    Gdx.app.log(TAG, "ADDED MEDIUM");
+                    theoreticalQuestion[2] = x;
+                    theoreticalQuestionsCounter++;
+                }
+                if (x.getDifficulty().equals("HARD") && theoreticalQuestion[3] == null) {
+                    Gdx.app.log(TAG, "ADDED HARD");
+                    theoreticalQuestion[3] = x;
+                    theoreticalQuestionsCounter++;
+                }
+                if (x.getDifficulty().equals("VERY HARD") && theoreticalQuestion[4] == null) {
+                    Gdx.app.log(TAG, "ADDED VERY HARD");
+                    theoreticalQuestion[4] = x;
+                    theoreticalQuestionsCounter++;
+                }
+
             }
         }
 
     }
 
-//    public void setQuestionDifficulty(Difficulty difficulty){
-//        this.difficulty = difficulty;
-//    }
-
-
-    public String getCorrectChoice(){
-        return this.correctChoice;
+    public TheoreticalQ[] getTheoreticalQuestion(){
+        return this.theoreticalQuestion;
     }
 
-    public String getQuestionDifficulty(){
-        return this.questionDifficulty;
-    }
 
-    public String getQuestion() {
-        return question;
-    }
-
-    public String getChoiceA() {
-        return choiceA;
-    }
-
-    public String getChoiceB() {
-        return choiceB;
-    }
-
-    public String getChoiceC() {
-        return choiceC;
-    }
-
-    public String getChoiceD() {
-        return choiceD;
-    }
-
-    public String getImageFileName(){
-        return imageFileName;
-    }
-
-    public void resetStartTime(){
+    public void resetStartTime() {
         this.startTime = 0;
     }
-
 
 
 }

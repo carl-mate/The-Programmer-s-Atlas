@@ -4,9 +4,15 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.utils.Disposable;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -19,6 +25,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public DifficultyScreenAssets difficultyScreenAssets;
     public GameplayScreenAssets gameplayScreenAssets;
     public ResourcesFilePath resourcesFilePath;
+    public Font font;
 
     private AssetManager assetManager;
 
@@ -36,6 +43,7 @@ public class Assets implements Disposable, AssetErrorListener {
         mainMenuAssets = new MainMenuAssets(atlas);
         difficultyScreenAssets = new DifficultyScreenAssets(atlas);
         gameplayScreenAssets = new GameplayScreenAssets(atlas);
+        font = new Font();
     }
 
     @Override
@@ -50,6 +58,64 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public void initResourcesFilePath(){
         resourcesFilePath = new ResourcesFilePath();
+    }
+
+    public class Font{
+        private ExtendViewport viewport;
+        public FreeTypeFontGenerator sourceCodeProBoldFontGenerator;
+
+        public final FreeTypeFontGenerator.FreeTypeFontParameter questionFontParameter;
+        public final FreeTypeFontGenerator.FreeTypeFontParameter choicesFontParameter;
+
+        public BitmapFont questionFont;
+        public BitmapFont choicesFont;
+        public GlyphLayout glyphLayout;
+
+        public Font(){
+            sourceCodeProBoldFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("SourceCodeProBold.ttf"));
+
+            //font parameters
+            questionFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            questionFontParameter.size = 15;
+            questionFontParameter.color = Color.BLACK;
+            questionFont = sourceCodeProBoldFontGenerator.generateFont(questionFontParameter);
+
+            choicesFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            choicesFontParameter.size = 10;
+            choicesFontParameter.color = Color.BLACK;
+            choicesFont = sourceCodeProBoldFontGenerator.generateFont(choicesFontParameter);
+
+            glyphLayout = new GlyphLayout();
+        }
+
+        public void drawSourceCodeProBoldFont(SpriteBatch batch, String type, String text){
+            switch(type){
+                case "question":
+                    glyphLayout.setText(questionFont, text);
+                    questionFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 2, (viewport.getCamera().viewportHeight - glyphLayout.height) / 1.4f);
+                    break;
+                case "choiceA":
+                    glyphLayout.setText(choicesFont, text);
+                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 6f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 2.7f);
+                    break;
+                case "choiceB":
+                    glyphLayout.setText(choicesFont, text);
+                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 1.2f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 2.7f);
+                    break;
+                case "choiceC":
+                    glyphLayout.setText(choicesFont, text);
+                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 6f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 5.5f);
+                    break;
+                case "choiceD":
+                    glyphLayout.setText(choicesFont, text);
+                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 1.2f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 5.5f);
+                    break;
+            }
+        }
+
+        public void setViewport(ExtendViewport viewport) {
+            this.viewport = viewport;
+        }
     }
 
     public class ResourcesFilePath {

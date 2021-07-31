@@ -25,10 +25,11 @@ public class ProgrammerGame extends Game {
 		am = new AssetManager();
 		Assets.instance.init(am);
 		batch = new SpriteBatch();
+		Assets.instance.initResourcesFilePath();
 		try{
 			questions = new Questions();
 		} catch(Exception e){
-
+			Gdx.app.log(TAG, "NOTHING HAPPENED");
 		}
 		showMainMenuScreen();
 	}
@@ -47,5 +48,9 @@ public class ProgrammerGame extends Game {
 
 	public void showGameplayScreen(Difficulty difficulty){
 		setScreen(new GameplayScreen(this, difficulty, this.batch));
+	}
+
+	public Questions getQuestions(){
+		return this.questions;
 	}
 }
