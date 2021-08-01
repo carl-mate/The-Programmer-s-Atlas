@@ -39,6 +39,18 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private boolean isCorrectChoiceC;
     private boolean isCorrectChoiceD;
 
+    private Vector2 questionCenter;
+    private Rectangle questionRectangleBounds;
+    private Vector2 choiceAButtonCenterText;
+    private Rectangle choiceAButtonBoundingBoxText;
+    private Vector2 choiceCButtonCenterText;
+    private Rectangle choiceCButtonBoundingBoxText;
+    private Vector2 choiceBButtonCenterText;
+    private Rectangle choiceBButtonBoundingBoxText;
+    private Vector2 choiceDButtonCenterText;
+    private Rectangle choiceDButtonBoundingBoxText;
+
+
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.difficulty = difficulty;
@@ -53,6 +65,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
         this.questions = programmerGame.getQuestions();
         this.theoreticalQ = questions.getTheoreticalQuestion();
         Assets.instance.font.setViewport(this.viewport);
+        initTextBounds();
         initTheoreticalQuestions();
 
         Gdx.input.setInputProcessor(this);
@@ -79,7 +92,6 @@ public class GameplayScreen extends InputAdapter implements Screen {
     }
 
     private void renderQuestions(){
-
         if(difficulty == Difficulty.THEORETICAL_VERY_EASY){
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
@@ -114,11 +126,11 @@ public class GameplayScreen extends InputAdapter implements Screen {
     }
 
     private void renderChoices(){
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", question);
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", choiceA);
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", choiceC);
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", choiceB);
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", choiceD);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", question, this.questionRectangleBounds);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", choiceA, this.choiceAButtonBoundingBoxText);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceC", choiceC, this.choiceCButtonBoundingBoxText);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceB", choiceB, this.choiceBButtonBoundingBoxText);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceD", choiceD, this.choiceDButtonBoundingBoxText);
     }
 
     private void renderAnswerBubbles(){
@@ -137,7 +149,6 @@ public class GameplayScreen extends InputAdapter implements Screen {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
         Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
-
 
         //choiceA
         Vector2 choiceAButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f);
@@ -262,6 +273,28 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceB = theoreticalQ[4].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = theoreticalQ[4].getChoice().get(3).isCorrectChoice();
         }
+
+    }
+
+    private void initTextBounds(){
+        questionCenter = new Vector2(this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().viewportHeight / 1.8f);
+        questionRectangleBounds = new Rectangle(questionCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, questionCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
+
+        //choiceA
+        choiceAButtonCenterText = new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f);
+        choiceAButtonBoundingBoxText = new Rectangle(choiceAButtonCenterText.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceAButtonCenterText.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
+
+        //choiceC
+        choiceCButtonCenterText = new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100);
+        choiceCButtonBoundingBoxText = new Rectangle(choiceCButtonCenterText.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceCButtonCenterText.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
+
+        //choiceB
+        choiceBButtonCenterText = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f);
+        choiceBButtonBoundingBoxText = new Rectangle(choiceBButtonCenterText.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceBButtonCenterText.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
+
+        //choiceD
+        choiceDButtonCenterText = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100);
+        choiceDButtonBoundingBoxText = new Rectangle(choiceDButtonCenterText.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH  / 2, choiceDButtonCenterText.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
 
     }
 

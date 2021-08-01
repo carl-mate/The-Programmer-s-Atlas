@@ -52,8 +52,12 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         //bg
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.difficultyBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
 
+        //mystery question button
+        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.20f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+
+
         //theoretical question label
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.theoreticalQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.25f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
+        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.theoreticalQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.30f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
 
         //buttons
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
@@ -63,7 +67,7 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
 
         //programming question label
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.programmingQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.25f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
+        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.programmingQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.30f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
 
         //buttons
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);

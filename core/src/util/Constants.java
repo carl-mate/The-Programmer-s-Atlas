@@ -32,6 +32,7 @@ public class Constants {
     public static final String MEDIUM_BUTTON = "medium-button";
     public static final String HARD_BUTTON = "hard-button";
     public static final String VERYHARD_BUTTON = "veryHard-button";
+    public static final String MYSTERYQUESTION_BUTTON = "mysteryQuestion-button";
 
     public static final float DIFFICULTY_SCREEN_LABEL_WIDTH = 250f;
     public static final float DIFFICULTY_SCREEN_LABEL_HEIGHT = 40f;
@@ -39,6 +40,9 @@ public class Constants {
     public static final float DIFFICULTY_SCREEN_BUTTON_HEIGHT = 45f;
     public static final Vector2 DIFFICULTY_SCREEN_BUTTON_CENTER = new Vector2(150, 30);
     public static final Vector2 DIFFICULTY_SCREEN_LABEL_CENTER = new Vector2(125, 20);
+    public static final float MYSTERYQUESTION_BUTTON_WIDTH = 474f;
+    public static final float MYSTERYQUESTION_BUTTON_HEIGHT = 36f;
+    public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(250, 35);
 
     //Gameplay Screen Assets
     public static final String QUESTIONVERYEASY_BG = "questionVeryEasy-bg";
@@ -51,6 +55,9 @@ public class Constants {
     public static final float ANSWERBUBBLE_BUTTON_WIDTH = 356f;
     public static final float ANSWERBUBBLE_BUTTON_HEIGHT = 82f;
     public static final Vector2 ANSWERBUBBLE_BUTTON_CENTER = new Vector2(188, 49);
+
+    public static final float QUESTIONBUBBLE_WIDTH = 750;
+    public static final float QUESTIONBUBBLE_HEIGHT = 100;
 
 
 }

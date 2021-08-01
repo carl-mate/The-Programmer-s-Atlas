@@ -199,13 +199,13 @@ public class QuestionsManager {
             public TheoreticalQ(String topic, String question, String choiceA, String choiceB, String choiceC,
                                 String choiceD, String imageFilename, String difficulty) {
                 this.topic = topic;
-                this.question = checkQuestionFormat(question);
+                this.question = question.trim();
                 //store choices into ArrayList
                 choice = new ArrayList<>();
-                choice.add(new Choice(checkChoiceFormat(choiceA), true));
-                choice.add(new Choice(checkChoiceFormat(choiceB), false));
-                choice.add(new Choice(checkChoiceFormat(choiceC), false));
-                choice.add(new Choice(checkChoiceFormat(choiceD), false));
+                choice.add(new Choice(choiceA.trim(), true));
+                choice.add(new Choice(choiceB.trim(), false));
+                choice.add(new Choice(choiceC.trim(), false));
+                choice.add(new Choice(choiceD.trim(), false));
                 //shuffle choices to ensure randomness
                 Collections.shuffle(choice);
                 this.imageFilename = imageFilename;

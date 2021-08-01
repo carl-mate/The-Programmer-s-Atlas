@@ -1,6 +1,7 @@
 package util;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
@@ -11,8 +12,12 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.GameplayScreen;
 
 import java.io.InputStream;
 import java.util.HashMap;
@@ -61,6 +66,8 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class Font{
+        private final String TAG = Font.class.getName();
+
         private ExtendViewport viewport;
         public FreeTypeFontGenerator sourceCodeProBoldFontGenerator;
 
@@ -81,41 +88,44 @@ public class Assets implements Disposable, AssetErrorListener {
             questionFont = sourceCodeProBoldFontGenerator.generateFont(questionFontParameter);
 
             choicesFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            choicesFontParameter.size = 10;
+            choicesFontParameter.size = 12;
             choicesFontParameter.color = Color.BLACK;
             choicesFont = sourceCodeProBoldFontGenerator.generateFont(choicesFontParameter);
 
             glyphLayout = new GlyphLayout();
         }
 
-        public void drawSourceCodeProBoldFont(SpriteBatch batch, String type, String text){
+        public void drawSourceCodeProBoldFont(SpriteBatch batch, String type, String text, Rectangle bounds){
+
             switch(type){
                 case "question":
-                    glyphLayout.setText(questionFont, text);
-                    questionFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 2, (viewport.getCamera().viewportHeight - glyphLayout.height) / 1.4f);
+                    drawCentered(questionFont, batch, text, bounds);
                     break;
                 case "choiceA":
-                    glyphLayout.setText(choicesFont, text);
-                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 6f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 2.7f);
-                    break;
                 case "choiceB":
-                    glyphLayout.setText(choicesFont, text);
-                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 1.2f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 2.7f);
-                    break;
                 case "choiceC":
-                    glyphLayout.setText(choicesFont, text);
-                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 6f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 5.5f);
-                    break;
                 case "choiceD":
-                    glyphLayout.setText(choicesFont, text);
-                    choicesFont.draw(batch, glyphLayout, (viewport.getCamera().viewportWidth - glyphLayout.width) / 1.2f, (viewport.getCamera().viewportHeight - glyphLayout.height) / 5.5f);
+                    drawCentered(choicesFont, batch, text, bounds);
                     break;
             }
+        }
+
+        private void drawCentered(BitmapFont font, SpriteBatch spriteBatch, String text, Rectangle bounds) {
+            glyphLayout.setText(font, text, Color.BLACK, bounds.width, Align.center, true);
+            font.draw(
+                    spriteBatch,
+                    text,
+                    bounds.x,
+                    bounds.y + bounds.height / 2f + glyphLayout.height / 2f,
+                    bounds.width,
+                    Align.center,
+                    true);
         }
 
         public void setViewport(ExtendViewport viewport) {
             this.viewport = viewport;
         }
+
     }
 
     public class ResourcesFilePath {
@@ -159,6 +169,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion mediumButton;
         public final TextureAtlas.AtlasRegion hardButton;
         public final TextureAtlas.AtlasRegion veryHardButton;
+        public final TextureAtlas.AtlasRegion mysteryQuestionButton;
 
         public DifficultyScreenAssets(TextureAtlas atlas){
             difficultyBG = atlas.findRegion(Constants.DIFFICULTY_BG);
@@ -169,6 +180,7 @@ public class Assets implements Disposable, AssetErrorListener {
             mediumButton = atlas.findRegion(Constants.MEDIUM_BUTTON);
             hardButton = atlas.findRegion(Constants.HARD_BUTTON);
             veryHardButton = atlas.findRegion(Constants.VERYHARD_BUTTON);
+            mysteryQuestionButton = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON);
         }
     }
 
