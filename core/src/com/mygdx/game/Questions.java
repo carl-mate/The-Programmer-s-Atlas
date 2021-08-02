@@ -64,7 +64,7 @@ public class Questions {
             index 4 = Very Hard
          */
         theoreticalQuestion = new TheoreticalQ[5];
-        programmingQuestion = new ProgrammingQ[1];
+        programmingQuestion = new ProgrammingQ[3];
 
         //shuffle total pool of theoretical questions to ensure randomness
         Collections.shuffle(theoreticalQArrayList);
@@ -129,10 +129,20 @@ public class Questions {
 
         for(ProgrammingQ x: programmingQArrayList){
             //temporary to test how image fits
-            if(programmingQuestionsCounter <= 1){
+            if(programmingQuestionsCounter <= 3){
                 if(x.getDifficulty().equals("VERY EASY") && programmingQuestion[0] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING VERY EASY");
                     programmingQuestion[0] = x;
+                    programmingQuestionsCounter++;
+                }
+                if(x.getDifficulty().equals("EASY") && programmingQuestion[1] == null){
+                    Gdx.app.log(TAG, "ADDED PROGRAMMING EASY");
+                    programmingQuestion[1] = x;
+                    programmingQuestionsCounter++;
+                }
+                if(x.getDifficulty().equals("MEDIUM") && programmingQuestion[2] == null){
+                    Gdx.app.log(TAG, "ADDED PROGRAMMING MEDIUM");
+                    programmingQuestion[2] = x;
                     programmingQuestionsCounter++;
                 }
             }

@@ -1,11 +1,13 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
@@ -21,6 +23,8 @@ import util.Util;
 
 public class GameplayScreen extends InputAdapter implements Screen {
     private static final String TAG = GameplayScreen.class.getName();
+
+    private Sprite sprite;
 
     private ProgrammerGame programmerGame;
     private Questions questions;
@@ -43,6 +47,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private Vector2 questionCenter;
     private Rectangle questionRectangleBounds;
+    private Vector2 instructionCenter;
+    private Rectangle instructionRectangleBounds;
     private Vector2 choiceAButtonCenterText;
     private Rectangle choiceAButtonBoundingBoxText;
     private Vector2 choiceCButtonCenterText;
@@ -121,9 +127,13 @@ public class GameplayScreen extends InputAdapter implements Screen {
             renderAnswerBubbles();
             renderQuestionsChoices();
         } else if (difficulty == Difficulty.PROGRAMMING_EASY) {
-
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            renderAnswerBubbles();
+            renderQuestionsChoices();
         } else if (difficulty == Difficulty.PROGRAMMING_MEDIUM) {
-
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            renderAnswerBubbles();
+            renderQuestionsChoices();
         } else if (difficulty == Difficulty.PROGRAMMING_HARD) {
 
         } else if (difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
@@ -146,11 +156,17 @@ public class GameplayScreen extends InputAdapter implements Screen {
             Texture choiceBImage = Assets.instance.resourcesFilePath.image.get(choiceB);
             Texture choiceDImage = Assets.instance.resourcesFilePath.image.get(choiceD);
 
-            Util.drawTextureRegion(batch, questionImage, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.8f), new Vector2(questionImage.getWidth() / 2f, questionImage.getHeight() / 2.5f));
-            Util.drawTextureRegion(batch, choiceAImage, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f), new Vector2(choiceAImage.getWidth() / 2f, choiceAImage.getHeight() / 2.5f));
-            Util.drawTextureRegion(batch, choiceCImage, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100), new Vector2(choiceCImage.getWidth() / 2f, choiceCImage.getHeight() / 2.5f));
-            Util.drawTextureRegion(batch, choiceBImage, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f), new Vector2(choiceBImage.getWidth() / 2f, choiceBImage.getHeight() / 2.5f));
-            Util.drawTextureRegion(batch, choiceDImage, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100), new Vector2(choiceDImage.getWidth() / 2f, choiceDImage.getHeight() / 2.5f));
+            Util.drawTextureRegion(batch, choiceAImage, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f), new Vector2(choiceAImage.getWidth() / 2f, choiceAImage.getHeight() / 2f));
+            Util.drawTextureRegion(batch, choiceCImage, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100), new Vector2(choiceCImage.getWidth() / 2f, choiceCImage.getHeight() / 2f));
+            Util.drawTextureRegion(batch, choiceBImage, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f), new Vector2(choiceBImage.getWidth() / 2f, choiceBImage.getHeight() / 2f));
+            Util.drawTextureRegion(batch, choiceDImage, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100), new Vector2(choiceDImage.getWidth() / 2f, choiceDImage.getHeight() / 2f));
+
+
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", "PRESS AND HOLD Q TO VIEW QUESTION", this.instructionRectangleBounds);
+            if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+                Util.drawTextureRegion(batch, questionImage, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f), new Vector2(questionImage.getWidth() / 2f, questionImage.getHeight() / 2f));
+            }
         }
 
     }
@@ -232,6 +248,18 @@ public class GameplayScreen extends InputAdapter implements Screen {
             } else if (this.difficulty == Difficulty.THEORETICAL_VERY_HARD) {
                 Gdx.app.log(TAG, "THEORETICAL VERY HARD CORRECT");
             }
+
+            if (this.difficulty == Difficulty.PROGRAMMING_VERY_EASY) {
+                Gdx.app.log(TAG, "PROGRAMMING VERY EASY CORRECT");
+            } else if (this.difficulty == Difficulty.PROGRAMMING_EASY) {
+                Gdx.app.log(TAG, "PROGRAMMING EASY CORRECT");
+            } else if (this.difficulty == Difficulty.PROGRAMMING_MEDIUM) {
+                Gdx.app.log(TAG, "PROGRAMMING MEDIUM CORRECT");
+            } else if (this.difficulty == Difficulty.PROGRAMMING_HARD) {
+                Gdx.app.log(TAG, "PROGRAMMING HARD CORRECT");
+            } else if (this.difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
+                Gdx.app.log(TAG, "PROGRAMMING VERY HARD CORRECT");
+            }
         } else {
             Gdx.app.log(TAG, "WRONG");
         }
@@ -309,12 +337,35 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = programmingQ[0].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = programmingQ[0].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = programmingQ[0].getChoice().get(3).isCorrectChoice();
+        } else if(difficulty == Difficulty.PROGRAMMING_EASY){
+            this.question = programmingQ[1].getQuestion();
+            this.choiceA = programmingQ[1].getChoice().get(0).getChoice();
+            this.choiceC = programmingQ[1].getChoice().get(1).getChoice();
+            this.choiceB = programmingQ[1].getChoice().get(2).getChoice();
+            this.choiceD = programmingQ[1].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = programmingQ[1].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = programmingQ[1].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = programmingQ[1].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = programmingQ[1].getChoice().get(3).isCorrectChoice();
+        } else if(difficulty == Difficulty.PROGRAMMING_MEDIUM){
+            this.question = programmingQ[2].getQuestion();
+            this.choiceA = programmingQ[2].getChoice().get(0).getChoice();
+            this.choiceC = programmingQ[2].getChoice().get(1).getChoice();
+            this.choiceB = programmingQ[2].getChoice().get(2).getChoice();
+            this.choiceD = programmingQ[2].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = programmingQ[2].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = programmingQ[2].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
         }
     }
 
     private void initTextBounds() {
         questionCenter = new Vector2(this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().viewportHeight / 1.8f);
         questionRectangleBounds = new Rectangle(questionCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, questionCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
+
+        instructionCenter = new Vector2(this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().viewportHeight / 1.6f);
+        instructionRectangleBounds = new Rectangle(instructionCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, instructionCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
 
         //choiceA
         choiceAButtonCenterText = new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f);

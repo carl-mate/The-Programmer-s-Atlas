@@ -144,6 +144,19 @@ public class Assets implements Disposable, AssetErrorListener {
             image.put("ve_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceB.png")));
             image.put("ve_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceC.png")));
             image.put("ve_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceD.png")));
+
+            image.put("e_c++_question.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_question.png")));
+            image.put("e_c++_choiceA.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceA.png")));
+            image.put("e_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceB.png")));
+            image.put("e_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceC.png")));
+            image.put("e_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceD.png")));
+
+            image.put("m_c++_question.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_question.png")));
+            image.put("m_c++_choiceA.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceA.png")));
+            image.put("m_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceB.png")));
+            image.put("m_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceC.png")));
+            image.put("m_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceD.png")));
+
         }
     }
 
@@ -186,6 +199,7 @@ public class Assets implements Disposable, AssetErrorListener {
     }
 
     public class GameplayScreenAssets{
+        public final TextureAtlas.AtlasRegion fadeBG;
         public final TextureAtlas.AtlasRegion questionVeryEasy;
         public final TextureAtlas.AtlasRegion questionEasy;
         public final TextureAtlas.AtlasRegion questionMedium;
@@ -194,6 +208,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion answerBubbleButton;
 
         public GameplayScreenAssets(TextureAtlas atlas){
+            fadeBG = atlas.findRegion(Constants.FADE_BG);
             questionVeryEasy = atlas.findRegion(Constants.QUESTIONVERYEASY_BG);
             questionEasy = atlas.findRegion(Constants.QUESTIONEASY_BG);
             questionMedium = atlas.findRegion(Constants.QUESTIONMEDIUM_BG);

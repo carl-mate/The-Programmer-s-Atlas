@@ -56,6 +56,8 @@ public class Constants {
     public static final float ANSWERBUBBLE_BUTTON_HEIGHT = 82f;
     public static final Vector2 ANSWERBUBBLE_BUTTON_CENTER = new Vector2(188, 49);
 
+    public static final String FADE_BG = "fade-bg";
+
     public static final float QUESTIONBUBBLE_WIDTH = 750;
     public static final float QUESTIONBUBBLE_HEIGHT = 100;
 
