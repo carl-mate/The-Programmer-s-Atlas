@@ -139,10 +139,11 @@ public class Assets implements Disposable, AssetErrorListener {
 
             image = new HashMap<>();
 
-            image.put("GT4.png", new Texture(Gdx.files.internal("Resources/Images/GT4.png")));
-            image.put("GT5.png", new Texture(Gdx.files.internal("Resources/Images/GT5.png")));
-            image.put("GT6.png", new Texture(Gdx.files.internal("Resources/Images/GT6.png")));
-            image.put("GT9.png", new Texture(Gdx.files.internal("Resources/Images/GT9.png")));
+            image.put("ve_c++_question.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_question.png")));
+            image.put("ve_c++_choiceA.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceA.png")));
+            image.put("ve_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceB.png")));
+            image.put("ve_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceC.png")));
+            image.put("ve_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceD.png")));
         }
     }
 
