@@ -45,6 +45,7 @@ public class Constants {
     public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(250, 35);
 
     //Gameplay Screen Assets
+    public static final String NORMAL_BG = "bg";
     public static final String QUESTIONVERYEASY_BG = "questionVeryEasy-bg";
     public static final String QUESTIONEASY_BG = "questionEasy-bg";
     public static final String QUESTIONMEDIUM_BG = "questionMedium-bg";

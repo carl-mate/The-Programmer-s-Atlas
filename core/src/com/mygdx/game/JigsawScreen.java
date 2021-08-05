@@ -31,6 +31,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
     private ArrayList<PuzzlePiece> puzzlePiece;
 
+    private Vector2 worldTouch;
     //image parameters
     private Texture texture;
     private TextureRegion[][] temp;
@@ -39,18 +40,17 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private int pieceWidth;
     private int pieceHeight;
 
-    private float grabOffSetX;
-    private float grabOffSetY;
-
     private int numberRows;
     private int numberCols;
 
     private boolean targetable;
 
+    private int touchCounter;
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
         this.batch = batch;
+        Gdx.input.setInputProcessor(this);
     }
 
     @Override
@@ -76,9 +76,9 @@ public class JigsawScreen extends InputAdapter implements Screen {
         for (int r = 0; r < numberRows; r++) {
             for (int c = 0; c < numberCols; c++) {
                 // create puzzle piece at random location on left half of screen
-                int pieceX = (int) MathUtils.random(0, viewport.getCamera().viewportWidth - pieceWidth);
-                int pieceY = (int) MathUtils.random(0, viewport.getCamera().viewportHeight - pieceHeight);
-                puzzlePiece.add(new PuzzlePiece(this.viewport, new Vector2(pieceX, pieceY), temp[r][c]));
+                int pieceX = (int) MathUtils.random(0, 960 - pieceWidth);
+                int pieceY = (int) MathUtils.random(0, 540 - pieceHeight);
+                puzzlePiece.add(new PuzzlePiece(new Vector2(pieceX, pieceY), temp[r][c]));
             }
         }
     }
@@ -97,8 +97,20 @@ public class JigsawScreen extends InputAdapter implements Screen {
         batch.setProjectionMatrix(viewport.getCamera().combined);
 
         batch.begin();
+        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
         for(PuzzlePiece x: puzzlePiece){
+            if(x.getTouched()){ //if touched, follow mouse
+                Vector2 followCursor = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+                x.setPosition(followCursor);
+            }
             x.render(batch);
+        }
+
+        //initialize bounds for puzzle pieces
+        for(PuzzlePiece x: puzzlePiece){
+            Vector2 puzzlePieceCenter = x.getPosition();
+            Rectangle puzzlePieceBoundingBox = new Rectangle(puzzlePieceCenter.x - x.getWidth() / 2f, puzzlePieceCenter.y - x.getHeight() / 2f, x.getWidth(), x.getHeight());
+            x.setPuzzlePieceBoundingBox(puzzlePieceBoundingBox);
         }
         batch.end();
     }
@@ -130,24 +142,21 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
+        worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
-        grabOffSetX = screenX;
-        grabOffSetY = screenY;
+       //check if touched
+        for(PuzzlePiece x: puzzlePiece){
 
-        return true;
-    }
-
-    @Override
-    public boolean touchDragged(int screenX, int screenY, int pointer) {
-        float deltaX = screenX - grabOffSetX;
-        float deltaY = screenY - grabOffSetY;
-        Vector2 position = new Vector2(deltaX, deltaY);
-//        this.puzzlePiece.setPosition(position);
-        return true;
-    }
-
-    @Override
-    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+            if(x.getPuzzlePieceBoundingBox().contains(worldTouch) && !x.getTouched()){
+                x.setTouched(true);
+                touchCounter++;
+                Gdx.app.log(TAG, "TOUCHED PUZZLE PIECE " + touchCounter);
+            }else if(x.getPuzzlePieceBoundingBox().contains(worldTouch) && x.getTouched()){
+                x.setTouched(false);
+                touchCounter++;
+                Gdx.app.log(TAG, "UNTOUCHED PUZZLE PIECE " + touchCounter);
+            }
+        }
 
         return true;
     }

@@ -1,9 +1,12 @@
 package entity;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -12,21 +15,26 @@ import util.Assets;
 import util.Util;
 
 
-public class PuzzlePiece {
+public class PuzzlePiece extends InputAdapter {
 
-    private ExtendViewport viewport;
     private Vector2 position;
+    private Vector2 textureCenter;
     private TextureRegion textureRegion;
     private int row;
     private int col;
 
+    private float grabOffsetX;
+    private float grabOffsetY;
+
+    private boolean touched;
+
+    private Rectangle puzzlePieceBoundingBox;
 
     private PuzzleArea puzzleArea;
 
-    public PuzzlePiece(ExtendViewport viewport, Vector2 position, TextureRegion textureRegion){
-        this.viewport = viewport;
+    public PuzzlePiece(Vector2 position, TextureRegion textureRegion){
         this.position = position;
-        this.textureRegion =textureRegion;
+        this.textureRegion = textureRegion;
     }
 
     public void render(SpriteBatch batch){
@@ -34,11 +42,27 @@ public class PuzzlePiece {
                 batch,
                 textureRegion,
                 this.position,
-                new Vector2(textureRegion.getRegionWidth() / 2, textureRegion.getRegionHeight() / 2));
+                new Vector2(getWidth() / 2f, getHeight()/ 2f));
+    }
+
+    public void setPuzzlePieceBoundingBox(Rectangle puzzlePieceBoundingBox){
+        this.puzzlePieceBoundingBox = puzzlePieceBoundingBox;
+    }
+
+    public Rectangle getPuzzlePieceBoundingBox(){
+        return this.puzzlePieceBoundingBox;
     }
 
     public void setPosition(Vector2 position){
         this.position = position;
+    }
+
+    public int getWidth(){
+        return this.textureRegion.getRegionWidth();
+    }
+
+    public int getHeight(){
+        return this.textureRegion.getRegionHeight();
     }
 
     public Vector2 getPosition(){
@@ -82,4 +106,13 @@ public class PuzzlePiece {
                 && this.row == puzzleArea.getRow()
                 && this.col == puzzleArea.getCol();
     }
+
+    public void setTouched(boolean touched){
+        this.touched = touched;
+    }
+
+    public boolean getTouched(){
+        return this.touched;
+    }
+
 }

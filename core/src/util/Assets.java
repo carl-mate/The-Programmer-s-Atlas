@@ -200,6 +200,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public class GameplayScreenAssets{
         public final TextureAtlas.AtlasRegion fadeBG;
+        public final TextureAtlas.AtlasRegion normalBG;
         public final TextureAtlas.AtlasRegion questionVeryEasy;
         public final TextureAtlas.AtlasRegion questionEasy;
         public final TextureAtlas.AtlasRegion questionMedium;
@@ -209,6 +210,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public GameplayScreenAssets(TextureAtlas atlas){
             fadeBG = atlas.findRegion(Constants.FADE_BG);
+            normalBG = atlas.findRegion(Constants.NORMAL_BG);
             questionVeryEasy = atlas.findRegion(Constants.QUESTIONVERYEASY_BG);
             questionEasy = atlas.findRegion(Constants.QUESTIONEASY_BG);
             questionMedium = atlas.findRegion(Constants.QUESTIONMEDIUM_BG);
