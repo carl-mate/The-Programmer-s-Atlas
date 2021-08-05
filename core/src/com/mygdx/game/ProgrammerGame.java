@@ -31,7 +31,8 @@ public class ProgrammerGame extends Game {
 		} catch(Exception e){
 			Gdx.app.log(TAG, "NOTHING HAPPENED");
 		}
-		showMainMenuScreen();
+//		showMainMenuScreen();
+		showJigsawScren();
 	}
 
 	@Override
@@ -48,6 +49,10 @@ public class ProgrammerGame extends Game {
 
 	public void showGameplayScreen(Difficulty difficulty){
 		setScreen(new GameplayScreen(this, difficulty, this.batch));
+	}
+
+	public void showJigsawScren(){
+		setScreen(new JigsawScreen(this, this.batch));
 	}
 
 	public Questions getQuestions(){
