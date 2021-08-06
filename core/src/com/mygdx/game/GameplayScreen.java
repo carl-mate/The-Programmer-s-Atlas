@@ -11,6 +11,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 
@@ -57,6 +58,10 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private Rectangle choiceBButtonBoundingBoxText;
     private Vector2 choiceDButtonCenterText;
     private Rectangle choiceDButtonBoundingBoxText;
+
+    private long storeScoreStartTime;
+    private int userCounter;
+    private int score;
 
 
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch) {
@@ -238,6 +243,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private void judgeAnswer(boolean correct) {
         if (correct) {
             if (this.difficulty == Difficulty.THEORETICAL_VERY_EASY) {
+
                 Gdx.app.log(TAG, "THEORETICAL VERY EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_EASY) {
                 Gdx.app.log(TAG, "THEORETICAL EASY CORRECT");
@@ -262,6 +268,21 @@ public class GameplayScreen extends InputAdapter implements Screen {
             }
             programmerGame.showCorrectAnswerScreen();
         } else {
+            if(storeScoreStartTime == 0){
+                //store the scores
+                while(true){
+                    if(!Constants.preferences.contains("user-"+userCounter)){
+                        Constants.preferences.putString("user-"+userCounter, Constants.preferences.getString("user"));
+                        Constants.preferences.putInteger("score-"+userCounter, 3000000);
+                        break;
+                    } else{
+                        userCounter++;
+                    }
+                }
+                Constants.preferences.putInteger("userCounter", userCounter);
+                Constants.preferences.flush();
+                storeScoreStartTime = TimeUtils.nanoTime();
+            }
             programmerGame.showGameOverScreen();
             Gdx.app.log(TAG, "WRONG");
         }

@@ -72,9 +72,29 @@ public class Constants {
     public static final float QUESTIONBUBBLE_WIDTH = 750;
     public static final float QUESTIONBUBBLE_HEIGHT = 100;
 
+    public static final int THEORETICAL_VERY_EASY_POINTS = 1000;
+    public static final int THEORETICAL_EASY_POINTS = 2000;
+    public static final int THEORETICAL_MEDIUM_POINTS = 5000;
+    public static final int THEORETICAL_HARD_POINTS = 10000;
+    public static final int THEORETICAL_VERY_HARD_POINTS = 25000;
+
+    public static final int PROGRAMMING_VERY_EASY_POINTS = 50000;
+    public static final int PROGRAMMING_EASY_POINTS = 100000;
+    public static final int PROGRAMMING_MEDIUM_POINTS = 175000;
+    public static final int PROGRAMMING_HARD_POINTS = 300000;
+    public static final int PROGRAMMING_VERY_HARD_POINTS = 500000;
+
+    public static final int MYSTERY_QUESTION_POINTS = 1000000;
+
+    public static final int IMPORTANT_FIGURE_CORRECT_POINTS = 2000000;
+    public static final int IMPORTANT_FIGURE_INCORRECT_POINTS = 500000;
+
     //GameOver Screen Assets
     public static final String GAMEOVER_BG = "gameOver-bg";
     public static final Vector2 GAMEOVER_BG_CENTER = new Vector2(140, 230);
+
+    public static final float GAMEOVER_BG_WIDTH = 260f;
+    public static final float GAMEOVER_BG_HEIGHT = 100f;
 
     //CorrectAnswer Screen Assets
     public static final String CORRECTANSWER_BG = "correctAnswer-bg";

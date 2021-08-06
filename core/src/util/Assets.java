@@ -79,13 +79,17 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public final FreeTypeFontGenerator.FreeTypeFontParameter questionFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter choicesFontParameter;
-        public final FreeTypeFontGenerator.FreeTypeFontParameter earningsFontParameter;
+
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameFontParameter;
+
+        public final FreeTypeFontGenerator.FreeTypeFontParameter earningsFontParameter;
+        public final FreeTypeFontGenerator.FreeTypeFontParameter usernameEarningsFontParameter;
 
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
         public BitmapFont earningsFont;
         public BitmapFont usernameFont;
+        public BitmapFont usernameEarningsFont;
 
         public GlyphLayout glyphLayout;
 
@@ -108,8 +112,13 @@ public class Assets implements Disposable, AssetErrorListener {
             choicesFontParameter.color = Color.BLACK;
             choicesFont = sourceCodeProBoldFontGenerator.generateFont(choicesFontParameter);
 
+            usernameEarningsFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            usernameEarningsFontParameter .size = 20;
+            usernameEarningsFontParameter .color = Color.BLACK;
+            usernameEarningsFont = sourceCodeProBoldFontGenerator.generateFont(usernameEarningsFontParameter);
+
             earningsFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            earningsFontParameter.size = 50;
+            earningsFontParameter.size = 40;
             earningsFontParameter.color = Color.BLACK;
             earningsFont = sourceCodeProBoldFontGenerator.generateFont(earningsFontParameter);
 
@@ -133,6 +142,9 @@ public class Assets implements Disposable, AssetErrorListener {
                     break;
                 case "earnings":
                     drawCentered(earningsFont, batch, text, bounds);
+                    break;
+                case "usernameEarnings":
+                    drawCentered(usernameEarningsFont, batch, text, bounds);
                     break;
             }
         }
