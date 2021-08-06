@@ -25,6 +25,13 @@ bg
   orig: 960, 540
   offset: 0, 0
   index: -1
+continue-button
+  rotate: false
+  xy: 818, 19
+  size: 165, 50
+  orig: 165, 50
+  offset: 0, 0
+  index: -1
 correctAnswer-bg
   rotate: false
   xy: 2, 19
@@ -51,13 +58,6 @@ hard-button
   xy: 566, 257
   size: 300, 60
   orig: 300, 60
-  offset: 0, 0
-  index: -1
-howToPlay-button
-  rotate: false
-  xy: 818, 19
-  size: 160, 50
-  orig: 160, 50
   offset: 0, 0
   index: -1
 medium-button
@@ -108,6 +108,13 @@ difficulty-bg
   orig: 960, 540
   offset: 0, 0
   index: -1
+howToPlay-button
+  rotate: false
+  xy: 504, 116
+  size: 160, 50
+  orig: 160, 50
+  offset: 0, 0
+  index: -1
 mysteryQuestion-button
   rotate: false
   xy: 2, 96
@@ -117,14 +124,14 @@ mysteryQuestion-button
   index: -1
 options-button
   rotate: false
-  xy: 504, 116
+  xy: 2, 2
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
 play-button
   rotate: false
-  xy: 2, 2
+  xy: 666, 116
   size: 160, 50
   orig: 160, 50
   offset: 0, 0

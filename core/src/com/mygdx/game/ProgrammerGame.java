@@ -54,11 +54,11 @@ public class ProgrammerGame extends Game {
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
-	public void showCorrectAnswerScreen(){
-		setScreen(new CorrectAnswerScreen(this, this.batch));
+	public void showCorrectAnswerScreen(int score){
+		setScreen(new CorrectAnswerScreen(this, this.batch, score));
 	}
 
-	public void showJigsawScren(){
+	public void showJigsawScreen(){
 		setScreen(new JigsawScreen(this, this.batch));
 	}
 

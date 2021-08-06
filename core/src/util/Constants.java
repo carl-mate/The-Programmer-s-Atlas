@@ -72,6 +72,12 @@ public class Constants {
     public static final float QUESTIONBUBBLE_WIDTH = 750;
     public static final float QUESTIONBUBBLE_HEIGHT = 100;
 
+    public static final String CONTINUE_BUTTON = "continue-button";
+    public static final float CONTINUE_BUTTON_WIDTH = 165;
+    public static final float CONTINUE_BUTTON_HEIGHT = 50;
+    public static final Vector2 CONTINUE_BUTTON_CENTER = new Vector2(83, 25);
+
+
     public static final int THEORETICAL_VERY_EASY_POINTS = 1000;
     public static final int THEORETICAL_EASY_POINTS = 2000;
     public static final int THEORETICAL_MEDIUM_POINTS = 5000;

@@ -82,11 +82,13 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameFontParameter;
 
+        public final FreeTypeFontGenerator.FreeTypeFontParameter praiseFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter earningsFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameEarningsFontParameter;
 
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
+        public BitmapFont praiseFont;
         public BitmapFont earningsFont;
         public BitmapFont usernameFont;
         public BitmapFont usernameEarningsFont;
@@ -117,6 +119,11 @@ public class Assets implements Disposable, AssetErrorListener {
             usernameEarningsFontParameter .color = Color.BLACK;
             usernameEarningsFont = sourceCodeProBoldFontGenerator.generateFont(usernameEarningsFontParameter);
 
+            praiseFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            praiseFontParameter .size = 30;
+            praiseFontParameter .color = Color.BLACK;
+            praiseFont = sourceCodeProBoldFontGenerator.generateFont(praiseFontParameter);
+
             earningsFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             earningsFontParameter.size = 40;
             earningsFontParameter.color = Color.BLACK;
@@ -145,6 +152,9 @@ public class Assets implements Disposable, AssetErrorListener {
                     break;
                 case "usernameEarnings":
                     drawCentered(usernameEarningsFont, batch, text, bounds);
+                    break;
+                case "praise":
+                    drawCentered(praiseFont, batch, text, bounds);
                     break;
             }
         }
@@ -250,6 +260,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion answerBubbleButton;
 
 
+
         public GameplayScreenAssets(TextureAtlas atlas){
             fadeBG = atlas.findRegion(Constants.FADE_BG);
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
@@ -276,10 +287,12 @@ public class Assets implements Disposable, AssetErrorListener {
     public class CorrectAnswerScreenAssets{
         public final TextureAtlas.AtlasRegion normalBG;
         public final TextureAtlas.AtlasRegion correctAnswerBG;
+        public final TextureAtlas.AtlasRegion continueButton;
 
         public CorrectAnswerScreenAssets(TextureAtlas atlas){
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
             correctAnswerBG = atlas.findRegion(Constants.CORRECTANSWER_BG);
+            continueButton = atlas.findRegion(Constants.CONTINUE_BUTTON);
         }
     }
 }

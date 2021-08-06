@@ -243,15 +243,19 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private void judgeAnswer(boolean correct) {
         if (correct) {
             if (this.difficulty == Difficulty.THEORETICAL_VERY_EASY) {
-
+                score += Constants.THEORETICAL_VERY_EASY_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL VERY EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_EASY) {
+                score += Constants.THEORETICAL_EASY_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_MEDIUM) {
+                score += Constants.THEORETICAL_MEDIUM_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL MEDIUM CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_HARD) {
+                score += Constants.THEORETICAL_HARD_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL HARD CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_VERY_HARD) {
+                score += Constants.THEORETICAL_VERY_HARD_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL VERY HARD CORRECT");
             }
 
@@ -266,23 +270,24 @@ public class GameplayScreen extends InputAdapter implements Screen {
             } else if (this.difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
                 Gdx.app.log(TAG, "PROGRAMMING VERY HARD CORRECT");
             }
-            programmerGame.showCorrectAnswerScreen();
+
+            programmerGame.showCorrectAnswerScreen(score);
         } else {
-            if(storeScoreStartTime == 0){
-                //store the scores
-                while(true){
-                    if(!Constants.preferences.contains("user-"+userCounter)){
-                        Constants.preferences.putString("user-"+userCounter, Constants.preferences.getString("user"));
-                        Constants.preferences.putInteger("score-"+userCounter, 3000000);
-                        break;
-                    } else{
-                        userCounter++;
-                    }
+
+            //store the scores
+            while(true){
+                if(!Constants.preferences.contains("user-"+userCounter)){
+                    Constants.preferences.putString("user-"+userCounter, Constants.preferences.getString("user"));
+                    Constants.preferences.putInteger("score-"+userCounter, score);
+                    break;
+                } else{
+                    userCounter++;
                 }
-                Constants.preferences.putInteger("userCounter", userCounter);
-                Constants.preferences.flush();
-                storeScoreStartTime = TimeUtils.nanoTime();
             }
+            Constants.preferences.putInteger("userCounter", userCounter);
+            Constants.preferences.flush();
+            storeScoreStartTime = TimeUtils.nanoTime();
+
             programmerGame.showGameOverScreen();
             Gdx.app.log(TAG, "WRONG");
         }
