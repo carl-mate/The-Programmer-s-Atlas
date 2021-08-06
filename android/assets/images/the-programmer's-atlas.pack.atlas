@@ -6,84 +6,91 @@ filter: Nearest,Nearest
 repeat: none
 Untitled design
   rotate: false
-  xy: 868, 237
+  xy: 868, 254
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: -1
 answerBubble-button
   rotate: false
-  xy: 566, 364
+  xy: 566, 381
   size: 375, 98
   orig: 375, 98
   offset: 0, 0
   index: -1
 bg
   rotate: false
-  xy: 2, 464
+  xy: 2, 481
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
 correctAnswer-bg
   rotate: false
-  xy: 2, 2
+  xy: 2, 19
   size: 280, 460
   orig: 280, 460
   offset: 0, 0
   index: -1
 easy-button
   rotate: false
-  xy: 566, 302
+  xy: 566, 319
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 gameOver-bg
   rotate: false
-  xy: 284, 2
+  xy: 284, 19
   size: 280, 460
   orig: 280, 460
   offset: 0, 0
   index: -1
 hard-button
   rotate: false
-  xy: 566, 240
+  xy: 566, 257
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 howToPlay-button
   rotate: false
-  xy: 818, 2
+  xy: 818, 19
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
 medium-button
   rotate: false
-  xy: 566, 178
+  xy: 566, 195
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 programmingQuestions-label
   rotate: false
-  xy: 566, 12
+  xy: 566, 29
   size: 250, 40
   orig: 250, 40
   offset: 0, 0
   index: -1
+username-textfield
+  rotate: false
+  xy: 566, 2
+  size: 175, 25
+  orig: 175, 25
+  offset: 0, 0
+  index: -1
 veryEasy-button
   rotate: false
-  xy: 566, 116
+  xy: 566, 133
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 veryHard-button
   rotate: false
-  xy: 566, 54
+  xy: 566, 71
   size: 300, 60
   orig: 300, 60
   offset: 0, 0

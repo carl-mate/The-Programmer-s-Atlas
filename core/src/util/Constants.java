@@ -1,5 +1,6 @@
 package util;
 
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
 
@@ -11,6 +12,10 @@ public class Constants {
     public static final float WORLD_SIZE_HEIGHT = 540f;
 
     public static final String TEXTURE_ATLAS = "images/the-programmer's-atlas.pack.atlas";
+
+    public static Preferences preferences;
+
+    public static String MENU_SCREEN_NAME;
 
     //Main Menu Assets
     public static final String MAIN_MENU_BG = "mainMenu-bg";
@@ -45,6 +50,11 @@ public class Constants {
     public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(250, 35);
 
     //Gameplay Screen Assets
+    public static final String USERNAME_TEXTFIELD = "username-textfield";
+    public static final Vector2 USERNAME_TEXTFIELD_CENTER = new Vector2(88, 13);
+    public static final float USERNAME_TEXTFIELD_WIDTH = 175;
+    public static final float USERNAME_TEXTFIELD_HEIGHT = 25;
+
     public static final String NORMAL_BG = "bg";
     public static final String QUESTIONVERYEASY_BG = "questionVeryEasy-bg";
     public static final String QUESTIONEASY_BG = "questionEasy-bg";

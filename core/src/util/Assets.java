@@ -79,15 +79,25 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public final FreeTypeFontGenerator.FreeTypeFontParameter questionFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter choicesFontParameter;
+        public final FreeTypeFontGenerator.FreeTypeFontParameter earningsFontParameter;
+        public final FreeTypeFontGenerator.FreeTypeFontParameter usernameFontParameter;
 
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
+        public BitmapFont earningsFont;
+        public BitmapFont usernameFont;
+
         public GlyphLayout glyphLayout;
 
         public Font(){
             sourceCodeProBoldFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("SourceCodeProBold.ttf"));
 
             //font parameters
+            usernameFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            usernameFontParameter.size = 20;
+            usernameFontParameter.color = Color.BLACK;
+            usernameFont = sourceCodeProBoldFontGenerator.generateFont(usernameFontParameter);
+
             questionFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             questionFontParameter.size = 15;
             questionFontParameter.color = Color.BLACK;
@@ -98,12 +108,20 @@ public class Assets implements Disposable, AssetErrorListener {
             choicesFontParameter.color = Color.BLACK;
             choicesFont = sourceCodeProBoldFontGenerator.generateFont(choicesFontParameter);
 
+            earningsFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            earningsFontParameter.size = 50;
+            earningsFontParameter.color = Color.BLACK;
+            earningsFont = sourceCodeProBoldFontGenerator.generateFont(earningsFontParameter);
+
             glyphLayout = new GlyphLayout();
         }
 
         public void drawSourceCodeProBoldFont(SpriteBatch batch, String type, String text, Rectangle bounds){
 
             switch(type){
+                case "username":
+                    drawCentered(usernameFont, batch, text, bounds);
+                    break;
                 case "question":
                     drawCentered(questionFont, batch, text, bounds);
                     break;
@@ -112,6 +130,9 @@ public class Assets implements Disposable, AssetErrorListener {
                 case "choiceC":
                 case "choiceD":
                     drawCentered(choicesFont, batch, text, bounds);
+                    break;
+                case "earnings":
+                    drawCentered(earningsFont, batch, text, bounds);
                     break;
             }
         }
@@ -171,12 +192,14 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion playButton;
         public final TextureAtlas.AtlasRegion optionsButton;
         public final TextureAtlas.AtlasRegion howToPlayButton;
+        public final TextureAtlas.AtlasRegion usernameTextfield;
 
         public MainMenuAssets(TextureAtlas atlas){
             mainMenuBG = atlas.findRegion(Constants.MAIN_MENU_BG);
             playButton = atlas.findRegion(Constants.PLAY_BUTTON);
             optionsButton = atlas.findRegion(Constants.OPTIONS_BUTTON);
             howToPlayButton = atlas.findRegion(Constants.HOWTOPLAY_BUTTON);
+            usernameTextfield = atlas.findRegion(Constants.USERNAME_TEXTFIELD);
         }
     }
 
@@ -214,6 +237,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion questionVeryHard;
         public final TextureAtlas.AtlasRegion answerBubbleButton;
 
+
         public GameplayScreenAssets(TextureAtlas atlas){
             fadeBG = atlas.findRegion(Constants.FADE_BG);
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
@@ -223,6 +247,7 @@ public class Assets implements Disposable, AssetErrorListener {
             questionHard = atlas.findRegion(Constants.QUESTIONHARD_BG);
             questionVeryHard = atlas.findRegion(Constants.QUESTIONVERYHARD_BG);
             answerBubbleButton = atlas.findRegion(Constants.ANSWERBUBBLE_BUTTON);
+
         }
     }
 

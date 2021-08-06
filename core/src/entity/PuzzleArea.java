@@ -12,7 +12,6 @@ public class PuzzleArea {
     private int row;
     private int col;
 
-
     private Rectangle puzzleAreaRectangle;
 
     public PuzzleArea(Vector2 position, Rectangle puzzleAreaRectangle){

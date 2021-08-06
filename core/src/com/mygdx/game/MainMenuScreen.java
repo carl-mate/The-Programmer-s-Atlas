@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -24,6 +25,10 @@ public class MainMenuScreen extends InputAdapter implements Screen {
     private ExtendViewport viewport;
     private OrthographicCamera camera;
 
+    private StringBuilder username;
+    private boolean handledUserName;
+    private boolean emptyField;
+
     public MainMenuScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
@@ -35,6 +40,9 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
+        username = new StringBuilder();
+        handledUserName = false;
+        emptyField = false;
         Gdx.input.setInputProcessor(this);
     }
 
@@ -57,9 +65,26 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
         //playButton
         Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.playButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+        //optionsButton
         Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.optionsButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+        //howToPlayButton
         Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.howToPlayButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+
+        if(!handledUserName){
+            handleUsernameInput(batch);
+        }
+
         batch.end();
+
+        if(handledUserName){
+            Constants.MENU_SCREEN_NAME = username.toString();
+            Constants.preferences = Gdx.app.getPreferences("user");
+
+            Constants.preferences.putString("user", username.toString());
+            Constants.preferences.flush();
+            programmerGame.showDifficultyScreen();
+
+        }
     }
 
     @Override
@@ -81,8 +106,10 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
 
         if(playButtonBoundingBox.contains(worldTouch)){
-            Gdx.app.log(TAG, "CLICKED PLAY");
-            programmerGame.showDifficultyScreen();
+            if(handledUserName){
+                Gdx.app.log(TAG, "CLICKED PLAY");
+                programmerGame.showDifficultyScreen();
+            }
         }
 
 //        if(optionsButtonBoundingBox.contains(worldTouch)){
@@ -99,6 +126,144 @@ public class MainMenuScreen extends InputAdapter implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+    }
+
+    public void handleUsernameInput(SpriteBatch batch){
+        if(username.length() < 10){
+            if(Gdx.input.isKeyJustPressed(Input.Keys.A)){
+                username.append('A');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.B)){
+                username.append('B');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.C)){
+                username.append('C');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.D)){
+                username.append('D');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.E)){
+                username.append('E');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.F)){
+                username.append('F');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.G)){
+                username.append('G');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.H)){
+                username.append('H');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.I)){
+                username.append('I');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.J)){
+                username.append('J');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.K)){
+                username.append('K');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.L)){
+                username.append('L');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.M)){
+                username.append('M');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.N)){
+                username.append('N');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.O)){
+                username.append('O');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.P)){
+                username.append('P');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.Q)){
+                username.append('Q');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.R)){
+                username.append('R');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.S)){
+                username.append('S');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.T)){
+                username.append('T');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.U)){
+                username.append('U');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.V)){
+                username.append('V');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.W)){
+                username.append('W');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.X)){
+                username.append('X');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.Y)){
+                username.append('Y');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.Z)){
+                username.append('Z');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_0)){
+                username.append('0');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_1)){
+                username.append('1');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_2)){
+                username.append('2');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_3)){
+                username.append('3');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_4)){
+                username.append('4');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_5)){
+                username.append('5');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_6)){
+                username.append('6');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_7)){
+                username.append('7');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_8)){
+                username.append('8');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.NUM_9)){
+                username.append('9');
+            }
+            if(Gdx.input.isKeyJustPressed(Input.Keys.SPACE)){
+                username.append(' ');
+            }
+
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)){
+            if(username.length() - 1 >= 0){
+                username.deleteCharAt(username.length() - 1);
+            }
+        }
+        if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+            if(username.length() == 0){
+                emptyField = true;
+            } else{
+                handledUserName = true;
+            }
+        }
+
+        //username textfield
+        Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.usernameTextfield, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 5.5f), Constants.USERNAME_TEXTFIELD_CENTER);
+
+        //initialize textfield bounds
+        Vector2 textfieldCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 4.6f);
+        Rectangle textfieldRectangleBounds = new Rectangle(textfieldCenter.x - Constants.USERNAME_TEXTFIELD_WIDTH / 2, textfieldCenter.y - Constants.USERNAME_TEXTFIELD_HEIGHT / 2, Constants.USERNAME_TEXTFIELD_WIDTH, Constants.USERNAME_TEXTFIELD_HEIGHT);
+
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", username.toString(), textfieldRectangleBounds);
     }
 
     @Override
