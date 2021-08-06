@@ -260,7 +260,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
             } else if (this.difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
                 Gdx.app.log(TAG, "PROGRAMMING VERY HARD CORRECT");
             }
+            programmerGame.showCorrectAnswerScreen();
         } else {
+            programmerGame.showGameOverScreen();
             Gdx.app.log(TAG, "WRONG");
         }
     }

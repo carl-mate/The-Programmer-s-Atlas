@@ -62,5 +62,13 @@ public class Constants {
     public static final float QUESTIONBUBBLE_WIDTH = 750;
     public static final float QUESTIONBUBBLE_HEIGHT = 100;
 
+    //GameOver Screen Assets
+    public static final String GAMEOVER_BG = "gameOver-bg";
+    public static final Vector2 GAMEOVER_BG_CENTER = new Vector2(140, 230);
+
+    //CorrectAnswer Screen Assets
+    public static final String CORRECTANSWER_BG = "correctAnswer-bg";
+    public static final Vector2 CORRECTANSWER_BG_CENTER = new Vector2(140, 230);
+
 
 }

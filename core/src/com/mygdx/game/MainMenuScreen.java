@@ -99,7 +99,6 @@ public class MainMenuScreen extends InputAdapter implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
-        camera.update();
     }
 
     @Override

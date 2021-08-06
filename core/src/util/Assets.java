@@ -17,6 +17,8 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.CorrectAnswerScreen;
+import com.mygdx.game.GameOverScreen;
 import com.mygdx.game.GameplayScreen;
 
 import java.io.InputStream;
@@ -29,6 +31,8 @@ public class Assets implements Disposable, AssetErrorListener {
     public MainMenuAssets mainMenuAssets;
     public DifficultyScreenAssets difficultyScreenAssets;
     public GameplayScreenAssets gameplayScreenAssets;
+    public GameOverScreenAssets gameOverScreenAssets;
+    public CorrectAnswerScreenAssets correctAnswerScreenAssets;
     public ResourcesFilePath resourcesFilePath;
     public Font font;
 
@@ -48,6 +52,8 @@ public class Assets implements Disposable, AssetErrorListener {
         mainMenuAssets = new MainMenuAssets(atlas);
         difficultyScreenAssets = new DifficultyScreenAssets(atlas);
         gameplayScreenAssets = new GameplayScreenAssets(atlas);
+        gameOverScreenAssets = new GameOverScreenAssets(atlas);
+        correctAnswerScreenAssets = new CorrectAnswerScreenAssets(atlas);
         font = new Font();
     }
 
@@ -217,6 +223,26 @@ public class Assets implements Disposable, AssetErrorListener {
             questionHard = atlas.findRegion(Constants.QUESTIONHARD_BG);
             questionVeryHard = atlas.findRegion(Constants.QUESTIONVERYHARD_BG);
             answerBubbleButton = atlas.findRegion(Constants.ANSWERBUBBLE_BUTTON);
+        }
+    }
+
+    public class GameOverScreenAssets{
+        public final TextureAtlas.AtlasRegion normalBG;
+        public final TextureAtlas.AtlasRegion gameOverBG;
+
+        public GameOverScreenAssets(TextureAtlas atlas){
+            normalBG = atlas.findRegion(Constants.NORMAL_BG);
+            gameOverBG = atlas.findRegion(Constants.GAMEOVER_BG);
+        }
+    }
+
+    public class CorrectAnswerScreenAssets{
+        public final TextureAtlas.AtlasRegion normalBG;
+        public final TextureAtlas.AtlasRegion correctAnswerBG;
+
+        public CorrectAnswerScreenAssets(TextureAtlas atlas){
+            normalBG = atlas.findRegion(Constants.NORMAL_BG);
+            correctAnswerBG = atlas.findRegion(Constants.CORRECTANSWER_BG);
         }
     }
 }
