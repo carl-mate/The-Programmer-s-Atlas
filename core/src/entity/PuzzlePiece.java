@@ -23,18 +23,20 @@ public class PuzzlePiece extends InputAdapter {
     private int row;
     private int col;
 
-    private float grabOffsetX;
-    private float grabOffsetY;
-
+    private float closestDistance;
     private boolean touched;
+
+    private boolean draggable;
 
     private Rectangle puzzlePieceBoundingBox;
 
     private PuzzleArea puzzleArea;
 
+
     public PuzzlePiece(Vector2 position, TextureRegion textureRegion){
         this.position = position;
         this.textureRegion = textureRegion;
+        draggable = true;
     }
 
     public void render(SpriteBatch batch){
@@ -44,6 +46,23 @@ public class PuzzlePiece extends InputAdapter {
                 this.position,
                 new Vector2(getWidth() / 2f, getHeight()/ 2f));
     }
+
+    public void setClosestDistance(float closestDistance){
+        this.closestDistance = closestDistance;
+    }
+
+    public float getClosestDistance(){
+        return this.closestDistance;
+    }
+
+    public void setDraggable(boolean draggable){
+        this.draggable = draggable;
+    }
+
+    public boolean isDraggable(){
+        return draggable;
+    }
+
 
     public void setPuzzlePieceBoundingBox(Rectangle puzzlePieceBoundingBox){
         this.puzzlePieceBoundingBox = puzzlePieceBoundingBox;

@@ -39,20 +39,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private ArrayList<PuzzleArea> puzzleArea;
 
     private Vector2 worldTouch;
-    //image parameters
-    private Texture texture;
-    private TextureRegion[][] temp;
-    private int imageWidth;
-    private int imageHeight;
-    private int pieceWidth;
-    private int pieceHeight;
-
-    private int numberRows;
-    private int numberCols;
-
-    private boolean targetable;
-
-    private int touchCounter;
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -69,21 +55,22 @@ public class JigsawScreen extends InputAdapter implements Screen {
         puzzlePiece = new ArrayList<>();
         puzzleArea = new ArrayList<>();
 
-        targetable = true;
-        numberRows = 3;
-        numberCols = 3;
+        int numberRows = 3;
+        int numberCols = 3;
 
         //initialize image parameters
-        texture = new Texture(Gdx.files.internal("alanturing.jpg"));
-        imageWidth = texture.getWidth();
-        imageHeight = texture.getHeight();
-        pieceWidth = imageWidth / numberCols;
-        pieceHeight = imageHeight / numberRows;
+        //image parameters
+//        Texture texture = new Texture(Gdx.files.internal("alanturing.jpg"));
+        Texture texture = new Texture(Gdx.files.internal("ken_thompson.jpg"));
+        int imageWidth = texture.getWidth();
+        int imageHeight = texture.getHeight();
+        int pieceWidth = imageWidth / numberCols;
+        int pieceHeight = imageHeight / numberRows;
 
         Vector2 screenCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2);
         textureRectangle = new Rectangle(screenCenter.x - texture.getWidth() / 2f, screenCenter.y - texture.getHeight() / 2f, texture.getWidth(), texture.getHeight());
 
-        temp = TextureRegion.split(texture, pieceWidth, pieceHeight);
+        TextureRegion[][] temp = TextureRegion.split(texture, pieceWidth, pieceHeight);
 
         for (int r = 0; r < numberRows; r++) {
             for (int c = 0; c < numberCols; c++) {
@@ -92,24 +79,17 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 int pieceY = (int) MathUtils.random(0, viewport.getCamera().viewportHeight - pieceHeight);
                 puzzlePiece.add(new PuzzlePiece(new Vector2(pieceX, pieceY), temp[r][c]));
 
-                //create puzzle area
-//                int marginX = (int) ((viewport.getCamera().viewportWidth / 2 - imageWidth + 200) / 2);
-//                int marginY = (int) ((viewport.getCamera().viewportHeight - imageHeight + 100) / 2);
-
-//                int areaX = (int) ((viewport.getCamera().viewportWidth / 2 + marginX) + pieceWidth * c) + 10;
-//                int areaY = (int) ((viewport.getCamera().viewportHeight - marginY - pieceHeight)  - pieceHeight * r) + 10;
-
                 int marginX = (int) (((viewport.getCamera().viewportWidth / 2.79) - imageWidth) / 2);
                 int marginY = (540 - imageHeight) / 2;
 
-                int areaX = (int) (((viewport.getCamera().viewportWidth / 2.79)  + marginX) + (pieceWidth + 1) * c);
+                int areaX = (int) (((viewport.getCamera().viewportWidth / 2.79) + marginX) + (pieceWidth + 1) * c);
                 int areaY = (540 - marginY) - (pieceHeight + 1) * r;
 
                 puzzleArea.add(new PuzzleArea(new Vector2(areaX, areaY), new Rectangle(areaX - pieceWidth / 2f, areaY - pieceHeight / 2f, pieceWidth, pieceHeight)));
-
+                puzzleArea.get(puzzleArea.size() - 1).setRow(r);
+                puzzleArea.get(puzzleArea.size() - 1).setCol(c);
             }
         }
-
 
 
     }
@@ -133,22 +113,21 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
         shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
         shapeRenderer.setColor(Color.LIGHT_GRAY);
-        for(PuzzleArea x: puzzleArea){
-            shapeRenderer.rect(x.getPuzzleAreaRectangle().x, x.getPuzzleAreaRectangle().y, x.getPuzzleAreaRectangle().width, x.getPuzzleAreaRectangle().height);
+        for (PuzzleArea x : puzzleArea) {
+            shapeRenderer.rect(x.getPuzzleAreaBoundingBox().x, x.getPuzzleAreaBoundingBox().y, x.getPuzzleAreaBoundingBox().width, x.getPuzzleAreaBoundingBox().height);
         }
-//        shapeRenderer.rect(puzzleArea.get(0).getPuzzleAreaRectangle().x, puzzleArea.get(0).getPuzzleAreaRectangle().y, puzzleArea.get(0).getPuzzleAreaRectangle().width, puzzleArea.get(0).getPuzzleAreaRectangle().height);
-//        shapeRenderer.rect(puzzleArea.get(1).getPuzzleAreaRectangle().x, puzzleArea.get(1).getPuzzleAreaRectangle().y, puzzleArea.get(1).getPuzzleAreaRectangle().width, puzzleArea.get(1).getPuzzleAreaRectangle().height);
-
-//        shapeRenderer.rect(textureRectangle.x, textureRectangle.y, textureRectangle.width, textureRectangle.height);
         shapeRenderer.end();
 
         batch.begin();
         //render pieces
         for (PuzzlePiece x : puzzlePiece) {
+
             if (x.getTouched()) { //if touched, follow mouse
                 Vector2 followCursor = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
                 x.setPosition(followCursor);
             }
+
+            //handle
             x.render(batch);
         }
 
@@ -157,6 +136,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
             Vector2 puzzlePieceCenter = x.getPosition();
             Rectangle puzzlePieceBoundingBox = new Rectangle(puzzlePieceCenter.x - x.getWidth() / 2f, puzzlePieceCenter.y - x.getHeight() / 2f, x.getWidth(), x.getHeight());
             x.setPuzzlePieceBoundingBox(puzzlePieceBoundingBox);
+
         }
         batch.end();
 
@@ -194,26 +174,47 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
         //check if touched
         for (PuzzlePiece x : puzzlePiece) {
-
             if (x.getPuzzlePieceBoundingBox().contains(worldTouch) && !x.getTouched()) {
                 x.setTouched(true);
-                touchCounter++;
-                Gdx.app.log(TAG, "TOUCHED PUZZLE PIECE " + touchCounter);
-            } else if (x.getPuzzlePieceBoundingBox().contains(worldTouch) && x.getTouched()) {
-                x.setTouched(false);
-                touchCounter++;
-                Gdx.app.log(TAG, "UNTOUCHED PUZZLE PIECE " + touchCounter);
+            }
+
+            //if puzzle piece is touched while targeted on a puzzle area, then set the target area to true
+            for (PuzzleArea y : puzzleArea) {
+                if (x.getTouched() && !y.isTargetable()) {
+                    y.setTargetable(true);
+                }
             }
         }
 
         return true;
     }
 
-    public void setTargetable(boolean t) {
-        targetable = t;
-    }
+    @Override
+    public boolean touchUp(int screenX, int screenY, int pointer, int button) {
+        worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
-    public boolean isTargetable() {
-        return targetable;
+        //check if touched
+        for (PuzzlePiece x : puzzlePiece) {
+
+            //check which puzzle area the puzzle piece overlaps
+            float closestDistance = Float.MAX_VALUE;
+            for (PuzzleArea y : puzzleArea) {
+                if (x.getPuzzlePieceBoundingBox().overlaps(y.getPuzzleAreaBoundingBox()) && y.isTargetable()) {
+                    float currentDistance = Vector2.dst(worldTouch.x, worldTouch.y, y.getPosition().x, y.getPosition().y);
+
+                    //ensures that the puzzle piece targets on the puzzle area with the closest distance
+                    if (currentDistance < closestDistance) {
+                        x.setPosition(y.getPosition());
+                        closestDistance = currentDistance;
+                        y.setTargetable(false);
+                        x.setTouched(false);
+                    }
+
+                }
+            }
+
+        }
+
+        return true;
     }
 }

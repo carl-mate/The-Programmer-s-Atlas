@@ -12,15 +12,30 @@ public class PuzzleArea {
     private int row;
     private int col;
 
-    private Rectangle puzzleAreaRectangle;
+    private Rectangle puzzleAreaBoundingBox;
 
-    public PuzzleArea(Vector2 position, Rectangle puzzleAreaRectangle){
+    private boolean targetable;
+
+    public PuzzleArea(Vector2 position, Rectangle puzzleAreaBoundingBox){
         this.position = position;
-        this.puzzleAreaRectangle = puzzleAreaRectangle;
+        this.puzzleAreaBoundingBox = puzzleAreaBoundingBox;
+        targetable = true;
     }
 
-    public Rectangle getPuzzleAreaRectangle(){
-        return this.puzzleAreaRectangle;
+    public Vector2 getPosition(){
+        return this.position;
+    }
+
+    public void setTargetable(boolean targetable){
+        this.targetable = targetable;
+    }
+
+    public boolean isTargetable(){
+        return targetable;
+    }
+
+    public Rectangle getPuzzleAreaBoundingBox(){
+        return this.puzzleAreaBoundingBox;
     }
 
     public void setRow(int r) {
