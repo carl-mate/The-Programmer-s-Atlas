@@ -116,9 +116,9 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 //            hackerGame.showOptionsScreen();
 //        }
 //
-//        if(helpButtonBoundingBox.contains(worldTouch)){
-//            hackerGame.showHelpScreen();
-//        }
+        if(helpButtonBoundingBox.contains(worldTouch)){
+            programmerGame.showHowToPlayScreen();
+        }
 
         return true;
     }

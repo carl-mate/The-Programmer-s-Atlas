@@ -24,6 +24,8 @@ import com.mygdx.game.GameplayScreen;
 import java.io.InputStream;
 import java.util.HashMap;
 
+import javax.xml.soap.Text;
+
 public class Assets implements Disposable, AssetErrorListener {
     public static final String TAG = Assets.class.getName();
 
@@ -35,6 +37,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public CorrectAnswerScreenAssets correctAnswerScreenAssets;
     public ResourcesFilePath resourcesFilePath;
     public Font font;
+    public HowToPlayScreenAssets howToPlayScreenAssets;
 
     private AssetManager assetManager;
 
@@ -54,6 +57,7 @@ public class Assets implements Disposable, AssetErrorListener {
         gameplayScreenAssets = new GameplayScreenAssets(atlas);
         gameOverScreenAssets = new GameOverScreenAssets(atlas);
         correctAnswerScreenAssets = new CorrectAnswerScreenAssets(atlas);
+        howToPlayScreenAssets = new HowToPlayScreenAssets(atlas);
         font = new Font();
     }
 
@@ -243,6 +247,16 @@ public class Assets implements Disposable, AssetErrorListener {
             optionsButton = atlas.findRegion(Constants.OPTIONS_BUTTON);
             howToPlayButton = atlas.findRegion(Constants.HOWTOPLAY_BUTTON);
             usernameTextfield = atlas.findRegion(Constants.USERNAME_TEXTFIELD);
+        }
+    }
+
+    public class HowToPlayScreenAssets{
+        public final TextureAtlas.AtlasRegion instructionsBG;
+        public final TextureAtlas.AtlasRegion lifelineBG;
+
+        public HowToPlayScreenAssets(TextureAtlas atlas){
+            instructionsBG = atlas.findRegion(Constants.INSTRUCTIONS_BG);
+            lifelineBG = atlas.findRegion(Constants.LIFELINE_BG);
         }
     }
 

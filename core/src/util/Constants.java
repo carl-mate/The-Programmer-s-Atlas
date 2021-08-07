@@ -28,6 +28,10 @@ public class Constants {
     public static final Vector2 MAIN_MENU_BUTTON_CENTER = new Vector2(80, 25);
     public static final Vector2 BG_CENTER = new Vector2(480, 270);
 
+    //How to Play Screen Assets
+    public static final String INSTRUCTIONS_BG = "instructions-bg";
+    public static final String LIFELINE_BG = "lifeline-bg";
+
     //Difficulty Screen Assets
     public static final String DIFFICULTY_BG = "difficulty-bg";
     public static final String THEORETICALQUESTIONS_LABEL = "theoreticalQuestions-label";
