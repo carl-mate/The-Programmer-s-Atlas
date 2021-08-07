@@ -63,15 +63,15 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private int userCounter;
     private int score;
 
+    private boolean askedGoogle;
+    private boolean askedAColleague;
+    private boolean calledAFamilyMember;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch) {
         this.programmerGame = programmerGame;
         this.difficulty = difficulty;
         this.batch = batch;
-    }
-
-    @Override
-    public void show() {
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
@@ -82,7 +82,13 @@ public class GameplayScreen extends InputAdapter implements Screen {
         initTextBounds();
         initTheoreticalQuestions();
         initProgrammingQuestions();
+        askedGoogle = false;
+        askedAColleague = false;
+        calledAFamilyMember = false;
+    }
 
+    @Override
+    public void show() {
         Gdx.input.setInputProcessor(this);
     }
 
@@ -102,15 +108,42 @@ public class GameplayScreen extends InputAdapter implements Screen {
         batch.begin();
 
         renderQuestions();
-        renderLifelines();
+        renderLifelines(delta);
 
         batch.end();
     }
 
-    private void renderLifelines(){
-        //draw askGoogle
-        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+    private void renderLifelines(float delta){
+        //askGoogle
+        if(!askedGoogle){
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+        } else{
+            if(isCorrectChoiceA){
+//                Vector2 targetPosition = new Vector2()
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceC){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceB){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceD){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
+            }
+
+//            if(isCorrectChoiceA){
+//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 3.5f , viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
+//            } else if(isCorrectChoiceC){
+//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
+//            } else if(isCorrectChoiceB){
+//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
+//            } else if(isCorrectChoiceD){
+//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
+//            }
+        }
+
+        //askAColleague
         Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+
+        //callAFamilyMember
         Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
     }
 
@@ -216,6 +249,31 @@ public class GameplayScreen extends InputAdapter implements Screen {
         //choiceD
         Vector2 choiceDButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100);
         Rectangle choiceDButtonBoundingBox = new Rectangle(choiceDButtonCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceDButtonCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
+
+        //askGoogle
+        Vector2 askGoogleCenter = new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f);
+        Rectangle askGoogleBoundingBox = new Rectangle(askGoogleCenter.x - Constants.LIFELINE_WIDTH / 2, askGoogleCenter.y - Constants.LIFELINE_HEIGHT / 2, Constants.LIFELINE_WIDTH, Constants.LIFELINE_HEIGHT);
+
+        //askAColleague
+        Vector2 askAColleagueCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f);
+        Rectangle askAColleagueBoundingBox = new Rectangle(askAColleagueCenter.x - Constants.LIFELINE_WIDTH / 2, askAColleagueCenter.y - Constants.LIFELINE_HEIGHT / 2, Constants.LIFELINE_WIDTH, Constants.LIFELINE_HEIGHT);
+
+        //callAFamilyMember
+        Vector2 callAFamilyMemberCenter = new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f);
+        Rectangle callAFamilyMemberBoundingBox = new Rectangle(callAFamilyMemberCenter.x - Constants.LIFELINE_WIDTH / 2, callAFamilyMemberCenter.y - Constants.LIFELINE_HEIGHT / 2, Constants.LIFELINE_WIDTH, Constants.LIFELINE_HEIGHT);
+
+        if(askGoogleBoundingBox.contains(worldTouch)){
+            Gdx.app.log(TAG, "TOUCHED ASK GOOGLE");
+            askedGoogle = true;
+        }
+        if(askAColleagueBoundingBox.contains(worldTouch)){
+            Gdx.app.log(TAG, "TOUCHED ASK A COLLEAGUE");
+            askedAColleague = true;
+        }
+        if(callAFamilyMemberBoundingBox.contains(worldTouch)){
+            Gdx.app.log(TAG, "TOUCHED CALL A FAMILY MEMBER");
+            calledAFamilyMember = true;
+        }
 
         if (choiceAButtonBoundingBox.contains(worldTouch) || choiceBButtonBoundingBox.contains(worldTouch) || choiceCButtonBoundingBox.contains(worldTouch) || choiceDButtonBoundingBox.contains(worldTouch)) {
             if (this.isCorrectChoiceA && choiceAButtonBoundingBox.contains(worldTouch)) {

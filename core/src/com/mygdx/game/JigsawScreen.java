@@ -259,12 +259,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
         Vector2 continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160);
         Rectangle continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
 
-        if(noOfclues == noOfDroppedPuzzlePieces){
-            if(continueButtonBoundingBox.contains(worldTouch)){
-                programmerGame.showDifficultyScreen();
-            }
-        }
-
         if(!handledClue){
             //continue button
              if(continueButtonBoundingBox.contains(worldTouch)){
@@ -286,6 +280,10 @@ public class JigsawScreen extends InputAdapter implements Screen {
                         noOfDroppedPuzzlePieces--;
                     }
                 }
+            }
+
+            if(continueButtonBoundingBox.contains(worldTouch)){
+                programmerGame.showDifficultyScreen();
             }
         }
 

@@ -58,6 +58,7 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void showGameOverScreen(){
+//		jigsawScreen = new JigsawScreen(this, this.batch);
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
