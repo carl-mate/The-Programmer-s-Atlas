@@ -293,7 +293,13 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion questionHard;
         public final TextureAtlas.AtlasRegion questionVeryHard;
         public final TextureAtlas.AtlasRegion answerBubbleButton;
-
+        public final TextureAtlas.AtlasRegion askGoogleLifeline;
+        public final TextureAtlas.AtlasRegion askClementLifeline;
+        public final TextureAtlas.AtlasRegion askMikhailaLifeline;
+        public final TextureAtlas.AtlasRegion askMichelleLifeline;
+        public final TextureAtlas.AtlasRegion askNickLifeline;
+        public final TextureAtlas.AtlasRegion askGennadyLifeline;
+        public final TextureAtlas.AtlasRegion callAFamilyMemberLifeline;
 
 
         public GameplayScreenAssets(TextureAtlas atlas){
@@ -305,7 +311,13 @@ public class Assets implements Disposable, AssetErrorListener {
             questionHard = atlas.findRegion(Constants.QUESTIONHARD_BG);
             questionVeryHard = atlas.findRegion(Constants.QUESTIONVERYHARD_BG);
             answerBubbleButton = atlas.findRegion(Constants.ANSWERBUBBLE_BUTTON);
-
+            askGoogleLifeline = atlas.findRegion(Constants.ASK_GOOGLE_LIFELINE);
+            askClementLifeline = atlas.findRegion(Constants.ASK_CLEMENT_LIFELINE);
+            askMikhailaLifeline = atlas.findRegion(Constants.ASK_MIKHAILA_LIFELINE);
+            askMichelleLifeline = atlas.findRegion(Constants.ASK_MICHELLE_LIFELINE);
+            askNickLifeline = atlas.findRegion(Constants.ASK_NICK_LIFELINE);
+            askGennadyLifeline = atlas.findRegion(Constants.ASK_GENNADY_LIFELINE);
+            callAFamilyMemberLifeline = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER);
         }
     }
 

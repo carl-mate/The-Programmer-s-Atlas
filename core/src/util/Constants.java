@@ -18,6 +18,11 @@ public class Constants {
     public static String MENU_SCREEN_NAME;
 
     //Main Menu Assets
+    public static final String USERNAME_TEXTFIELD = "username-textfield";
+    public static final Vector2 USERNAME_TEXTFIELD_CENTER = new Vector2(88, 13);
+    public static final float USERNAME_TEXTFIELD_WIDTH = 175;
+    public static final float USERNAME_TEXTFIELD_HEIGHT = 25;
+
     public static final String MAIN_MENU_BG = "mainMenu-bg";
     public static final String PLAY_BUTTON = "play-button";
     public static final String OPTIONS_BUTTON = "options-button";
@@ -54,10 +59,16 @@ public class Constants {
     public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(250, 35);
 
     //Gameplay Screen Assets
-    public static final String USERNAME_TEXTFIELD = "username-textfield";
-    public static final Vector2 USERNAME_TEXTFIELD_CENTER = new Vector2(88, 13);
-    public static final float USERNAME_TEXTFIELD_WIDTH = 175;
-    public static final float USERNAME_TEXTFIELD_HEIGHT = 25;
+    public static final String ASK_GOOGLE_LIFELINE = "askGoogle-lifeline";
+    public static final String ASK_CLEMENT_LIFELINE = "askClement-lifeline";
+    public static final String ASK_GENNADY_LIFELINE = "askGennady-lifeline";
+    public static final String ASK_MICHELLE_LIFELINE = "askMichelle-lifeline";
+    public static final String ASK_MIKHAILA_LIFELINE = "askMikhaila-lifeline";
+    public static final String ASK_NICK_LIFELINE = "askNick-lifeline";
+    public static final String CALL_A_FAMILY_MEMBER = "callAFamilyMember-lifeline";
+    public static final float LIFELINE_WIDTH = 55;
+    public static final float LIFELINE_HEIGHT = 55;
+    public static final Vector2 LIFELINE_CENTER = new Vector2(28, 28);
 
     public static final String NORMAL_BG = "bg";
     public static final String QUESTIONVERYEASY_BG = "questionVeryEasy-bg";

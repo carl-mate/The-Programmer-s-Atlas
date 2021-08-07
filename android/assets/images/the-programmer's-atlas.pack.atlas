@@ -18,11 +18,60 @@ answerBubble-button
   orig: 375, 98
   offset: 0, 0
   index: -1
+askClement-lifeline
+  rotate: false
+  xy: 964, 966
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+askGennady-lifeline
+  rotate: false
+  xy: 868, 197
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+askGoogle-lifeline
+  rotate: false
+  xy: 964, 909
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+askMichelle-lifeline
+  rotate: false
+  xy: 868, 140
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+askMikhaila-lifeline
+  rotate: false
+  xy: 925, 197
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+askNick-lifeline
+  rotate: false
+  xy: 964, 852
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
 bg
   rotate: false
   xy: 2, 481
   size: 960, 540
   orig: 960, 540
+  offset: 0, 0
+  index: -1
+callAFamilyMember-lifeline
+  rotate: false
+  xy: 868, 83
+  size: 55, 55
+  orig: 55, 55
   offset: 0, 0
   index: -1
 continue-button
@@ -76,7 +125,7 @@ programmingQuestions-label
   index: -1
 return-button
   rotate: false
-  xy: 964, 981
+  xy: 982, 212
   size: 40, 40
   orig: 40, 40
   offset: 0, 0

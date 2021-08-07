@@ -102,8 +102,16 @@ public class GameplayScreen extends InputAdapter implements Screen {
         batch.begin();
 
         renderQuestions();
+        renderLifelines();
 
         batch.end();
+    }
+
+    private void renderLifelines(){
+        //draw askGoogle
+        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
     }
 
     private void renderQuestions() {
