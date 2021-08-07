@@ -40,10 +40,12 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
     private Vector2 worldTouch;
 
+    private int noOfclues;
+
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
         this.batch = batch;
-        Gdx.input.setInputProcessor(this);
+        noOfclues = 0;
     }
 
     @Override
@@ -91,7 +93,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
             }
         }
 
-
+        Gdx.input.setInputProcessor(this);
     }
 
     @Override
@@ -138,9 +140,31 @@ public class JigsawScreen extends InputAdapter implements Screen {
             x.setPuzzlePieceBoundingBox(puzzlePieceBoundingBox);
 
         }
+
+        //draw clue label
+        Vector2 clueCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.25f);
+        Rectangle clueRectangleBounds = new Rectangle(clueCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, clueCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
+        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "clueLabel", "You unlocked a clue!", clueRectangleBounds);
+
         batch.end();
 
+//        batch.begin();
+//        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+//
+//        //draw clue label
+//        Vector2 clueCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.25f);
+//        Rectangle clueRectangleBounds = new Rectangle(clueCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, clueCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
+//        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+//        Assets.instance.font.drawSourceCodeProBoldFont(batch, "clueLabel", "You unlocked a clue!", clueRectangleBounds);
+//
+//        batch.end();
 
+
+    }
+
+    public void setClue(int noOfclues){
+        this.noOfclues = noOfclues;
     }
 
     @Override

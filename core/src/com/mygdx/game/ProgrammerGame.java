@@ -18,7 +18,8 @@ public class ProgrammerGame extends Game {
 	private AssetManager am;
 	private SpriteBatch batch;
 	private Questions questions;
-
+	private JigsawScreen jigsawScreen;
+	private int noOfclues;
 
 	@Override
 	public void create() {
@@ -31,6 +32,8 @@ public class ProgrammerGame extends Game {
 		} catch(Exception e){
 			Gdx.app.log(TAG, "NOTHING HAPPENED");
 		}
+		jigsawScreen = new JigsawScreen(this, this.batch);
+		noOfclues = 0;
 		showMainMenuScreen();
 	}
 
@@ -59,7 +62,8 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void showJigsawScreen(){
-		setScreen(new JigsawScreen(this, this.batch));
+		jigsawScreen.setClue(noOfclues++);
+		setScreen(jigsawScreen);
 	}
 
 	public Questions getQuestions(){

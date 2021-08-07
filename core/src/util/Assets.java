@@ -86,12 +86,15 @@ public class Assets implements Disposable, AssetErrorListener {
         public final FreeTypeFontGenerator.FreeTypeFontParameter earningsFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameEarningsFontParameter;
 
+        public final FreeTypeFontGenerator.FreeTypeFontParameter clueLabelFontParameter;
+
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
         public BitmapFont praiseFont;
         public BitmapFont earningsFont;
         public BitmapFont usernameFont;
         public BitmapFont usernameEarningsFont;
+        public BitmapFont clueLabelFont;
 
         public GlyphLayout glyphLayout;
 
@@ -129,6 +132,11 @@ public class Assets implements Disposable, AssetErrorListener {
             earningsFontParameter.color = Color.BLACK;
             earningsFont = sourceCodeProBoldFontGenerator.generateFont(earningsFontParameter);
 
+            clueLabelFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            clueLabelFontParameter.size = 30;
+            clueLabelFontParameter.color = Color.WHITE;
+            clueLabelFont = sourceCodeProBoldFontGenerator.generateFont(clueLabelFontParameter);
+
             glyphLayout = new GlyphLayout();
         }
 
@@ -156,11 +164,14 @@ public class Assets implements Disposable, AssetErrorListener {
                 case "praise":
                     drawCentered(praiseFont, batch, text, bounds);
                     break;
+                case "clueLabel":
+                    drawCentered(clueLabelFont, batch, text, bounds);
+                    break;
             }
         }
 
         private void drawCentered(BitmapFont font, SpriteBatch spriteBatch, String text, Rectangle bounds) {
-            glyphLayout.setText(font, text, Color.BLACK, bounds.width, Align.center, true);
+            glyphLayout.setText(font, text, font.getColor(), bounds.width, Align.center, true);
             font.draw(
                     spriteBatch,
                     text,
