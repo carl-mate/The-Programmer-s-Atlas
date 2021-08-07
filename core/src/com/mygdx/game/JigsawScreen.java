@@ -17,6 +17,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import entity.PuzzleArea;
 import entity.PuzzlePiece;
@@ -41,8 +42,11 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private Vector2 worldTouch;
 
     private int noOfclues;
+    private int noOfDroppedPuzzlePieces;
 
     private boolean handledClue;
+
+
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -52,6 +56,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
 
         noOfclues = 0;
+        noOfDroppedPuzzlePieces = 0;
         shapeRenderer = new ShapeRenderer();
         puzzlePiece = new ArrayList<>();
         puzzleArea = new ArrayList<>();
@@ -96,6 +101,9 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 puzzleArea.get(puzzleArea.size() - 1).setCol(c);
             }
         }
+
+        //shuffle puzzle pieces to ensure randomness
+        Collections.shuffle(puzzlePiece);
     }
 
     @Override
@@ -129,7 +137,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
         shapeRenderer.end();
 
         batch.begin();
-
         //initialize bounds for puzzle pieces
         for (PuzzlePiece x : puzzlePiece) {
             Vector2 puzzlePieceCenter = x.getPosition();
@@ -149,15 +156,39 @@ public class JigsawScreen extends InputAdapter implements Screen {
             if(noOfclues == 1){
                 this.puzzlePiece.get(0).setUnlocked(true);
                 this.puzzlePiece.get(0).render(batch);
+            } else if(noOfclues == 2){
+                this.puzzlePiece.get(1).setUnlocked(true);
+                this.puzzlePiece.get(1).render(batch);
+            } else if(noOfclues == 3){
+                this.puzzlePiece.get(2).setUnlocked(true);
+                this.puzzlePiece.get(2).render(batch);
+            } else if(noOfclues == 4){
+                this.puzzlePiece.get(3).setUnlocked(true);
+                this.puzzlePiece.get(3).render(batch);
+            } else if(noOfclues == 5){
+                this.puzzlePiece.get(4).setUnlocked(true);
+                this.puzzlePiece.get(4).render(batch);
+            } else if(noOfclues == 6){
+                this.puzzlePiece.get(5).setUnlocked(true);
+                this.puzzlePiece.get(5).render(batch);
+            } else if(noOfclues == 7){
+                this.puzzlePiece.get(6).setUnlocked(true);
+                this.puzzlePiece.get(6).render(batch);
+            } else if(noOfclues == 8){
+                this.puzzlePiece.get(7).setUnlocked(true);
+                this.puzzlePiece.get(7).render(batch);
+            } else if(noOfclues == 9){
+                this.puzzlePiece.get(8).setUnlocked(true);
+                this.puzzlePiece.get(8).render(batch);
             }
             //continue button
             Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_CENTER);
         } else{
-            //render puzzle piece
+            //render puzzle pieces
             for (PuzzlePiece x : puzzlePiece) {
                 //only render unlocked puzzle pieces
                 if(x.isUnlocked()){
-                    if (x.getTouched()) { //if touched, follow mouse
+                    if (x.getTouched()) { //if touched, follow cursor
                         Vector2 followCursor = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
                         x.setPosition(followCursor);
                     }
@@ -166,9 +197,16 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 }
             }
 
+            Vector2 instructionCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.10f);
+            Rectangle instructionRectangleBounds = new Rectangle(instructionCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, instructionCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
+
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "instruction", "Drag and drop puzzle piece to the puzzle area to continue.", instructionRectangleBounds);
         }
 
-
+        if(puzzlePiece.get(noOfclues - 1).isDropped()){
+            //continue button
+            Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_CENTER);
+        }
         batch.end();
 
 //        batch.begin();
@@ -218,6 +256,15 @@ public class JigsawScreen extends InputAdapter implements Screen {
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
+        if(noOfclues == noOfDroppedPuzzlePieces){
+            //continue button
+            Vector2 continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160);
+            Rectangle continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
+            if(continueButtonBoundingBox.contains(worldTouch)){
+                programmerGame.showDifficultyScreen();
+            }
+        }
+
         if(!handledClue){
             //continue button
             Vector2 continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160);
@@ -237,6 +284,8 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 for (PuzzleArea y : puzzleArea) {
                     if (x.getTouched() && !y.isTargetable()) {
                         y.setTargetable(true);
+                        x.setDropped(false);
+                        noOfDroppedPuzzlePieces--;
                     }
                 }
             }
@@ -263,6 +312,8 @@ public class JigsawScreen extends InputAdapter implements Screen {
                             x.setPosition(y.getPosition());
                             closestDistance = currentDistance;
                             y.setTargetable(false);
+                            x.setDropped(true);
+                            noOfDroppedPuzzlePieces++;
                             x.setTouched(false);
                         }
 

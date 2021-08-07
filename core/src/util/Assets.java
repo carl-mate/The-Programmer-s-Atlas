@@ -88,6 +88,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public final FreeTypeFontGenerator.FreeTypeFontParameter clueLabelFontParameter;
 
+        public final FreeTypeFontGenerator.FreeTypeFontParameter instructionFontParameter;
+
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
         public BitmapFont praiseFont;
@@ -95,6 +97,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public BitmapFont usernameFont;
         public BitmapFont usernameEarningsFont;
         public BitmapFont clueLabelFont;
+        public BitmapFont instructionFont;
 
         public GlyphLayout glyphLayout;
 
@@ -137,6 +140,10 @@ public class Assets implements Disposable, AssetErrorListener {
             clueLabelFontParameter.color = Color.WHITE;
             clueLabelFont = sourceCodeProBoldFontGenerator.generateFont(clueLabelFontParameter);
 
+            instructionFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            instructionFontParameter.size = 15;
+            instructionFontParameter.color = Color.BLACK;
+            instructionFont = sourceCodeProBoldFontGenerator.generateFont(instructionFontParameter);
             glyphLayout = new GlyphLayout();
         }
 
@@ -166,6 +173,9 @@ public class Assets implements Disposable, AssetErrorListener {
                     break;
                 case "clueLabel":
                     drawCentered(clueLabelFont, batch, text, bounds);
+                    break;
+                case "instruction":
+                    drawCentered(instructionFont, batch, text, bounds);
                     break;
             }
         }

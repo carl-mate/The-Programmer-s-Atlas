@@ -74,6 +74,13 @@ programmingQuestions-label
   orig: 250, 40
   offset: 0, 0
   index: -1
+return-button
+  rotate: false
+  xy: 964, 981
+  size: 40, 40
+  orig: 40, 40
+  offset: 0, 0
+  index: -1
 username-textfield
   rotate: false
   xy: 566, 2

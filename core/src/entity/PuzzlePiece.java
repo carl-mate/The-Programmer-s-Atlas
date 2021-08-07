@@ -26,7 +26,7 @@ public class PuzzlePiece extends InputAdapter {
     private float closestDistance;
     private boolean touched;
 
-    private boolean draggable;
+    private boolean dropped;
 
     private Rectangle puzzlePieceBoundingBox;
 
@@ -38,7 +38,7 @@ public class PuzzlePiece extends InputAdapter {
     public PuzzlePiece(Vector2 position, TextureRegion textureRegion){
         this.position = position;
         this.textureRegion = textureRegion;
-        draggable = true;
+        dropped = false;
         unlocked = false;
     }
 
@@ -66,12 +66,12 @@ public class PuzzlePiece extends InputAdapter {
         return this.closestDistance;
     }
 
-    public void setDraggable(boolean draggable){
-        this.draggable = draggable;
+    public void setDropped(boolean dropped){
+        this.dropped = dropped;
     }
 
-    public boolean isDraggable(){
-        return draggable;
+    public boolean isDropped(){
+        return dropped;
     }
 
 
