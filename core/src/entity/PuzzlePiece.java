@@ -32,11 +32,14 @@ public class PuzzlePiece extends InputAdapter {
 
     private PuzzleArea puzzleArea;
 
+    private boolean unlocked;
+
 
     public PuzzlePiece(Vector2 position, TextureRegion textureRegion){
         this.position = position;
         this.textureRegion = textureRegion;
         draggable = true;
+        unlocked = false;
     }
 
     public void render(SpriteBatch batch){
@@ -45,6 +48,14 @@ public class PuzzlePiece extends InputAdapter {
                 textureRegion,
                 this.position,
                 new Vector2(getWidth() / 2f, getHeight()/ 2f));
+    }
+
+    public boolean isUnlocked(){
+        return this.unlocked;
+    }
+
+    public void setUnlocked(boolean unlocked){
+        this.unlocked = unlocked;
     }
 
     public void setClosestDistance(float closestDistance){

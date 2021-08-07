@@ -62,7 +62,7 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void showJigsawScreen(){
-		jigsawScreen.setClue(noOfclues++);
+		jigsawScreen.setClue(++noOfclues);
 		setScreen(jigsawScreen);
 	}
 
