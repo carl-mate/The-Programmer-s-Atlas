@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -67,6 +68,10 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private boolean askedAColleague;
     private boolean calledAFamilyMember;
 
+    private Vector2 askGooglePosition;
+    private Vector2 askAColleaguePosition;
+    private Vector2 callAFamilyMemberPosition;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -89,6 +94,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
+        askGooglePosition = new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f);
+        askAColleaguePosition = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f);
+        callAFamilyMemberPosition = new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f);
         Gdx.input.setInputProcessor(this);
     }
 
@@ -113,38 +121,93 @@ public class GameplayScreen extends InputAdapter implements Screen {
         batch.end();
     }
 
+    private float calculateAlpha(){
+        //utility function for lerp();
+        float currentTime = Gdx.graphics.getDeltaTime();
+        return currentTime;
+    }
+
     private void renderLifelines(float delta){
         //askGoogle
         if(!askedGoogle){
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
         } else{
             if(isCorrectChoiceA){
-//                Vector2 targetPosition = new Vector2()
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                askGooglePosition.x = Interpolation.linear.apply(askGooglePosition.x, targetPosition.x, 0.1f);
+                askGooglePosition.y = Interpolation.linear.apply(askGooglePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceC){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                askGooglePosition.x = Interpolation.linear.apply(askGooglePosition.x, targetPosition.x, 0.1f);
+                askGooglePosition.y = Interpolation.linear.apply(askGooglePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceB){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                askGooglePosition.x = Interpolation.linear.apply(askGooglePosition.x, targetPosition.x, 0.1f);
+                askGooglePosition.y = Interpolation.linear.apply(askGooglePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceD){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                askGooglePosition.x = Interpolation.linear.apply(askGooglePosition.x, targetPosition.x, 0.1f);
+                askGooglePosition.y = Interpolation.linear.apply(askGooglePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
             }
-
-//            if(isCorrectChoiceA){
-//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 3.5f , viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
-//            } else if(isCorrectChoiceC){
-//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
-//            } else if(isCorrectChoiceB){
-//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f), Constants.LIFELINE_CENTER);
-//            } else if(isCorrectChoiceD){
-//                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100), Constants.LIFELINE_CENTER);
-//            }
         }
 
         //askAColleague
-        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+        if(!askedAColleague){
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+        } else{
+            if(isCorrectChoiceA){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                askAColleaguePosition.x = Interpolation.linear.apply(askAColleaguePosition.x, targetPosition.x, 0.1f);
+                askAColleaguePosition.y = Interpolation.linear.apply(askAColleaguePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceC){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                askAColleaguePosition.x = Interpolation.linear.apply(askAColleaguePosition.x, targetPosition.x, 0.1f);
+                askAColleaguePosition.y = Interpolation.linear.apply(askAColleaguePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceB){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                askAColleaguePosition.x = Interpolation.linear.apply(askAColleaguePosition.x, targetPosition.x, 0.1f);
+                askAColleaguePosition.y = Interpolation.linear.apply(askAColleaguePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceD){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                askAColleaguePosition.x = Interpolation.linear.apply(askAColleaguePosition.x, targetPosition.x, 0.1f);
+                askAColleaguePosition.y = Interpolation.linear.apply(askAColleaguePosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+            }
+        }
 
         //callAFamilyMember
-        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f), Constants.LIFELINE_CENTER);
+        if(!calledAFamilyMember){
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+        } else{
+            if(isCorrectChoiceA){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceC){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceB){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+            } else if(isCorrectChoiceD){
+                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+            }
+        }
     }
 
     private void renderQuestions() {
