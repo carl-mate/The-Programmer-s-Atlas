@@ -9,7 +9,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
+import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.TimeUtils;
@@ -28,6 +30,7 @@ import util.Enums.Difficulty;
 import util.QuestionsManager.ProgrammingQ;
 import util.QuestionsManager.TheoreticalQ;
 import util.Util;
+
 
 public class GameplayScreen extends InputAdapter implements Screen {
     private static final String TAG = GameplayScreen.class.getName();
@@ -87,6 +90,10 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private long askAColleagueDummyStartTime;
     private long callAFamilyMemberDummyStartTime;
 
+    private long askAColleagueHoverStartTime;
+
+    private long startTime;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -113,9 +120,10 @@ public class GameplayScreen extends InputAdapter implements Screen {
         askAColleaguePosition = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f);
         callAFamilyMemberPosition = new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f);
         Random rand = new Random();
+        startTime = TimeUtils.nanoTime();
 
         /*
-         * Handles the probability of the correctness of each lifeline.
+         * The following code handles the probability of correctness of each lifeline (i.e. ask a colleague and call a family member).
          * Ask Google lifeline is 100% reliable so it doesn't need a special case.
          */
 
@@ -161,7 +169,18 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private void renderLifelines(float delta){
         //askGoogle
         if(!askedGoogle){
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
+            //askGoogle
+            Vector2 askGoogleCenter = new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f);
+            Rectangle askGoogleBoundingBox = new Rectangle(askGoogleCenter.x - Constants.LIFELINE_WIDTH / 2, askGoogleCenter.y - Constants.LIFELINE_HEIGHT / 2, Constants.LIFELINE_WIDTH, Constants.LIFELINE_HEIGHT);
+            Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+
+            //hovered
+            if(askGoogleBoundingBox.contains(mousePosition)){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline110, askGooglePosition, Constants.LIFELINE_110_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
+            }
+
         } else{
             if(isCorrectChoiceA){
                 Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
@@ -188,7 +207,18 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
         //askAColleague
         if(!askedAColleague){
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+            //askAColleague
+            Vector2 askAColleagueCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 1.15f);
+            Rectangle askAColleagueBoundingBox = new Rectangle(askAColleagueCenter.x - Constants.LIFELINE_WIDTH / 2, askAColleagueCenter.y - Constants.LIFELINE_HEIGHT / 2, Constants.LIFELINE_WIDTH, Constants.LIFELINE_HEIGHT);
+            Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+
+            //hovered
+            if(askAColleagueBoundingBox.contains(mousePosition)){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline110, askAColleaguePosition, Constants.LIFELINE_110_CENTER);
+            } else{ //not hovered
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+            }
+
         } else{ //askedAColleague = true
             if(isCorrectChoiceA){
                 if(isAskAColleagueLucky){
@@ -326,7 +356,18 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
         //callAFamilyMember
         if(!calledAFamilyMember){
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+            //callAFamilyMember
+            Vector2 callAFamilyMemberCenter = new Vector2(viewport.getCamera().viewportWidth / 2 + 100, viewport.getCamera().viewportHeight / 1.15f);
+            Rectangle callAFamilyMemberBoundingBox = new Rectangle(callAFamilyMemberCenter.x - Constants.LIFELINE_WIDTH / 2, callAFamilyMemberCenter.y - Constants.LIFELINE_HEIGHT / 2, Constants.LIFELINE_WIDTH, Constants.LIFELINE_HEIGHT);
+            Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+
+            //hovered
+            if(callAFamilyMemberBoundingBox.contains(mousePosition)){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline110, callAFamilyMemberPosition, Constants.LIFELINE_110_CENTER);
+            } else{//not hovered
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+            }
+
         } else{
             if(isCorrectChoiceA){
                 if(isCallAFamilyMemberLucky){

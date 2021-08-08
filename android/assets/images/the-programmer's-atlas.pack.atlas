@@ -25,37 +25,51 @@ askClement-lifeline
   orig: 55, 55
   offset: 0, 0
   index: -1
-askGennady-lifeline
+askClement-lifeline-110
   rotate: false
-  xy: 868, 197
-  size: 55, 55
-  orig: 55, 55
+  xy: 868, 142
+  size: 110, 110
+  orig: 110, 110
   offset: 0, 0
   index: -1
-askGoogle-lifeline
+askGennady-lifeline
   rotate: false
   xy: 964, 909
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
+askGoogle-lifeline
+  rotate: false
+  xy: 964, 852
+  size: 55, 55
+  orig: 55, 55
+  offset: 0, 0
+  index: -1
+askGoogle-lifeline-110
+  rotate: false
+  xy: 566, 21
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: -1
 askMichelle-lifeline
   rotate: false
-  xy: 868, 140
+  xy: 964, 795
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askMikhaila-lifeline
   rotate: false
-  xy: 925, 197
+  xy: 964, 738
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askNick-lifeline
   rotate: false
-  xy: 964, 852
+  xy: 964, 681
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
@@ -69,14 +83,21 @@ bg
   index: -1
 callAFamilyMember-lifeline
   rotate: false
-  xy: 868, 83
+  xy: 964, 624
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
+callAFamilyMember-lifeline-110
+  rotate: false
+  xy: 678, 21
+  size: 110, 110
+  orig: 110, 110
+  offset: 0, 0
+  index: -1
 continue-button
   rotate: false
-  xy: 818, 19
+  xy: 790, 54
   size: 165, 50
   orig: 165, 50
   offset: 0, 0
@@ -109,6 +130,13 @@ hard-button
   orig: 300, 60
   offset: 0, 0
   index: -1
+howToPlay-button
+  rotate: false
+  xy: 790, 2
+  size: 160, 50
+  orig: 160, 50
+  offset: 0, 0
+  index: -1
 medium-button
   rotate: false
   xy: 566, 195
@@ -116,23 +144,16 @@ medium-button
   orig: 300, 60
   offset: 0, 0
   index: -1
-programmingQuestions-label
-  rotate: false
-  xy: 566, 29
-  size: 250, 40
-  orig: 250, 40
-  offset: 0, 0
-  index: -1
 return-button
   rotate: false
-  xy: 982, 212
+  xy: 964, 582
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
 username-textfield
   rotate: false
-  xy: 566, 2
+  xy: 790, 106
   size: 175, 25
   orig: 175, 25
   offset: 0, 0
@@ -140,13 +161,6 @@ username-textfield
 veryEasy-button
   rotate: false
   xy: 566, 133
-  size: 300, 60
-  orig: 300, 60
-  offset: 0, 0
-  index: -1
-veryHard-button
-  rotate: false
-  xy: 566, 71
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
@@ -159,37 +173,37 @@ filter: Nearest,Nearest
 repeat: none
 difficulty-bg
   rotate: false
-  xy: 2, 168
+  xy: 2, 230
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-howToPlay-button
-  rotate: false
-  xy: 504, 116
-  size: 160, 50
-  orig: 160, 50
-  offset: 0, 0
-  index: -1
 mysteryQuestion-button
   rotate: false
-  xy: 2, 96
+  xy: 2, 158
   size: 500, 70
   orig: 500, 70
   offset: 0, 0
   index: -1
 options-button
   rotate: false
-  xy: 2, 2
+  xy: 304, 106
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
 play-button
   rotate: false
-  xy: 666, 116
+  xy: 2, 2
   size: 160, 50
   orig: 160, 50
+  offset: 0, 0
+  index: -1
+programmingQuestions-label
+  rotate: false
+  xy: 504, 188
+  size: 250, 40
+  orig: 250, 40
   offset: 0, 0
   index: -1
 theoreticalQuestions-label
@@ -197,6 +211,13 @@ theoreticalQuestions-label
   xy: 2, 54
   size: 250, 40
   orig: 250, 40
+  offset: 0, 0
+  index: -1
+veryHard-button
+  rotate: false
+  xy: 2, 96
+  size: 300, 60
+  orig: 300, 60
   offset: 0, 0
   index: -1
 

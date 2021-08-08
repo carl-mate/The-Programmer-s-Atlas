@@ -7,6 +7,7 @@ import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -15,6 +16,7 @@ import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.mygdx.game.CorrectAnswerScreen;
@@ -301,6 +303,10 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion askGennadyLifeline;
         public final TextureAtlas.AtlasRegion callAFamilyMemberLifeline;
 
+        public final TextureAtlas.AtlasRegion askGoogleLifeline110;
+        public final TextureAtlas.AtlasRegion askClementLifeline110;
+        public final TextureAtlas.AtlasRegion callAFamilyMemberLifeline110;
+
 
         public GameplayScreenAssets(TextureAtlas atlas){
             fadeBG = atlas.findRegion(Constants.FADE_BG);
@@ -318,6 +324,10 @@ public class Assets implements Disposable, AssetErrorListener {
             askNickLifeline = atlas.findRegion(Constants.ASK_NICK_LIFELINE);
             askGennadyLifeline = atlas.findRegion(Constants.ASK_GENNADY_LIFELINE);
             callAFamilyMemberLifeline = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER);
+
+            askGoogleLifeline110 = atlas.findRegion(Constants.ASK_GOOGLE_LIFELINE_110);
+            askClementLifeline110 = atlas.findRegion(Constants.ASK_CLEMENT_LIFELINE_110);
+            callAFamilyMemberLifeline110 = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER_110);
         }
     }
 

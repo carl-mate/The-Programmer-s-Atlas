@@ -70,6 +70,12 @@ public class Constants {
     public static final float LIFELINE_HEIGHT = 55;
     public static final Vector2 LIFELINE_CENTER = new Vector2(28, 28);
 
+    public static final String ASK_GOOGLE_LIFELINE_110 = "askGoogle-lifeline-110";
+    public static final String ASK_CLEMENT_LIFELINE_110 = "askClement-lifeline-110";
+    public static final String CALL_A_FAMILY_MEMBER_110 = "callAFamilyMember-lifeline-110";
+
+    public static final Vector2 LIFELINE_110_CENTER = new Vector2(55, 55);
+
     public static final String NORMAL_BG = "bg";
     public static final String QUESTIONVERYEASY_BG = "questionVeryEasy-bg";
     public static final String QUESTIONEASY_BG = "questionEasy-bg";
