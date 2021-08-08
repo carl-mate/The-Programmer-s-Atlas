@@ -28,6 +28,11 @@ public class Constants {
     public static final String OPTIONS_BUTTON = "options-button";
     public static final String HOWTOPLAY_BUTTON = "howToPlay-button";
 
+    public static final String HOWTOPLAY_BUTTON_BIG = "howToPlay-button-big";
+    public static final String OPTIONS_BUTTON_BIG = "options-button-big";
+    public static final String PLAY_BUTTON_BIG = "play-button-big";
+    public static final Vector2 MAIN_MENU_BUTTON_BIG_CENTER = new Vector2(160, 50);
+
     public static final float MAIN_MENU_BUTTON_WIDTH = 136f;
     public static final float MAIN_MENU_BUTTON_HEIGHT = 36f;
     public static final Vector2 MAIN_MENU_BUTTON_CENTER = new Vector2(80, 25);

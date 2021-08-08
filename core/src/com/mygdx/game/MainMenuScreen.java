@@ -29,13 +29,19 @@ public class MainMenuScreen extends InputAdapter implements Screen {
     private boolean handledUserName;
     private boolean emptyField;
 
+    private boolean isPlayButtonHovered;
+    private boolean isOptionsButtonHovered;
+    private boolean isHowToPlayButtonHovered;
+
     public MainMenuScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
-
+        isPlayButtonHovered = false;
+        isOptionsButtonHovered = false;
+        isHowToPlayButtonHovered = false;
     }
 
     @Override
@@ -63,12 +69,69 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         //bg
         Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.mainMenuBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
 
-        //playButton
-        Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.playButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
-        //optionsButton
-        Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.optionsButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
-        //howToPlayButton
-        Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.howToPlayButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+        Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+
+        //playButton attributes
+        Vector2 playButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10);
+        Rectangle playButtonBoundingBox = new Rectangle(playButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, playButtonCenter.y - Constants.MAIN_MENU_BUTTON_HEIGHT / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_HEIGHT);
+        //helpButton attributes
+        Vector2 howToPlayButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10);
+        Rectangle howToPlayButtonBoundingBox = new Rectangle(howToPlayButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, howToPlayButtonCenter.y - Constants.MAIN_MENU_BUTTON_HEIGHT / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_HEIGHT);
+        //optionsButton attributes
+        Vector2 optionsButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10);
+        Rectangle optionsButtonBoundingBox = new Rectangle(optionsButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, optionsButtonCenter.y - Constants.MAIN_MENU_BUTTON_HEIGHT / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_HEIGHT);
+
+        //hovered
+        if(playButtonBoundingBox.contains(mousePosition)){
+            isPlayButtonHovered = true;
+        } else{ //not hovered
+            isPlayButtonHovered = false;
+        }
+
+        //hovered
+        if(howToPlayButtonBoundingBox.contains(mousePosition)){
+            isHowToPlayButtonHovered = true;
+        } else{ //not hovered
+            isHowToPlayButtonHovered = false;
+        }
+
+        //hovered
+        if(optionsButtonBoundingBox.contains(mousePosition)){
+            isOptionsButtonHovered = true;
+        } else{ //not hovered
+            isOptionsButtonHovered = false;
+        }
+
+        //not hovered states
+        if(!isPlayButtonHovered){
+            //playButton
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.playButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+        }
+        if(!isOptionsButtonHovered){
+            //optionsButton
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.optionsButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+        }
+        if(!isHowToPlayButtonHovered){
+            //howToPlayButton
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.howToPlayButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+        }
+
+        //hovered states
+        if(isPlayButtonHovered){
+            //playButton
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.playButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_BIG_CENTER);
+        }
+
+        if(isOptionsButtonHovered){
+            //optionsButton
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.optionsButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_BIG_CENTER);
+        }
+
+        if(isHowToPlayButtonHovered){
+            //howToPlayButton
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.howToPlayButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_BIG_CENTER);
+        }
+
 
         if(!handledUserName){
             handleUsernameInput(batch);
@@ -97,11 +160,11 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
         //optionsButton attributes
         Vector2 optionsButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10);
-        Rectangle optionsButtonBoundingBox = new Rectangle(optionsButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, optionsButtonCenter.y - Constants.MAIN_MENU_BUTTON_WIDTH / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_WIDTH);
+        Rectangle optionsButtonBoundingBox = new Rectangle(optionsButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, optionsButtonCenter.y - Constants.MAIN_MENU_BUTTON_HEIGHT / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_HEIGHT);
 
         //helpButton attributes
         Vector2 howToPlayButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10);
-        Rectangle helpButtonBoundingBox = new Rectangle(howToPlayButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, howToPlayButtonCenter.y - Constants.MAIN_MENU_BUTTON_WIDTH / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_WIDTH);
+        Rectangle howToPlayButtonBoundingBox = new Rectangle(howToPlayButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, howToPlayButtonCenter.y - Constants.MAIN_MENU_BUTTON_HEIGHT / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_HEIGHT);
 
 
         if(playButtonBoundingBox.contains(worldTouch)){
@@ -116,7 +179,7 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 //            hackerGame.showOptionsScreen();
 //        }
 //
-        if(helpButtonBoundingBox.contains(worldTouch)){
+        if(howToPlayButtonBoundingBox.contains(worldTouch)){
             programmerGame.showHowToPlayScreen();
         }
 

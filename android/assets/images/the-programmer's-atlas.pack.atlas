@@ -110,28 +110,28 @@ filter: Nearest,Nearest
 repeat: none
 Untitled design
   rotate: false
-  xy: 638, 34
+  xy: 638, 150
   size: 125, 125
   orig: 125, 125
   offset: 0, 0
   index: -1
 askClement-lifeline-110
   rotate: false
-  xy: 304, 2
+  xy: 2, 2
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: -1
 askGoogle-lifeline-110
   rotate: false
-  xy: 765, 7
+  xy: 114, 2
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
   index: -1
 callAFamilyMember-lifeline-110
   rotate: false
-  xy: 877, 7
+  xy: 226, 2
   size: 110, 110
   orig: 110, 110
   offset: 0, 0
@@ -143,25 +143,32 @@ colleague-bg
   orig: 960, 540
   offset: 0, 0
   index: -1
+continue-button
+  rotate: false
+  xy: 815, 141
+  size: 165, 50
+  orig: 165, 50
+  offset: 0, 0
+  index: -1
 easy-button
   rotate: false
-  xy: 2, 52
+  xy: 660, 27
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
-hard-button
+howToPlay-button
   rotate: false
-  xy: 638, 347
-  size: 300, 60
-  orig: 300, 60
+  xy: 815, 89
+  size: 160, 50
+  orig: 160, 50
   offset: 0, 0
   index: -1
-medium-button
+howToPlay-button-big
   rotate: false
-  xy: 638, 285
-  size: 300, 60
-  orig: 300, 60
+  xy: 338, 12
+  size: 320, 100
+  orig: 320, 100
   offset: 0, 0
   index: -1
 michelle-colleague
@@ -178,53 +185,46 @@ mikhaila-colleague
   orig: 210, 365
   offset: 0, 0
   index: -1
-mysteryQuestion-button
-  rotate: false
-  xy: 426, 409
-  size: 500, 70
-  orig: 500, 70
-  offset: 0, 0
-  index: -1
 nick-colleague
   rotate: false
-  xy: 426, 42
+  xy: 426, 114
   size: 210, 365
   orig: 210, 365
   offset: 0, 0
   index: -1
+options-button-big
+  rotate: false
+  xy: 660, 379
+  size: 320, 100
+  orig: 320, 100
+  offset: 0, 0
+  index: -1
+play-button-big
+  rotate: false
+  xy: 660, 277
+  size: 320, 100
+  orig: 320, 100
+  offset: 0, 0
+  index: -1
 programmingQuestions-label
   rotate: false
-  xy: 2, 10
+  xy: 765, 235
   size: 250, 40
   orig: 250, 40
   offset: 0, 0
   index: -1
 theoreticalQuestions-label
   rotate: false
-  xy: 765, 119
+  xy: 765, 193
   size: 250, 40
   orig: 250, 40
   offset: 0, 0
   index: -1
 username-textfield
   rotate: false
-  xy: 416, 15
+  xy: 638, 123
   size: 175, 25
   orig: 175, 25
-  offset: 0, 0
-  index: -1
-veryEasy-button
-  rotate: false
-  xy: 638, 223
-  size: 300, 60
-  orig: 300, 60
-  offset: 0, 0
-  index: -1
-veryHard-button
-  rotate: false
-  xy: 638, 161
-  size: 300, 60
-  orig: 300, 60
   offset: 0, 0
   index: -1
 
@@ -233,30 +233,37 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-continue-button
-  rotate: false
-  xy: 2, 106
-  size: 165, 50
-  orig: 165, 50
-  offset: 0, 0
-  index: -1
 difficulty-bg
   rotate: false
-  xy: 2, 158
+  xy: 2, 312
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-howToPlay-button
+hard-button
   rotate: false
-  xy: 2, 54
-  size: 160, 50
-  orig: 160, 50
+  xy: 2, 178
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+medium-button
+  rotate: false
+  xy: 504, 250
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+mysteryQuestion-button
+  rotate: false
+  xy: 2, 240
+  size: 500, 70
+  orig: 500, 70
   offset: 0, 0
   index: -1
 options-button
   rotate: false
-  xy: 169, 106
+  xy: 304, 188
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
@@ -266,6 +273,20 @@ play-button
   xy: 2, 2
   size: 160, 50
   orig: 160, 50
+  offset: 0, 0
+  index: -1
+veryEasy-button
+  rotate: false
+  xy: 2, 116
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+veryHard-button
+  rotate: false
+  xy: 2, 54
+  size: 300, 60
+  orig: 300, 60
   offset: 0, 0
   index: -1
 
