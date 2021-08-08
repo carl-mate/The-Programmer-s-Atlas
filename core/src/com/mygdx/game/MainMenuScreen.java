@@ -81,26 +81,14 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         Vector2 optionsButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10);
         Rectangle optionsButtonBoundingBox = new Rectangle(optionsButtonCenter.x - Constants.MAIN_MENU_BUTTON_WIDTH / 2, optionsButtonCenter.y - Constants.MAIN_MENU_BUTTON_HEIGHT / 2, Constants.MAIN_MENU_BUTTON_WIDTH, Constants.MAIN_MENU_BUTTON_HEIGHT);
 
-        //hovered
-        if(playButtonBoundingBox.contains(mousePosition)){
-            isPlayButtonHovered = true;
-        } else{ //not hovered
-            isPlayButtonHovered = false;
-        }
+        //hovered or not
+        isPlayButtonHovered = playButtonBoundingBox.contains(mousePosition);
 
-        //hovered
-        if(howToPlayButtonBoundingBox.contains(mousePosition)){
-            isHowToPlayButtonHovered = true;
-        } else{ //not hovered
-            isHowToPlayButtonHovered = false;
-        }
+        //hovered or not
+        isHowToPlayButtonHovered = howToPlayButtonBoundingBox.contains(mousePosition);
 
-        //hovered
-        if(optionsButtonBoundingBox.contains(mousePosition)){
-            isOptionsButtonHovered = true;
-        } else{ //not hovered
-            isOptionsButtonHovered = false;
-        }
+        //hovered or not
+        isOptionsButtonHovered = optionsButtonBoundingBox.contains(mousePosition);
 
         //not hovered states
         if(!isPlayButtonHovered){

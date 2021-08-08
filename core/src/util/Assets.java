@@ -300,6 +300,12 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion hardButton;
         public final TextureAtlas.AtlasRegion veryHardButton;
         public final TextureAtlas.AtlasRegion mysteryQuestionButton;
+        public final TextureAtlas.AtlasRegion veryEasyButtonBig;
+        public final TextureAtlas.AtlasRegion easyButtonBig;
+        public final TextureAtlas.AtlasRegion mediumButtonBig;
+        public final TextureAtlas.AtlasRegion hardButtonBig;
+        public final TextureAtlas.AtlasRegion veryHardButtonBig;
+
 
         public DifficultyScreenAssets(TextureAtlas atlas){
             difficultyBG = atlas.findRegion(Constants.DIFFICULTY_BG);
@@ -311,6 +317,11 @@ public class Assets implements Disposable, AssetErrorListener {
             hardButton = atlas.findRegion(Constants.HARD_BUTTON);
             veryHardButton = atlas.findRegion(Constants.VERYHARD_BUTTON);
             mysteryQuestionButton = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON);
+            veryEasyButtonBig = atlas.findRegion(Constants.VERYEASY_BUTTON_BIG);
+            easyButtonBig = atlas.findRegion(Constants.EASY_BUTTON_BIG);
+            mediumButtonBig = atlas.findRegion(Constants.MEDIUM_BUTTON_BIG);
+            hardButtonBig = atlas.findRegion(Constants.HARD_BUTTON_BIG);
+            veryHardButtonBig = atlas.findRegion(Constants.VERYHARD_BUTTON_BIG);
         }
     }
 

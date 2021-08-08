@@ -23,12 +23,33 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     private ExtendViewport viewport;
     private OrthographicCamera camera;
 
+    private boolean isTheoreticalVeryEasyHovered;
+    private boolean isTheoreticalEasyHovered;
+    private boolean isTheoreticalMediumHovered;
+    private boolean isTheoreticalHardHovered;
+    private boolean isTheoreticalVeryHardHovered;
+    private boolean isProgrammingVeryEasyHovered;
+    private boolean isProgrammingEasyHovered;
+    private boolean isProgrammingMediumHovered;
+    private boolean isProgrammingHardHovered;
+    private boolean isProgrammingVeryHardHovered;
+
     public DifficultyScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth(), viewport.getWorldHeight(), 0);
+        isTheoreticalVeryEasyHovered = false;
+        isTheoreticalEasyHovered = false;
+        isTheoreticalMediumHovered = false;
+        isTheoreticalHardHovered = false;
+        isTheoreticalVeryHardHovered = false;
+        isProgrammingVeryEasyHovered = false;
+        isProgrammingEasyHovered = false;
+        isProgrammingMediumHovered = false;
+        isProgrammingHardHovered = false;
+        isProgrammingVeryHardHovered = false;
     }
     @Override
     public void show() {
@@ -52,29 +73,85 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         //bg
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.difficultyBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
 
+        checkHovered();
+
         //mystery question button
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.20f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
-
 
         //theoretical question label
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.theoreticalQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.30f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
 
-        //buttons
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        //not hovered states
+        if(!isTheoreticalVeryEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isTheoreticalEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isTheoreticalMediumHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isTheoreticalHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isTheoreticalVeryHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
 
         //programming question label
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.programmingQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.30f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
 
-        //buttons
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        if(!isProgrammingVeryEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isProgrammingEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isProgrammingMediumHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isProgrammingHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+        if(!isProgrammingVeryHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        }
+
+        //hovered states
+
+        //not hovered states
+        if(isTheoreticalVeryEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isTheoreticalEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isTheoreticalMediumHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isTheoreticalHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isTheoreticalVeryHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+
+        if(isProgrammingVeryEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isProgrammingEasyHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isProgrammingMediumHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isProgrammingHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+        if(isProgrammingVeryHardHovered){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+
         batch.end();
     }
 
@@ -176,6 +253,67 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);
+    }
+
+    private void checkHovered(){
+        Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+        //THEORETICAL QUESTIONS BUTTONS
+        //veryEasyButton attributes
+        Vector2 theoreticalVeryEasyButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f);
+        Rectangle theoreticalVeryEasyButtonBoundingBox = new Rectangle(theoreticalVeryEasyButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, theoreticalVeryEasyButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //easyButton attributes
+        Vector2 theoreticalEasyButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60);
+        Rectangle theoreticalEasyButtonBoundingBox = new Rectangle(theoreticalEasyButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, theoreticalEasyButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //mediumButton attributes
+        Vector2 theoreticalMediumButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120);
+        Rectangle theoreticalMediumButtonBoundingBox = new Rectangle(theoreticalMediumButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, theoreticalMediumButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //hardButton attributes
+        Vector2 theoreticalHardButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180);
+        Rectangle theoreticalHardButtonBoundingBox = new Rectangle(theoreticalHardButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, theoreticalHardButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //veryHardButton attributes
+        Vector2 theoreticalVeryHardButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240);
+        Rectangle theoreticalVeryHardButtonBoundingBox = new Rectangle(theoreticalVeryHardButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, theoreticalVeryHardButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+        //END OF THEORETICAL QUESTIONS BUTTONS
+
+        //PROGRAMMING QUESTIONS BUTTONS
+        //veryEasyButton attributes
+        Vector2 programmingVeryEasyButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f);
+        Rectangle programmingVeryEasyButtonBoundingBox = new Rectangle(programmingVeryEasyButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingVeryEasyButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //easyButton attributes
+        Vector2 programmingEasyButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60);
+        Rectangle programmingEasyButtonBoundingBox = new Rectangle(programmingEasyButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingEasyButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //mediumButton attributes
+        Vector2 programmingMediumButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120);
+        Rectangle programmingMediumButtonBoundingBox = new Rectangle(programmingMediumButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingMediumButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //hardButton attributes
+        Vector2 programmingHardButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180);
+        Rectangle programmingHardButtonBoundingBox = new Rectangle(programmingHardButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingHardButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+
+        //veryHardButton attributes
+        Vector2 programmingVeryHardButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240);
+        Rectangle programmingVeryHardButtonBoundingBox = new Rectangle(programmingVeryHardButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingVeryHardButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
+        //END OF PROGRAMMING QUESTIONS BUTTONS
+
+        isTheoreticalVeryEasyHovered = theoreticalVeryEasyButtonBoundingBox.contains(mousePosition);
+        isTheoreticalEasyHovered = theoreticalEasyButtonBoundingBox.contains(mousePosition);
+        isTheoreticalMediumHovered = theoreticalMediumButtonBoundingBox.contains(mousePosition);
+        isTheoreticalHardHovered = theoreticalHardButtonBoundingBox.contains(mousePosition);
+        isTheoreticalVeryHardHovered = theoreticalVeryHardButtonBoundingBox.contains(mousePosition);
+
+        isProgrammingVeryEasyHovered = programmingVeryEasyButtonBoundingBox.contains(mousePosition);
+        isProgrammingEasyHovered = programmingEasyButtonBoundingBox.contains(mousePosition);
+        isProgrammingMediumHovered = programmingMediumButtonBoundingBox.contains(mousePosition);
+        isProgrammingHardHovered = programmingHardButtonBoundingBox.contains(mousePosition);
+        isProgrammingVeryHardHovered = programmingVeryHardButtonBoundingBox.contains(mousePosition);
+
+
     }
 
     @Override

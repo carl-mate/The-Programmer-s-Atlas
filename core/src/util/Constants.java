@@ -65,6 +65,15 @@ public class Constants {
     public static final String VERYHARD_BUTTON = "veryHard-button";
     public static final String MYSTERYQUESTION_BUTTON = "mysteryQuestion-button";
 
+    public static final String VERYEASY_BUTTON_BIG = "veryEasy-button-big";
+    public static final String EASY_BUTTON_BIG = "easy-button-big";
+    public static final String MEDIUM_BUTTON_BIG = "medium-button-big";
+    public static final String HARD_BUTTON_BIG = "hard-button-big";
+    public static final String VERYHARD_BUTTON_BIG = "veryHard-button-big";
+    public static final Vector2 DIFFICULTY_SCREEN_BUTTON_BIG_CENTER = new Vector2(300, 60);
+
+
+
     public static final float DIFFICULTY_SCREEN_LABEL_WIDTH = 250f;
     public static final float DIFFICULTY_SCREEN_LABEL_HEIGHT = 40f;
     public static final float DIFFICULTY_SCREEN_BUTTON_WIDTH = 270f;
