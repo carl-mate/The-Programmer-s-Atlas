@@ -329,24 +329,132 @@ public class GameplayScreen extends InputAdapter implements Screen {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
         } else{
             if(isCorrectChoiceA){
-                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
-                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
-                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                if(isCallAFamilyMemberLucky){
+                    Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                    callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                    callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                } else{
+                    Gdx.app.log(TAG, "CALL A FAMILY MEMBER UNLUCKY");
+                    //Randomly select one among B, C, and D
+                    callAFamilyMemberDummyChoices = new ArrayList<>(Arrays.asList('B', 'C', 'D'));
+                    if(callAFamilyMemberDummyStartTime == 0){
+                        Collections.shuffle(callAFamilyMemberDummyChoices);
+                        callAFamilyMemberDummyStartTime = TimeUtils.nanoTime();
+                    }
+
+                    if(callAFamilyMemberDummyChoices.get(0) == 'B'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'C'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'D'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                }
+
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceC){
-                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
-                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
-                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                if(isCallAFamilyMemberLucky){
+                    Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                    callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                    callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                } else{
+                    Gdx.app.log(TAG, "CALL A FAMILY MEMBER UNLUCKY");
+                    //Randomly select one among B, A, and D
+                    callAFamilyMemberDummyChoices = new ArrayList<>(Arrays.asList('B', 'A', 'D'));
+                    if(callAFamilyMemberDummyStartTime == 0){
+                        Collections.shuffle(callAFamilyMemberDummyChoices);
+                        callAFamilyMemberDummyStartTime = TimeUtils.nanoTime();
+                    }
+
+                    if(callAFamilyMemberDummyChoices.get(0) == 'B'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'A'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'D'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                }
+
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceB){
-                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
-                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
-                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                if(isCallAFamilyMemberLucky){
+                    Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                    callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                    callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                } else{
+                    Gdx.app.log(TAG, "CALL A FAMILY MEMBER UNLUCKY");
+                    //Randomly select one among C, A, and D
+                    callAFamilyMemberDummyChoices = new ArrayList<>(Arrays.asList('C', 'A', 'D'));
+                    if(callAFamilyMemberDummyStartTime == 0){
+                        Collections.shuffle(callAFamilyMemberDummyChoices);
+                        callAFamilyMemberDummyStartTime = TimeUtils.nanoTime();
+                    }
+
+                    if(callAFamilyMemberDummyChoices.get(0) == 'C'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'A'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'D'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                }
+
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceD){
-                Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
-                callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
-                callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                if(isCallAFamilyMemberLucky){
+                    Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                    callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                    callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                } else{
+                    Gdx.app.log(TAG, "CALL A FAMILY MEMBER UNLUCKY");
+                    //Randomly select one among C, A, and B
+                    callAFamilyMemberDummyChoices = new ArrayList<>(Arrays.asList('C', 'A', 'B'));
+                    if(callAFamilyMemberDummyStartTime == 0){
+                        Collections.shuffle(callAFamilyMemberDummyChoices);
+                        callAFamilyMemberDummyStartTime = TimeUtils.nanoTime();
+                    }
+
+                    if(callAFamilyMemberDummyChoices.get(0) == 'C'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'A'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceAButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                    if(callAFamilyMemberDummyChoices.get(0) == 'B'){
+                        Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
+                        callAFamilyMemberPosition.x = Interpolation.linear.apply(callAFamilyMemberPosition.x, targetPosition.x, 0.1f);
+                        callAFamilyMemberPosition.y = Interpolation.linear.apply(callAFamilyMemberPosition.y, targetPosition.y, 0.1f);
+                    }
+                }
+
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
             }
         }
