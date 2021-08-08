@@ -38,11 +38,11 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
     private ArrayList<PuzzlePiece> puzzlePiece;
     private ArrayList<PuzzleArea> puzzleArea;
+    private ArrayList<PuzzlePiece> droppedPuzzlePieces;
 
     private Vector2 worldTouch;
 
     private int noOfclues;
-    private int noOfDroppedPuzzlePieces;
 
     private boolean handledClue;
 
@@ -56,10 +56,10 @@ public class JigsawScreen extends InputAdapter implements Screen {
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
 
         noOfclues = 0;
-        noOfDroppedPuzzlePieces = 0;
         shapeRenderer = new ShapeRenderer();
         puzzlePiece = new ArrayList<>();
         puzzleArea = new ArrayList<>();
+        droppedPuzzlePieces = new ArrayList<>();
 
         int numberRows = 3;
         int numberCols = 3;
@@ -142,7 +142,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
             Vector2 puzzlePieceCenter = x.getPosition();
             Rectangle puzzlePieceBoundingBox = new Rectangle(puzzlePieceCenter.x - x.getWidth() / 2f, puzzlePieceCenter.y - x.getHeight() / 2f, x.getWidth(), x.getHeight());
             x.setPuzzlePieceBoundingBox(puzzlePieceBoundingBox);
-
         }
 
         if(!handledClue){
@@ -192,7 +191,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
                         Vector2 followCursor = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
                         x.setPosition(followCursor);
                     }
-                    //handle
+                    //draw
                     x.render(batch);
                 }
             }
@@ -201,25 +200,15 @@ public class JigsawScreen extends InputAdapter implements Screen {
             Rectangle instructionRectangleBounds = new Rectangle(instructionCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, instructionCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
 
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "instruction", "Drag and drop puzzle piece to the puzzle area to continue.", instructionRectangleBounds);
+
+            if(noOfclues == droppedPuzzlePieces.size()){
+                //continue button
+                Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_CENTER);
+            }
         }
 
-        if(puzzlePiece.get(noOfclues - 1).isDropped()){
-            //continue button
-            Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_CENTER);
-        }
+
         batch.end();
-
-//        batch.begin();
-//        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
-//
-//        //draw clue label
-//        Vector2 clueCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.25f);
-//        Rectangle clueRectangleBounds = new Rectangle(clueCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, clueCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
-//        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
-//        Assets.instance.font.drawSourceCodeProBoldFont(batch, "clueLabel", "You unlocked a clue!", clueRectangleBounds);
-//
-//        batch.end();
-
 
     }
 
@@ -272,19 +261,26 @@ public class JigsawScreen extends InputAdapter implements Screen {
                     x.setTouched(true);
                 }
 
-                //if puzzle piece is touched while targeted on a puzzle area, then set the target area to true
+                //if puzzle piece is touched while targeted on a puzzle area, then set the puzzle area to true
                 for (PuzzleArea y : puzzleArea) {
+                    //ensure that we are referring to the correct puzzle area
+//                    if (x.getTouched() && x.getDroppedAtRow() == y.getRow() && x.getDroppedAtCol() == y.getCol()) {
+//                        y.setTargetable(true);
+//                        droppedPuzzlePieces.remove(x);
+//                    }
                     if (x.getTouched() && !y.isTargetable()) {
                         y.setTargetable(true);
-                        x.setDropped(false);
-                        noOfDroppedPuzzlePieces--;
+                        droppedPuzzlePieces.remove(x);
                     }
                 }
             }
 
-            if(continueButtonBoundingBox.contains(worldTouch)){
-                programmerGame.showDifficultyScreen();
+            if(noOfclues == droppedPuzzlePieces.size()){
+                if(continueButtonBoundingBox.contains(worldTouch)){
+                    programmerGame.showDifficultyScreen();
+                }
             }
+
         }
 
         return true;
@@ -308,11 +304,14 @@ public class JigsawScreen extends InputAdapter implements Screen {
                             x.setPosition(y.getPosition());
                             closestDistance = currentDistance;
                             y.setTargetable(false);
-                            x.setDropped(true);
-                            noOfDroppedPuzzlePieces++;
                             x.setTouched(false);
+                            //specify which puzzle area the puzzle piece was dropped
+                            x.setDroppedAtRow(y.getRow());
+                            x.setDroppedAtCol(y.getCol());
+                            if(!droppedPuzzlePieces.contains(x)){
+                                droppedPuzzlePieces.add(x);
+                            }
                         }
-
                     }
                 }
 

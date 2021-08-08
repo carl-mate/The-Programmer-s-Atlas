@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
+import com.mygdx.game.ChooseColleagueScreen;
 import com.mygdx.game.CorrectAnswerScreen;
 import com.mygdx.game.GameOverScreen;
 import com.mygdx.game.GameplayScreen;
@@ -40,6 +41,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ResourcesFilePath resourcesFilePath;
     public Font font;
     public HowToPlayScreenAssets howToPlayScreenAssets;
+    public ChooseColleagueScreenAssets chooseColleagueScreenAssets;
 
     private AssetManager assetManager;
 
@@ -61,6 +63,7 @@ public class Assets implements Disposable, AssetErrorListener {
         correctAnswerScreenAssets = new CorrectAnswerScreenAssets(atlas);
         howToPlayScreenAssets = new HowToPlayScreenAssets(atlas);
         font = new Font();
+        chooseColleagueScreenAssets = new ChooseColleagueScreenAssets(atlas);
     }
 
     @Override
@@ -259,6 +262,25 @@ public class Assets implements Disposable, AssetErrorListener {
         public HowToPlayScreenAssets(TextureAtlas atlas){
             instructionsBG = atlas.findRegion(Constants.INSTRUCTIONS_BG);
             lifelineBG = atlas.findRegion(Constants.LIFELINE_BG);
+        }
+    }
+
+    public class ChooseColleagueScreenAssets{
+        public final TextureAtlas.AtlasRegion colleagueBG;
+        public final TextureAtlas.AtlasRegion clementColleague;
+        public final TextureAtlas.AtlasRegion gennadyColleague;
+        public final TextureAtlas.AtlasRegion michelleColleague;
+        public final TextureAtlas.AtlasRegion mikhailaColleague;
+        public final TextureAtlas.AtlasRegion nickColleague;
+
+        public ChooseColleagueScreenAssets(TextureAtlas atlas){
+            colleagueBG = atlas.findRegion(Constants.COLLEAGUE_BG);
+            clementColleague = atlas.findRegion(Constants.CLEMENT_COLLEAGUE);
+            gennadyColleague = atlas.findRegion(Constants.GENNADY_COLLEAGUE);
+            michelleColleague = atlas.findRegion(Constants.MICHELLE_COLLEAGUE);
+            mikhailaColleague = atlas.findRegion(Constants.MIKHAILA_COLLEAGUE);
+            nickColleague = atlas.findRegion(Constants.NICK_COLLEAGUE);
+
         }
     }
 

@@ -51,6 +51,10 @@ public class ProgrammerGame extends Game {
 		setScreen(new HowToPlayScreen(this, this.batch));
 	}
 
+	public void showChooseColleagueScreen(){
+		setScreen(new ChooseColleagueScreen(this, this.batch));
+	}
+
 	public void showDifficultyScreen(){ setScreen(new DifficultyScreen(this, this.batch));}
 
 	public void showGameplayScreen(Difficulty difficulty){

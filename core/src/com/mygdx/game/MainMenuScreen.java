@@ -82,7 +82,6 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
             Constants.preferences.putString("user", username.toString());
             Constants.preferences.flush();
-            programmerGame.showDifficultyScreen();
 
         }
     }
@@ -108,6 +107,7 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         if(playButtonBoundingBox.contains(worldTouch)){
             if(handledUserName){
                 Gdx.app.log(TAG, "CLICKED PLAY");
+//                programmerGame.showChooseColleagueScreen();
                 programmerGame.showDifficultyScreen();
             }
         }

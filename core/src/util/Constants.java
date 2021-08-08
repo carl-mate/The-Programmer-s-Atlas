@@ -37,6 +37,18 @@ public class Constants {
     public static final String INSTRUCTIONS_BG = "instructions-bg";
     public static final String LIFELINE_BG = "lifeline-bg";
 
+    //Choose Colleague Screen Assets
+    public static final String COLLEAGUE_BG = "colleague-bg";
+    public static final String CLEMENT_COLLEAGUE = "clement-colleague";
+    public static final String GENNADY_COLLEAGUE = "gennady-colleague";
+    public static final String MICHELLE_COLLEAGUE  = "michelle-colleague";
+    public static final String MIKHAILA_COLLEAGUE = "mikhaila-colleague";
+    public static final String NICK_COLLEAGUE = "nick-colleague";
+    public static final float COLLEAGUE_WIDTH = 210f;
+    public static final float COLLEAGUE_HEIGHT = 365f;
+    public static final Vector2 COLLEAGUE_CENTER = new Vector2(105, 183);
+
+
     //Difficulty Screen Assets
     public static final String DIFFICULTY_BG = "difficulty-bg";
     public static final String THEORETICALQUESTIONS_LABEL = "theoreticalQuestions-label";
