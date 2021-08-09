@@ -6,100 +6,156 @@ filter: Nearest,Nearest
 repeat: none
 answerBubble-button
   rotate: false
-  xy: 566, 2
+  xy: 566, 379
   size: 375, 98
   orig: 375, 98
   offset: 0, 0
   index: -1
 askClement-lifeline
   rotate: false
-  xy: 964, 954
+  xy: 964, 964
   size: 55, 55
   orig: 55, 55
+  offset: 0, 0
+  index: -1
+askClement-lifeline-110
+  rotate: false
+  xy: 943, 411
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 askGennady-lifeline
   rotate: false
-  xy: 964, 897
+  xy: 964, 907
   size: 55, 55
   orig: 55, 55
+  offset: 0, 0
+  index: -1
+askGennady-lifeline-big
+  rotate: false
+  xy: 933, 227
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 askGoogle-lifeline
   rotate: false
-  xy: 964, 840
+  xy: 964, 850
   size: 55, 55
   orig: 55, 55
+  offset: 0, 0
+  index: -1
+askGoogle-lifeline-110
+  rotate: false
+  xy: 933, 159
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 askMichelle-lifeline
   rotate: false
-  xy: 964, 783
+  xy: 964, 793
   size: 55, 55
   orig: 55, 55
+  offset: 0, 0
+  index: -1
+askMichelle-lifeline-big
+  rotate: false
+  xy: 933, 91
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 askMikhaila-lifeline
   rotate: false
-  xy: 964, 726
+  xy: 964, 736
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
+askMikhaila-lifeline-big
+  rotate: false
+  xy: 933, 23
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
 askNick-lifeline
   rotate: false
-  xy: 964, 669
+  xy: 964, 679
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 bg
   rotate: false
-  xy: 2, 469
+  xy: 2, 479
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
 callAFamilyMember-lifeline
   rotate: false
-  xy: 964, 612
+  xy: 964, 622
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 clement-colleague
   rotate: false
-  xy: 566, 102
-  size: 210, 365
-  orig: 210, 365
+  xy: 766, 3
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+clement-colleague-big
+  rotate: false
+  xy: 566, 29
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
 correctAnswer-bg
   rotate: false
-  xy: 2, 7
+  xy: 2, 17
   size: 280, 460
   orig: 280, 460
   offset: 0, 0
   index: -1
 gameOver-bg
   rotate: false
-  xy: 284, 7
+  xy: 284, 17
   size: 280, 460
   orig: 280, 460
   offset: 0, 0
   index: -1
-gennady-colleague
+programmingQuestions-label
   rotate: false
-  xy: 778, 102
-  size: 210, 365
-  orig: 210, 365
+  xy: 766, 337
+  size: 250, 40
+  orig: 250, 40
   offset: 0, 0
   index: -1
 return-button
   rotate: false
-  xy: 943, 60
+  xy: 964, 580
   size: 40, 40
   orig: 40, 40
+  offset: 0, 0
+  index: -1
+theoreticalQuestions-label
+  rotate: false
+  xy: 766, 295
+  size: 250, 40
+  orig: 250, 40
+  offset: 0, 0
+  index: -1
+username-textfield
+  rotate: false
+  xy: 566, 2
+  size: 175, 25
+  orig: 175, 25
   offset: 0, 0
   index: -1
 
@@ -108,123 +164,102 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Untitled design
-  rotate: false
-  xy: 638, 150
-  size: 125, 125
-  orig: 125, 125
-  offset: 0, 0
-  index: -1
-askClement-lifeline-110
-  rotate: false
-  xy: 2, 2
-  size: 110, 110
-  orig: 110, 110
-  offset: 0, 0
-  index: -1
-askGoogle-lifeline-110
-  rotate: false
-  xy: 114, 2
-  size: 110, 110
-  orig: 110, 110
-  offset: 0, 0
-  index: -1
-callAFamilyMember-lifeline-110
-  rotate: false
-  xy: 226, 2
-  size: 110, 110
-  orig: 110, 110
-  offset: 0, 0
-  index: -1
 colleague-bg
   rotate: false
-  xy: 2, 481
+  xy: 2, 476
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
 continue-button
   rotate: false
-  xy: 815, 141
+  xy: 2, 2
   size: 165, 50
   orig: 165, 50
   offset: 0, 0
   index: -1
 easy-button
   rotate: false
-  xy: 660, 27
+  xy: 504, 64
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+gennady-colleague
+  rotate: false
+  xy: 855, 184
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+gennady-colleague-big
+  rotate: false
+  xy: 2, 126
+  size: 198, 348
+  orig: 198, 348
+  offset: 0, 0
+  index: -1
+hard-button
+  rotate: false
+  xy: 655, 2
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 howToPlay-button
   rotate: false
-  xy: 815, 89
+  xy: 169, 2
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
 howToPlay-button-big
   rotate: false
-  xy: 338, 12
-  size: 320, 100
-  orig: 320, 100
+  xy: 806, 64
+  size: 192, 60
+  orig: 192, 60
   offset: 0, 0
   index: -1
-michelle-colleague
+michelle-colleague-big
   rotate: false
-  xy: 2, 114
-  size: 210, 365
-  orig: 210, 365
+  xy: 655, 126
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
-mikhaila-colleague
+mikhaila-colleague-big
   rotate: false
-  xy: 214, 114
-  size: 210, 365
-  orig: 210, 365
+  xy: 202, 126
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
-nick-colleague
+mysteryQuestion-button
   rotate: false
-  xy: 426, 114
-  size: 210, 365
-  orig: 210, 365
+  xy: 2, 54
+  size: 500, 70
+  orig: 500, 70
   offset: 0, 0
   index: -1
-options-button-big
+nick-colleague-big
   rotate: false
-  xy: 660, 379
-  size: 320, 100
-  orig: 320, 100
+  xy: 402, 126
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
-play-button-big
+options-button
   rotate: false
-  xy: 660, 277
-  size: 320, 100
-  orig: 320, 100
+  xy: 331, 2
+  size: 160, 50
+  orig: 160, 50
   offset: 0, 0
   index: -1
-programmingQuestions-label
+play-button
   rotate: false
-  xy: 765, 235
-  size: 250, 40
-  orig: 250, 40
-  offset: 0, 0
-  index: -1
-theoreticalQuestions-label
-  rotate: false
-  xy: 765, 193
-  size: 250, 40
-  orig: 250, 40
-  offset: 0, 0
-  index: -1
-username-textfield
-  rotate: false
-  xy: 638, 123
-  size: 175, 25
-  orig: 175, 25
+  xy: 493, 2
+  size: 160, 50
+  orig: 160, 50
   offset: 0, 0
   index: -1
 
@@ -233,81 +268,123 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Untitled design
+  rotate: false
+  xy: 364, 53
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: -1
+askNick-lifeline-big
+  rotate: false
+  xy: 865, 404
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+callAFamilyMember-lifeline-110
+  rotate: false
+  xy: 865, 336
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
 difficulty-bg
   rotate: false
-  xy: 2, 440
+  xy: 2, 472
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
 easy-button-big
   rotate: false
-  xy: 2, 318
-  size: 600, 120
-  orig: 600, 120
-  offset: 0, 0
-  index: -1
-hard-button
-  rotate: false
-  xy: 604, 378
-  size: 300, 60
-  orig: 300, 60
+  xy: 2, 106
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
 hard-button-big
   rotate: false
-  xy: 2, 196
-  size: 600, 120
-  orig: 600, 120
+  xy: 503, 398
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
 medium-button
   rotate: false
-  xy: 604, 316
+  xy: 503, 188
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 medium-button-big
   rotate: false
-  xy: 2, 74
-  size: 600, 120
-  orig: 600, 120
+  xy: 2, 32
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
-mysteryQuestion-button
+michelle-colleague
   rotate: false
-  xy: 2, 2
-  size: 500, 70
-  orig: 500, 70
+  xy: 2, 180
+  size: 165, 290
+  orig: 165, 290
   offset: 0, 0
   index: -1
-options-button
+mikhaila-colleague
   rotate: false
-  xy: 604, 140
-  size: 160, 50
-  orig: 160, 50
+  xy: 169, 180
+  size: 165, 290
+  orig: 165, 290
   offset: 0, 0
   index: -1
-play-button
+nick-colleague
   rotate: false
-  xy: 604, 88
-  size: 160, 50
-  orig: 160, 50
+  xy: 336, 180
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+options-button-big
+  rotate: false
+  xy: 491, 2
+  size: 192, 60
+  orig: 192, 60
+  offset: 0, 0
+  index: -1
+play-button-big
+  rotate: false
+  xy: 685, 2
+  size: 192, 60
+  orig: 192, 60
   offset: 0, 0
   index: -1
 veryEasy-button
   rotate: false
-  xy: 604, 254
+  xy: 503, 126
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
+veryEasy-button-big
+  rotate: false
+  xy: 503, 324
+  size: 360, 72
+  orig: 360, 72
+  offset: 0, 0
+  index: -1
 veryHard-button
   rotate: false
-  xy: 604, 192
+  xy: 491, 64
   size: 300, 60
   orig: 300, 60
+  offset: 0, 0
+  index: -1
+veryHard-button-big
+  rotate: false
+  xy: 503, 250
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
 
@@ -318,23 +395,9 @@ filter: Nearest,Nearest
 repeat: none
 fade-bg
   rotate: false
-  xy: 2, 246
+  xy: 2, 2
   size: 960, 540
   orig: 960, 540
-  offset: 0, 0
-  index: -1
-veryEasy-button-big
-  rotate: false
-  xy: 2, 124
-  size: 600, 120
-  orig: 600, 120
-  offset: 0, 0
-  index: -1
-veryHard-button-big
-  rotate: false
-  xy: 2, 2
-  size: 600, 120
-  orig: 600, 120
   offset: 0, 0
   index: -1
 

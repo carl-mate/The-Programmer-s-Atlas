@@ -9,6 +9,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 import util.Assets;
+import util.Enums;
+import util.Enums.Colleague;
 import util.Enums.Difficulty;
 
 public class ProgrammerGame extends Game {
@@ -19,6 +21,7 @@ public class ProgrammerGame extends Game {
 	private SpriteBatch batch;
 	private Questions questions;
 	private JigsawScreen jigsawScreen;
+	private Colleague colleague;
 	private int noOfclues;
 
 	@Override
@@ -73,6 +76,14 @@ public class ProgrammerGame extends Game {
 	public void showJigsawScreen(){
 		jigsawScreen.setClue(++noOfclues);
 		setScreen(jigsawScreen);
+	}
+
+	public void setColleague(Colleague colleague){
+		this.colleague = colleague;
+	}
+
+	public Colleague getColleague(){
+		return this.colleague;
 	}
 
 	public Questions getQuestions(){

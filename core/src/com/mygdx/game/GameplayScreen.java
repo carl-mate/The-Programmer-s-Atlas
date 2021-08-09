@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Interpolation;
 import com.badlogic.gdx.math.MathUtils;
@@ -26,6 +27,8 @@ import java.util.Random;
 
 import util.Assets;
 import util.Constants;
+import util.Enums;
+import util.Enums.Colleague;
 import util.Enums.Difficulty;
 import util.QuestionsManager.ProgrammingQ;
 import util.QuestionsManager.TheoreticalQ;
@@ -51,6 +54,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private String choiceB;
     private String choiceC;
     private String choiceD;
+    private String topic;
     private boolean isCorrectChoiceA;
     private boolean isCorrectChoiceB;
     private boolean isCorrectChoiceC;
@@ -68,6 +72,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private Rectangle choiceBButtonBoundingBoxText;
     private Vector2 choiceDButtonCenterText;
     private Rectangle choiceDButtonBoundingBoxText;
+    private Vector2 topicCenter;
+    private Rectangle topicRectangleBounds;
 
     private long storeScoreStartTime;
     private int userCounter;
@@ -94,6 +100,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private long startTime;
 
+    private TextureAtlas.AtlasRegion colleague;
+    private TextureAtlas.AtlasRegion colleagueBig;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -112,6 +121,24 @@ public class GameplayScreen extends InputAdapter implements Screen {
         askedGoogle = false;
         askedAColleague = false;
         calledAFamilyMember = false;
+
+        if(programmerGame.getColleague() == Colleague.CLEMENT){
+            colleague = Assets.instance.gameplayScreenAssets.askClementLifeline;
+            colleagueBig = Assets.instance.gameplayScreenAssets.askClementLifelineBig;
+        } else if(programmerGame.getColleague() == Colleague.GENNADY){
+            colleague = Assets.instance.gameplayScreenAssets.askGennadyLifeline;
+            colleagueBig = Assets.instance.gameplayScreenAssets.askGennadyLifelineBig;
+        } else if(programmerGame.getColleague() == Colleague.MICHELLE){
+            colleague = Assets.instance.gameplayScreenAssets.askMichelleLifeline;
+            colleagueBig = Assets.instance.gameplayScreenAssets.askMichelleLifelineBig;
+        } else if(programmerGame.getColleague() == Colleague.MIKHAILA){
+            colleague = Assets.instance.gameplayScreenAssets.askMikhailaLifeline;
+            colleagueBig = Assets.instance.gameplayScreenAssets.askMikhailaLifelineBig;
+        } else if(programmerGame.getColleague() == Colleague.NICK){
+            colleague = Assets.instance.gameplayScreenAssets.askNickLifeline;
+            colleagueBig = Assets.instance.gameplayScreenAssets.askNickLifelineBig;
+        }
+
     }
 
     @Override
@@ -176,7 +203,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
             //hovered
             if(askGoogleBoundingBox.contains(mousePosition)){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline110, askGooglePosition, Constants.LIFELINE_110_CENTER);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifelineBig, askGooglePosition, Constants.LIFELINE_110_CENTER);
             } else{
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
             }
@@ -214,9 +241,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
             //hovered
             if(askAColleagueBoundingBox.contains(mousePosition)){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline110, askAColleaguePosition, Constants.LIFELINE_110_CENTER);
+                Util.drawTextureRegion(batch, colleagueBig, askAColleaguePosition, Constants.LIFELINE_110_CENTER);
             } else{ //not hovered
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+                Util.drawTextureRegion(batch, colleague, askAColleaguePosition, Constants.LIFELINE_CENTER);
             }
 
         } else{ //askedAColleague = true
@@ -252,7 +279,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
                 }
 
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+                Util.drawTextureRegion(batch, colleague, askAColleaguePosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceC){
                 if(isAskAColleagueLucky){
                     Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 3.5f) - (choiceCButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
@@ -285,7 +312,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
                     }
                 }
 
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+                Util.drawTextureRegion(batch, colleague, askAColleaguePosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceB){
                 if(isAskAColleagueLucky){
                     Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceBButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f);
@@ -318,7 +345,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
                     }
                 }
 
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+                Util.drawTextureRegion(batch, colleague, askAColleaguePosition, Constants.LIFELINE_CENTER);
             } else if(isCorrectChoiceD){
                 if(isAskAColleagueLucky){
                     Vector2 targetPosition = new Vector2((viewport.getCamera().viewportWidth / 1.38f) + (choiceDButtonBoundingBoxText.width / 2 + Constants.LIFELINE_WIDTH / 2), viewport.getCamera().viewportHeight / 2.8f - 100);
@@ -350,7 +377,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
                         askAColleaguePosition.y = Interpolation.linear.apply(askAColleaguePosition.y, targetPosition.y, 0.1f);
                     }
                 }
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askClementLifeline, askAColleaguePosition, Constants.LIFELINE_CENTER);
+                Util.drawTextureRegion(batch, colleague, askAColleaguePosition, Constants.LIFELINE_CENTER);
             }
         }
 
@@ -363,7 +390,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
             //hovered
             if(callAFamilyMemberBoundingBox.contains(mousePosition)){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline110, callAFamilyMemberPosition, Constants.LIFELINE_110_CENTER);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifelineBig, callAFamilyMemberPosition, Constants.LIFELINE_110_CENTER);
             } else{//not hovered
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
             }
@@ -506,37 +533,61 @@ public class GameplayScreen extends InputAdapter implements Screen {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_EASY) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_MEDIUM) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_HARD) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_VERY_HARD) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_VERY_EASY) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_EASY) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_MEDIUM) {
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             renderAnswerBubbles();
             renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_HARD) {
-
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            renderAnswerBubbles();
+            renderQuestionsChoices();
+            renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
+            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            renderAnswerBubbles();
+            renderQuestionsChoices();
+            renderTopic();
+
+        }
+    }
+
+    private void renderTopic(){
+        if (difficulty == Difficulty.THEORETICAL_VERY_EASY || difficulty == Difficulty.THEORETICAL_EASY || difficulty == Difficulty.THEORETICAL_MEDIUM ||
+                difficulty == Difficulty.THEORETICAL_HARD || difficulty == Difficulty.THEORETICAL_VERY_HARD) {
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "topic", topic, this.topicRectangleBounds);
+        } else{
 
         }
     }
@@ -730,6 +781,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = theoreticalQ[0].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = theoreticalQ[0].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = theoreticalQ[0].getChoice().get(3).isCorrectChoice();
+            this.topic = theoreticalQ[0].getTopic();
         } else if (difficulty == Difficulty.THEORETICAL_EASY) {
             this.question = theoreticalQ[1].getQuestion();
             this.choiceA = theoreticalQ[1].getChoice().get(0).getChoice();
@@ -740,6 +792,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = theoreticalQ[1].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = theoreticalQ[1].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = theoreticalQ[1].getChoice().get(3).isCorrectChoice();
+            this.topic = theoreticalQ[1].getTopic();
         } else if (difficulty == Difficulty.THEORETICAL_MEDIUM) {
             this.question = theoreticalQ[2].getQuestion();
             this.choiceA = theoreticalQ[2].getChoice().get(0).getChoice();
@@ -750,6 +803,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = theoreticalQ[2].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = theoreticalQ[2].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = theoreticalQ[2].getChoice().get(3).isCorrectChoice();
+            this.topic = theoreticalQ[2].getTopic();
         } else if (difficulty == Difficulty.THEORETICAL_HARD) {
             this.question = theoreticalQ[3].getQuestion();
             this.choiceA = theoreticalQ[3].getChoice().get(0).getChoice();
@@ -760,6 +814,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = theoreticalQ[3].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = theoreticalQ[3].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = theoreticalQ[3].getChoice().get(3).isCorrectChoice();
+            this.topic = theoreticalQ[3].getTopic();
         } else if (difficulty == Difficulty.THEORETICAL_VERY_HARD) {
             this.question = theoreticalQ[4].getQuestion();
             this.choiceA = theoreticalQ[4].getChoice().get(0).getChoice();
@@ -770,6 +825,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = theoreticalQ[4].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = theoreticalQ[4].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = theoreticalQ[4].getChoice().get(3).isCorrectChoice();
+            this.topic = theoreticalQ[4].getTopic();
         }
 
     }
@@ -785,6 +841,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = programmingQ[0].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = programmingQ[0].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = programmingQ[0].getChoice().get(3).isCorrectChoice();
+            this.topic = programmingQ[0].getTopic();
         } else if(difficulty == Difficulty.PROGRAMMING_EASY){
             this.question = programmingQ[1].getQuestion();
             this.choiceA = programmingQ[1].getChoice().get(0).getChoice();
@@ -795,6 +852,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = programmingQ[1].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = programmingQ[1].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = programmingQ[1].getChoice().get(3).isCorrectChoice();
+            this.topic = programmingQ[1].getTopic();
         } else if(difficulty == Difficulty.PROGRAMMING_MEDIUM){
             this.question = programmingQ[2].getQuestion();
             this.choiceA = programmingQ[2].getChoice().get(0).getChoice();
@@ -805,6 +863,31 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceC = programmingQ[2].getChoice().get(1).isCorrectChoice();
             this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
+            this.topic = programmingQ[2].getTopic();
+        } else if (difficulty == Difficulty.PROGRAMMING_HARD) {
+            //temporarily using medium questions for initial testing
+            this.question = programmingQ[2].getQuestion();
+            this.choiceA = programmingQ[2].getChoice().get(0).getChoice();
+            this.choiceC = programmingQ[2].getChoice().get(1).getChoice();
+            this.choiceB = programmingQ[2].getChoice().get(2).getChoice();
+            this.choiceD = programmingQ[2].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = programmingQ[2].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = programmingQ[2].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
+            this.topic = programmingQ[2].getTopic();
+        } else if (difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
+            //temporarily using medium questions for initial testing
+            this.question = programmingQ[2].getQuestion();
+            this.choiceA = programmingQ[2].getChoice().get(0).getChoice();
+            this.choiceC = programmingQ[2].getChoice().get(1).getChoice();
+            this.choiceB = programmingQ[2].getChoice().get(2).getChoice();
+            this.choiceD = programmingQ[2].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = programmingQ[2].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = programmingQ[2].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
+            this.topic = programmingQ[2].getTopic();
         }
     }
 
@@ -831,6 +914,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
         choiceDButtonCenterText = new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100);
         choiceDButtonBoundingBoxText = new Rectangle(choiceDButtonCenterText.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceDButtonCenterText.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
 
+        //topic
+        topicCenter = new Vector2(viewport.getCamera().viewportWidth / 5.5f, viewport.getCamera().viewportHeight / 1.20f);
+        topicRectangleBounds = new Rectangle(topicCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, topicCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
     }
 
     @Override

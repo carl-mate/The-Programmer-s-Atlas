@@ -99,6 +99,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public final FreeTypeFontGenerator.FreeTypeFontParameter instructionFontParameter;
 
+        public final FreeTypeFontGenerator.FreeTypeFontParameter topicFontParameter;
+
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
         public BitmapFont praiseFont;
@@ -107,6 +109,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public BitmapFont usernameEarningsFont;
         public BitmapFont clueLabelFont;
         public BitmapFont instructionFont;
+        public BitmapFont topicFont;
 
         public GlyphLayout glyphLayout;
 
@@ -153,6 +156,12 @@ public class Assets implements Disposable, AssetErrorListener {
             instructionFontParameter.size = 15;
             instructionFontParameter.color = Color.BLACK;
             instructionFont = sourceCodeProBoldFontGenerator.generateFont(instructionFontParameter);
+
+            topicFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            topicFontParameter.size = 11;
+            topicFontParameter.color = Color.WHITE;
+            topicFont = sourceCodeProBoldFontGenerator.generateFont(topicFontParameter);
+
             glyphLayout = new GlyphLayout();
         }
 
@@ -185,6 +194,9 @@ public class Assets implements Disposable, AssetErrorListener {
                     break;
                 case "instruction":
                     drawCentered(instructionFont, batch, text, bounds);
+                    break;
+                case "topic":
+                    drawCentered(topicFont, batch, text, bounds);
                     break;
             }
         }
@@ -279,6 +291,12 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion mikhailaColleague;
         public final TextureAtlas.AtlasRegion nickColleague;
 
+        public final TextureAtlas.AtlasRegion clementColleagueBig;
+        public final TextureAtlas.AtlasRegion gennadyColleagueBig;
+        public final TextureAtlas.AtlasRegion michelleColleagueBig;
+        public final TextureAtlas.AtlasRegion mikhailaColleagueBig;
+        public final TextureAtlas.AtlasRegion nickColleagueBig;
+
         public ChooseColleagueScreenAssets(TextureAtlas atlas){
             colleagueBG = atlas.findRegion(Constants.COLLEAGUE_BG);
             clementColleague = atlas.findRegion(Constants.CLEMENT_COLLEAGUE);
@@ -286,6 +304,12 @@ public class Assets implements Disposable, AssetErrorListener {
             michelleColleague = atlas.findRegion(Constants.MICHELLE_COLLEAGUE);
             mikhailaColleague = atlas.findRegion(Constants.MIKHAILA_COLLEAGUE);
             nickColleague = atlas.findRegion(Constants.NICK_COLLEAGUE);
+
+            clementColleagueBig = atlas.findRegion(Constants.CLEMENT_COLLEAGUE_BIG);
+            gennadyColleagueBig = atlas.findRegion(Constants.GENNADY_COLLEAGUE_BIG);
+            michelleColleagueBig = atlas.findRegion(Constants.MICHELLE_COLLEAGUE_BIG);
+            mikhailaColleagueBig = atlas.findRegion(Constants.MIKHAILA_COLLEAGUE_BIG);
+            nickColleagueBig = atlas.findRegion(Constants.NICK_COLLEAGUE_BIG);
 
         }
     }
@@ -342,9 +366,13 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion askGennadyLifeline;
         public final TextureAtlas.AtlasRegion callAFamilyMemberLifeline;
 
-        public final TextureAtlas.AtlasRegion askGoogleLifeline110;
-        public final TextureAtlas.AtlasRegion askClementLifeline110;
-        public final TextureAtlas.AtlasRegion callAFamilyMemberLifeline110;
+        public final TextureAtlas.AtlasRegion askGoogleLifelineBig;
+        public final TextureAtlas.AtlasRegion askClementLifelineBig;
+        public final TextureAtlas.AtlasRegion askGennadyLifelineBig;
+        public final TextureAtlas.AtlasRegion askMichelleLifelineBig;
+        public final TextureAtlas.AtlasRegion askMikhailaLifelineBig;
+        public final TextureAtlas.AtlasRegion askNickLifelineBig;
+        public final TextureAtlas.AtlasRegion callAFamilyMemberLifelineBig;
 
 
         public GameplayScreenAssets(TextureAtlas atlas){
@@ -364,9 +392,13 @@ public class Assets implements Disposable, AssetErrorListener {
             askGennadyLifeline = atlas.findRegion(Constants.ASK_GENNADY_LIFELINE);
             callAFamilyMemberLifeline = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER);
 
-            askGoogleLifeline110 = atlas.findRegion(Constants.ASK_GOOGLE_LIFELINE_110);
-            askClementLifeline110 = atlas.findRegion(Constants.ASK_CLEMENT_LIFELINE_110);
-            callAFamilyMemberLifeline110 = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER_110);
+            askGoogleLifelineBig = atlas.findRegion(Constants.ASK_GOOGLE_LIFELINE_BIG);
+            askClementLifelineBig = atlas.findRegion(Constants.ASK_CLEMENT_LIFELINE_BIG);
+            askGennadyLifelineBig = atlas.findRegion(Constants.ASK_GENNADY_LIFELINE_BIG);
+            askMichelleLifelineBig = atlas.findRegion(Constants.ASK_MICHELLE_LIFELINE_BIG);
+            askMikhailaLifelineBig = atlas.findRegion(Constants.ASK_MIKHAILA_LIFELINE_BIG);
+            askNickLifelineBig = atlas.findRegion(Constants.ASK_NICK_LIFELINE_BIG);
+            callAFamilyMemberLifelineBig = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER_BIG);
         }
     }
 

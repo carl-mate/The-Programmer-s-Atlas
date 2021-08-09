@@ -158,8 +158,8 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         if(playButtonBoundingBox.contains(worldTouch)){
             if(handledUserName){
                 Gdx.app.log(TAG, "CLICKED PLAY");
-//                programmerGame.showChooseColleagueScreen();
-                programmerGame.showDifficultyScreen();
+                programmerGame.showChooseColleagueScreen();
+//                programmerGame.showDifficultyScreen();
             }
         }
 

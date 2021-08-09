@@ -66,8 +66,8 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
         //initialize image parameters
         //image parameters
-        Texture texture = new Texture(Gdx.files.internal("alanturing.jpg"));
-//        Texture texture = new Texture(Gdx.files.internal("ken_thompson.jpg"));
+//        Texture texture = new Texture(Gdx.files.internal("alanturing.jpg"));
+        Texture texture = new Texture(Gdx.files.internal("ken_thompson.jpg"));
 
         int imageWidth = texture.getWidth();
         int imageHeight = texture.getHeight();

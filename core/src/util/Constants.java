@@ -31,7 +31,7 @@ public class Constants {
     public static final String HOWTOPLAY_BUTTON_BIG = "howToPlay-button-big";
     public static final String OPTIONS_BUTTON_BIG = "options-button-big";
     public static final String PLAY_BUTTON_BIG = "play-button-big";
-    public static final Vector2 MAIN_MENU_BUTTON_BIG_CENTER = new Vector2(160, 50);
+    public static final Vector2 MAIN_MENU_BUTTON_BIG_CENTER = new Vector2(96, 30);
 
     public static final float MAIN_MENU_BUTTON_WIDTH = 136f;
     public static final float MAIN_MENU_BUTTON_HEIGHT = 36f;
@@ -49,9 +49,18 @@ public class Constants {
     public static final String MICHELLE_COLLEAGUE  = "michelle-colleague";
     public static final String MIKHAILA_COLLEAGUE = "mikhaila-colleague";
     public static final String NICK_COLLEAGUE = "nick-colleague";
-    public static final float COLLEAGUE_WIDTH = 210f;
-    public static final float COLLEAGUE_HEIGHT = 365f;
-    public static final Vector2 COLLEAGUE_CENTER = new Vector2(105, 183);
+    public static final float COLLEAGUE_WIDTH = 165;
+    public static final float COLLEAGUE_HEIGHT = 290f;
+    public static final Vector2 COLLEAGUE_CENTER = new Vector2(83, 145);
+
+    public static final String CLEMENT_COLLEAGUE_BIG = "clement-colleague-big";
+    public static final String GENNADY_COLLEAGUE_BIG = "gennady-colleague-big";
+    public static final String MICHELLE_COLLEAGUE_BIG = "michelle-colleague-big";
+    public static final String MIKHAILA_COLLEAGUE_BIG = "mikhaila-colleague-big";
+    public static final String NICK_COLLEAGUE_BIG = "nick-colleague-big";
+    public static final float COLLEAGUE_BIG_WIDTH = 198;
+    public static final float COLLEAGUE_BIG_HEIGHT = 348f;
+    public static final Vector2 COLLEAGUE_BIG_CENTER = new Vector2(99, 174);
 
 
     //Difficulty Screen Assets
@@ -70,8 +79,7 @@ public class Constants {
     public static final String MEDIUM_BUTTON_BIG = "medium-button-big";
     public static final String HARD_BUTTON_BIG = "hard-button-big";
     public static final String VERYHARD_BUTTON_BIG = "veryHard-button-big";
-    public static final Vector2 DIFFICULTY_SCREEN_BUTTON_BIG_CENTER = new Vector2(300, 60);
-
+    public static final Vector2 DIFFICULTY_SCREEN_BUTTON_BIG_CENTER = new Vector2(180, 36);
 
 
     public static final float DIFFICULTY_SCREEN_LABEL_WIDTH = 250f;
@@ -96,11 +104,15 @@ public class Constants {
     public static final float LIFELINE_HEIGHT = 55;
     public static final Vector2 LIFELINE_CENTER = new Vector2(28, 28);
 
-    public static final String ASK_GOOGLE_LIFELINE_110 = "askGoogle-lifeline-110";
-    public static final String ASK_CLEMENT_LIFELINE_110 = "askClement-lifeline-110";
-    public static final String CALL_A_FAMILY_MEMBER_110 = "callAFamilyMember-lifeline-110";
+    public static final String ASK_GOOGLE_LIFELINE_BIG = "askGoogle-lifeline-110";
+    public static final String ASK_CLEMENT_LIFELINE_BIG = "askClement-lifeline-110";
+    public static final String ASK_MICHELLE_LIFELINE_BIG = "askMichelle-lifeline-big";
+    public static final String ASK_MIKHAILA_LIFELINE_BIG = "askMikhaila-lifeline-big";
+    public static final String ASK_GENNADY_LIFELINE_BIG = "askGennady-lifeline-big";
+    public static final String ASK_NICK_LIFELINE_BIG = "askNick-lifeline-big";
+    public static final String CALL_A_FAMILY_MEMBER_BIG = "callAFamilyMember-lifeline-110";
 
-    public static final Vector2 LIFELINE_110_CENTER = new Vector2(55, 55);
+    public static final Vector2 LIFELINE_110_CENTER = new Vector2(33, 33);
 
     public static final String NORMAL_BG = "bg";
     public static final String QUESTIONVERYEASY_BG = "questionVeryEasy-bg";
