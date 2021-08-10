@@ -25,10 +25,16 @@ public class ProgrammerGame extends Game {
 	private DifficultyScreen difficultyScreen;
 	private GameplayScreen gameplayScreen;
 	private Colleague colleague;
+	private Difficulty difficulty;
 	private int noOfclues;
 
 	private int previousScore;
 	private int currentScore;
+
+	private boolean usedGoogleLifeline;
+	private boolean usedAColleagueLifeline;
+	private boolean usedCallAFamilyMember;
+
 
 	@Override
 	public void create() {
@@ -41,15 +47,14 @@ public class ProgrammerGame extends Game {
 		} catch(Exception e){
 			Gdx.app.log(TAG, "NOTHING HAPPENED");
 		}
-		initScreens();
 		noOfclues = 0;
+		initScreens();
 		showMainMenuScreen();
 	}
 
 	private void initScreens(){
 		jigsawScreen = new JigsawScreen(this, this.batch);
 		difficultyScreen = new DifficultyScreen(this, this.batch);
-//		gameplayScreen = new GameplayScreen(this, this.batch);
 	}
 
 	@Override
@@ -73,9 +78,8 @@ public class ProgrammerGame extends Game {
 	public void showDifficultyScreen(){ setScreen(difficultyScreen);}
 
 	public void showGameplayScreen(Difficulty difficulty){
-//		gameplayScreen.setDifficulty(difficulty);
-//		setScreen(gameplayScreen);
-		setScreen(new GameplayScreen(this, difficulty, this.batch));
+		this.difficulty = difficulty;
+		setScreen(new GameplayScreen(this, this.batch));
 	}
 
 	public void showGameOverScreen(){
@@ -90,6 +94,34 @@ public class ProgrammerGame extends Game {
 	public void showJigsawScreen(){
 		jigsawScreen.setClue(++noOfclues);
 		setScreen(jigsawScreen);
+	}
+
+	public Difficulty getDifficulty() {
+		return difficulty;
+	}
+
+	public boolean isUsedGoogleLifeline() {
+		return usedGoogleLifeline;
+	}
+
+	public void setUsedGoogleLifeline(boolean usedGoogleLifeline) {
+		this.usedGoogleLifeline = usedGoogleLifeline;
+	}
+
+	public boolean isUsedAColleagueLifeline() {
+		return usedAColleagueLifeline;
+	}
+
+	public void setUsedAColleagueLifeline(boolean usedAColleagueLifeline) {
+		this.usedAColleagueLifeline = usedAColleagueLifeline;
+	}
+
+	public boolean isUsedCallAFamilyMember() {
+		return usedCallAFamilyMember;
+	}
+
+	public void setUsedCallAFamilyMember(boolean usedCallAFamilyMember) {
+		this.usedCallAFamilyMember = usedCallAFamilyMember;
 	}
 
 	public void setColleague(Colleague colleague){
