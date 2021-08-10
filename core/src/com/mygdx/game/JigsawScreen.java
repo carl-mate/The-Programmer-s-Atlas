@@ -19,6 +19,7 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import entity.ImportantFigure;
 import entity.PuzzleArea;
 import entity.PuzzlePiece;
 import util.Assets;
@@ -39,13 +40,13 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private ArrayList<PuzzlePiece> puzzlePiece;
     private ArrayList<PuzzleArea> puzzleArea;
     private ArrayList<PuzzlePiece> droppedPuzzlePieces;
+    private ArrayList<ImportantFigure> importantFigures;
 
     private Vector2 worldTouch;
 
     private int noOfclues;
 
     private boolean handledClue;
-
 
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
@@ -67,7 +68,10 @@ public class JigsawScreen extends InputAdapter implements Screen {
         //initialize image parameters
         //image parameters
 //        Texture texture = new Texture(Gdx.files.internal("alanturing.jpg"));
-        Texture texture = new Texture(Gdx.files.internal("ken_thompson.jpg"));
+//        Texture texture = new Texture(Gdx.files.internal("ken_thompson.jpg"));
+        importantFigures = Assets.instance.importantFigureAssets.importantFigureArrayList;
+        Collections.shuffle(importantFigures);
+        Texture texture = importantFigures.get(0).getImage();
 
         int imageWidth = texture.getWidth();
         int imageHeight = texture.getHeight();

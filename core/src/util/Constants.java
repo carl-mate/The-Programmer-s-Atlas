@@ -165,5 +165,16 @@ public class Constants {
     public static final String CORRECTANSWER_BG = "correctAnswer-bg";
     public static final Vector2 CORRECTANSWER_BG_CENTER = new Vector2(140, 230);
 
+    public static final String HIGHSCORES_BUTTON_GRADIENT = "highScores-button-gradient";
+    public static final String RETURN_TO_MENU_BUTTON_GRADIENT = "returnToMenu-button-gradient";
+    public static final float H_RTM_BUTTON_WIDTH = 138f;
+    public static final float H_RTM_BUTTON_HEIGHT = 38f;
+    public static final Vector2 H_RTM_BUTTON_CENTER = new Vector2(73, 22);
+
+    //Highscores Screen Assets
+    public static final String HIGHSCORES_BG = "highScores-bg";
+    public static final String HIGHSCORES_BUTTON_WHITE = "highScores-bg-white";
+    public static final String RETURN_TO_MENU_BUTTON_WHITE = "returnToMenu-button-white";
+
 
 }

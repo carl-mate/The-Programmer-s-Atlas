@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
+import entity.ImportantFigure;
 import util.Assets;
 import util.Enums;
 import util.Enums.Colleague;
@@ -23,6 +24,9 @@ public class ProgrammerGame extends Game {
 	private JigsawScreen jigsawScreen;
 	private Colleague colleague;
 	private int noOfclues;
+
+	private int previousScore;
+	private int currentScore;
 
 	@Override
 	public void create() {
@@ -69,8 +73,8 @@ public class ProgrammerGame extends Game {
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
-	public void showCorrectAnswerScreen(int score){
-		setScreen(new CorrectAnswerScreen(this, this.batch, score));
+	public void showCorrectAnswerScreen(){
+		setScreen(new CorrectAnswerScreen(this, this.batch));
 	}
 
 	public void showJigsawScreen(){
@@ -88,5 +92,21 @@ public class ProgrammerGame extends Game {
 
 	public Questions getQuestions(){
 		return this.questions;
+	}
+
+	public int getPreviousScore() {
+		return previousScore;
+	}
+
+	public void setPreviousScore(int previousScore) {
+		this.previousScore = previousScore;
+	}
+
+	public int getCurrentScore() {
+		return currentScore;
+	}
+
+	public void setCurrentScore(int currentScore) {
+		this.currentScore = currentScore;
 	}
 }

@@ -25,9 +25,12 @@ import com.mygdx.game.GameOverScreen;
 import com.mygdx.game.GameplayScreen;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.xml.soap.Text;
+
+import entity.ImportantFigure;
 
 public class Assets implements Disposable, AssetErrorListener {
     public static final String TAG = Assets.class.getName();
@@ -42,6 +45,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public Font font;
     public HowToPlayScreenAssets howToPlayScreenAssets;
     public ChooseColleagueScreenAssets chooseColleagueScreenAssets;
+    public ImportantFigureAssets importantFigureAssets;
 
     private AssetManager assetManager;
 
@@ -64,6 +68,7 @@ public class Assets implements Disposable, AssetErrorListener {
         howToPlayScreenAssets = new HowToPlayScreenAssets(atlas);
         font = new Font();
         chooseColleagueScreenAssets = new ChooseColleagueScreenAssets(atlas);
+        importantFigureAssets = new ImportantFigureAssets();
     }
 
     @Override
@@ -78,6 +83,34 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public void initResourcesFilePath(){
         resourcesFilePath = new ResourcesFilePath();
+    }
+
+    public class ImportantFigureAssets{
+        public ArrayList<ImportantFigure> importantFigureArrayList;
+        public Texture alanTuringImage;
+        public Texture kenThomsonImage;
+
+        public String alanTuringName;
+        public String kenThomsonName;
+
+        public String alanTuringBiography;
+        public String kenThomsonBiography;
+
+        public ImportantFigureAssets(){
+            importantFigureArrayList = new ArrayList<>();
+
+            alanTuringImage = new Texture(Gdx.files.internal("alanturing.jpg"));
+            kenThomsonImage = new Texture(Gdx.files.internal("ken_thompson.jpg"));
+
+            alanTuringName = "Alan Turing";
+            kenThomsonName = "Ken Thomson";
+
+            alanTuringBiography = "Alan Turing, in full Alan Mathison Turing, (born June 23, 1912, London, England—died June 7, 1954, Wilmslow, Cheshire), British mathematician and logician who made major contributions to mathematics, cryptanalysis, logic, philosophy, and mathematical biology and also to the new areas later named computer science, cognitive science, artificial intelligence, and artificial life.";
+            kenThomsonBiography = "Kenneth Lane Thompson, (born Feb. 4, 1943, New Orleans, La., U.S.), American computer scientist and cowinner of the 1983 A.M. Turing Award, the highest honour in computer science. Thompson and the American computer scientist Dennis M. Ritchie were cited jointly for “their development of generic operating systems theory and specifically for the implementation of the UNIX operating system,” which they collaborated on at Bell Laboratories.";
+
+            importantFigureArrayList.add(new ImportantFigure(alanTuringImage, alanTuringName, alanTuringBiography));
+            importantFigureArrayList.add(new ImportantFigure(kenThomsonImage, kenThomsonName, kenThomsonBiography));
+        }
     }
 
     public class Font{
@@ -101,6 +134,8 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public final FreeTypeFontGenerator.FreeTypeFontParameter topicFontParameter;
 
+        public final FreeTypeFontGenerator.FreeTypeFontParameter importantFigureNameClueFontParameter;
+
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
         public BitmapFont praiseFont;
@@ -110,6 +145,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public BitmapFont clueLabelFont;
         public BitmapFont instructionFont;
         public BitmapFont topicFont;
+        public BitmapFont importantFigureNameClueFont;
 
         public GlyphLayout glyphLayout;
 
@@ -162,6 +198,11 @@ public class Assets implements Disposable, AssetErrorListener {
             topicFontParameter.color = Color.WHITE;
             topicFont = sourceCodeProBoldFontGenerator.generateFont(topicFontParameter);
 
+            importantFigureNameClueFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            importantFigureNameClueFontParameter.size = 15;
+            importantFigureNameClueFontParameter.color = Color.BLACK;
+            importantFigureNameClueFont = sourceCodeProBoldFontGenerator.generateFont(importantFigureNameClueFontParameter);
+
             glyphLayout = new GlyphLayout();
         }
 
@@ -197,6 +238,9 @@ public class Assets implements Disposable, AssetErrorListener {
                     break;
                 case "topic":
                     drawCentered(topicFont, batch, text, bounds);
+                    break;
+                case "importantFigureNameClue":
+                    drawCentered(importantFigureNameClueFont, batch, text, bounds);
                     break;
             }
         }
@@ -405,10 +449,14 @@ public class Assets implements Disposable, AssetErrorListener {
     public class GameOverScreenAssets{
         public final TextureAtlas.AtlasRegion normalBG;
         public final TextureAtlas.AtlasRegion gameOverBG;
+        public final TextureAtlas.AtlasRegion returnToMenuButton;
+        public final TextureAtlas.AtlasRegion highScoresButton;
 
         public GameOverScreenAssets(TextureAtlas atlas){
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
             gameOverBG = atlas.findRegion(Constants.GAMEOVER_BG);
+            returnToMenuButton = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_GRADIENT);
+            highScoresButton = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT);
         }
     }
 

@@ -24,12 +24,30 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
     private OrthographicCamera camera;
     private ArrayList<String> praise;
 
-    private int score;
+    private int previousScore;
+    private int currentScore;
+    private int increment;
 
-    public CorrectAnswerScreen(ProgrammerGame programmerGame, SpriteBatch batch, int score){
+    public CorrectAnswerScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
-        this.score = score;
+        this.previousScore = programmerGame.getPreviousScore();
+        this.currentScore = programmerGame.getCurrentScore();
+        /* increment depends on the current score.
+         * If currentScore <= 1000, then increment by 10
+         *    currentScore <= 10000, then increment by 100
+         *    currentScore <= 100000, then increment by 1000
+         *    currentScore <= 1000000+, then increment by 10000
+         */
+        if(currentScore <= 9999){
+            increment = 10;
+        } else if(currentScore <= 99999){
+            increment = 100;
+        } else if(currentScore <= 999999){
+            increment = 1000;
+        } else{
+            increment = 10000;
+        }
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
@@ -84,7 +102,13 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 95);
         Rectangle earningsRectangleBounds = new Rectangle(earningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
 
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + score, earningsRectangleBounds);
+        //EDIT THIS
+        if(previousScore+increment <= currentScore){
+            previousScore += increment;
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
+        } else{
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
+        }
 
         //continue button
         Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_CENTER);
@@ -101,6 +125,8 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         Rectangle continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
 
         if(continueButtonBoundingBox.contains(worldTouch)){
+            //update the previous score
+            programmerGame.setPreviousScore(this.currentScore);
             programmerGame.showJigsawScreen();
         }
 

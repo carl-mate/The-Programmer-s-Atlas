@@ -164,102 +164,123 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Untitled design
+  rotate: false
+  xy: 2, 2
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: -1
+askNick-lifeline-big
+  rotate: false
+  xy: 939, 74
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+callAFamilyMember-lifeline-110
+  rotate: false
+  xy: 939, 6
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+clearData-button
+  rotate: false
+  xy: 782, 10
+  size: 155, 43
+  orig: 155, 43
+  offset: 0, 0
+  index: -1
 colleague-bg
   rotate: false
-  xy: 2, 476
+  xy: 2, 479
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
 continue-button
   rotate: false
-  xy: 2, 2
+  xy: 129, 3
   size: 165, 50
   orig: 165, 50
   offset: 0, 0
   index: -1
-easy-button
+easy-button-big
   rotate: false
-  xy: 504, 64
-  size: 300, 60
-  orig: 300, 60
+  xy: 129, 55
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
 gennady-colleague
   rotate: false
-  xy: 855, 184
+  xy: 853, 187
   size: 165, 290
   orig: 165, 290
   offset: 0, 0
   index: -1
 gennady-colleague-big
   rotate: false
-  xy: 2, 126
+  xy: 2, 129
   size: 198, 348
   orig: 198, 348
   offset: 0, 0
   index: -1
-hard-button
+hard-button-big
   rotate: false
-  xy: 655, 2
-  size: 300, 60
-  orig: 300, 60
+  xy: 491, 55
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
 howToPlay-button
   rotate: false
-  xy: 169, 2
+  xy: 296, 3
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
-howToPlay-button-big
-  rotate: false
-  xy: 806, 64
-  size: 192, 60
-  orig: 192, 60
-  offset: 0, 0
-  index: -1
 michelle-colleague-big
   rotate: false
-  xy: 655, 126
+  xy: 202, 129
   size: 198, 348
   orig: 198, 348
   offset: 0, 0
   index: -1
 mikhaila-colleague-big
   rotate: false
-  xy: 202, 126
+  xy: 402, 129
   size: 198, 348
   orig: 198, 348
   offset: 0, 0
   index: -1
-mysteryQuestion-button
-  rotate: false
-  xy: 2, 54
-  size: 500, 70
-  orig: 500, 70
-  offset: 0, 0
-  index: -1
 nick-colleague-big
   rotate: false
-  xy: 402, 126
+  xy: 602, 129
   size: 198, 348
   orig: 198, 348
   offset: 0, 0
   index: -1
 options-button
   rotate: false
-  xy: 331, 2
+  xy: 458, 3
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
 play-button
   rotate: false
-  xy: 493, 2
+  xy: 620, 3
   size: 160, 50
   orig: 160, 50
+  offset: 0, 0
+  index: -1
+returnToMenu-button-white
+  rotate: false
+  xy: 802, 142
+  size: 155, 43
+  orig: 155, 43
   offset: 0, 0
   index: -1
 
@@ -268,121 +289,128 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Untitled design
-  rotate: false
-  xy: 364, 53
-  size: 125, 125
-  orig: 125, 125
-  offset: 0, 0
-  index: -1
-askNick-lifeline-big
-  rotate: false
-  xy: 865, 404
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
-callAFamilyMember-lifeline-110
-  rotate: false
-  xy: 865, 336
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
 difficulty-bg
   rotate: false
-  xy: 2, 472
+  xy: 2, 460
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-easy-button-big
+easy-button
   rotate: false
-  xy: 2, 106
-  size: 360, 72
-  orig: 360, 72
+  xy: 503, 250
+  size: 300, 60
+  orig: 300, 60
   offset: 0, 0
   index: -1
-hard-button-big
-  rotate: false
-  xy: 503, 398
-  size: 360, 72
-  orig: 360, 72
-  offset: 0, 0
-  index: -1
-medium-button
+hard-button
   rotate: false
   xy: 503, 188
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
-medium-button-big
+highScores-button-gradient
   rotate: false
-  xy: 2, 32
-  size: 360, 72
-  orig: 360, 72
+  xy: 866, 415
+  size: 145, 43
+  orig: 145, 43
   offset: 0, 0
   index: -1
-michelle-colleague
+howToPlay-button-big
   rotate: false
-  xy: 2, 180
-  size: 165, 290
-  orig: 165, 290
-  offset: 0, 0
-  index: -1
-mikhaila-colleague
-  rotate: false
-  xy: 169, 180
-  size: 165, 290
-  orig: 165, 290
-  offset: 0, 0
-  index: -1
-nick-colleague
-  rotate: false
-  xy: 336, 180
-  size: 165, 290
-  orig: 165, 290
-  offset: 0, 0
-  index: -1
-options-button-big
-  rotate: false
-  xy: 491, 2
+  xy: 666, 2
   size: 192, 60
   orig: 192, 60
   offset: 0, 0
   index: -1
-play-button-big
-  rotate: false
-  xy: 685, 2
-  size: 192, 60
-  orig: 192, 60
-  offset: 0, 0
-  index: -1
-veryEasy-button
+medium-button
   rotate: false
   xy: 503, 126
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
+medium-button-big
+  rotate: false
+  xy: 2, 22
+  size: 360, 72
+  orig: 360, 72
+  offset: 0, 0
+  index: -1
+michelle-colleague
+  rotate: false
+  xy: 2, 96
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+mikhaila-colleague
+  rotate: false
+  xy: 169, 96
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+mysteryQuestion-button
+  rotate: false
+  xy: 2, 388
+  size: 500, 70
+  orig: 500, 70
+  offset: 0, 0
+  index: -1
+nick-colleague
+  rotate: false
+  xy: 336, 96
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+options-button-big
+  rotate: false
+  xy: 805, 250
+  size: 192, 60
+  orig: 192, 60
+  offset: 0, 0
+  index: -1
+play-button-big
+  rotate: false
+  xy: 805, 188
+  size: 192, 60
+  orig: 192, 60
+  offset: 0, 0
+  index: -1
+returnToMenu-button-gradient
+  rotate: false
+  xy: 866, 370
+  size: 145, 43
+  orig: 145, 43
+  offset: 0, 0
+  index: -1
+veryEasy-button
+  rotate: false
+  xy: 503, 64
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
 veryEasy-button-big
   rotate: false
-  xy: 503, 324
+  xy: 504, 386
   size: 360, 72
   orig: 360, 72
   offset: 0, 0
   index: -1
 veryHard-button
   rotate: false
-  xy: 491, 64
+  xy: 364, 2
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 veryHard-button-big
   rotate: false
-  xy: 503, 250
+  xy: 503, 312
   size: 360, 72
   orig: 360, 72
   offset: 0, 0
@@ -406,7 +434,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-instructions-bg
+highScores-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -419,7 +447,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-lifeline-bg
+instructions-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -432,7 +460,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-mainMenu-bg
+lifeline-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -445,7 +473,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionEasy-bg
+mainMenu-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -458,7 +486,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionHard-bg
+questionEasy-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -471,7 +499,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionMedium-bg
+questionHard-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -484,7 +512,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionVeryEasy-bg
+questionMedium-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -497,7 +525,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionVeryHard-bg
+questionVeryEasy-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -506,6 +534,19 @@ questionVeryHard-bg
   index: -1
 
 the-programmer's-atlas.pack13.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+questionVeryHard-bg
+  rotate: false
+  xy: 2, 2
+  size: 960, 540
+  orig: 960, 540
+  offset: 0, 0
+  index: -1
+
+the-programmer's-atlas.pack14.png
 size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest

@@ -77,7 +77,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private long storeScoreStartTime;
     private int userCounter;
-    private int score;
+    private int previousScore;
+    private int currentScore;
 
     private boolean askedGoogle;
     private boolean askedAColleague;
@@ -108,6 +109,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
         this.programmerGame = programmerGame;
         this.difficulty = difficulty;
         this.batch = batch;
+        this.previousScore = programmerGame.getPreviousScore();
+        this.currentScore = programmerGame.getCurrentScore();
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
@@ -714,42 +717,49 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private void judgeAnswer(boolean correct) {
         if (correct) {
             if (this.difficulty == Difficulty.THEORETICAL_VERY_EASY) {
-                score += Constants.THEORETICAL_VERY_EASY_POINTS;
+                currentScore += Constants.THEORETICAL_VERY_EASY_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL VERY EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_EASY) {
-                score += Constants.THEORETICAL_EASY_POINTS;
+                currentScore += Constants.THEORETICAL_EASY_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_MEDIUM) {
-                score += Constants.THEORETICAL_MEDIUM_POINTS;
+                currentScore += Constants.THEORETICAL_MEDIUM_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL MEDIUM CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_HARD) {
-                score += Constants.THEORETICAL_HARD_POINTS;
+                currentScore += Constants.THEORETICAL_HARD_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL HARD CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_VERY_HARD) {
-                score += Constants.THEORETICAL_VERY_HARD_POINTS;
+                currentScore += Constants.THEORETICAL_VERY_HARD_POINTS;
                 Gdx.app.log(TAG, "THEORETICAL VERY HARD CORRECT");
             }
 
             if (this.difficulty == Difficulty.PROGRAMMING_VERY_EASY) {
+                currentScore += Constants.PROGRAMMING_VERY_EASY_POINTS;
                 Gdx.app.log(TAG, "PROGRAMMING VERY EASY CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_EASY) {
+                currentScore += Constants.PROGRAMMING_EASY_POINTS;
                 Gdx.app.log(TAG, "PROGRAMMING EASY CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_MEDIUM) {
+                currentScore += Constants.PROGRAMMING_MEDIUM_POINTS;
                 Gdx.app.log(TAG, "PROGRAMMING MEDIUM CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_HARD) {
+                currentScore += Constants.PROGRAMMING_HARD_POINTS;
                 Gdx.app.log(TAG, "PROGRAMMING HARD CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
+                currentScore += Constants.PROGRAMMING_VERY_HARD_POINTS;
                 Gdx.app.log(TAG, "PROGRAMMING VERY HARD CORRECT");
             }
 
-            programmerGame.showCorrectAnswerScreen(score);
+            programmerGame.setPreviousScore(this.previousScore);
+            programmerGame.setCurrentScore(this.currentScore);
+            programmerGame.showCorrectAnswerScreen();
         } else {
 
             //store the scores
             while(true){
                 if(!Constants.preferences.contains("user-"+userCounter)){
                     Constants.preferences.putString("user-"+userCounter, Constants.preferences.getString("user"));
-                    Constants.preferences.putInteger("score-"+userCounter, score);
+                    Constants.preferences.putInteger("score-"+userCounter, currentScore);
                     break;
                 } else{
                     userCounter++;
