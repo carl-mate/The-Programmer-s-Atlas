@@ -107,8 +107,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     public GameplayScreen(ProgrammerGame programmerGame, Difficulty difficulty, SpriteBatch batch) {
         this.programmerGame = programmerGame;
-        this.difficulty = difficulty;
         this.batch = batch;
+        this.difficulty = difficulty;
         this.previousScore = programmerGame.getPreviousScore();
         this.currentScore = programmerGame.getCurrentScore();
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
@@ -596,7 +596,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
     }
 
     private void renderQuestionsChoices() {
-        if (difficulty == Difficulty.THEORETICAL_VERY_EASY || difficulty == Difficulty.THEORETICAL_EASY || difficulty == Difficulty.THEORETICAL_MEDIUM ||
+        if(difficulty == Difficulty.MYSTERY_QUESTION){
+
+        } else if (difficulty == Difficulty.THEORETICAL_VERY_EASY || difficulty == Difficulty.THEORETICAL_EASY || difficulty == Difficulty.THEORETICAL_MEDIUM ||
                 difficulty == Difficulty.THEORETICAL_HARD || difficulty == Difficulty.THEORETICAL_VERY_HARD) {
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", question, this.questionRectangleBounds);
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", choiceA, this.choiceAButtonBoundingBoxText);
@@ -716,40 +718,57 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private void judgeAnswer(boolean correct) {
         if (correct) {
+            if(this.difficulty == Difficulty.MYSTERY_QUESTION){
+                currentScore += Constants.MYSTERY_QUESTION_POINTS;
+                programmerGame.setMysteryQuestionAnswered(true);
+                Gdx.app.log(TAG, "MYSTERY QUESTION CORRECT");
+            }
+
             if (this.difficulty == Difficulty.THEORETICAL_VERY_EASY) {
                 currentScore += Constants.THEORETICAL_VERY_EASY_POINTS;
+                programmerGame.setTheoreticalVeryEasyAnswered(true);
                 Gdx.app.log(TAG, "THEORETICAL VERY EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_EASY) {
                 currentScore += Constants.THEORETICAL_EASY_POINTS;
+                programmerGame.setTheoreticalEasyAnswered(true);
                 Gdx.app.log(TAG, "THEORETICAL EASY CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_MEDIUM) {
                 currentScore += Constants.THEORETICAL_MEDIUM_POINTS;
+                programmerGame.setTheoreticalMediumAnswered(true);
                 Gdx.app.log(TAG, "THEORETICAL MEDIUM CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_HARD) {
                 currentScore += Constants.THEORETICAL_HARD_POINTS;
+                programmerGame.setTheoreticalHardAnswered(true);
                 Gdx.app.log(TAG, "THEORETICAL HARD CORRECT");
             } else if (this.difficulty == Difficulty.THEORETICAL_VERY_HARD) {
                 currentScore += Constants.THEORETICAL_VERY_HARD_POINTS;
+                programmerGame.setTheoreticalVeryHardAnswered(true);
                 Gdx.app.log(TAG, "THEORETICAL VERY HARD CORRECT");
             }
 
             if (this.difficulty == Difficulty.PROGRAMMING_VERY_EASY) {
                 currentScore += Constants.PROGRAMMING_VERY_EASY_POINTS;
+                programmerGame.setProgrammingVeryEasyAnswered(true);
                 Gdx.app.log(TAG, "PROGRAMMING VERY EASY CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_EASY) {
                 currentScore += Constants.PROGRAMMING_EASY_POINTS;
+                programmerGame.setProgrammingEasyAnswered(true);
                 Gdx.app.log(TAG, "PROGRAMMING EASY CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_MEDIUM) {
                 currentScore += Constants.PROGRAMMING_MEDIUM_POINTS;
+                programmerGame.setProgrammingMediumAnswered(true);
                 Gdx.app.log(TAG, "PROGRAMMING MEDIUM CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_HARD) {
                 currentScore += Constants.PROGRAMMING_HARD_POINTS;
+                programmerGame.setProgrammingHardAnswered(true);
                 Gdx.app.log(TAG, "PROGRAMMING HARD CORRECT");
             } else if (this.difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
                 currentScore += Constants.PROGRAMMING_VERY_HARD_POINTS;
+                programmerGame.setProgrammingVeryHardAnswered(true);
                 Gdx.app.log(TAG, "PROGRAMMING VERY HARD CORRECT");
             }
 
+            programmerGame.incrementNoOfAnsweredQuestions();
             programmerGame.setPreviousScore(this.previousScore);
             programmerGame.setCurrentScore(this.currentScore);
             programmerGame.showCorrectAnswerScreen();
@@ -927,6 +946,14 @@ public class GameplayScreen extends InputAdapter implements Screen {
         //topic
         topicCenter = new Vector2(viewport.getCamera().viewportWidth / 5.5f, viewport.getCamera().viewportHeight / 1.20f);
         topicRectangleBounds = new Rectangle(topicCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, topicCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
+    }
+
+    public void setDifficulty(Difficulty difficulty){
+        this.difficulty = difficulty;
+    }
+
+    public Difficulty getDifficulty(){
+        return this.difficulty;
     }
 
     @Override

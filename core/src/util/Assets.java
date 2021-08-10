@@ -199,7 +199,7 @@ public class Assets implements Disposable, AssetErrorListener {
             topicFont = sourceCodeProBoldFontGenerator.generateFont(topicFontParameter);
 
             importantFigureNameClueFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            importantFigureNameClueFontParameter.size = 15;
+            importantFigureNameClueFontParameter.size = 50;
             importantFigureNameClueFontParameter.color = Color.BLACK;
             importantFigureNameClueFont = sourceCodeProBoldFontGenerator.generateFont(importantFigureNameClueFontParameter);
 
@@ -367,12 +367,19 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion mediumButton;
         public final TextureAtlas.AtlasRegion hardButton;
         public final TextureAtlas.AtlasRegion veryHardButton;
+        public final TextureAtlas.AtlasRegion veryEasyButtonLocked;
+        public final TextureAtlas.AtlasRegion easyButtonLocked;
+        public final TextureAtlas.AtlasRegion mediumButtonLocked;
+        public final TextureAtlas.AtlasRegion hardButtonLocked;
+        public final TextureAtlas.AtlasRegion veryHardButtonLocked;
         public final TextureAtlas.AtlasRegion mysteryQuestionButton;
+        public final TextureAtlas.AtlasRegion mysteryQuestionButtonLocked;
         public final TextureAtlas.AtlasRegion veryEasyButtonBig;
         public final TextureAtlas.AtlasRegion easyButtonBig;
         public final TextureAtlas.AtlasRegion mediumButtonBig;
         public final TextureAtlas.AtlasRegion hardButtonBig;
         public final TextureAtlas.AtlasRegion veryHardButtonBig;
+        public final TextureAtlas.AtlasRegion mysteryQuestionButtonBig;
 
 
         public DifficultyScreenAssets(TextureAtlas atlas){
@@ -385,11 +392,18 @@ public class Assets implements Disposable, AssetErrorListener {
             hardButton = atlas.findRegion(Constants.HARD_BUTTON);
             veryHardButton = atlas.findRegion(Constants.VERYHARD_BUTTON);
             mysteryQuestionButton = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON);
+            mysteryQuestionButtonLocked = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON_LOCKED);
+            mysteryQuestionButtonBig = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON_BIG);
             veryEasyButtonBig = atlas.findRegion(Constants.VERYEASY_BUTTON_BIG);
             easyButtonBig = atlas.findRegion(Constants.EASY_BUTTON_BIG);
             mediumButtonBig = atlas.findRegion(Constants.MEDIUM_BUTTON_BIG);
             hardButtonBig = atlas.findRegion(Constants.HARD_BUTTON_BIG);
             veryHardButtonBig = atlas.findRegion(Constants.VERYHARD_BUTTON_BIG);
+            veryEasyButtonLocked = atlas.findRegion(Constants.VERYEASY_BUTTON_LOCKED);
+            easyButtonLocked = atlas.findRegion(Constants.EASY_BUTTON_LOCKED);
+            mediumButtonLocked = atlas.findRegion(Constants.MEDIUM_BUTTON_LOCKED);
+            hardButtonLocked = atlas.findRegion(Constants.HARD_BUTTON_LOCKED);
+            veryHardButtonLocked = atlas.findRegion(Constants.VERYHARD_BUTTON_LOCKED);
         }
     }
 

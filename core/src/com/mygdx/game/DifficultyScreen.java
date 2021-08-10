@@ -23,6 +23,7 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     private ExtendViewport viewport;
     private OrthographicCamera camera;
 
+    private boolean isMysteryQuestionHovered;
     private boolean isTheoreticalVeryEasyHovered;
     private boolean isTheoreticalEasyHovered;
     private boolean isTheoreticalMediumHovered;
@@ -34,23 +35,28 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     private boolean isProgrammingHardHovered;
     private boolean isProgrammingVeryHardHovered;
 
+    private boolean isMysteryQuestionAnswered;
+    private boolean isTheoreticalVeryEasyAnswered;
+    private boolean isTheoreticalEasyAnswered;
+    private boolean isTheoreticalMediumAnswered;
+    private boolean isTheoreticalHardAnswered;
+    private boolean isTheoreticalVeryHardAnswered;
+    private boolean isProgrammingVeryEasyAnswered;
+    private boolean isProgrammingEasyAnswered;
+    private boolean isProgrammingMediumAnswered;
+    private boolean isProgrammingHardAnswered;
+    private boolean isProgrammingVeryHardAnswered;
+
+    private int noOfAnsweredQuestions;
+
     public DifficultyScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth(), viewport.getWorldHeight(), 0);
-        isTheoreticalVeryEasyHovered = false;
-        isTheoreticalEasyHovered = false;
-        isTheoreticalMediumHovered = false;
-        isTheoreticalHardHovered = false;
-        isTheoreticalVeryHardHovered = false;
-        isProgrammingVeryEasyHovered = false;
-        isProgrammingEasyHovered = false;
-        isProgrammingMediumHovered = false;
-        isProgrammingHardHovered = false;
-        isProgrammingVeryHardHovered = false;
     }
+
     @Override
     public void show() {
         Gdx.input.setInputProcessor(this);
@@ -75,80 +81,137 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         checkHovered();
 
-        //mystery question button
-        Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.20f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+        if(noOfAnsweredQuestions == 10){
+            if(!isMysteryQuestionHovered){
+                //mystery question button
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+            }
+
+            if(isMysteryQuestionHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_BIG_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+        }
+
 
         //theoretical question label
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.theoreticalQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.30f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
 
         //not hovered states
-        if(!isTheoreticalVeryEasyHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        if(!isTheoreticalVeryEasyAnswered){
+            if(!isTheoreticalVeryEasyHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isTheoreticalEasyHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isTheoreticalEasyAnswered){
+            if(!isTheoreticalEasyHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isTheoreticalMediumHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isTheoreticalMediumAnswered){
+            if(!isTheoreticalMediumHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isTheoreticalHardHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isTheoreticalHardAnswered){
+            if(!isTheoreticalHardHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isTheoreticalVeryHardHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isTheoreticalVeryHardAnswered){
+            if(!isTheoreticalVeryHardHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
 
         //programming question label
         Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.programmingQuestionsLabel, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.30f), Constants.DIFFICULTY_SCREEN_LABEL_CENTER);
 
-        if(!isProgrammingVeryEasyHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+        if(!isProgrammingVeryEasyAnswered){
+            if(!isProgrammingVeryEasyHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isProgrammingEasyHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isProgrammingEasyAnswered){
+            if(!isProgrammingEasyHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isProgrammingMediumHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isProgrammingMediumAnswered){
+            if(!isProgrammingMediumHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isProgrammingHardHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isProgrammingHardAnswered){
+            if(!isProgrammingHardHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
-        if(!isProgrammingVeryHardHovered){
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+
+        if(!isProgrammingVeryHardAnswered){
+            if(!isProgrammingVeryHardHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_CENTER);
         }
 
         //hovered states
-
-        //not hovered states
-        if(isTheoreticalVeryEasyHovered){
+        if(isTheoreticalVeryEasyHovered && !isTheoreticalVeryEasyAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isTheoreticalEasyHovered){
+        if(isTheoreticalEasyHovered && !isTheoreticalEasyAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isTheoreticalMediumHovered){
+        if(isTheoreticalMediumHovered && !isTheoreticalMediumAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isTheoreticalHardHovered){
+        if(isTheoreticalHardHovered && !isTheoreticalHardAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isTheoreticalVeryHardHovered){
+        if(isTheoreticalVeryHardHovered && !isTheoreticalVeryHardAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
 
-        if(isProgrammingVeryEasyHovered){
+        if(isProgrammingVeryEasyHovered && !isProgrammingVeryEasyAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryEasyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isProgrammingEasyHovered){
+        if(isProgrammingEasyHovered && !isProgrammingEasyAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.easyButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 60), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isProgrammingMediumHovered){
+        if(isProgrammingMediumHovered && !isProgrammingMediumAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mediumButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 120), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isProgrammingHardHovered){
+        if(isProgrammingHardHovered && !isProgrammingHardAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.hardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 180), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
-        if(isProgrammingVeryHardHovered){
+        if(isProgrammingVeryHardHovered && !isProgrammingVeryHardAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
         }
 
@@ -257,6 +320,10 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
     private void checkHovered(){
         Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+
+        Vector2 mysteryQuestionButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f);
+        Rectangle mysteryQuestionButtonBoundingBox = new Rectangle(mysteryQuestionButtonCenter.x - Constants.MYSTERYQUESTION_BUTTON_WIDTH / 2, mysteryQuestionButtonCenter.y - Constants.MYSTERYQUESTION_BUTTON_HEIGHT / 2, Constants.MYSTERYQUESTION_BUTTON_WIDTH, Constants.MYSTERYQUESTION_BUTTON_HEIGHT);
+
         //THEORETICAL QUESTIONS BUTTONS
         //veryEasyButton attributes
         Vector2 theoreticalVeryEasyButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f);
@@ -301,6 +368,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         Rectangle programmingVeryHardButtonBoundingBox = new Rectangle(programmingVeryHardButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingVeryHardButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
         //END OF PROGRAMMING QUESTIONS BUTTONS
 
+        isMysteryQuestionHovered = mysteryQuestionButtonBoundingBox.contains(mousePosition);
+
         isTheoreticalVeryEasyHovered = theoreticalVeryEasyButtonBoundingBox.contains(mousePosition);
         isTheoreticalEasyHovered = theoreticalEasyButtonBoundingBox.contains(mousePosition);
         isTheoreticalMediumHovered = theoreticalMediumButtonBoundingBox.contains(mousePosition);
@@ -312,8 +381,58 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         isProgrammingMediumHovered = programmingMediumButtonBoundingBox.contains(mousePosition);
         isProgrammingHardHovered = programmingHardButtonBoundingBox.contains(mousePosition);
         isProgrammingVeryHardHovered = programmingVeryHardButtonBoundingBox.contains(mousePosition);
+    }
 
+    public int getNoOfAnsweredQuestions() {
+        return noOfAnsweredQuestions;
+    }
 
+    public void incrementNoOfAnsweredQuestions() {
+        this.noOfAnsweredQuestions++;
+    }
+
+    public void setMysteryQuestionAnswered(boolean mysteryQuestionAnswered) {
+        isMysteryQuestionAnswered = mysteryQuestionAnswered;
+    }
+
+    public void setTheoreticalVeryEasyAnswered(boolean theoreticalVeryEasyAnswered) {
+        isTheoreticalVeryEasyAnswered = theoreticalVeryEasyAnswered;
+    }
+
+    public void setTheoreticalEasyAnswered(boolean theoreticalEasyAnswered) {
+        isTheoreticalEasyAnswered = theoreticalEasyAnswered;
+    }
+
+    public void setTheoreticalMediumAnswered(boolean theoreticalMediumAnswered) {
+        isTheoreticalMediumAnswered = theoreticalMediumAnswered;
+    }
+
+    public void setTheoreticalHardAnswered(boolean theoreticalHardAnswered) {
+        isTheoreticalHardAnswered = theoreticalHardAnswered;
+    }
+
+    public void setTheoreticalVeryHardAnswered(boolean theoreticalVeryHardAnswered) {
+        isTheoreticalVeryHardAnswered = theoreticalVeryHardAnswered;
+    }
+
+    public void setProgrammingVeryEasyAnswered(boolean programmingVeryEasyAnswered) {
+        isProgrammingVeryEasyAnswered = programmingVeryEasyAnswered;
+    }
+
+    public void setProgrammingEasyAnswered(boolean programmingEasyAnswered) {
+        isProgrammingEasyAnswered = programmingEasyAnswered;
+    }
+
+    public void setProgrammingMediumAnswered(boolean programmingMediumAnswered) {
+        isProgrammingMediumAnswered = programmingMediumAnswered;
+    }
+
+    public void setProgrammingHardAnswered(boolean programmingHardAnswered) {
+        isProgrammingHardAnswered = programmingHardAnswered;
+    }
+
+    public void setProgrammingVeryHardAnswered(boolean programmingVeryHardAnswered) {
+        isProgrammingVeryHardAnswered = programmingVeryHardAnswered;
     }
 
     @Override

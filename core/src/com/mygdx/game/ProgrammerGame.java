@@ -22,6 +22,8 @@ public class ProgrammerGame extends Game {
 	private SpriteBatch batch;
 	private Questions questions;
 	private JigsawScreen jigsawScreen;
+	private DifficultyScreen difficultyScreen;
+	private GameplayScreen gameplayScreen;
 	private Colleague colleague;
 	private int noOfclues;
 
@@ -39,9 +41,15 @@ public class ProgrammerGame extends Game {
 		} catch(Exception e){
 			Gdx.app.log(TAG, "NOTHING HAPPENED");
 		}
-		jigsawScreen = new JigsawScreen(this, this.batch);
+		initScreens();
 		noOfclues = 0;
 		showMainMenuScreen();
+	}
+
+	private void initScreens(){
+		jigsawScreen = new JigsawScreen(this, this.batch);
+		difficultyScreen = new DifficultyScreen(this, this.batch);
+//		gameplayScreen = new GameplayScreen(this, this.batch);
 	}
 
 	@Override
@@ -62,14 +70,16 @@ public class ProgrammerGame extends Game {
 		setScreen(new ChooseColleagueScreen(this, this.batch));
 	}
 
-	public void showDifficultyScreen(){ setScreen(new DifficultyScreen(this, this.batch));}
+	public void showDifficultyScreen(){ setScreen(difficultyScreen);}
 
 	public void showGameplayScreen(Difficulty difficulty){
+//		gameplayScreen.setDifficulty(difficulty);
+//		setScreen(gameplayScreen);
 		setScreen(new GameplayScreen(this, difficulty, this.batch));
 	}
 
 	public void showGameOverScreen(){
-//		jigsawScreen = new JigsawScreen(this, this.batch);
+		initScreens();
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
@@ -108,5 +118,57 @@ public class ProgrammerGame extends Game {
 
 	public void setCurrentScore(int currentScore) {
 		this.currentScore = currentScore;
+	}
+
+	public int getNoOfAnsweredQuestions() {
+		return this.difficultyScreen.getNoOfAnsweredQuestions();
+	}
+
+	public void incrementNoOfAnsweredQuestions() {
+		this.difficultyScreen.incrementNoOfAnsweredQuestions();
+	}
+
+	public void setMysteryQuestionAnswered(boolean mysteryQuestionAnswered) {
+		this.difficultyScreen.setMysteryQuestionAnswered(mysteryQuestionAnswered);
+	}
+
+	public void setTheoreticalVeryEasyAnswered(boolean theoreticalVeryEasyAnswered) {
+		this.difficultyScreen.setTheoreticalVeryEasyAnswered(theoreticalVeryEasyAnswered);
+	}
+
+	public void setTheoreticalEasyAnswered(boolean theoreticalEasyAnswered) {
+		this.difficultyScreen.setTheoreticalEasyAnswered(theoreticalEasyAnswered);
+	}
+
+	public void setTheoreticalMediumAnswered(boolean theoreticalMediumAnswered) {
+		this.difficultyScreen.setTheoreticalMediumAnswered(theoreticalMediumAnswered);
+	}
+
+	public void setTheoreticalHardAnswered(boolean theoreticalHardAnswered) {
+		this.difficultyScreen.setTheoreticalHardAnswered(theoreticalHardAnswered);
+	}
+
+	public void setTheoreticalVeryHardAnswered(boolean theoreticalVeryHardAnswered) {
+		this.difficultyScreen.setTheoreticalVeryHardAnswered(theoreticalVeryHardAnswered);
+	}
+
+	public void setProgrammingVeryEasyAnswered(boolean programmingVeryEasyAnswered) {
+		this.difficultyScreen.setProgrammingVeryEasyAnswered(programmingVeryEasyAnswered);
+	}
+
+	public void setProgrammingEasyAnswered(boolean programmingEasyAnswered) {
+		this.difficultyScreen.setProgrammingEasyAnswered(programmingEasyAnswered);
+	}
+
+	public void setProgrammingMediumAnswered(boolean programmingMediumAnswered) {
+		this.difficultyScreen.setProgrammingMediumAnswered(programmingMediumAnswered);
+	}
+
+	public void setProgrammingHardAnswered(boolean programmingHardAnswered) {
+		this.difficultyScreen.setProgrammingHardAnswered(programmingHardAnswered);
+	}
+
+	public void setProgrammingVeryHardAnswered(boolean programmingVeryHardAnswered) {
+		this.difficultyScreen.setProgrammingVeryHardAnswered(programmingVeryHardAnswered);
 	}
 }

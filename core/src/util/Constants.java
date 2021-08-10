@@ -72,7 +72,14 @@ public class Constants {
     public static final String MEDIUM_BUTTON = "medium-button";
     public static final String HARD_BUTTON = "hard-button";
     public static final String VERYHARD_BUTTON = "veryHard-button";
+    public static final String VERYEASY_BUTTON_LOCKED = "veryEasy-button-locked";
+    public static final String EASY_BUTTON_LOCKED = "easy-button-locked";
+    public static final String MEDIUM_BUTTON_LOCKED = "medium-button-locked";
+    public static final String HARD_BUTTON_LOCKED = "hard-button-locked";
+    public static final String VERYHARD_BUTTON_LOCKED = "veryHard-button-locked";
     public static final String MYSTERYQUESTION_BUTTON = "mysteryQuestion-button";
+    public static final String MYSTERYQUESTION_BUTTON_LOCKED = "mysteryQuestion-button-locked";
+    public static final String MYSTERYQUESTION_BUTTON_BIG = "mysteryQuestion-button-big";
 
     public static final String VERYEASY_BUTTON_BIG = "veryEasy-button-big";
     public static final String EASY_BUTTON_BIG = "easy-button-big";
@@ -82,15 +89,17 @@ public class Constants {
     public static final Vector2 DIFFICULTY_SCREEN_BUTTON_BIG_CENTER = new Vector2(180, 36);
 
 
+
     public static final float DIFFICULTY_SCREEN_LABEL_WIDTH = 250f;
     public static final float DIFFICULTY_SCREEN_LABEL_HEIGHT = 40f;
     public static final float DIFFICULTY_SCREEN_BUTTON_WIDTH = 270f;
     public static final float DIFFICULTY_SCREEN_BUTTON_HEIGHT = 45f;
     public static final Vector2 DIFFICULTY_SCREEN_BUTTON_CENTER = new Vector2(150, 30);
     public static final Vector2 DIFFICULTY_SCREEN_LABEL_CENTER = new Vector2(125, 20);
-    public static final float MYSTERYQUESTION_BUTTON_WIDTH = 474f;
-    public static final float MYSTERYQUESTION_BUTTON_HEIGHT = 36f;
-    public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(250, 35);
+    public static final float MYSTERYQUESTION_BUTTON_WIDTH = 611f;
+    public static final float MYSTERYQUESTION_BUTTON_HEIGHT = 47f;
+    public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(323, 42);
+    public static final Vector2 MYSTERYQUESTION_BUTTON_BIG_CENTER = new Vector2(387, 50);
 
     //Gameplay Screen Assets
     public static final String ASK_GOOGLE_LIFELINE = "askGoogle-lifeline";
