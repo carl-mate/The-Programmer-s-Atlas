@@ -268,44 +268,44 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         //END OF PROGRAMMING QUESTIONS BUTTONS
 
 
-        if(theoreticalVeryEasyButtonBoundingBox.contains(worldTouch)){
+        if(theoreticalVeryEasyButtonBoundingBox.contains(worldTouch) && !isTheoreticalVeryEasyAnswered){
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_VERY_EASY);
             Gdx.app.log(TAG, "CLICKED THEORETICAL VERY EASY");
         }
-        if(theoreticalEasyButtonBoundingBox.contains(worldTouch)){
+        if(theoreticalEasyButtonBoundingBox.contains(worldTouch) && !isTheoreticalEasyAnswered){
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_EASY);
             Gdx.app.log(TAG, "CLICKED THEORETICAL EASY");
         }
-        if(theoreticalMediumButtonBoundingBox.contains(worldTouch)){
+        if(theoreticalMediumButtonBoundingBox.contains(worldTouch) && !isTheoreticalMediumAnswered){
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_MEDIUM);
             Gdx.app.log(TAG, "CLICKED THEORETICAL MEDIUM");
         }
-        if(theoreticalHardButtonBoundingBox.contains(worldTouch)){
+        if(theoreticalHardButtonBoundingBox.contains(worldTouch) && !isTheoreticalHardAnswered){
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_HARD);
             Gdx.app.log(TAG, "CLICKED THEORETICAL HARD");
         }
-        if(theoreticalVeryHardButtonBoundingBox.contains(worldTouch)){
+        if(theoreticalVeryHardButtonBoundingBox.contains(worldTouch) && !isTheoreticalVeryHardAnswered){
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_VERY_HARD);
             Gdx.app.log(TAG, "CLICKED THEORETICAL VERY HARD");
         }
 
-        if(programmingVeryEasyButtonBoundingBox.contains(worldTouch)){
+        if(programmingVeryEasyButtonBoundingBox.contains(worldTouch) && !isProgrammingVeryEasyAnswered){
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_VERY_EASY);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING VERY EASY");
         }
-        if(programmingEasyButtonBoundingBox.contains(worldTouch)){
+        if(programmingEasyButtonBoundingBox.contains(worldTouch) && !isProgrammingEasyAnswered){
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_EASY);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING EASY");
         }
-        if(programmingMediumButtonBoundingBox.contains(worldTouch)){
+        if(programmingMediumButtonBoundingBox.contains(worldTouch) && !isProgrammingMediumAnswered){
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_MEDIUM);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING MEDIUM");
         }
-        if(programmingHardButtonBoundingBox.contains(worldTouch)){
+        if(programmingHardButtonBoundingBox.contains(worldTouch) && !isProgrammingHardAnswered){
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_HARD);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING HARD");
         }
-        if(programmingVeryHardButtonBoundingBox.contains(worldTouch)){
+        if(programmingVeryHardButtonBoundingBox.contains(worldTouch) && !isProgrammingVeryHardAnswered){
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_VERY_HARD);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING VERY HARD");
         }

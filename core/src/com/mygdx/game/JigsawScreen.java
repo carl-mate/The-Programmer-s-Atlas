@@ -55,7 +55,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private StringBuilder importantFigureNameClue;
 
 
-
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
         this.batch = batch;
@@ -83,11 +82,11 @@ public class JigsawScreen extends InputAdapter implements Screen {
         importantFigureNameReference = new char[importantFigureName.length()];
         importantFigureNameClue = new StringBuilder();
 
-        for(int i = 0; i < importantFigureName.length(); i++){
+        for (int i = 0; i < importantFigureName.length(); i++) {
             importantFigureNameReference[i] = importantFigureName.charAt(i);
-            if(importantFigureName.charAt(i) != ' '){
+            if (importantFigureName.charAt(i) != ' ') {
                 importantFigureNameClue.append('_');
-            } else{
+            } else {
                 importantFigureNameClue.append(' ');
             }
         }
@@ -167,53 +166,53 @@ public class JigsawScreen extends InputAdapter implements Screen {
             x.setPuzzlePieceBoundingBox(puzzlePieceBoundingBox);
         }
 
-        if(!handledClue){
+        if (!handledClue) {
             //draw clue label
             Vector2 clueCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f);
-            Rectangle clueRectangleBounds = new Rectangle(clueCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, clueCenter.y - Constants.QUESTIONBUBBLE_HEIGHT/ 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
+            Rectangle clueRectangleBounds = new Rectangle(clueCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, clueCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
             Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "clueLabel", "You unlocked a clue!", clueRectangleBounds);
 
             Gdx.app.log(TAG, "NO OF CLUES: " + noOfclues);
-            if(noOfclues == 1){
+            if (noOfclues == 1) {
                 this.puzzlePiece.get(0).setUnlocked(true);
                 this.puzzlePiece.get(0).render(batch);
-            } else if(noOfclues == 2){
+            } else if (noOfclues == 2) {
                 this.puzzlePiece.get(1).setUnlocked(true);
                 this.puzzlePiece.get(1).render(batch);
-            } else if(noOfclues == 3){
+            } else if (noOfclues == 3) {
                 this.puzzlePiece.get(2).setUnlocked(true);
                 this.puzzlePiece.get(2).render(batch);
-            } else if(noOfclues == 4){
+            } else if (noOfclues == 4) {
                 this.puzzlePiece.get(3).setUnlocked(true);
                 this.puzzlePiece.get(3).render(batch);
-            } else if(noOfclues == 5){
+            } else if (noOfclues == 5) {
                 this.puzzlePiece.get(4).setUnlocked(true);
                 this.puzzlePiece.get(4).render(batch);
-            } else if(noOfclues == 6){
+            } else if (noOfclues == 6) {
                 this.puzzlePiece.get(5).setUnlocked(true);
                 this.puzzlePiece.get(5).render(batch);
-            } else if(noOfclues == 7){
+            } else if (noOfclues == 7) {
                 this.puzzlePiece.get(6).setUnlocked(true);
                 this.puzzlePiece.get(6).render(batch);
-            } else if(noOfclues == 8){
+            } else if (noOfclues == 8) {
                 this.puzzlePiece.get(7).setUnlocked(true);
                 this.puzzlePiece.get(7).render(batch);
-            } else if(noOfclues == 9){
+            } else if (noOfclues == 9) {
                 this.puzzlePiece.get(8).setUnlocked(true);
                 this.puzzlePiece.get(8).render(batch);
-            } else if(noOfclues == 10){
+            } else if (noOfclues == 10) {
                 unlockLetterClue();
-            } else if(noOfclues == 11){
+            } else if (noOfclues == 11) {
                 unlockLetterClue();
             }
             //continue button
             Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_CENTER);
-        } else{
+        } else {
             //render puzzle pieces
             for (PuzzlePiece x : puzzlePiece) {
                 //only render unlocked puzzle pieces
-                if(x.isUnlocked()){
+                if (x.isUnlocked()) {
                     if (x.getTouched()) { //if touched, follow cursor
                         Vector2 followCursor = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
                         x.setPosition(followCursor);
@@ -228,10 +227,20 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "instruction", "Drag and drop puzzle piece to the puzzle area to continue.", instructionRectangleBounds);
 
-            if(noOfclues == droppedPuzzlePieces.size()){
-                //continue button
-                Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_CENTER);
+            if (noOfclues < 10) {
+                int noOfPuzzlePiecesToBeDropped = noOfclues;
+                if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
+                    //continue button
+                    Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_CENTER);
+                }
+            } else {
+                int noOfPuzzlePiecesToBeDropped = 9;
+                if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
+                    //continue button
+                    Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_CENTER);
+                }
             }
+
 
             Vector2 importantFigureNameCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 150);
             Rectangle importantFigureNameRectangleBounds = new Rectangle(importantFigureNameCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, importantFigureNameCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
@@ -244,30 +253,30 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
     }
 
-    private void unlockLetterClue(){
+    private void unlockLetterClue() {
         Random rand = new Random();
         //randomly select from the importantFigureNameClue StringBuilder a clue to unlock
-        if(noOfclues == 10){
-            while(!unlockedClue10){
+        if (noOfclues == 10) {
+            while (!unlockedClue10) {
                 //randomly select a char from importantFigureNameClue
                 int index = rand.nextInt(importantFigureNameClue.length());
                 char c = importantFigureNameClue.charAt(index);
                 //check to make sure it is a '_'
                 //if it is, then insert the corresponding letter at that index
-                if(c == '_'){
+                if (c == '_') {
                     importantFigureNameClue.setCharAt(index, importantFigureNameReference[index]);
                     unlockedClue10 = true; //break from loop
                 }
             }
-        } else if(noOfclues == 11){
+        } else if (noOfclues == 11) {
             //randomly select from the importantFigureNameClue StringBuilder a clue to unlock
-            while(!unlockedClue11){
+            while (!unlockedClue11) {
                 //randomly select a char from importantFigureNameClue
                 int index = rand.nextInt(importantFigureNameClue.length());
                 char c = importantFigureNameClue.charAt(index);
                 //check to make sure it is a '_'
                 //if it is, then insert the corresponding letter at that index
-                if(c == '_'){
+                if (c == '_') {
                     importantFigureNameClue.setCharAt(index, importantFigureNameReference[index]);
                     unlockedClue11 = true; //break from loop
                 }
@@ -275,7 +284,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
         }
     }
 
-    public void setClue(int noOfclues){
+    public void setClue(int noOfclues) {
         this.noOfclues = noOfclues;
     }
 
@@ -311,13 +320,13 @@ public class JigsawScreen extends InputAdapter implements Screen {
         Vector2 continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
         Rectangle continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
 
-        if(!handledClue){
+        if (!handledClue) {
             //continue button
-             if(continueButtonBoundingBox.contains(worldTouch)){
+            if (continueButtonBoundingBox.contains(worldTouch)) {
                 handledClue = true;
             }
 
-        } else{
+        } else {
             //check if touched
             for (PuzzlePiece x : puzzlePiece) {
                 if (x.getPuzzlePieceBoundingBox().contains(worldTouch) && !x.getTouched()) {
@@ -338,8 +347,14 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 }
             }
 
-            if(noOfclues == droppedPuzzlePieces.size()){
-                if(continueButtonBoundingBox.contains(worldTouch)){
+            if (noOfclues < 10) {
+                int noOfPuzzlePiecesToBeDropped = noOfclues;
+                if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
+                    programmerGame.showDifficultyScreen();
+                }
+            } else {
+                int noOfPuzzlePiecesToBeDropped = 9;
+                if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
                     programmerGame.showDifficultyScreen();
                 }
             }
@@ -353,7 +368,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
     public boolean touchUp(int screenX, int screenY, int pointer, int button) {
         worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
-        if(handledClue){
+        if (handledClue) {
             //check if touched
             for (PuzzlePiece x : puzzlePiece) {
                 //check which puzzle area the puzzle piece overlaps
@@ -371,7 +386,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
                             //specify which puzzle area the puzzle piece was dropped
                             x.setDroppedAtRow(y.getRow());
                             x.setDroppedAtCol(y.getCol());
-                            if(!droppedPuzzlePieces.contains(x)){
+                            if (!droppedPuzzlePieces.contains(x)) {
                                 droppedPuzzlePieces.add(x);
                             }
                         }
