@@ -203,4 +203,8 @@ public class ProgrammerGame extends Game {
 	public void setProgrammingVeryHardAnswered(boolean programmingVeryHardAnswered) {
 		this.difficultyScreen.setProgrammingVeryHardAnswered(programmingVeryHardAnswered);
 	}
+
+	public Object getMysteryQuestion(){
+		return this.questions.getMysteryQuestion();
+	}
 }

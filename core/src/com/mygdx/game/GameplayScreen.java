@@ -110,6 +110,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private Colleague colleagueLifeline;
 
+    private Object mysteryQuestionObject;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -128,6 +130,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
         this.theoreticalQ = questions.getTheoreticalQuestion();
         this.programmingQ = questions.getProgrammingQuestion();
         Assets.instance.font.setViewport(this.viewport);
+        initMysteryQuestion();
         initTextBounds();
         initTheoreticalQuestions();
         initProgrammingQuestions();
@@ -733,7 +736,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private void judgeAnswer(boolean correct) {
         //update programmerGame if used a lifeline
         if(askedGoogle){
-            programmerGame.setUsedGoogleLifeline(true);
+//            programmerGame.setUsedGoogleLifeline(true);
+            //debug mode
+            programmerGame.setUsedGoogleLifeline(false);
         }
         if(askedAColleague){
             programmerGame.setUsedAColleagueLifeline(true);
@@ -943,6 +948,41 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
             this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
             this.topic = programmingQ[2].getTopic();
+        }
+    }
+
+    private void initMysteryQuestion(){
+        if(difficulty == Difficulty.MYSTERY_QUESTION){
+            mysteryQuestionObject = questions.getMysteryQuestion();
+            if(mysteryQuestionObject.getClass().equals(theoreticalQ[0].getClass())){ //mystery question is of class TheoreticalQ
+                Gdx.app.log(TAG, "MYSTERY QUESTION IS OF CLASS THEORETICALQ");
+                TheoreticalQ mysteryQuestionTheoretical = (TheoreticalQ) mysteryQuestionObject;
+                if(mysteryQuestionTheoretical.getDifficulty().equals("VERY EASY")){
+                    this.difficulty = Difficulty.THEORETICAL_VERY_EASY;
+                } else if(mysteryQuestionTheoretical.getDifficulty().equals("EASY")){
+                    this.difficulty = Difficulty.THEORETICAL_EASY;
+                } else if(mysteryQuestionTheoretical.getDifficulty().equals("MEDIUM")){
+                    this.difficulty = Difficulty.THEORETICAL_MEDIUM;
+                } else if(mysteryQuestionTheoretical.getDifficulty().equals("HARD")){
+                    this.difficulty = Difficulty.THEORETICAL_HARD;
+                } else if(mysteryQuestionTheoretical.getDifficulty().equals("VERY HARD")){
+                    this.difficulty = Difficulty.THEORETICAL_VERY_HARD;
+                }
+            } else if(mysteryQuestionObject.getClass().equals(programmingQ[0].getClass())){ //mystery question is of class ProgrammingQ
+                Gdx.app.log(TAG, "MYSTERY QUESTION IS OF CLASS PROGRAMMINGQ");
+                ProgrammingQ mysteryQuestionProgramming = (ProgrammingQ) mysteryQuestionObject;
+                if(mysteryQuestionProgramming.getDifficulty().equals("VERY EASY")){
+                    this.difficulty = Difficulty.PROGRAMMING_VERY_EASY;
+                } else if(mysteryQuestionProgramming.getDifficulty().equals("EASY")){
+                    this.difficulty = Difficulty.PROGRAMMING_EASY;
+                } else if(mysteryQuestionProgramming.getDifficulty().equals("MEDIUM")){
+                    this.difficulty = Difficulty.PROGRAMMING_MEDIUM;
+                } else if(mysteryQuestionProgramming.getDifficulty().equals("HARD")){
+                    this.difficulty = Difficulty.PROGRAMMING_HARD;
+                } else if(mysteryQuestionProgramming.getDifficulty().equals("VERY HARD")){
+                    this.difficulty = Difficulty.PROGRAMMING_VERY_HARD;
+                }
+            }
         }
     }
 

@@ -79,6 +79,7 @@ public class Constants {
     public static final String VERYHARD_BUTTON_LOCKED = "veryHard-button-locked";
     public static final String MYSTERYQUESTION_BUTTON = "mysteryQuestion-button";
     public static final String MYSTERYQUESTION_BUTTON_LOCKED = "mysteryQuestion-button-locked";
+    public static final String MYSTERYQUESTION_BUTTON_SOLVED = "mysteryQuestion-button-solved";
     public static final String MYSTERYQUESTION_BUTTON_BIG = "mysteryQuestion-button-big";
 
     public static final String VERYEASY_BUTTON_BIG = "veryEasy-button-big";

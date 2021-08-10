@@ -380,6 +380,8 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion hardButtonBig;
         public final TextureAtlas.AtlasRegion veryHardButtonBig;
         public final TextureAtlas.AtlasRegion mysteryQuestionButtonBig;
+        public final TextureAtlas.AtlasRegion mysteryQuestionButtonSolved;
+
 
 
         public DifficultyScreenAssets(TextureAtlas atlas){
@@ -404,6 +406,7 @@ public class Assets implements Disposable, AssetErrorListener {
             mediumButtonLocked = atlas.findRegion(Constants.MEDIUM_BUTTON_LOCKED);
             hardButtonLocked = atlas.findRegion(Constants.HARD_BUTTON_LOCKED);
             veryHardButtonLocked = atlas.findRegion(Constants.VERYHARD_BUTTON_LOCKED);
+            mysteryQuestionButtonSolved = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON_SOLVED);
         }
     }
 
@@ -431,7 +434,6 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion askMikhailaLifelineBig;
         public final TextureAtlas.AtlasRegion askNickLifelineBig;
         public final TextureAtlas.AtlasRegion callAFamilyMemberLifelineBig;
-
 
         public GameplayScreenAssets(TextureAtlas atlas){
             fadeBG = atlas.findRegion(Constants.FADE_BG);

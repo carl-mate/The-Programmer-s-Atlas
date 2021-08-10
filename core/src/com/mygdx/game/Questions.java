@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.Random;
 
 import util.Enums.Difficulty;
 import util.QuestionsManager.TheoreticalQ;
@@ -73,6 +74,25 @@ public class Questions {
 //        Collections.shuffle(programmingQArrayList);
         initializeTheoreticalQuestions();
         initializeProgrammingQuestions();
+    }
+
+    public Object getMysteryQuestion(){
+        /*
+         * Randomly select between the two major categories TheoreticalQ and ProgrammingQ
+         * After one major category is selected, then randomly select from its total pool of questions
+         */
+
+        Random rand = new Random();
+        int pick = rand.nextInt(2);
+
+        if(pick == 0){ //TheoreticalQ
+            return theoreticalQArrayList.get(rand.nextInt(theoreticalQArrayList.size()));
+
+        } else if(pick == 1){ //ProgrammingQ
+            return programmingQArrayList.get(rand.nextInt(theoreticalQArrayList.size()));
+        }
+
+        return null;
     }
 
     public void initializeTheoreticalQuestions() {

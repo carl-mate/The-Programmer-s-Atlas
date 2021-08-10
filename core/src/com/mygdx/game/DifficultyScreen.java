@@ -81,6 +81,8 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         checkHovered();
 
+
+
         if(noOfAnsweredQuestions == 10){
             if(!isMysteryQuestionHovered){
                 //mystery question button
@@ -91,7 +93,11 @@ public class DifficultyScreen extends InputAdapter implements Screen {
                 Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_BIG_CENTER);
             }
         } else{
-            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+            if(noOfAnsweredQuestions == 11){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonSolved, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
+            }
         }
 
 
@@ -223,6 +229,10 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         Vector2 worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
+        //mystery question attributes
+        Vector2 mysteryQuestionButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f);
+        Rectangle mysteryQuestionButtonBoundingBox = new Rectangle(mysteryQuestionButtonCenter.x - Constants.MYSTERYQUESTION_BUTTON_WIDTH / 2, mysteryQuestionButtonCenter.y - Constants.MYSTERYQUESTION_BUTTON_HEIGHT / 2, Constants.MYSTERYQUESTION_BUTTON_WIDTH, Constants.MYSTERYQUESTION_BUTTON_HEIGHT);
+
         //THEORETICAL QUESTIONS BUTTONS
         //veryEasyButton attributes
         Vector2 theoreticalVeryEasyButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 1.45f);
@@ -267,6 +277,11 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         Rectangle programmingVeryHardButtonBoundingBox = new Rectangle(programmingVeryHardButtonCenter.x - Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH / 2, programmingVeryHardButtonCenter.y - Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT / 2, Constants.DIFFICULTY_SCREEN_BUTTON_WIDTH, Constants.DIFFICULTY_SCREEN_BUTTON_HEIGHT);
         //END OF PROGRAMMING QUESTIONS BUTTONS
 
+
+        if(noOfAnsweredQuestions == 10 && mysteryQuestionButtonBoundingBox.contains(worldTouch)){
+            programmerGame.showGameplayScreen(Difficulty.MYSTERY_QUESTION);
+            Gdx.app.log(TAG, "CLICKED MYSTERY QUESTION");
+        }
 
         if(theoreticalVeryEasyButtonBoundingBox.contains(worldTouch) && !isTheoreticalVeryEasyAnswered){
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_VERY_EASY);
