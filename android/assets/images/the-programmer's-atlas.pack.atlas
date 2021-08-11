@@ -4,102 +4,116 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Untitled design
-  rotate: false
-  xy: 846, 55
-  size: 125, 125
-  orig: 125, 125
-  offset: 0, 0
-  index: -1
 askClement-lifeline
   rotate: false
-  xy: 964, 959
+  xy: 964, 949
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askGennady-lifeline
   rotate: false
-  xy: 964, 902
+  xy: 964, 892
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askGoogle-lifeline
   rotate: false
-  xy: 964, 845
+  xy: 964, 835
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askMichelle-lifeline
   rotate: false
-  xy: 964, 788
+  xy: 964, 778
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askMikhaila-lifeline
   rotate: false
-  xy: 964, 731
+  xy: 964, 721
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 askNick-lifeline
   rotate: false
-  xy: 964, 674
+  xy: 964, 664
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 bg
   rotate: false
-  xy: 2, 474
+  xy: 2, 464
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
 callAFamilyMember-lifeline
   rotate: false
-  xy: 964, 617
+  xy: 964, 607
   size: 55, 55
   orig: 55, 55
   offset: 0, 0
   index: -1
 clement-colleague
   rotate: false
-  xy: 846, 182
+  xy: 848, 66
   size: 165, 290
   orig: 165, 290
   offset: 0, 0
   index: -1
+continue-button
+  rotate: false
+  xy: 848, 14
+  size: 165, 50
+  orig: 165, 50
+  offset: 0, 0
+  index: -1
 correctAnswer-bg
   rotate: false
-  xy: 564, 12
+  xy: 2, 2
+  size: 280, 460
+  orig: 280, 460
+  offset: 0, 0
+  index: -1
+gameOver-bg
+  rotate: false
+  xy: 284, 2
   size: 280, 460
   orig: 280, 460
   offset: 0, 0
   index: -1
 highScores-button-gradient-big
   rotate: false
-  xy: 846, 2
+  xy: 848, 411
   size: 174, 51
   orig: 174, 51
   offset: 0, 0
   index: -1
 return-button
   rotate: false
-  xy: 964, 575
+  xy: 964, 565
   size: 40, 40
   orig: 40, 40
   offset: 0, 0
   index: -1
-takeTheRisk-bg
+returnToMenu-button-gradient-big
   rotate: false
-  xy: 2, 14
-  size: 560, 458
-  orig: 560, 458
+  xy: 848, 358
+  size: 174, 51
+  orig: 174, 51
+  offset: 0, 0
+  index: -1
+victory-bg
+  rotate: false
+  xy: 566, 2
+  size: 280, 460
+  orig: 280, 460
   offset: 0, 0
   index: -1
 
@@ -108,109 +122,88 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Untitled design
+  rotate: false
+  xy: 731, 2
+  size: 125, 125
+  orig: 125, 125
+  offset: 0, 0
+  index: -1
+answerBubble-button
+  rotate: false
+  xy: 564, 377
+  size: 375, 98
+  orig: 375, 98
+  offset: 0, 0
+  index: -1
 askClement-lifeline-110
   rotate: false
-  xy: 931, 410
+  xy: 941, 409
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 askGennady-lifeline-big
   rotate: false
-  xy: 931, 342
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
-askGoogle-lifeline-110
-  rotate: false
-  xy: 952, 274
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
-askMichelle-lifeline-big
-  rotate: false
-  xy: 952, 206
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
-askMikhaila-lifeline-big
-  rotate: false
-  xy: 952, 138
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
-askNick-lifeline-big
-  rotate: false
-  xy: 952, 70
-  size: 66, 66
-  orig: 66, 66
-  offset: 0, 0
-  index: -1
-callAFamilyMember-lifeline-110
-  rotate: false
-  xy: 952, 2
+  xy: 941, 341
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 colleague-bg
   rotate: false
-  xy: 2, 478
+  xy: 2, 477
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-gameOver-bg
+easy-button-big
   rotate: false
-  xy: 2, 16
-  size: 280, 460
-  orig: 280, 460
+  xy: 564, 303
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
 gennady-colleague
   rotate: false
-  xy: 284, 16
+  xy: 564, 11
   size: 165, 290
   orig: 165, 290
   offset: 0, 0
   index: -1
-michelle-colleague
+highscore button
   rotate: false
-  xy: 451, 16
-  size: 165, 290
-  orig: 165, 290
+  xy: 731, 216
+  size: 290, 85
+  orig: 290, 85
   offset: 0, 0
   index: -1
-mikhaila-colleague
+howToPlay-button
   rotate: false
-  xy: 618, 16
-  size: 165, 290
-  orig: 165, 290
+  xy: 858, 77
+  size: 160, 50
+  orig: 160, 50
   offset: 0, 0
   index: -1
-mysteryQuestion-button
+options-button
   rotate: false
-  xy: 284, 393
-  size: 645, 83
-  orig: 645, 83
+  xy: 858, 25
+  size: 160, 50
+  orig: 160, 50
   offset: 0, 0
   index: -1
-mysteryQuestion-button-locked
+return to menu gradient button
   rotate: false
-  xy: 284, 308
-  size: 645, 83
-  orig: 645, 83
+  xy: 731, 129
+  size: 290, 85
+  orig: 290, 85
   offset: 0, 0
   index: -1
-nick-colleague
+takeTheRisk-bg
   rotate: false
-  xy: 785, 16
-  size: 165, 290
-  orig: 165, 290
+  xy: 2, 17
+  size: 560, 458
+  orig: 560, 458
   offset: 0, 0
   index: -1
 
@@ -219,79 +212,128 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+askGoogle-lifeline-110
+  rotate: false
+  xy: 778, 413
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+askMichelle-lifeline-big
+  rotate: false
+  xy: 564, 15
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+clearData-button
+  rotate: false
+  xy: 849, 92
+  size: 155, 43
+  orig: 155, 43
+  offset: 0, 0
+  index: -1
 clement-colleague-big
   rotate: false
-  xy: 2, 130
+  xy: 649, 30
   size: 198, 348
   orig: 198, 348
   offset: 0, 0
   index: -1
 continue-button-big
   rotate: false
-  xy: 778, 68
+  xy: 364, 21
   size: 198, 60
   orig: 198, 60
   offset: 0, 0
   index: -1
 difficulty-bg
   rotate: false
-  xy: 2, 480
+  xy: 2, 481
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-gennady-colleague-big
+hard-button-big
   rotate: false
-  xy: 202, 130
-  size: 198, 348
-  orig: 198, 348
+  xy: 2, 51
+  size: 360, 72
+  orig: 360, 72
   offset: 0, 0
   index: -1
-howToPlay-button-big
+highScores-button-gradient
   rotate: false
-  xy: 778, 6
-  size: 192, 60
-  orig: 192, 60
+  xy: 849, 2
+  size: 145, 43
+  orig: 145, 43
   offset: 0, 0
   index: -1
-michelle-colleague-big
+michelle-colleague
   rotate: false
-  xy: 402, 130
-  size: 198, 348
-  orig: 198, 348
+  xy: 849, 189
+  size: 165, 290
+  orig: 165, 290
   offset: 0, 0
   index: -1
-mikhaila-colleague-big
+mysteryQuestion-button
   rotate: false
-  xy: 602, 130
-  size: 198, 348
-  orig: 198, 348
+  xy: 2, 295
+  size: 645, 83
+  orig: 645, 83
   offset: 0, 0
   index: -1
 mysteryQuestion-button-big
   rotate: false
-  xy: 2, 29
+  xy: 2, 380
   size: 774, 99
   orig: 774, 99
   offset: 0, 0
   index: -1
-nick-colleague-big
+mysteryQuestion-button-locked
   rotate: false
-  xy: 802, 130
-  size: 198, 348
-  orig: 198, 348
+  xy: 2, 210
+  size: 645, 83
+  orig: 645, 83
+  offset: 0, 0
+  index: -1
+mysteryQuestion-button-solved
+  rotate: false
+  xy: 2, 125
+  size: 645, 83
+  orig: 645, 83
+  offset: 0, 0
+  index: -1
+play-button
+  rotate: false
+  xy: 849, 137
+  size: 160, 50
+  orig: 160, 50
+  offset: 0, 0
+  index: -1
+programmingQuestions-label
+  rotate: false
+  xy: 2, 9
+  size: 250, 40
+  orig: 250, 40
+  offset: 0, 0
+  index: -1
+returnToMenu-button-white
+  rotate: false
+  xy: 849, 47
+  size: 155, 43
+  orig: 155, 43
+  offset: 0, 0
+  index: -1
+theoreticalQuestions-label
+  rotate: false
+  xy: 364, 83
+  size: 250, 40
+  orig: 250, 40
   offset: 0, 0
   index: -1
 username-textfield
   rotate: false
-  xy: 2, 2
-  size: 175, 25
-  orig: 175, 25
-  offset: 0, 0
-  index: -1
-username-textfield-confirm
-  rotate: false
-  xy: 179, 2
+  xy: 632, 3
   size: 175, 25
   orig: 175, 25
   offset: 0, 0
@@ -302,177 +344,114 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-answerBubble-button
+askMikhaila-lifeline-big
   rotate: false
-  xy: 2, 290
-  size: 375, 98
-  orig: 375, 98
+  xy: 920, 60
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+bailOut-button
+  rotate: false
+  xy: 537, 11
+  size: 148, 45
+  orig: 148, 45
   offset: 0, 0
   index: -1
 bailOut-button-big
   rotate: false
-  xy: 364, 210
+  xy: 2, 2
   size: 177, 54
   orig: 177, 54
   offset: 0, 0
   index: -1
 bringItOn-button-big
   rotate: false
-  xy: 364, 154
+  xy: 181, 2
   size: 177, 54
   orig: 177, 54
   offset: 0, 0
   index: -1
-clearData-button
-  rotate: false
-  xy: 304, 57
-  size: 155, 43
-  orig: 155, 43
-  offset: 0, 0
-  index: -1
-continue-button
-  rotate: false
-  xy: 835, 148
-  size: 165, 50
-  orig: 165, 50
-  offset: 0, 0
-  index: -1
-easy-button
-  rotate: false
-  xy: 2, 80
-  size: 300, 60
-  orig: 300, 60
-  offset: 0, 0
-  index: -1
-easy-button-big
-  rotate: false
-  xy: 649, 401
-  size: 360, 72
-  orig: 360, 72
-  offset: 0, 0
-  index: -1
-easy-button-locked
-  rotate: false
-  xy: 2, 18
-  size: 300, 60
-  orig: 300, 60
-  offset: 0, 0
-  index: -1
 fade-bg
   rotate: false
-  xy: 2, 475
+  xy: 2, 482
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-hard-button
+gennady-colleague-big
   rotate: false
-  xy: 461, 17
-  size: 300, 60
-  orig: 300, 60
+  xy: 2, 132
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
-hard-button-big
+howToPlay-button-big
   rotate: false
-  xy: 649, 327
-  size: 360, 72
-  orig: 360, 72
-  offset: 0, 0
-  index: -1
-highscore button
-  rotate: false
-  xy: 543, 166
-  size: 290, 85
-  orig: 290, 85
-  offset: 0, 0
-  index: -1
-howToPlay-button
-  rotate: false
-  xy: 364, 102
-  size: 160, 50
-  orig: 160, 50
+  xy: 802, 128
+  size: 192, 60
+  orig: 192, 60
   offset: 0, 0
   index: -1
 medium-button-big
   rotate: false
-  xy: 2, 216
+  xy: 2, 58
   size: 360, 72
   orig: 360, 72
   offset: 0, 0
   index: -1
-mysteryQuestion-button-solved
+michelle-colleague-big
   rotate: false
-  xy: 2, 390
-  size: 645, 83
-  orig: 645, 83
+  xy: 202, 132
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
-options-button
+mikhaila-colleague
   rotate: false
-  xy: 835, 96
-  size: 160, 50
-  orig: 160, 50
+  xy: 802, 190
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
+mikhaila-colleague-big
+  rotate: false
+  xy: 402, 132
+  size: 198, 348
+  orig: 198, 348
+  offset: 0, 0
+  index: -1
+nick-colleague-big
+  rotate: false
+  xy: 602, 132
+  size: 198, 348
+  orig: 198, 348
   offset: 0, 0
   index: -1
 options-button-big
   rotate: false
-  xy: 379, 328
+  xy: 726, 66
   size: 192, 60
   orig: 192, 60
-  offset: 0, 0
-  index: -1
-play-button
-  rotate: false
-  xy: 835, 44
-  size: 160, 50
-  orig: 160, 50
   offset: 0, 0
   index: -1
 play-button-big
   rotate: false
-  xy: 379, 266
+  xy: 726, 4
   size: 192, 60
   orig: 192, 60
   offset: 0, 0
   index: -1
-programmingQuestions-label
+username-textfield-confirm
   rotate: false
-  xy: 763, 2
-  size: 250, 40
-  orig: 250, 40
-  offset: 0, 0
-  index: -1
-return to menu gradient button
-  rotate: false
-  xy: 543, 79
-  size: 290, 85
-  orig: 290, 85
-  offset: 0, 0
-  index: -1
-returnToMenu-button-gradient-big
-  rotate: false
-  xy: 835, 200
-  size: 174, 51
-  orig: 174, 51
-  offset: 0, 0
-  index: -1
-returnToMenu-button-white
-  rotate: false
-  xy: 304, 12
-  size: 155, 43
-  orig: 155, 43
+  xy: 360, 31
+  size: 175, 25
+  orig: 175, 25
   offset: 0, 0
   index: -1
 veryEasy-button-big
   rotate: false
-  xy: 573, 253
-  size: 360, 72
-  orig: 360, 72
-  offset: 0, 0
-  index: -1
-veryHard-button-big
-  rotate: false
-  xy: 2, 142
+  xy: 364, 58
   size: 360, 72
   orig: 360, 72
   offset: 0, 0
@@ -483,93 +462,121 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-bailOut-button
+askNick-lifeline-big
   rotate: false
-  xy: 606, 188
-  size: 148, 45
-  orig: 148, 45
+  xy: 833, 386
+  size: 66, 66
+  orig: 66, 66
   offset: 0, 0
   index: -1
 bringItOn-button
   rotate: false
-  xy: 2, 2
+  xy: 2, 115
   size: 148, 45
   orig: 148, 45
   offset: 0, 0
   index: -1
+callAFamilyMember-lifeline-110
+  rotate: false
+  xy: 2, 2
+  size: 66, 66
+  orig: 66, 66
+  offset: 0, 0
+  index: -1
+easy-button
+  rotate: false
+  xy: 169, 318
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+easy-button-locked
+  rotate: false
+  xy: 531, 392
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
+hard-button
+  rotate: false
+  xy: 169, 256
+  size: 300, 60
+  orig: 300, 60
+  offset: 0, 0
+  index: -1
 hard-button-locked
   rotate: false
-  xy: 2, 235
+  xy: 169, 194
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 highScores-bg
   rotate: false
-  xy: 2, 297
+  xy: 2, 454
   size: 960, 540
   orig: 960, 540
   offset: 0, 0
   index: -1
-highScores-button-gradient
-  rotate: false
-  xy: 304, 86
-  size: 145, 43
-  orig: 145, 43
-  offset: 0, 0
-  index: -1
 medium-button
   rotate: false
-  xy: 2, 173
+  xy: 169, 132
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 medium-button-locked
   rotate: false
-  xy: 304, 235
+  xy: 531, 330
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
+nick-colleague
+  rotate: false
+  xy: 2, 162
+  size: 165, 290
+  orig: 165, 290
+  offset: 0, 0
+  index: -1
 returnToMenu-button-gradient
   rotate: false
-  xy: 756, 190
+  xy: 2, 70
   size: 145, 43
   orig: 145, 43
   offset: 0, 0
   index: -1
-theoreticalQuestions-label
-  rotate: false
-  xy: 304, 131
-  size: 250, 40
-  orig: 250, 40
-  offset: 0, 0
-  index: -1
 veryEasy-button
   rotate: false
-  xy: 2, 111
+  xy: 471, 268
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 veryEasy-button-locked
   rotate: false
-  xy: 304, 173
+  xy: 471, 206
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
 veryHard-button
   rotate: false
-  xy: 606, 235
+  xy: 471, 144
   size: 300, 60
   orig: 300, 60
   offset: 0, 0
   index: -1
+veryHard-button-big
+  rotate: false
+  xy: 169, 380
+  size: 360, 72
+  orig: 360, 72
+  offset: 0, 0
+  index: -1
 veryHard-button-locked
   rotate: false
-  xy: 2, 49
+  xy: 471, 82
   size: 300, 60
   orig: 300, 60
   offset: 0, 0

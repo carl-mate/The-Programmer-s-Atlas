@@ -23,6 +23,7 @@ import com.mygdx.game.ChooseColleagueScreen;
 import com.mygdx.game.CorrectAnswerScreen;
 import com.mygdx.game.GameOverScreen;
 import com.mygdx.game.GameplayScreen;
+import com.mygdx.game.VictoryScreen;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -46,6 +47,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public HowToPlayScreenAssets howToPlayScreenAssets;
     public ChooseColleagueScreenAssets chooseColleagueScreenAssets;
     public ImportantFigureAssets importantFigureAssets;
+    public VictoryScreenAssets victoryScreenAssets;
 
     private AssetManager assetManager;
 
@@ -69,6 +71,7 @@ public class Assets implements Disposable, AssetErrorListener {
         font = new Font();
         chooseColleagueScreenAssets = new ChooseColleagueScreenAssets(atlas);
         importantFigureAssets = new ImportantFigureAssets();
+        victoryScreenAssets = new VictoryScreenAssets(atlas);
     }
 
     @Override
@@ -507,4 +510,24 @@ public class Assets implements Disposable, AssetErrorListener {
             continueButtonBig = atlas.findRegion(Constants.CONTINUE_BUTTON_BIG);
         }
     }
+
+    public class VictoryScreenAssets{
+        public final TextureAtlas.AtlasRegion normalBG;
+        public final TextureAtlas.AtlasRegion victoryBG;
+        public final TextureAtlas.AtlasRegion returnToMenuButton;
+        public final TextureAtlas.AtlasRegion highScoresButton;
+        public final TextureAtlas.AtlasRegion returnToMenuButtonBig;
+        public final TextureAtlas.AtlasRegion highScoresButtonBig;
+
+        public VictoryScreenAssets(TextureAtlas atlas){
+            normalBG = atlas.findRegion(Constants.NORMAL_BG);
+            victoryBG = atlas.findRegion(Constants.VICTORY_BG);
+            returnToMenuButton = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_GRADIENT);
+            highScoresButton = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT);
+            returnToMenuButtonBig = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_GRADIENT_BIG);
+            highScoresButtonBig = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT_BIG);
+        }
+    }
+
+
 }

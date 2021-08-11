@@ -147,6 +147,45 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
 
+        if(noOfclues == 12){ //guess important figure phase
+            guessImportantFigurePhase();
+        } else{ //unlock clues phase
+            unlockCluesPhase();
+        }
+
+
+
+
+    }
+
+    private void guessImportantFigurePhase(){
+        batch.begin();
+        Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+        batch.end();
+
+        shapeRenderer.begin(ShapeRenderer.ShapeType.Filled);
+        shapeRenderer.setColor(Color.LIGHT_GRAY);
+        for (PuzzleArea x : puzzleArea) {
+            shapeRenderer.rect(x.getPuzzleAreaBoundingBox().x, x.getPuzzleAreaBoundingBox().y, x.getPuzzleAreaBoundingBox().width, x.getPuzzleAreaBoundingBox().height);
+        }
+        shapeRenderer.end();
+
+        batch.begin();
+        for (PuzzlePiece x : puzzlePiece) {
+            if (x.isUnlocked()) {
+                x.render(batch);
+            }
+
+            Vector2 importantFigureNameCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 150);
+            Rectangle importantFigureNameRectangleBounds = new Rectangle(importantFigureNameCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, importantFigureNameCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
+
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "importantFigureNameClue", importantFigureNameClue.toString(), importantFigureNameRectangleBounds);
+
+        }
+        batch.end();
+    }
+
+    private void unlockCluesPhase(){
         batch.begin();
         Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
         batch.end();
@@ -248,9 +287,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "importantFigureNameClue", importantFigureNameClue.toString(), importantFigureNameRectangleBounds);
 
         }
-
         batch.end();
-
     }
 
     private void unlockLetterClue() {
@@ -350,12 +387,16 @@ public class JigsawScreen extends InputAdapter implements Screen {
             if (noOfclues < 10) {
                 int noOfPuzzlePiecesToBeDropped = noOfclues;
                 if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
-                    programmerGame.showDifficultyScreen();
+                    if (continueButtonBoundingBox.contains(worldTouch)) {
+                        programmerGame.showDifficultyScreen();
+                    }
                 }
             } else {
                 int noOfPuzzlePiecesToBeDropped = 9;
                 if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
-                    programmerGame.showDifficultyScreen();
+                    if (continueButtonBoundingBox.contains(worldTouch)) {
+                        programmerGame.showDifficultyScreen();
+                    }
                 }
             }
 

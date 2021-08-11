@@ -88,6 +88,10 @@ public class ProgrammerGame extends Game {
 		setScreen(jigsawScreen);
 	}
 
+	public void showVictoryScreen(){
+		setScreen(new VictoryScreen(this, this.batch));
+	}
+
 
 	private void initQuestions(){
 		Assets.instance.initResourcesFilePath();
@@ -174,8 +178,7 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void incrementNoOfAnsweredQuestions() {
-		//debug mode
-//		this.difficultyScreen.incrementNoOfAnsweredQuestions();
+		this.difficultyScreen.incrementNoOfAnsweredQuestions();
 
 	}
 

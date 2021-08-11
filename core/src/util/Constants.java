@@ -199,6 +199,10 @@ public class Constants {
     public static final Vector2 H_RTM_BUTTON_CENTER = new Vector2(73, 22);
     public static final Vector2 H_RTM_BUTTON_BIG_CENTER = new Vector2(87, 26);
 
+    //Victory Screen Assets
+    public static final String VICTORY_BG = "victory-bg";
+    public static final Vector2 VICTORY_BG_CENTER = new Vector2(140, 230);
+
     //Highscores Screen Assets
     public static final String HIGHSCORES_BG = "highScores-bg";
     public static final String HIGHSCORES_BUTTON_WHITE = "highScores-bg-white";
