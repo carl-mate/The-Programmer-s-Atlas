@@ -19,6 +19,7 @@ public class Constants {
 
     //Main Menu Assets
     public static final String USERNAME_TEXTFIELD = "username-textfield";
+    public static final String USERNAME_TEXTFIELD_CONFIRM = "username-textfield-confirm";
     public static final Vector2 USERNAME_TEXTFIELD_CENTER = new Vector2(88, 13);
     public static final float USERNAME_TEXTFIELD_WIDTH = 175;
     public static final float USERNAME_TEXTFIELD_HEIGHT = 25;
@@ -146,6 +147,16 @@ public class Constants {
     public static final float CONTINUE_BUTTON_HEIGHT = 50;
     public static final Vector2 CONTINUE_BUTTON_CENTER = new Vector2(83, 25);
 
+    public static final String BAIL_OUT_BUTTON = "bailOut-button";
+    public static final String BRING_IT_ON_BUTTON  = "bringItOn-button";
+    public static final String BAIL_OUT_BUTTON_BIG = "bailOut-button-big";
+    public static final String BRING_IT_ON_BUTTON_BIG  = "bringItOn-button-big";
+    public static final String TAKE_THE_RISK_BG = "takeTheRisk-bg";
+    public static final float BO_BIO_BUTTON_WIDTH = 140;
+    public static final float BO_BIO_BUTTON_HEIGHT = 140;
+    public static final Vector2 BO_BIO_BUTTON_CENTER = new Vector2(70, 19);
+    public static final Vector2 TAKE_THE_RISK_BG_CENTER = new Vector2(280, 229);
+
 
     public static final int THEORETICAL_VERY_EASY_POINTS = 1000;
     public static final int THEORETICAL_EASY_POINTS = 2000;
@@ -185,6 +196,9 @@ public class Constants {
     public static final String HIGHSCORES_BG = "highScores-bg";
     public static final String HIGHSCORES_BUTTON_WHITE = "highScores-bg-white";
     public static final String RETURN_TO_MENU_BUTTON_WHITE = "returnToMenu-button-white";
+
+
+
 
 
 }

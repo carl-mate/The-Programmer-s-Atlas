@@ -301,6 +301,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion optionsButton;
         public final TextureAtlas.AtlasRegion howToPlayButton;
         public final TextureAtlas.AtlasRegion usernameTextfield;
+        public final TextureAtlas.AtlasRegion usernameTextfieldConfirm;
         public final TextureAtlas.AtlasRegion playButtonBig;
         public final TextureAtlas.AtlasRegion optionsButtonBig;
         public final TextureAtlas.AtlasRegion howToPlayButtonBig;
@@ -314,6 +315,7 @@ public class Assets implements Disposable, AssetErrorListener {
             playButtonBig = atlas.findRegion(Constants.PLAY_BUTTON_BIG);
             optionsButtonBig = atlas.findRegion(Constants.OPTIONS_BUTTON_BIG);
             howToPlayButtonBig = atlas.findRegion(Constants.HOWTOPLAY_BUTTON_BIG);
+            usernameTextfieldConfirm = atlas.findRegion(Constants.USERNAME_TEXTFIELD_CONFIRM);
         }
     }
 

@@ -123,6 +123,25 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
         if(!handledUserName){
             handleUsernameInput(batch);
+             if(username.length() == 0){
+                 //username textfield
+                 Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.usernameTextfield, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 5.5f), Constants.USERNAME_TEXTFIELD_CENTER);
+             } else{
+                 Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.usernameTextfieldConfirm, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 5.5f), Constants.USERNAME_TEXTFIELD_CENTER);
+            }
+        } else{
+            Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.usernameTextfield, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 5.5f), Constants.USERNAME_TEXTFIELD_CENTER);
+        }
+
+
+        //initialize textfield bounds
+        Vector2 textfieldCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 4.6f);
+        Rectangle textfieldRectangleBounds = new Rectangle(textfieldCenter.x - Constants.USERNAME_TEXTFIELD_WIDTH / 2, textfieldCenter.y - Constants.USERNAME_TEXTFIELD_HEIGHT / 2, Constants.USERNAME_TEXTFIELD_WIDTH, Constants.USERNAME_TEXTFIELD_HEIGHT);
+
+        if(username.length() == 0){
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", "ENTER USERNAME", textfieldRectangleBounds);
+        } else{
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", username.toString(), textfieldRectangleBounds);
         }
 
         batch.end();
@@ -159,7 +178,6 @@ public class MainMenuScreen extends InputAdapter implements Screen {
             if(handledUserName){
                 Gdx.app.log(TAG, "CLICKED PLAY");
                 programmerGame.showChooseColleagueScreen();
-//                programmerGame.showDifficultyScreen();
             }
         }
 
@@ -307,14 +325,6 @@ public class MainMenuScreen extends InputAdapter implements Screen {
             }
         }
 
-        //username textfield
-        Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.usernameTextfield, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 5.5f), Constants.USERNAME_TEXTFIELD_CENTER);
-
-        //initialize textfield bounds
-        Vector2 textfieldCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 4.6f);
-        Rectangle textfieldRectangleBounds = new Rectangle(textfieldCenter.x - Constants.USERNAME_TEXTFIELD_WIDTH / 2, textfieldCenter.y - Constants.USERNAME_TEXTFIELD_HEIGHT / 2, Constants.USERNAME_TEXTFIELD_WIDTH, Constants.USERNAME_TEXTFIELD_HEIGHT);
-
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", username.toString(), textfieldRectangleBounds);
     }
 
     @Override
