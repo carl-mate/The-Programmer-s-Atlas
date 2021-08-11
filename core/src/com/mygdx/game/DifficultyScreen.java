@@ -49,9 +49,14 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
     private int noOfAnsweredQuestions;
 
+    private boolean isBailOutButtonHovered;
+    private boolean isBringItOnButtonHovered;
+
     public DifficultyScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
+        //debug mode
+        this.noOfAnsweredQuestions = 11;
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
         camera.position.set(viewport.getWorldWidth(), viewport.getWorldHeight(), 0);
@@ -83,7 +88,7 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
 
 
-        if(noOfAnsweredQuestions == 10){
+        if(noOfAnsweredQuestions == 10){ //user answered all 10 questions
             if(!isMysteryQuestionHovered){
                 //mystery question button
                 Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
@@ -93,9 +98,9 @@ public class DifficultyScreen extends InputAdapter implements Screen {
                 Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_BIG_CENTER);
             }
         } else{
-            if(noOfAnsweredQuestions == 11){
+            if(noOfAnsweredQuestions == 11){ //user answered all 11 questions including the mystery question
                 Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonSolved, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
-            } else{
+            } else{ //user answered less than 10 questions
                 Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.mysteryQuestionButtonLocked, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 1.18f), Constants.MYSTERYQUESTION_BUTTON_CENTER);
             }
         }
@@ -219,6 +224,36 @@ public class DifficultyScreen extends InputAdapter implements Screen {
         }
         if(isProgrammingVeryHardHovered && !isProgrammingVeryHardAnswered){
             Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.veryHardButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 1.45f - 240), Constants.DIFFICULTY_SCREEN_BUTTON_BIG_CENTER);
+        }
+
+        if(noOfAnsweredQuestions == 11){
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f), Constants.BG_CENTER);
+            Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.takeTheRiskBG, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f), Constants.TAKE_THE_RISK_BG_CENTER);
+
+            Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+
+            Vector2 bailOutButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f - (Constants.TAKE_THE_RISK_BG_WIDTH / 2 - Constants.BO_BIO_BUTTON_WIDTH  / 2 - 80), viewport.getCamera().viewportHeight / 2f - (Constants.TAKE_THE_RISK_BG_HEIGHT / 2 - Constants.BO_BIO_BUTTON_HEIGHT  / 2 - 15));
+            Rectangle bailOutButtonBoundingBox = new Rectangle(bailOutButtonCenter.x - Constants.BO_BIO_BUTTON_WIDTH / 2, bailOutButtonCenter.y - Constants.BO_BIO_BUTTON_HEIGHT / 2, Constants.BO_BIO_BUTTON_WIDTH, Constants.BO_BIO_BUTTON_HEIGHT);
+
+            Vector2 bringItOnButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2f + (Constants.TAKE_THE_RISK_BG_WIDTH / 2 - Constants.BO_BIO_BUTTON_WIDTH  / 2 - 80), viewport.getCamera().viewportHeight / 2f - (Constants.TAKE_THE_RISK_BG_HEIGHT / 2 - Constants.BO_BIO_BUTTON_HEIGHT  / 2 - 15));
+            Rectangle bringItOnButtonBoundingBox = new Rectangle(bringItOnButtonCenter.x - Constants.BO_BIO_BUTTON_WIDTH / 2, bringItOnButtonCenter.y - Constants.BO_BIO_BUTTON_HEIGHT / 2, Constants.BO_BIO_BUTTON_WIDTH, Constants.BO_BIO_BUTTON_HEIGHT);
+
+            isBailOutButtonHovered = bailOutButtonBoundingBox.contains(mousePosition);
+            isBringItOnButtonHovered = bringItOnButtonBoundingBox.contains(mousePosition);
+
+            if(!isBailOutButtonHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.bailOutButton, new Vector2(viewport.getCamera().viewportWidth / 2f - (Constants.TAKE_THE_RISK_BG_WIDTH / 2 - Constants.BO_BIO_BUTTON_WIDTH  / 2 - 80), viewport.getCamera().viewportHeight / 2f - (Constants.TAKE_THE_RISK_BG_HEIGHT / 2 - Constants.BO_BIO_BUTTON_HEIGHT  / 2 - 15)), Constants.BO_BIO_BUTTON_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.bailOutButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f - (Constants.TAKE_THE_RISK_BG_WIDTH / 2 - Constants.BO_BIO_BUTTON_WIDTH  / 2 - 80), viewport.getCamera().viewportHeight / 2f - (Constants.TAKE_THE_RISK_BG_HEIGHT / 2 - Constants.BO_BIO_BUTTON_HEIGHT  / 2 - 15)), Constants.BO_BIO_BUTTON_BIG_CENTER);
+            }
+
+            if(!isBringItOnButtonHovered){
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.bringItOnButton, new Vector2(viewport.getCamera().viewportWidth / 2f + (Constants.TAKE_THE_RISK_BG_WIDTH / 2 - Constants.BO_BIO_BUTTON_WIDTH  / 2 - 80), viewport.getCamera().viewportHeight / 2f - (Constants.TAKE_THE_RISK_BG_HEIGHT / 2 - Constants.BO_BIO_BUTTON_HEIGHT  / 2 - 15)), Constants.BO_BIO_BUTTON_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.difficultyScreenAssets.bringItOnButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f + (Constants.TAKE_THE_RISK_BG_WIDTH / 2 - Constants.BO_BIO_BUTTON_WIDTH  / 2 - 80), viewport.getCamera().viewportHeight / 2f - (Constants.TAKE_THE_RISK_BG_HEIGHT / 2 - Constants.BO_BIO_BUTTON_HEIGHT  / 2 - 15)), Constants.BO_BIO_BUTTON_BIG_CENTER);
+            }
+
+
         }
 
         batch.end();

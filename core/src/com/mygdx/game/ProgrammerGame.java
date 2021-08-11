@@ -41,20 +41,10 @@ public class ProgrammerGame extends Game {
 		am = new AssetManager();
 		Assets.instance.init(am);
 		batch = new SpriteBatch();
-		Assets.instance.initResourcesFilePath();
-		try{
-			questions = new Questions();
-		} catch(Exception e){
-			Gdx.app.log(TAG, "NOTHING HAPPENED");
-		}
-		noOfclues = 0;
+		initQuestions();
 		initScreens();
+		initVariables();
 		showMainMenuScreen();
-	}
-
-	private void initScreens(){
-		jigsawScreen = new JigsawScreen(this, this.batch);
-		difficultyScreen = new DifficultyScreen(this, this.batch);
 	}
 
 	@Override
@@ -83,7 +73,9 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void showGameOverScreen(){
+		initQuestions();
 		initScreens();
+		initVariables();
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
@@ -94,6 +86,31 @@ public class ProgrammerGame extends Game {
 	public void showJigsawScreen(){
 		jigsawScreen.setClue(++noOfclues);
 		setScreen(jigsawScreen);
+	}
+
+
+	private void initQuestions(){
+		Assets.instance.initResourcesFilePath();
+		try{
+			questions = new Questions();
+		} catch(Exception e){
+			Gdx.app.log(TAG, "NOTHING HAPPENED");
+		}
+	}
+
+	private void initVariables(){
+		noOfclues = 0;
+		previousScore = 0;
+		currentScore = 0;
+		usedGoogleLifeline = false;
+		usedAColleagueLifeline = false;
+		usedCallAFamilyMember = false;
+	}
+
+	private void initScreens(){
+
+		jigsawScreen = new JigsawScreen(this, this.batch);
+		difficultyScreen = new DifficultyScreen(this, this.batch);
 	}
 
 	public Difficulty getDifficulty() {
@@ -157,7 +174,9 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void incrementNoOfAnsweredQuestions() {
-		this.difficultyScreen.incrementNoOfAnsweredQuestions();
+		//debug mode
+//		this.difficultyScreen.incrementNoOfAnsweredQuestions();
+
 	}
 
 	public void setMysteryQuestionAnswered(boolean mysteryQuestionAnswered) {

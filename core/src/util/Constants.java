@@ -90,8 +90,6 @@ public class Constants {
     public static final String VERYHARD_BUTTON_BIG = "veryHard-button-big";
     public static final Vector2 DIFFICULTY_SCREEN_BUTTON_BIG_CENTER = new Vector2(180, 36);
 
-
-
     public static final float DIFFICULTY_SCREEN_LABEL_WIDTH = 250f;
     public static final float DIFFICULTY_SCREEN_LABEL_HEIGHT = 40f;
     public static final float DIFFICULTY_SCREEN_BUTTON_WIDTH = 270f;
@@ -102,6 +100,21 @@ public class Constants {
     public static final float MYSTERYQUESTION_BUTTON_HEIGHT = 47f;
     public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(323, 42);
     public static final Vector2 MYSTERYQUESTION_BUTTON_BIG_CENTER = new Vector2(387, 50);
+
+
+    public static final String BAIL_OUT_BUTTON = "bailOut-button";
+    public static final String BRING_IT_ON_BUTTON  = "bringItOn-button";
+    public static final String BAIL_OUT_BUTTON_BIG = "bailOut-button-big";
+    public static final String BRING_IT_ON_BUTTON_BIG  = "bringItOn-button-big";
+    public static final String TAKE_THE_RISK_BG = "takeTheRisk-bg";
+    public static final float BO_BIO_BUTTON_WIDTH = 140;
+    public static final float BO_BIO_BUTTON_HEIGHT = 37;
+    public static final Vector2 BO_BIO_BUTTON_CENTER = new Vector2(70, 19);
+    public static final Vector2 BO_BIO_BUTTON_BIG_CENTER = new Vector2(89, 27);
+    public static final Vector2 TAKE_THE_RISK_BG_CENTER = new Vector2(280, 229);
+    public static final float TAKE_THE_RISK_BG_WIDTH = 560f;
+    public static final float TAKE_THE_RISK_BG_HEIGHT = 458f;
+
 
     //Gameplay Screen Assets
     public static final String ASK_GOOGLE_LIFELINE = "askGoogle-lifeline";
@@ -143,20 +156,11 @@ public class Constants {
     public static final float QUESTIONBUBBLE_HEIGHT = 100;
 
     public static final String CONTINUE_BUTTON = "continue-button";
+    public static final String CONTINUE_BUTTON_BIG = "continue-button-big";
     public static final float CONTINUE_BUTTON_WIDTH = 165;
     public static final float CONTINUE_BUTTON_HEIGHT = 50;
     public static final Vector2 CONTINUE_BUTTON_CENTER = new Vector2(83, 25);
-
-    public static final String BAIL_OUT_BUTTON = "bailOut-button";
-    public static final String BRING_IT_ON_BUTTON  = "bringItOn-button";
-    public static final String BAIL_OUT_BUTTON_BIG = "bailOut-button-big";
-    public static final String BRING_IT_ON_BUTTON_BIG  = "bringItOn-button-big";
-    public static final String TAKE_THE_RISK_BG = "takeTheRisk-bg";
-    public static final float BO_BIO_BUTTON_WIDTH = 140;
-    public static final float BO_BIO_BUTTON_HEIGHT = 140;
-    public static final Vector2 BO_BIO_BUTTON_CENTER = new Vector2(70, 19);
-    public static final Vector2 TAKE_THE_RISK_BG_CENTER = new Vector2(280, 229);
-
+    public static final Vector2 CONTINUE_BUTTON_BIG_CENTER= new Vector2(99, 30);
 
     public static final int THEORETICAL_VERY_EASY_POINTS = 1000;
     public static final int THEORETICAL_EASY_POINTS = 2000;
@@ -188,9 +192,12 @@ public class Constants {
 
     public static final String HIGHSCORES_BUTTON_GRADIENT = "highScores-button-gradient";
     public static final String RETURN_TO_MENU_BUTTON_GRADIENT = "returnToMenu-button-gradient";
+    public static final String HIGHSCORES_BUTTON_GRADIENT_BIG = "highScores-button-gradient-big";
+    public static final String RETURN_TO_MENU_BUTTON_GRADIENT_BIG = "returnToMenu-button-gradient-big";
     public static final float H_RTM_BUTTON_WIDTH = 138f;
     public static final float H_RTM_BUTTON_HEIGHT = 38f;
     public static final Vector2 H_RTM_BUTTON_CENTER = new Vector2(73, 22);
+    public static final Vector2 H_RTM_BUTTON_BIG_CENTER = new Vector2(87, 26);
 
     //Highscores Screen Assets
     public static final String HIGHSCORES_BG = "highScores-bg";

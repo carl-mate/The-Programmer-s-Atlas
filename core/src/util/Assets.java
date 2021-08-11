@@ -383,6 +383,12 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion veryHardButtonBig;
         public final TextureAtlas.AtlasRegion mysteryQuestionButtonBig;
         public final TextureAtlas.AtlasRegion mysteryQuestionButtonSolved;
+        public final TextureAtlas.AtlasRegion bailOutButton;
+        public final TextureAtlas.AtlasRegion bailOutButtonBig;
+        public final TextureAtlas.AtlasRegion bringItOnButton;
+        public final TextureAtlas.AtlasRegion bringItOnButtonBig;
+        public final TextureAtlas.AtlasRegion takeTheRiskBG;
+        public final TextureAtlas.AtlasRegion fadeBG;
 
 
 
@@ -409,6 +415,12 @@ public class Assets implements Disposable, AssetErrorListener {
             hardButtonLocked = atlas.findRegion(Constants.HARD_BUTTON_LOCKED);
             veryHardButtonLocked = atlas.findRegion(Constants.VERYHARD_BUTTON_LOCKED);
             mysteryQuestionButtonSolved = atlas.findRegion(Constants.MYSTERYQUESTION_BUTTON_SOLVED);
+            bailOutButton = atlas.findRegion(Constants.BAIL_OUT_BUTTON);
+            bailOutButtonBig = atlas.findRegion(Constants.BAIL_OUT_BUTTON_BIG);
+            bringItOnButton = atlas.findRegion(Constants.BRING_IT_ON_BUTTON);
+            bringItOnButtonBig = atlas.findRegion(Constants.BRING_IT_ON_BUTTON_BIG);
+            takeTheRiskBG = atlas.findRegion(Constants.TAKE_THE_RISK_BG);
+            fadeBG = atlas.findRegion(Constants.FADE_BG);
         }
     }
 
@@ -469,12 +481,16 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion gameOverBG;
         public final TextureAtlas.AtlasRegion returnToMenuButton;
         public final TextureAtlas.AtlasRegion highScoresButton;
+        public final TextureAtlas.AtlasRegion returnToMenuButtonBig;
+        public final TextureAtlas.AtlasRegion highScoresButtonBig;
 
         public GameOverScreenAssets(TextureAtlas atlas){
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
             gameOverBG = atlas.findRegion(Constants.GAMEOVER_BG);
             returnToMenuButton = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_GRADIENT);
             highScoresButton = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT);
+            returnToMenuButtonBig = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_GRADIENT_BIG);
+            highScoresButtonBig = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT_BIG);
         }
     }
 
@@ -482,11 +498,13 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion normalBG;
         public final TextureAtlas.AtlasRegion correctAnswerBG;
         public final TextureAtlas.AtlasRegion continueButton;
+        public final TextureAtlas.AtlasRegion continueButtonBig;
 
         public CorrectAnswerScreenAssets(TextureAtlas atlas){
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
             correctAnswerBG = atlas.findRegion(Constants.CORRECTANSWER_BG);
             continueButton = atlas.findRegion(Constants.CONTINUE_BUTTON);
+            continueButtonBig = atlas.findRegion(Constants.CONTINUE_BUTTON_BIG);
         }
     }
 }
