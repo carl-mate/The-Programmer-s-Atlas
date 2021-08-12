@@ -105,8 +105,8 @@ public class Assets implements Disposable, AssetErrorListener {
             alanTuringImage = new Texture(Gdx.files.internal("alanturing.jpg"));
             kenThomsonImage = new Texture(Gdx.files.internal("ken_thompson.jpg"));
 
-            alanTuringName = "Alan Turing";
-            kenThomsonName = "Ken Thomson";
+            alanTuringName = "ALAN TURING";
+            kenThomsonName = "KEN THOMSON";
 
             alanTuringBiography = "Alan Turing, in full Alan Mathison Turing, (born June 23, 1912, London, England—died June 7, 1954, Wilmslow, Cheshire), British mathematician and logician who made major contributions to mathematics, cryptanalysis, logic, philosophy, and mathematical biology and also to the new areas later named computer science, cognitive science, artificial intelligence, and artificial life.";
             kenThomsonBiography = "Kenneth Lane Thompson, (born Feb. 4, 1943, New Orleans, La., U.S.), American computer scientist and cowinner of the 1983 A.M. Turing Award, the highest honour in computer science. Thompson and the American computer scientist Dennis M. Ritchie were cited jointly for “their development of generic operating systems theory and specifically for the implementation of the UNIX operating system,” which they collaborated on at Bell Laboratories.";

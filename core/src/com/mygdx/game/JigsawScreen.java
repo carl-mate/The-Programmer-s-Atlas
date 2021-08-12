@@ -1,6 +1,7 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputAdapter;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
@@ -53,6 +54,11 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
     private char[] importantFigureNameReference;
     private StringBuilder importantFigureNameClue;
+    private int importantFigureNameClueUnlockedIndex1;
+    private int importantFigureNameClueUnlockedIndex2;
+
+    private boolean handledGuessInput;
+    private int guessIndex;
 
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
@@ -147,18 +153,16 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
         batch.setProjectionMatrix(viewport.getCamera().combined);
 
-        if(noOfclues == 12){ //guess important figure phase
+        if (noOfclues == 12) { //guess important figure phase
+            handleGuessInput();
             guessImportantFigurePhase();
-        } else{ //unlock clues phase
+        } else { //unlock clues phase
             unlockCluesPhase();
         }
 
-
-
-
     }
 
-    private void guessImportantFigurePhase(){
+    private void guessImportantFigurePhase() {
         batch.begin();
         Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
         batch.end();
@@ -185,7 +189,7 @@ public class JigsawScreen extends InputAdapter implements Screen {
         batch.end();
     }
 
-    private void unlockCluesPhase(){
+    private void unlockCluesPhase() {
         batch.begin();
         Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
         batch.end();
@@ -302,9 +306,12 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 //if it is, then insert the corresponding letter at that index
                 if (c == '_') {
                     importantFigureNameClue.setCharAt(index, importantFigureNameReference[index]);
+                    //remember the index of the unlocked clue
+                    importantFigureNameClueUnlockedIndex1 = index;
                     unlockedClue10 = true; //break from loop
                 }
             }
+
         } else if (noOfclues == 11) {
             //randomly select from the importantFigureNameClue StringBuilder a clue to unlock
             while (!unlockedClue11) {
@@ -315,6 +322,8 @@ public class JigsawScreen extends InputAdapter implements Screen {
                 //if it is, then insert the corresponding letter at that index
                 if (c == '_') {
                     importantFigureNameClue.setCharAt(index, importantFigureNameReference[index]);
+                    //remember the index of the unlocked clue
+                    importantFigureNameClueUnlockedIndex2 = index;
                     unlockedClue11 = true; //break from loop
                 }
             }
@@ -324,6 +333,137 @@ public class JigsawScreen extends InputAdapter implements Screen {
     public void setClue(int noOfclues) {
         this.noOfclues = noOfclues;
     }
+
+    private void insert(char ch) {
+        while (true) {
+            if ((guessIndex == importantFigureNameClueUnlockedIndex1 || guessIndex == importantFigureNameClueUnlockedIndex2 || importantFigureNameClue.charAt(guessIndex) == ' ') && guessIndex != importantFigureNameClue.length()) {
+                guessIndex++;
+                if (guessIndex == importantFigureNameClue.length()) {
+                    guessIndex--;
+                }
+            } else {
+                break;
+            }
+        }
+        Gdx.app.log(TAG, "GUESS INDEX INSERT: " + guessIndex);
+        importantFigureNameClue.setCharAt(guessIndex, ch);
+        guessIndex++;
+        if (guessIndex == importantFigureNameClue.length()) {
+            guessIndex--;
+        }
+
+    }
+
+    private void delete() {
+        while (true) {
+            if (guessIndex == importantFigureNameClueUnlockedIndex1 || guessIndex == importantFigureNameClueUnlockedIndex2 || importantFigureNameClue.charAt(guessIndex) == ' ') {
+                guessIndex--;
+                if (guessIndex < 0) {
+                    guessIndex = 0;
+                }
+            } else {
+                break;
+            }
+        }
+        Gdx.app.log(TAG, "GUESS INDEX DELETE: " + guessIndex);
+        importantFigureNameClue.setCharAt(guessIndex, '_');
+        guessIndex--;
+        if (guessIndex < 0) {
+            guessIndex = 0;
+        }
+    }
+
+    private void handleGuessInput() {
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.A)) {
+            insert('A');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.B)) {
+            insert('B');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.C)) {
+            insert('C');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.D)) {
+            insert('D');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            insert('E');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.F)) {
+            insert('F');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.G)) {
+            insert('G');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.H)) {
+            insert('H');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.I)) {
+            insert('I');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.J)) {
+            insert('J');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.K)) {
+            insert('K');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.L)) {
+            insert('L');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.M)) {
+            insert('M');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.N)) {
+            insert('N');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
+            insert('O');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            insert('P');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Q)) {
+            insert('Q');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.R)) {
+            insert('R');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.S)) {
+            insert('S');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.T)) {
+            insert('T');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.U)) {
+            insert('U');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.V)) {
+            insert('V');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.W)) {
+            insert('W');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.X)) {
+            insert('X');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Y)) {
+            insert('Y');
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.Z)) {
+            insert('Z');
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.BACKSPACE)) {
+            delete();
+        }
+
+        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
+
+        }
+
+    }
+
 
     @Override
     public void resize(int width, int height) {
