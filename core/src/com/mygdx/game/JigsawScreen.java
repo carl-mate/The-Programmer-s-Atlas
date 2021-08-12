@@ -355,6 +355,13 @@ public class JigsawScreen extends InputAdapter implements Screen {
     }
 
     private void delete() {
+        if (guessIndex != importantFigureNameClue.length() - 1 && guessIndex != importantFigureNameClue.length() - 2) { //check if guessIndex is not pointing to the last letter and second to the last letter
+            guessIndex--;
+            if (guessIndex < 0) {
+                guessIndex = 0;
+            }
+        }
+
         while (true) {
             if (guessIndex == importantFigureNameClueUnlockedIndex1 || guessIndex == importantFigureNameClueUnlockedIndex2 || importantFigureNameClue.charAt(guessIndex) == ' ') {
                 guessIndex--;
@@ -364,13 +371,22 @@ public class JigsawScreen extends InputAdapter implements Screen {
             } else {
                 break;
             }
+            if(guessIndex == 0 && (importantFigureNameClueUnlockedIndex1 == 0 || importantFigureNameClueUnlockedIndex2 == 0)){
+                break;
+            }
+            Gdx.app.log(TAG, "RUNNING WHILE LOOP");
         }
-        Gdx.app.log(TAG, "GUESS INDEX DELETE: " + guessIndex);
-        importantFigureNameClue.setCharAt(guessIndex, '_');
-        guessIndex--;
-        if (guessIndex < 0) {
-            guessIndex = 0;
+
+        if(guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2){
+            if (guessIndex != importantFigureNameClue.length() - 1 && guessIndex != importantFigureNameClue.length() - 2) { //check if guessIndex is not pointing to the last letter
+                Gdx.app.log(TAG, "GUESS INDEX DELETE: " + guessIndex);
+                importantFigureNameClue.setCharAt(guessIndex, '_');
+            } else if(guessIndex == importantFigureNameClue.length() - 1 || guessIndex == importantFigureNameClue.length() - 2) {
+                importantFigureNameClue.setCharAt(guessIndex, '_');
+                guessIndex--;
+            }
         }
+
     }
 
     private void handleGuessInput() {
