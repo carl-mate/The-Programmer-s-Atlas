@@ -23,6 +23,7 @@ import com.mygdx.game.ChooseColleagueScreen;
 import com.mygdx.game.CorrectAnswerScreen;
 import com.mygdx.game.GameOverScreen;
 import com.mygdx.game.GameplayScreen;
+import com.mygdx.game.JigsawScreen;
 import com.mygdx.game.VictoryScreen;
 
 import java.io.InputStream;
@@ -48,6 +49,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ChooseColleagueScreenAssets chooseColleagueScreenAssets;
     public ImportantFigureAssets importantFigureAssets;
     public VictoryScreenAssets victoryScreenAssets;
+    public JigsawScreenAssets jigsawScreenAssets;
 
     private AssetManager assetManager;
 
@@ -72,6 +74,7 @@ public class Assets implements Disposable, AssetErrorListener {
         chooseColleagueScreenAssets = new ChooseColleagueScreenAssets(atlas);
         importantFigureAssets = new ImportantFigureAssets();
         victoryScreenAssets = new VictoryScreenAssets(atlas);
+        jigsawScreenAssets = new JigsawScreenAssets(atlas);
     }
 
     @Override
@@ -106,7 +109,7 @@ public class Assets implements Disposable, AssetErrorListener {
             kenThomsonImage = new Texture(Gdx.files.internal("ken_thompson.jpg"));
 
             alanTuringName = "ALAN TURING";
-            kenThomsonName = "KEN THOMSON";
+            kenThomsonName = "KEN THOMPSON";
 
             alanTuringBiography = "Alan Turing, in full Alan Mathison Turing, (born June 23, 1912, London, England—died June 7, 1954, Wilmslow, Cheshire), British mathematician and logician who made major contributions to mathematics, cryptanalysis, logic, philosophy, and mathematical biology and also to the new areas later named computer science, cognitive science, artificial intelligence, and artificial life.";
             kenThomsonBiography = "Kenneth Lane Thompson, (born Feb. 4, 1943, New Orleans, La., U.S.), American computer scientist and cowinner of the 1983 A.M. Turing Award, the highest honour in computer science. Thompson and the American computer scientist Dennis M. Ritchie were cited jointly for “their development of generic operating systems theory and specifically for the implementation of the UNIX operating system,” which they collaborated on at Bell Laboratories.";
@@ -526,6 +529,16 @@ public class Assets implements Disposable, AssetErrorListener {
             highScoresButton = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT);
             returnToMenuButtonBig = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_GRADIENT_BIG);
             highScoresButtonBig = atlas.findRegion(Constants.HIGHSCORES_BUTTON_GRADIENT_BIG);
+        }
+    }
+
+    public class JigsawScreenAssets{
+        public final TextureAtlas.AtlasRegion confirmButton;
+        public final TextureAtlas.AtlasRegion confirmButtonBig;
+
+        public JigsawScreenAssets(TextureAtlas atlas){
+            confirmButton = atlas.findRegion(Constants.CONFIRM_BUTTON);
+            confirmButtonBig = atlas.findRegion(Constants.CONFIRM_BUTTON_BIG);
         }
     }
 

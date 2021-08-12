@@ -208,6 +208,14 @@ public class Constants {
     public static final String HIGHSCORES_BUTTON_WHITE = "highScores-bg-white";
     public static final String RETURN_TO_MENU_BUTTON_WHITE = "returnToMenu-button-white";
 
+    //jigsaw screen assets
+    public static final String CONFIRM_BUTTON = "confirm-button";
+    public static final String CONFIRM_BUTTON_BIG = "confirm-button-big";
+    public static final float CONFIRM_BUTTON_WIDTH = 135f;
+    public static final float CONFIRM_BUTTON_HEIGHT = 36;
+    public static final Vector2 CONFIRM_BUTTON_CENTER = new Vector2(80, 25);
+    public static final Vector2 CONFIRM_BUTTON_BIG_CENTER = new Vector2(96, 30);
+
 
 
 

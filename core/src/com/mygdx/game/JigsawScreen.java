@@ -58,7 +58,10 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private int importantFigureNameClueUnlockedIndex2;
 
     private boolean handledGuessInput;
+    private boolean hasUserGuessed;
     private int guessIndex;
+
+    private boolean isConfirmButtonHovered;
 
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
@@ -184,6 +187,23 @@ public class JigsawScreen extends InputAdapter implements Screen {
             Rectangle importantFigureNameRectangleBounds = new Rectangle(importantFigureNameCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, importantFigureNameCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
 
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "importantFigureNameClue", importantFigureNameClue.toString(), importantFigureNameRectangleBounds);
+
+        }
+
+
+        if (hasUserGuessed) {
+            Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
+            //continue button
+            Vector2 confirmButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
+            Rectangle confirmButtonBoundingBox = new Rectangle(confirmButtonCenter.x - Constants.CONFIRM_BUTTON_WIDTH / 2, confirmButtonCenter.y - Constants.CONFIRM_BUTTON_HEIGHT / 2, Constants.CONFIRM_BUTTON_WIDTH, Constants.CONFIRM_BUTTON_HEIGHT);
+            isConfirmButtonHovered = confirmButtonBoundingBox.contains(mousePosition);
+
+            if (!isConfirmButtonHovered) {
+                Util.drawTextureRegion(batch, Assets.instance.jigsawScreenAssets.confirmButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONFIRM_BUTTON_CENTER);
+            } else {
+                Util.drawTextureRegion(batch, Assets.instance.jigsawScreenAssets.confirmButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONFIRM_BUTTON_BIG_CENTER);
+            }
+
 
         }
         batch.end();
@@ -347,11 +367,11 @@ public class JigsawScreen extends InputAdapter implements Screen {
             } else {
                 break;
             }
-            if(guessIndex == importantFigureNameClue.length() - 1 && (importantFigureNameClueUnlockedIndex1 == importantFigureNameClue.length() - 1 || importantFigureNameClueUnlockedIndex2 == importantFigureNameClue.length() - 1)){ //prevents forever loop
+            if (guessIndex == importantFigureNameClue.length() - 1 && (importantFigureNameClueUnlockedIndex1 == importantFigureNameClue.length() - 1 || importantFigureNameClueUnlockedIndex2 == importantFigureNameClue.length() - 1)) { //prevents forever loop
                 break;
             }
         }
-        if(guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2) {
+        if (guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2) {
             Gdx.app.log(TAG, "GUESS INDEX INSERT: " + guessIndex);
             importantFigureNameClue.setCharAt(guessIndex, ch);
             guessIndex++;
@@ -373,12 +393,12 @@ public class JigsawScreen extends InputAdapter implements Screen {
             } else {
                 break;
             }
-            if(guessIndex == 0 && (importantFigureNameClueUnlockedIndex1 == 0 || importantFigureNameClueUnlockedIndex2 == 0)){ //prevents forever loop
+            if (guessIndex == 0 && (importantFigureNameClueUnlockedIndex1 == 0 || importantFigureNameClueUnlockedIndex2 == 0)) { //prevents forever loop
                 break;
             }
         }
 
-        if(guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2){
+        if (guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2) {
             Gdx.app.log(TAG, "GUESS INDEX DELETE: " + guessIndex);
             importantFigureNameClue.setCharAt(guessIndex, '_');
         }
@@ -386,7 +406,11 @@ public class JigsawScreen extends InputAdapter implements Screen {
     }
 
     private void handleGuessInput() {
-
+        if(importantFigureNameClue.indexOf("_") == -1){ //check if user has guessed
+            hasUserGuessed = true;
+        } else{
+            hasUserGuessed = false;
+        }
         if (Gdx.input.isKeyJustPressed(Input.Keys.A)) {
             insert('A');
         }
@@ -505,53 +529,66 @@ public class JigsawScreen extends InputAdapter implements Screen {
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         worldTouch = viewport.unproject(new Vector2(screenX, screenY));
-        //continue button
-        Vector2 continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
-        Rectangle continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
 
-        if (!handledClue) {
-            //continue button
-            if (continueButtonBoundingBox.contains(worldTouch)) {
-                handledClue = true;
+        if (noOfclues == 12) {
+            Vector2 confirmButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
+            Rectangle confirmButtonBoundingBox = new Rectangle(confirmButtonCenter.x - Constants.CONFIRM_BUTTON_WIDTH / 2, confirmButtonCenter.y - Constants.CONFIRM_BUTTON_HEIGHT / 2, Constants.CONFIRM_BUTTON_WIDTH, Constants.CONFIRM_BUTTON_HEIGHT);
+
+            if (hasUserGuessed) {
+                if(confirmButtonBoundingBox.contains(worldTouch)){
+                    Gdx.app.log(TAG, "TOUCHED CONFIRM BUTTON");
+                }
             }
-
         } else {
-            //check if touched
-            for (PuzzlePiece x : puzzlePiece) {
-                if (x.getPuzzlePieceBoundingBox().contains(worldTouch) && !x.getTouched()) {
-                    x.setTouched(true);
+
+            //continue button
+            Vector2 continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
+            Rectangle continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
+
+            if (!handledClue) {
+                //continue button
+                if (continueButtonBoundingBox.contains(worldTouch)) {
+                    handledClue = true;
                 }
 
-                //if puzzle piece is touched while targeted on a puzzle area, then set the puzzle area to true
-                for (PuzzleArea y : puzzleArea) {
-                    //ensure that we are referring to the correct puzzle area
+            } else {
+                //check if touched
+                for (PuzzlePiece x : puzzlePiece) {
+                    if (x.getPuzzlePieceBoundingBox().contains(worldTouch) && !x.getTouched()) {
+                        x.setTouched(true);
+                    }
+
+                    //if puzzle piece is touched while targeted on a puzzle area, then set the puzzle area to true
+                    for (PuzzleArea y : puzzleArea) {
+                        //ensure that we are referring to the correct puzzle area
 //                    if (x.getTouched() && x.getDroppedAtRow() == y.getRow() && x.getDroppedAtCol() == y.getCol()) {
 //                        y.setTargetable(true);
 //                        droppedPuzzlePieces.remove(x);
 //                    }
-                    if (x.getTouched() && !y.isTargetable()) {
-                        y.setTargetable(true);
-                        droppedPuzzlePieces.remove(x);
+                        if (x.getTouched() && !y.isTargetable()) {
+                            y.setTargetable(true);
+                            droppedPuzzlePieces.remove(x);
+                        }
                     }
                 }
-            }
 
-            if (noOfclues < 10) {
-                int noOfPuzzlePiecesToBeDropped = noOfclues;
-                if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
-                    if (continueButtonBoundingBox.contains(worldTouch)) {
-                        programmerGame.showDifficultyScreen();
+                if (noOfclues < 10) {
+                    int noOfPuzzlePiecesToBeDropped = noOfclues;
+                    if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
+                        if (continueButtonBoundingBox.contains(worldTouch)) {
+                            programmerGame.showDifficultyScreen();
+                        }
+                    }
+                } else {
+                    int noOfPuzzlePiecesToBeDropped = 9;
+                    if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
+                        if (continueButtonBoundingBox.contains(worldTouch)) {
+                            programmerGame.showDifficultyScreen();
+                        }
                     }
                 }
-            } else {
-                int noOfPuzzlePiecesToBeDropped = 9;
-                if (noOfPuzzlePiecesToBeDropped == droppedPuzzlePieces.size()) {
-                    if (continueButtonBoundingBox.contains(worldTouch)) {
-                        programmerGame.showDifficultyScreen();
-                    }
-                }
-            }
 
+            }
         }
 
         return true;
