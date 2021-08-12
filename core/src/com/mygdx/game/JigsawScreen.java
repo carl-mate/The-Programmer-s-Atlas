@@ -85,7 +85,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
         //shuffle important figures to ensure randomness
         Collections.shuffle(importantFigures);
         Texture texture = importantFigures.get(0).getImage();
-
         String importantFigureName = importantFigures.get(0).getName();
 
         importantFigureNameReference = new char[importantFigureName.length()];

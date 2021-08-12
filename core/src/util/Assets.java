@@ -94,10 +94,36 @@ public class Assets implements Disposable, AssetErrorListener {
     public class ImportantFigureAssets{
         public ArrayList<ImportantFigure> importantFigureArrayList;
         public Texture alanTuringImage;
-        public Texture kenThomsonImage;
+        public Texture dennisRitchieImage;
+        public Texture johnVonNeumannImage;
+        public Texture kenThompsonImage;
+        public Texture alonzoChurchImage;
+        public Texture bertrandRusselImage;
+        public Texture christopherAlexanderImage;
+        public Texture giuseppePeanoImage;
+        public Texture gottlobFregeImage;
+        public Texture haskellCurryImage;
+        public Texture ivanSutherlandImage;
+        public Texture jacquesHerbrandImage;
+        public Texture kurtGodelImage;
+        public Texture niklausWirthImage;
+        public Texture robertKowalskiImage;
 
         public String alanTuringName;
-        public String kenThomsonName;
+        public String dennisRitchieName;
+        public String johnVonNeumannName;
+        public String kenThompsonName;
+        public String alonzoChurchName;
+        public String bertrandRusselName;
+        public String christopherAlexanderName;
+        public String giuseppePeanoName;
+        public String gottlobFregeName;
+        public String haskellCurryName;
+        public String ivanSutherlandName;
+        public String jacquesHerbrandName;
+        public String kurtGodelName;
+        public String niklausWirthName;
+        public String robertKowalskiName;
 
         public String alanTuringBiography;
         public String kenThomsonBiography;
@@ -105,17 +131,52 @@ public class Assets implements Disposable, AssetErrorListener {
         public ImportantFigureAssets(){
             importantFigureArrayList = new ArrayList<>();
 
-            alanTuringImage = new Texture(Gdx.files.internal("alanturing.jpg"));
-            kenThomsonImage = new Texture(Gdx.files.internal("ken_thompson.jpg"));
+            alanTuringImage = new Texture(Gdx.files.internal("important-figures/alanturing.jpg"));
+            dennisRitchieImage = new Texture(Gdx.files.internal("important-figures/dennis_ritchie.jpg"));
+            johnVonNeumannImage = new Texture(Gdx.files.internal("important-figures/john_von_neumann.png"));
+            kenThompsonImage = new Texture(Gdx.files.internal("important-figures/ken_thompson.jpg"));
+            alonzoChurchImage = new Texture(Gdx.files.internal("important-figures/alonzo_church.jpg"));
+            bertrandRusselImage = new Texture(Gdx.files.internal("important-figures/bertrand_russell.jpg"));
+            christopherAlexanderImage = new Texture(Gdx.files.internal("important-figures/christopher_alexander.jpg"));
+            giuseppePeanoImage = new Texture(Gdx.files.internal("important-figures/giuseppe_peano.jpg"));
+            gottlobFregeImage = new Texture(Gdx.files.internal("important-figures/gottlob_frege.jpg"));
+            haskellCurryImage = new Texture(Gdx.files.internal("important-figures/haskell_curry.jpg"));
+            ivanSutherlandImage = new Texture(Gdx.files.internal("important-figures/ivan_sutherland.jpg"));
+            jacquesHerbrandImage = new Texture(Gdx.files.internal("important-figures/jacques_herbrand.jpg"));
+            kurtGodelImage = new Texture(Gdx.files.internal("important-figures/kurt_godel.jpg"));
+            niklausWirthImage = new Texture(Gdx.files.internal("important-figures/niklaus_wirth.jpg"));
+            robertKowalskiImage = new Texture(Gdx.files.internal("important-figures/robert_kowalski.jpg"));
 
             alanTuringName = "ALAN TURING";
-            kenThomsonName = "KEN THOMPSON";
+            dennisRitchieName = "DENNIS RITCHIE";
+            johnVonNeumannName = "JOHN VON NEUMANN";
+            kenThompsonName = "KEN THOMPSON";
+            alonzoChurchName = "ALONZO CHURCH";
+            bertrandRusselName = "BERTRAND RUSSEL";
+            christopherAlexanderName = "CHRISTOPHER ALEXANDER";
+            giuseppePeanoName = "GIUSEPPE PEANO";
+            gottlobFregeName = "GOTTLOB FREGE";
+            haskellCurryName = "HASKELL CURRY";
+            ivanSutherlandName = "IVAN SUTHERLAND";
+            jacquesHerbrandName = "JACQUES HERBRAND";
+            kurtGodelName = "KURT GODEL";
+            niklausWirthName = "NIKLAUS WIRTH";
+            robertKowalskiName = "ROBERT KOWALSKI";
 
-            alanTuringBiography = "Alan Turing, in full Alan Mathison Turing, (born June 23, 1912, London, England—died June 7, 1954, Wilmslow, Cheshire), British mathematician and logician who made major contributions to mathematics, cryptanalysis, logic, philosophy, and mathematical biology and also to the new areas later named computer science, cognitive science, artificial intelligence, and artificial life.";
-            kenThomsonBiography = "Kenneth Lane Thompson, (born Feb. 4, 1943, New Orleans, La., U.S.), American computer scientist and cowinner of the 1983 A.M. Turing Award, the highest honour in computer science. Thompson and the American computer scientist Dennis M. Ritchie were cited jointly for “their development of generic operating systems theory and specifically for the implementation of the UNIX operating system,” which they collaborated on at Bell Laboratories.";
-
-            importantFigureArrayList.add(new ImportantFigure(alanTuringImage, alanTuringName, alanTuringBiography));
-            importantFigureArrayList.add(new ImportantFigure(kenThomsonImage, kenThomsonName, kenThomsonBiography));
+            importantFigureArrayList.add(new ImportantFigure(alanTuringImage, alanTuringName));
+            importantFigureArrayList.add(new ImportantFigure(dennisRitchieImage, dennisRitchieName));
+            importantFigureArrayList.add(new ImportantFigure(johnVonNeumannImage, johnVonNeumannName));
+            importantFigureArrayList.add(new ImportantFigure(kenThompsonImage, kenThompsonName));
+            importantFigureArrayList.add(new ImportantFigure(alonzoChurchImage, alonzoChurchName));
+            importantFigureArrayList.add(new ImportantFigure(bertrandRusselImage, bertrandRusselName));
+            importantFigureArrayList.add(new ImportantFigure(christopherAlexanderImage, christopherAlexanderName));
+            importantFigureArrayList.add(new ImportantFigure(giuseppePeanoImage, giuseppePeanoName));
+            importantFigureArrayList.add(new ImportantFigure(gottlobFregeImage, gottlobFregeName));
+            importantFigureArrayList.add(new ImportantFigure(haskellCurryImage, haskellCurryName));
+            importantFigureArrayList.add(new ImportantFigure(jacquesHerbrandImage, jacquesHerbrandName));
+            importantFigureArrayList.add(new ImportantFigure(kurtGodelImage, kurtGodelName));
+            importantFigureArrayList.add(new ImportantFigure(niklausWirthImage, niklausWirthName));
+            importantFigureArrayList.add(new ImportantFigure(robertKowalskiImage, robertKowalskiName));
         }
     }
 
