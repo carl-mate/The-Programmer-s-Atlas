@@ -335,6 +335,9 @@ public class JigsawScreen extends InputAdapter implements Screen {
     }
 
     private void insert(char ch) {
+        if (guessIndex == importantFigureNameClue.length()) {
+            guessIndex--;
+        }
         while (true) {
             if ((guessIndex == importantFigureNameClueUnlockedIndex1 || guessIndex == importantFigureNameClueUnlockedIndex2 || importantFigureNameClue.charAt(guessIndex) == ' ') && guessIndex != importantFigureNameClue.length()) {
                 guessIndex++;
@@ -344,22 +347,21 @@ public class JigsawScreen extends InputAdapter implements Screen {
             } else {
                 break;
             }
+            if(guessIndex == importantFigureNameClue.length() - 1 && (importantFigureNameClueUnlockedIndex1 == importantFigureNameClue.length() - 1 || importantFigureNameClueUnlockedIndex2 == importantFigureNameClue.length() - 1)){ //prevents forever loop
+                break;
+            }
         }
-        Gdx.app.log(TAG, "GUESS INDEX INSERT: " + guessIndex);
-        importantFigureNameClue.setCharAt(guessIndex, ch);
-        guessIndex++;
-        if (guessIndex == importantFigureNameClue.length()) {
-            guessIndex--;
+        if(guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2) {
+            Gdx.app.log(TAG, "GUESS INDEX INSERT: " + guessIndex);
+            importantFigureNameClue.setCharAt(guessIndex, ch);
+            guessIndex++;
         }
-
     }
 
     private void delete() {
-        if (guessIndex != importantFigureNameClue.length() - 1 && guessIndex != importantFigureNameClue.length() - 2) { //check if guessIndex is not pointing to the last letter and second to the last letter
-            guessIndex--;
-            if (guessIndex < 0) {
-                guessIndex = 0;
-            }
+        guessIndex--;
+        if (guessIndex < 0) {
+            guessIndex = 0;
         }
 
         while (true) {
@@ -371,20 +373,14 @@ public class JigsawScreen extends InputAdapter implements Screen {
             } else {
                 break;
             }
-            if(guessIndex == 0 && (importantFigureNameClueUnlockedIndex1 == 0 || importantFigureNameClueUnlockedIndex2 == 0)){
+            if(guessIndex == 0 && (importantFigureNameClueUnlockedIndex1 == 0 || importantFigureNameClueUnlockedIndex2 == 0)){ //prevents forever loop
                 break;
             }
-            Gdx.app.log(TAG, "RUNNING WHILE LOOP");
         }
 
         if(guessIndex != importantFigureNameClueUnlockedIndex1 && guessIndex != importantFigureNameClueUnlockedIndex2){
-            if (guessIndex != importantFigureNameClue.length() - 1 && guessIndex != importantFigureNameClue.length() - 2) { //check if guessIndex is not pointing to the last letter
-                Gdx.app.log(TAG, "GUESS INDEX DELETE: " + guessIndex);
-                importantFigureNameClue.setCharAt(guessIndex, '_');
-            } else if(guessIndex == importantFigureNameClue.length() - 1 || guessIndex == importantFigureNameClue.length() - 2) {
-                importantFigureNameClue.setCharAt(guessIndex, '_');
-                guessIndex--;
-            }
+            Gdx.app.log(TAG, "GUESS INDEX DELETE: " + guessIndex);
+            importantFigureNameClue.setCharAt(guessIndex, '_');
         }
 
     }
