@@ -83,7 +83,7 @@ public class HighScoresScreen extends InputAdapter implements Screen {
         //rank total users from highest to lowest
         Collections.sort(totalUsers, new Comparator<TotalUsers>() {
             @Override public int compare(TotalUsers u1, TotalUsers u2) {
-                return u1.getScore() - u2.getScore(); // Ascending
+                return u2.getScore() - u1.getScore();
             }
 
         });

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import util.Assets;
@@ -27,6 +28,8 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
 
     private boolean isContinueButtonHovered;
     private int isContinueButtonPressed;
+
+    private int userCounter;
 
     public JigsawGuessResultScreen(ProgrammerGame programmerGame, SpriteBatch batch, boolean isGuessCorrect, Texture importantFigureBiography){
         this.programmerGame = programmerGame;
@@ -83,6 +86,18 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
             } else if(isContinueButtonPressed == 2){
                 programmerGame.setPreviousScore(programmerGame.getPreviousScore());
                 programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
+                //store the scores
+                while(true){
+                    if(!Constants.preferences.contains("user-"+userCounter)){
+                        Constants.preferences.putString("user-"+userCounter, Constants.MENU_SCREEN_NAME);
+                        Constants.preferences.putInteger("score-"+userCounter, programmerGame.getCurrentScore());
+                        break;
+                    } else{
+                        userCounter++;
+                    }
+                }
+                Constants.preferences.putInteger("userCounter", userCounter);
+                Constants.preferences.flush();
                 programmerGame.showVictoryScreen();
             }
 

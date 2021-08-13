@@ -41,9 +41,9 @@ public class ProgrammerGame extends Game {
 		am = new AssetManager();
 		Assets.instance.init(am);
 		batch = new SpriteBatch();
-		initQuestions();
-		initScreens();
-		initVariables();
+//		initQuestions();
+//		initScreens();
+//		initVariables();
 		showMainMenuScreen();
 	}
 
@@ -54,6 +54,9 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void showMainMenuScreen(){
+		initQuestions();
+		initScreens();
+		initVariables();
 		setScreen(new MainMenuScreen(this, this.batch));
 	}
 
@@ -73,9 +76,6 @@ public class ProgrammerGame extends Game {
 	}
 
 	public void showGameOverScreen(){
-		initQuestions();
-		initScreens();
-		initVariables();
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 

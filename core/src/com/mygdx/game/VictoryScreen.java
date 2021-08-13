@@ -101,6 +101,7 @@ public class VictoryScreen extends InputAdapter implements Screen {
         Rectangle earningsRectangleBounds = new Rectangle(earningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
 
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
+
         time += delta;
         if(time >= Constants.SCORE_DELAY){
             if(previousScore < currentScore){
