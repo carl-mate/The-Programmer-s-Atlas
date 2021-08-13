@@ -57,11 +57,16 @@ public class JigsawScreen extends InputAdapter implements Screen {
     private int importantFigureNameClueUnlockedIndex1;
     private int importantFigureNameClueUnlockedIndex2;
 
+    private final Texture importantFigureBiography;
+    private final String importantFigureName;
+
     private boolean handledGuessInput;
     private boolean hasUserGuessed;
     private int guessIndex;
 
     private boolean isConfirmButtonHovered;
+
+    private boolean isGuessCorrect;
 
 
     public JigsawScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
@@ -85,7 +90,8 @@ public class JigsawScreen extends InputAdapter implements Screen {
         //shuffle important figures to ensure randomness
         Collections.shuffle(importantFigures);
         Texture texture = importantFigures.get(0).getImage();
-        String importantFigureName = importantFigures.get(0).getName();
+        importantFigureBiography = importantFigures.get(0).getBiography();
+        importantFigureName = importantFigures.get(0).getName();
 
         importantFigureNameReference = new char[importantFigureName.length()];
         importantFigureNameClue = new StringBuilder();
@@ -492,9 +498,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
             delete();
         }
 
-        if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) {
-
-        }
 
     }
 
@@ -529,12 +532,18 @@ public class JigsawScreen extends InputAdapter implements Screen {
         worldTouch = viewport.unproject(new Vector2(screenX, screenY));
 
         if (noOfclues == 12) {
-            Vector2 confirmButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
-            Rectangle confirmButtonBoundingBox = new Rectangle(confirmButtonCenter.x - Constants.CONFIRM_BUTTON_WIDTH / 2, confirmButtonCenter.y - Constants.CONFIRM_BUTTON_HEIGHT / 2, Constants.CONFIRM_BUTTON_WIDTH, Constants.CONFIRM_BUTTON_HEIGHT);
-
             if (hasUserGuessed) {
+                Vector2 confirmButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220);
+                Rectangle confirmButtonBoundingBox = new Rectangle(confirmButtonCenter.x - Constants.CONFIRM_BUTTON_WIDTH / 2, confirmButtonCenter.y - Constants.CONFIRM_BUTTON_HEIGHT / 2, Constants.CONFIRM_BUTTON_WIDTH, Constants.CONFIRM_BUTTON_HEIGHT);
                 if(confirmButtonBoundingBox.contains(worldTouch)){
                     Gdx.app.log(TAG, "TOUCHED CONFIRM BUTTON");
+                    if(importantFigureName.contentEquals(importantFigureNameClue)){
+                        Gdx.app.log(TAG, "YOU GUESSED IT! 2M!");
+                        programmerGame.showJigsawGuessResultScreen(true, this.importantFigureBiography);
+                    } else{
+                        Gdx.app.log(TAG, "NOPE! 500k!");
+                        programmerGame.showJigsawGuessResultScreen(false, null);
+                    }
                 }
             }
         } else {

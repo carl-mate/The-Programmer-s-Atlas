@@ -50,6 +50,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ImportantFigureAssets importantFigureAssets;
     public VictoryScreenAssets victoryScreenAssets;
     public JigsawScreenAssets jigsawScreenAssets;
+    public JigsawGuessResultScreenAssets jigsawGuessResultScreenAssets;
     public HighScoresScreenAssets highScoresScreenAssets;
 
     private AssetManager assetManager;
@@ -77,6 +78,7 @@ public class Assets implements Disposable, AssetErrorListener {
         victoryScreenAssets = new VictoryScreenAssets(atlas);
         jigsawScreenAssets = new JigsawScreenAssets(atlas);
         highScoresScreenAssets = new HighScoresScreenAssets(atlas);
+        jigsawGuessResultScreenAssets = new JigsawGuessResultScreenAssets(atlas);
     }
 
     @Override
@@ -111,6 +113,22 @@ public class Assets implements Disposable, AssetErrorListener {
         public Texture niklausWirthImage;
         public Texture robertKowalskiImage;
 
+        public Texture alanTuringBiography;
+        public Texture dennisRitchieBiography;
+        public Texture johnVonNeumannBiography;
+        public Texture kenThompsonBiography;
+        public Texture alonzoChurchBiography;
+        public Texture bertrandRusselBiography;
+        public Texture christopherAlexanderBiography;
+        public Texture giuseppePeanoBiography;
+        public Texture gottlobFregeBiography;
+        public Texture haskellCurryBiography;
+        public Texture ivanSutherlandBiography;
+        public Texture jacquesHerbrandBiography;
+        public Texture kurtGodelBiography;
+        public Texture niklausWirthBiography;
+        public Texture robertKowalskiBiography;
+
         public String alanTuringName;
         public String dennisRitchieName;
         public String johnVonNeumannName;
@@ -127,8 +145,6 @@ public class Assets implements Disposable, AssetErrorListener {
         public String niklausWirthName;
         public String robertKowalskiName;
 
-        public String alanTuringBiography;
-        public String kenThomsonBiography;
 
         public ImportantFigureAssets(){
             importantFigureArrayList = new ArrayList<>();
@@ -149,6 +165,22 @@ public class Assets implements Disposable, AssetErrorListener {
             niklausWirthImage = new Texture(Gdx.files.internal("important-figures/niklaus_wirth.jpg"));
             robertKowalskiImage = new Texture(Gdx.files.internal("important-figures/robert_kowalski.jpg"));
 
+            alanTuringBiography = new Texture(Gdx.files.internal("important-figures/alan_turing-bio.png"));
+            dennisRitchieBiography = new Texture(Gdx.files.internal("important-figures/dennis_ritchie-bio.png"));
+            johnVonNeumannBiography = new Texture(Gdx.files.internal("important-figures/john_von_neumann-bio.png"));
+            kenThompsonBiography = new Texture(Gdx.files.internal("important-figures/ken_thompson-bio.png"));
+            alonzoChurchBiography = new Texture(Gdx.files.internal("important-figures/alonzo_church-bio.png"));
+            bertrandRusselBiography = new Texture(Gdx.files.internal("important-figures/bertrand_russell-bio.png"));
+            christopherAlexanderBiography = new Texture(Gdx.files.internal("important-figures/christopher_alexander-bio.png"));
+            giuseppePeanoBiography = new Texture(Gdx.files.internal("important-figures/giuseppe_peano-bio.png"));
+            gottlobFregeBiography = new Texture(Gdx.files.internal("important-figures/gottlob_frege-bio.png"));
+            haskellCurryBiography = new Texture(Gdx.files.internal("important-figures/haskell_curry-bio.png"));
+            ivanSutherlandBiography = new Texture(Gdx.files.internal("important-figures/ivan_sutherland-bio.png"));
+            jacquesHerbrandBiography = new Texture(Gdx.files.internal("important-figures/jacques_herbrand-bio.png"));
+            kurtGodelBiography = new Texture(Gdx.files.internal("important-figures/kurt_godel-bio.png"));
+            niklausWirthBiography = new Texture(Gdx.files.internal("important-figures/niklaus_wirth-bio.png"));
+            robertKowalskiBiography = new Texture(Gdx.files.internal("important-figures/robert_kowalski-bio.png"));
+
             alanTuringName = "ALAN TURING";
             dennisRitchieName = "DENNIS RITCHIE";
             johnVonNeumannName = "JOHN VON NEUMANN";
@@ -165,20 +197,20 @@ public class Assets implements Disposable, AssetErrorListener {
             niklausWirthName = "NIKLAUS WIRTH";
             robertKowalskiName = "ROBERT KOWALSKI";
 
-            importantFigureArrayList.add(new ImportantFigure(alanTuringImage, alanTuringName));
-            importantFigureArrayList.add(new ImportantFigure(dennisRitchieImage, dennisRitchieName));
-            importantFigureArrayList.add(new ImportantFigure(johnVonNeumannImage, johnVonNeumannName));
-            importantFigureArrayList.add(new ImportantFigure(kenThompsonImage, kenThompsonName));
-            importantFigureArrayList.add(new ImportantFigure(alonzoChurchImage, alonzoChurchName));
-            importantFigureArrayList.add(new ImportantFigure(bertrandRusselImage, bertrandRusselName));
-            importantFigureArrayList.add(new ImportantFigure(christopherAlexanderImage, christopherAlexanderName));
-            importantFigureArrayList.add(new ImportantFigure(giuseppePeanoImage, giuseppePeanoName));
-            importantFigureArrayList.add(new ImportantFigure(gottlobFregeImage, gottlobFregeName));
-            importantFigureArrayList.add(new ImportantFigure(haskellCurryImage, haskellCurryName));
-            importantFigureArrayList.add(new ImportantFigure(jacquesHerbrandImage, jacquesHerbrandName));
-            importantFigureArrayList.add(new ImportantFigure(kurtGodelImage, kurtGodelName));
-            importantFigureArrayList.add(new ImportantFigure(niklausWirthImage, niklausWirthName));
-            importantFigureArrayList.add(new ImportantFigure(robertKowalskiImage, robertKowalskiName));
+            importantFigureArrayList.add(new ImportantFigure(alanTuringImage, alanTuringBiography, alanTuringName));
+            importantFigureArrayList.add(new ImportantFigure(dennisRitchieImage, dennisRitchieBiography,dennisRitchieName));
+            importantFigureArrayList.add(new ImportantFigure(johnVonNeumannImage, johnVonNeumannBiography, johnVonNeumannName));
+            importantFigureArrayList.add(new ImportantFigure(kenThompsonImage, kenThompsonBiography, kenThompsonName));
+            importantFigureArrayList.add(new ImportantFigure(alonzoChurchImage, alonzoChurchBiography, alonzoChurchName));
+            importantFigureArrayList.add(new ImportantFigure(bertrandRusselImage, bertrandRusselBiography, bertrandRusselName));
+            importantFigureArrayList.add(new ImportantFigure(christopherAlexanderImage, christopherAlexanderBiography, christopherAlexanderName));
+            importantFigureArrayList.add(new ImportantFigure(giuseppePeanoImage, giuseppePeanoBiography, giuseppePeanoName));
+            importantFigureArrayList.add(new ImportantFigure(gottlobFregeImage, gottlobFregeBiography, gottlobFregeName));
+            importantFigureArrayList.add(new ImportantFigure(haskellCurryImage, haskellCurryBiography, haskellCurryName));
+            importantFigureArrayList.add(new ImportantFigure(jacquesHerbrandImage, jacquesHerbrandBiography, jacquesHerbrandName));
+            importantFigureArrayList.add(new ImportantFigure(kurtGodelImage, kurtGodelBiography,kurtGodelName));
+            importantFigureArrayList.add(new ImportantFigure(niklausWirthImage, niklausWirthBiography, niklausWirthName));
+            importantFigureArrayList.add(new ImportantFigure(robertKowalskiImage, robertKowalskiBiography, robertKowalskiName));
         }
     }
 
@@ -615,9 +647,26 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion confirmButton;
         public final TextureAtlas.AtlasRegion confirmButtonBig;
 
+
         public JigsawScreenAssets(TextureAtlas atlas){
             confirmButton = atlas.findRegion(Constants.CONFIRM_BUTTON);
             confirmButtonBig = atlas.findRegion(Constants.CONFIRM_BUTTON_BIG);
+        }
+    }
+
+    public class JigsawGuessResultScreenAssets{
+        public final TextureAtlas.AtlasRegion normalBG;
+        public final TextureAtlas.AtlasRegion correctGuessBG;
+        public final TextureAtlas.AtlasRegion incorrectGuessBG;
+        public final TextureAtlas.AtlasRegion continueButton;
+        public final TextureAtlas.AtlasRegion continueButtonBig;
+
+        public JigsawGuessResultScreenAssets(TextureAtlas atlas){
+            normalBG = atlas.findRegion(Constants.NORMAL_BG);
+            correctGuessBG = atlas.findRegion(Constants.CORRECT_GUESS_BG);
+            incorrectGuessBG = atlas.findRegion(Constants.INCORRECT_GUESS_BG);
+            continueButton = atlas.findRegion(Constants.CONTINUE_BUTTON);
+            continueButtonBig = atlas.findRegion(Constants.CONTINUE_BUTTON_BIG);
         }
     }
 
@@ -636,6 +685,8 @@ public class Assets implements Disposable, AssetErrorListener {
             returnToMenuButtonWhiteBig = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_WHITE_BIG);
         }
     }
+
+
 
 
 }

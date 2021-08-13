@@ -92,6 +92,10 @@ public class ProgrammerGame extends Game {
 		setScreen(jigsawScreen);
 	}
 
+	public void showJigsawGuessResultScreen(boolean isGuessCorrect, Texture importantFigureBiography){
+		setScreen(new JigsawGuessResultScreen(this, this.batch, isGuessCorrect, importantFigureBiography));
+	}
+
 	public void showVictoryScreen(){
 		setScreen(new VictoryScreen(this, this.batch));
 	}

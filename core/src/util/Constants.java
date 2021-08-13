@@ -162,6 +162,13 @@ public class Constants {
     public static final Vector2 CONTINUE_BUTTON_CENTER = new Vector2(83, 25);
     public static final Vector2 CONTINUE_BUTTON_BIG_CENTER= new Vector2(99, 30);
 
+    public static final String CONTINUE_BUTTON_WHITE = "continue-button-white";
+    public static final String CONTINUE_BUTTON_WHITE_BIG = "continue-button-white-big";
+    public static final float CONTINUE_BUTTON_WHITE_WIDTH = 147;
+    public static final float CONTINUE_BUTTON_WHITE_HEIGHT = 33;
+    public static final Vector2 CONTINUE_BUTTON_WHITE_CENTER = new Vector2(80, 25);
+    public static final Vector2 CONTINUE_BUTTON_WHITE_BIG_CENTER= new Vector2(96, 30);
+
     public static final int THEORETICAL_VERY_EASY_POINTS = 1000;
     public static final int THEORETICAL_EASY_POINTS = 2000;
     public static final int THEORETICAL_MEDIUM_POINTS = 5000;
@@ -226,6 +233,9 @@ public class Constants {
     public static final Vector2 CONFIRM_BUTTON_CENTER = new Vector2(80, 25);
     public static final Vector2 CONFIRM_BUTTON_BIG_CENTER = new Vector2(96, 30);
 
-
+    //jigsaw guess result screen assets
+    public static final String CORRECT_GUESS_BG = "2m-bg";
+    public static final String INCORRECT_GUESS_BG = "500k-bg";
+    public static final Vector2 IMPORTANT_FIGURE_BIOGRAPHY_CENTER = new Vector2(238, 245);
 
 }
