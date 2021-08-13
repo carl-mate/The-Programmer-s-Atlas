@@ -65,7 +65,7 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
 
         if(isGuessCorrect){
             if(isContinueButtonPressed == 0){
-                Util.drawTextureRegion(batch, Assets.instance.jigsawGuessResultScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.IMPORTANT_FIGURE_BIOGRAPHY_CENTER);
+                Util.drawTextureRegion(batch, Assets.instance.jigsawGuessResultScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
                 Util.drawTextureRegion(batch, importantFigureBiography, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.IMPORTANT_FIGURE_BIOGRAPHY_CENTER);
                 if(!isContinueButtonHovered){
                     Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_CENTER);
@@ -82,8 +82,8 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
                 }
             } else if(isContinueButtonPressed == 2){
                 programmerGame.setPreviousScore(programmerGame.getPreviousScore());
-                programmerGame.setCurrentScore(programmerGame.getCurrentScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
-                programmerGame.showCorrectAnswerScreen();
+                programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
+                programmerGame.showVictoryScreen();
             }
 
         } else{

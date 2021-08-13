@@ -112,6 +112,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private Object mysteryQuestionObject;
 
+    private boolean isDifficultyMysteryQuestion;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -550,52 +552,92 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private void renderQuestions() {
         if (difficulty == Difficulty.THEORETICAL_VERY_EASY) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_EASY) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_MEDIUM) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_HARD) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.THEORETICAL_VERY_HARD) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_VERY_EASY) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_EASY) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionEasy, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_MEDIUM) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionMedium, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_HARD) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
-            Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            if(isDifficultyMysteryQuestion){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.mysteryQuestionBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            } else{
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.questionVeryHard, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+            }
             renderAnswerBubbles();
             renderQuestionsChoices();
             renderTopic();
@@ -613,9 +655,8 @@ public class GameplayScreen extends InputAdapter implements Screen {
     }
 
     private void renderQuestionsChoices() {
-        if(difficulty == Difficulty.MYSTERY_QUESTION){
 
-        } else if (difficulty == Difficulty.THEORETICAL_VERY_EASY || difficulty == Difficulty.THEORETICAL_EASY || difficulty == Difficulty.THEORETICAL_MEDIUM ||
+        if (difficulty == Difficulty.THEORETICAL_VERY_EASY || difficulty == Difficulty.THEORETICAL_EASY || difficulty == Difficulty.THEORETICAL_MEDIUM ||
                 difficulty == Difficulty.THEORETICAL_HARD || difficulty == Difficulty.THEORETICAL_VERY_HARD) {
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", question, this.questionRectangleBounds);
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "choiceA", choiceA, this.choiceAButtonBoundingBoxText);
@@ -799,10 +840,17 @@ public class GameplayScreen extends InputAdapter implements Screen {
                 Gdx.app.log(TAG, "PROGRAMMING VERY HARD CORRECT");
             }
 
-            programmerGame.incrementNoOfAnsweredQuestions();
-            programmerGame.setPreviousScore(this.previousScore);
-            programmerGame.setCurrentScore(this.currentScore);
-            programmerGame.showCorrectAnswerScreen();
+            if(isDifficultyMysteryQuestion){
+                programmerGame.incrementNoOfAnsweredQuestions();
+                programmerGame.setPreviousScore(this.previousScore);
+                programmerGame.setCurrentScore(this.previousScore + Constants.MYSTERY_QUESTION_POINTS);
+                programmerGame.showCorrectAnswerScreen();
+            } else{
+                programmerGame.incrementNoOfAnsweredQuestions();
+                programmerGame.setPreviousScore(this.previousScore);
+                programmerGame.setCurrentScore(this.currentScore);
+                programmerGame.showCorrectAnswerScreen();
+            }
         } else {
 
             //store the scores
@@ -953,6 +1001,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private void initMysteryQuestion(){
         if(difficulty == Difficulty.MYSTERY_QUESTION){
+            isDifficultyMysteryQuestion = true;
             mysteryQuestionObject = questions.getMysteryQuestion();
             if(mysteryQuestionObject.getClass().equals(theoreticalQ[0].getClass())){ //mystery question is of class TheoreticalQ
                 Gdx.app.log(TAG, "MYSTERY QUESTION IS OF CLASS THEORETICALQ");

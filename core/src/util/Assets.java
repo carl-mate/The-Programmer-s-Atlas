@@ -566,6 +566,8 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion askNickLifelineBig;
         public final TextureAtlas.AtlasRegion callAFamilyMemberLifelineBig;
 
+        public final TextureAtlas.AtlasRegion mysteryQuestionBG;
+
         public GameplayScreenAssets(TextureAtlas atlas){
             fadeBG = atlas.findRegion(Constants.FADE_BG);
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
@@ -590,6 +592,8 @@ public class Assets implements Disposable, AssetErrorListener {
             askMikhailaLifelineBig = atlas.findRegion(Constants.ASK_MIKHAILA_LIFELINE_BIG);
             askNickLifelineBig = atlas.findRegion(Constants.ASK_NICK_LIFELINE_BIG);
             callAFamilyMemberLifelineBig = atlas.findRegion(Constants.CALL_A_FAMILY_MEMBER_BIG);
+
+            mysteryQuestionBG = atlas.findRegion(Constants.MYSTERYQUESTION_BG);
         }
     }
 

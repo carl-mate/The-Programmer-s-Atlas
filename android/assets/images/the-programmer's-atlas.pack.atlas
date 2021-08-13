@@ -694,7 +694,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionEasy-bg
+mysteryQuestion-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -707,7 +707,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionHard-bg
+questionEasy-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -720,7 +720,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionMedium-bg
+questionHard-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -733,7 +733,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionVeryEasy-bg
+questionMedium-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -746,7 +746,7 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-questionVeryHard-bg
+questionVeryEasy-bg
   rotate: false
   xy: 2, 2
   size: 960, 540
@@ -755,6 +755,19 @@ questionVeryHard-bg
   index: -1
 
 the-programmer's-atlas.pack16.png
+size: 1024,1024
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+questionVeryHard-bg
+  rotate: false
+  xy: 2, 2
+  size: 960, 540
+  orig: 960, 540
+  offset: 0, 0
+  index: -1
+
+the-programmer's-atlas.pack17.png
 size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest

@@ -96,6 +96,7 @@ public class Constants {
     public static final float DIFFICULTY_SCREEN_BUTTON_HEIGHT = 45f;
     public static final Vector2 DIFFICULTY_SCREEN_BUTTON_CENTER = new Vector2(150, 30);
     public static final Vector2 DIFFICULTY_SCREEN_LABEL_CENTER = new Vector2(125, 20);
+    public static final String MYSTERYQUESTION_BG = "mysteryQuestion-bg";
     public static final float MYSTERYQUESTION_BUTTON_WIDTH = 611f;
     public static final float MYSTERYQUESTION_BUTTON_HEIGHT = 47f;
     public static final Vector2 MYSTERYQUESTION_BUTTON_CENTER = new Vector2(323, 42);

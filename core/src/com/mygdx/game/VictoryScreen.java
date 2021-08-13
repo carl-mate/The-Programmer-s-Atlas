@@ -32,6 +32,8 @@ public class VictoryScreen extends InputAdapter implements Screen {
     private int currentScore;
     private int increment;
 
+    private float time;
+
     public VictoryScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
@@ -98,12 +100,13 @@ public class VictoryScreen extends InputAdapter implements Screen {
         Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 95);
         Rectangle earningsRectangleBounds = new Rectangle(earningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
 
-        //EDIT THIS
-        if(previousScore+increment <= currentScore){
-            previousScore += increment;
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
-        } else{
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
+        time += delta;
+        if(time >= Constants.SCORE_DELAY){
+            if(previousScore < currentScore){
+                previousScore += increment;
+            }
+            time -= Constants.SCORE_DELAY;
         }
 
         Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
