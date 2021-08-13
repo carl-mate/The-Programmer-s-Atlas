@@ -199,14 +199,24 @@ public class Constants {
     public static final Vector2 H_RTM_BUTTON_CENTER = new Vector2(73, 22);
     public static final Vector2 H_RTM_BUTTON_BIG_CENTER = new Vector2(87, 26);
 
+    public static float SCORE_DELAY = 0.025f;
+
     //Victory Screen Assets
     public static final String VICTORY_BG = "victory-bg";
     public static final Vector2 VICTORY_BG_CENTER = new Vector2(140, 230);
 
     //Highscores Screen Assets
     public static final String HIGHSCORES_BG = "highScores-bg";
-    public static final String HIGHSCORES_BUTTON_WHITE = "highScores-bg-white";
+    public static final String CLEAR_DATA_BUTTON = "clearData-button";
+    public static final String CLEAR_DATA_BUTTON_BIG = "clearData-button-big";
     public static final String RETURN_TO_MENU_BUTTON_WHITE = "returnToMenu-button-white";
+    public static final String RETURN_TO_MENU_BUTTON_WHITE_BIG = "returnToMenu-button-white-big";
+    public static final float CD_RTM_BUTTON_WIDTH = 148f;
+    public static final float CD_RTM_BUTTON_HEIGHT = 34f;
+    public static final Vector2 CD_RTM_BUTTON_CENTER = new Vector2(78, 22);
+    public static final Vector2 CD_RTM_BUTTON_BIG_CENTER = new Vector2(93, 26);
+    public static final float HIGHSCORES_BUBBLE_WIDTH = 300;
+    public static final float HIGHSCORES_BUBBLE_HEIGHT = 38;
 
     //jigsaw screen assets
     public static final String CONFIRM_BUTTON = "confirm-button";
@@ -215,8 +225,6 @@ public class Constants {
     public static final float CONFIRM_BUTTON_HEIGHT = 36;
     public static final Vector2 CONFIRM_BUTTON_CENTER = new Vector2(80, 25);
     public static final Vector2 CONFIRM_BUTTON_BIG_CENTER = new Vector2(96, 30);
-
-
 
 
 

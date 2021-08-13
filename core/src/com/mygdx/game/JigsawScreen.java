@@ -189,7 +189,6 @@ public class JigsawScreen extends InputAdapter implements Screen {
 
         }
 
-
         if (hasUserGuessed) {
             Vector2 mousePosition = viewport.unproject(new Vector2(Gdx.input.getX(), Gdx.input.getY()));
             //continue button

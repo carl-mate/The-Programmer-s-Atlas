@@ -120,6 +120,10 @@ public class GameOverScreen extends InputAdapter implements Screen {
             programmerGame.showMainMenuScreen();
         }
 
+        if(highScoresButtonBoundingBox.contains(worldTouch)){
+            programmerGame.showHighScoresScreen();
+        }
+
         return true;
     }
 

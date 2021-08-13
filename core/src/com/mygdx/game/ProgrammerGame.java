@@ -79,6 +79,10 @@ public class ProgrammerGame extends Game {
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
+	public void showHighScoresScreen(){
+		setScreen(new HighScoresScreen(this, this.batch));
+	}
+
 	public void showCorrectAnswerScreen(){
 		setScreen(new CorrectAnswerScreen(this, this.batch));
 	}

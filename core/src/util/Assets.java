@@ -50,6 +50,7 @@ public class Assets implements Disposable, AssetErrorListener {
     public ImportantFigureAssets importantFigureAssets;
     public VictoryScreenAssets victoryScreenAssets;
     public JigsawScreenAssets jigsawScreenAssets;
+    public HighScoresScreenAssets highScoresScreenAssets;
 
     private AssetManager assetManager;
 
@@ -75,6 +76,7 @@ public class Assets implements Disposable, AssetErrorListener {
         importantFigureAssets = new ImportantFigureAssets();
         victoryScreenAssets = new VictoryScreenAssets(atlas);
         jigsawScreenAssets = new JigsawScreenAssets(atlas);
+        highScoresScreenAssets = new HighScoresScreenAssets(atlas);
     }
 
     @Override
@@ -185,23 +187,17 @@ public class Assets implements Disposable, AssetErrorListener {
 
         private ExtendViewport viewport;
         public FreeTypeFontGenerator sourceCodeProBoldFontGenerator;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter questionFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter choicesFontParameter;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameFontParameter;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter praiseFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter earningsFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameEarningsFontParameter;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter clueLabelFontParameter;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter instructionFontParameter;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter topicFontParameter;
-
         public final FreeTypeFontGenerator.FreeTypeFontParameter importantFigureNameClueFontParameter;
+        public final FreeTypeFontGenerator.FreeTypeFontParameter highScoreFontParameter;
 
         public BitmapFont questionFont;
         public BitmapFont choicesFont;
@@ -213,6 +209,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public BitmapFont instructionFont;
         public BitmapFont topicFont;
         public BitmapFont importantFigureNameClueFont;
+        public BitmapFont highScoreFont;
 
         public GlyphLayout glyphLayout;
 
@@ -270,6 +267,12 @@ public class Assets implements Disposable, AssetErrorListener {
             importantFigureNameClueFontParameter.color = Color.BLACK;
             importantFigureNameClueFont = sourceCodeProBoldFontGenerator.generateFont(importantFigureNameClueFontParameter);
 
+            highScoreFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+            highScoreFontParameter.size = 20;
+            highScoreFontParameter.color = Color.BLACK;
+            highScoreFont = sourceCodeProBoldFontGenerator.generateFont(highScoreFontParameter);
+
+
             glyphLayout = new GlyphLayout();
         }
 
@@ -309,7 +312,22 @@ public class Assets implements Disposable, AssetErrorListener {
                 case "importantFigureNameClue":
                     drawCentered(importantFigureNameClueFont, batch, text, bounds);
                     break;
+                case "highScoreFont":
+                    drawLeftAligned(highScoreFont, batch, text, bounds);
+                    break;
             }
+        }
+
+        private void drawLeftAligned(BitmapFont font, SpriteBatch spriteBatch, String text, Rectangle bounds) {
+            glyphLayout.setText(font, text, font.getColor(), bounds.width, Align.left, true);
+            font.draw(
+                    spriteBatch,
+                    text,
+                    bounds.x,
+                    bounds.y + bounds.height / 2f + glyphLayout.height / 2f,
+                    bounds.width,
+                    Align.left,
+                    true);
         }
 
         private void drawCentered(BitmapFont font, SpriteBatch spriteBatch, String text, Rectangle bounds) {
@@ -600,6 +618,22 @@ public class Assets implements Disposable, AssetErrorListener {
         public JigsawScreenAssets(TextureAtlas atlas){
             confirmButton = atlas.findRegion(Constants.CONFIRM_BUTTON);
             confirmButtonBig = atlas.findRegion(Constants.CONFIRM_BUTTON_BIG);
+        }
+    }
+
+    public class HighScoresScreenAssets{
+        public final TextureAtlas.AtlasRegion highScoresBG;
+        public final TextureAtlas.AtlasRegion clearDataButton;
+        public final TextureAtlas.AtlasRegion clearDataButtonBig;
+        public final TextureAtlas.AtlasRegion returnToMenuButtonWhite;
+        public final TextureAtlas.AtlasRegion returnToMenuButtonWhiteBig;
+
+        public HighScoresScreenAssets(TextureAtlas atlas){
+            highScoresBG = atlas.findRegion(Constants.HIGHSCORES_BG);
+            clearDataButton = atlas.findRegion(Constants.CLEAR_DATA_BUTTON);
+            clearDataButtonBig = atlas.findRegion(Constants.CLEAR_DATA_BUTTON_BIG);
+            returnToMenuButtonWhite = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_WHITE);
+            returnToMenuButtonWhiteBig = atlas.findRegion(Constants.RETURN_TO_MENU_BUTTON_WHITE_BIG);
         }
     }
 
