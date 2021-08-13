@@ -138,16 +138,24 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         Vector2 textfieldCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 4.6f);
         Rectangle textfieldRectangleBounds = new Rectangle(textfieldCenter.x - Constants.USERNAME_TEXTFIELD_WIDTH / 2, textfieldCenter.y - Constants.USERNAME_TEXTFIELD_HEIGHT / 2, Constants.USERNAME_TEXTFIELD_WIDTH, Constants.USERNAME_TEXTFIELD_HEIGHT);
 
-        if(username.length() == 0){
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", "ENTER USERNAME", textfieldRectangleBounds);
+        if(Constants.MENU_SCREEN_NAME == null){
+            if(username.length() == 0){
+                Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", "ENTER USERNAME", textfieldRectangleBounds);
+            } else{
+                Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", username.toString(), textfieldRectangleBounds);
+            }
         } else{
-            Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", username.toString(), textfieldRectangleBounds);
+            Assets.instance.font.drawSourceCodeProBoldFont(batch, "username", Constants.MENU_SCREEN_NAME, textfieldRectangleBounds);
         }
 
         batch.end();
 
         if(handledUserName){
             Constants.MENU_SCREEN_NAME = username.toString();
+        }
+
+        if(Constants.MENU_SCREEN_NAME != null){
+
             Constants.preferences = Gdx.app.getPreferences("user");
 
             Constants.preferences.putString("user", username.toString());
@@ -175,7 +183,7 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
 
         if(playButtonBoundingBox.contains(worldTouch)){
-            if(handledUserName){
+            if(Constants.MENU_SCREEN_NAME != null){
                 Gdx.app.log(TAG, "CLICKED PLAY");
                 programmerGame.showChooseColleagueScreen();
             }
@@ -321,7 +329,9 @@ public class MainMenuScreen extends InputAdapter implements Screen {
             if(username.length() == 0){
                 emptyField = true;
             } else{
-                handledUserName = true;
+                if(Constants.MENU_SCREEN_NAME == null){ //check if the user hasn't already inputted his/her username
+                    handledUserName = true;
+                }
             }
         }
 

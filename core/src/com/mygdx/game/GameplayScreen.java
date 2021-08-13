@@ -808,7 +808,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
             //store the scores
             while(true){
                 if(!Constants.preferences.contains("user-"+userCounter)){
-                    Constants.preferences.putString("user-"+userCounter, Constants.preferences.getString("user"));
+                    Constants.preferences.putString("user-"+userCounter, Constants.MENU_SCREEN_NAME);
                     Constants.preferences.putInteger("score-"+userCounter, currentScore);
                     break;
                 } else{
