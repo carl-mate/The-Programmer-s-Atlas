@@ -155,7 +155,6 @@ public class ProgrammerGame extends Game {
 
 	public void showGameOverScreen(){
 		setGameplayScreenMusicOff();
-		Assets.instance.soundClass.gameOverSound.play();
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
@@ -166,7 +165,6 @@ public class ProgrammerGame extends Game {
 
 	public void showCorrectAnswerScreen(){
 		setGameplayScreenMusicOff();
-		Assets.instance.soundClass.correctAnswerSound.play();
 		setScreen(new CorrectAnswerScreen(this, this.batch));
 	}
 
@@ -184,7 +182,6 @@ public class ProgrammerGame extends Game {
 	public void showVictoryScreen(boolean victory){
 		setGameplayScreenMusicOff();
 		setMenuScreenMusicOff();
-		Assets.instance.soundClass.victorySound.play();
 		setScreen(new VictoryScreen(this, this.batch, victory));
 	}
 

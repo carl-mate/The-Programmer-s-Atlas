@@ -112,8 +112,6 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
                         Assets.instance.soundClass.buttonHoverSound.play();
                     }
                 }
-            } else if(isContinueButtonPressed == 2){
-                programmerGame.showVictoryScreen(true);
             }
 
         } else{
@@ -133,8 +131,6 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
                         Assets.instance.soundClass.buttonHoverSound.play();
                     }
                 }
-            } else if(isContinueButtonPressed == 1){
-                programmerGame.showVictoryScreen(false);
             }
         }
         batch.end();
@@ -152,6 +148,16 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
             Gdx.app.log(TAG, "TOUCHED CONTINUE BUTTON");
             Assets.instance.soundClass.buttonClickSound.play();
             isContinueButtonPressed++;
+        }
+
+        if(isGuessCorrect){
+            if(isContinueButtonPressed == 2){
+                programmerGame.showVictoryScreen(true);
+            }
+        } else{
+            if(isContinueButtonPressed == 1){
+                programmerGame.showVictoryScreen(false);
+            }
         }
 
 

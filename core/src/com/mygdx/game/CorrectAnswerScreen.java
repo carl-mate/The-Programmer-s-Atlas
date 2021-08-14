@@ -34,7 +34,6 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
 
     private boolean isContinueButtonHovered;
     private long continueButtonHoverTime;
-    private long coinsSoundTime;
 
     private float time;
 
@@ -84,6 +83,8 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         praise.add("Splendid!");
         //shuffle to ensure randomness
         Collections.shuffle(praise);
+        Assets.instance.soundClass.correctAnswerSound.play();
+        Assets.instance.soundClass.coinsSound.play();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -130,11 +131,6 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         if(time >= Constants.SCORE_DELAY){
             if(previousScore < currentScore){
                 previousScore += increment;
-                if(coinsSoundTime == 0){
-                    coinsSoundTime = TimeUtils.nanoTime();
-                    Assets.instance.soundClass.coinsSound.play();
-                }
-
             }
             time -= Constants.SCORE_DELAY;
 

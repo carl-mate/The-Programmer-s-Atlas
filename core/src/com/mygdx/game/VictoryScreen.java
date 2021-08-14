@@ -80,6 +80,8 @@ public class VictoryScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
+        Assets.instance.soundClass.victorySound.play();
+        Assets.instance.soundClass.coinsSound.play();
         Gdx.input.setInputProcessor(this);
     }
 

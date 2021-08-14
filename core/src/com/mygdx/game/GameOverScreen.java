@@ -46,6 +46,7 @@ public class GameOverScreen extends InputAdapter implements Screen {
     }
     @Override
     public void show() {
+        Assets.instance.soundClass.gameOverSound.play();
         Gdx.input.setInputProcessor(this);
     }
 
