@@ -7,10 +7,12 @@ import com.mygdx.game.ProgrammerGame;
 public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
+		ProgrammerGame programmerGame = new ProgrammerGame();
+		programmerGame.setSplashWorker(new DesktopSplashWorker());
 		config.title = "The Programmer's Atlas";
 		config.width = 960;
 		config.height = 540;
 		config.resizable = false;
-		new LwjglApplication(new ProgrammerGame(), config);
+		new LwjglApplication(programmerGame, config);
 	}
 }

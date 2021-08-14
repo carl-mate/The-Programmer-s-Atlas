@@ -22,6 +22,7 @@ public class ProgrammerGame extends Game {
 
 	private static final String TAG = ProgrammerGame.class.getName();
 
+	private SplashWorker splashWorker;
 	private AssetManager am;
 	private SpriteBatch batch;
 	private Questions questions;
@@ -61,8 +62,12 @@ public class ProgrammerGame extends Game {
 		musicTheme = Assets.instance.musicClass.theme;
 		gameplayMusic = Assets.instance.musicClass.gameplayMusic;
 		musicOn = true;
-		showMainMenuScreen();
-		Assets.instance.soundClass.greetingsSound.play();
+
+		if(am.isFinished()){
+			splashWorker.closeSplashScreen();
+			showMainMenuScreen();
+			Assets.instance.soundClass.greetingsSound.play();
+		}
 	}
 
 	@Override
@@ -331,5 +336,9 @@ public class ProgrammerGame extends Game {
 		} else{
 			musicOn = true;
 		}
+	}
+
+	public void setSplashWorker(SplashWorker splashWorker){
+		this.splashWorker = splashWorker;
 	}
 }
