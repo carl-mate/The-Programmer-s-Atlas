@@ -114,6 +114,10 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
     private boolean isDifficultyMysteryQuestion;
 
+    private long askGoogleHoverTime;
+    private long askAColleagueHoverTime;
+    private long callAFamilyMemberHoverTime;
+
 
     public GameplayScreen(ProgrammerGame programmerGame, SpriteBatch batch) {
         this.programmerGame = programmerGame;
@@ -220,8 +224,15 @@ public class GameplayScreen extends InputAdapter implements Screen {
                 //hovered
                 if(askGoogleBoundingBox.contains(mousePosition)){
                     Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifelineBig, askGooglePosition, Constants.LIFELINE_110_CENTER);
+                    if(askGoogleHoverTime == 0){
+                        askGoogleHoverTime = TimeUtils.nanoTime();
+                        Assets.instance.soundClass.googleHoverSound.play();
+                    }
                 } else{
                     Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
+                    if(askGoogleHoverTime > 0){
+                        askGoogleHoverTime = 0;
+                    }
                 }
 
             } else{
@@ -260,8 +271,15 @@ public class GameplayScreen extends InputAdapter implements Screen {
                 //hovered
                 if(askAColleagueBoundingBox.contains(mousePosition)){
                     Util.drawTextureRegion(batch, colleagueBig, askAColleaguePosition, Constants.LIFELINE_110_CENTER);
+                    if(askAColleagueHoverTime == 0){
+                        askAColleagueHoverTime = TimeUtils.nanoTime();
+                        Assets.instance.soundClass.colleagueHoverSound.play();
+                    }
                 } else{ //not hovered
                     Util.drawTextureRegion(batch, colleague, askAColleaguePosition, Constants.LIFELINE_CENTER);
+                    if(askAColleagueHoverTime > 0){
+                        askAColleagueHoverTime = 0;
+                    }
                 }
 
             } else{ //askedAColleague = true
@@ -411,8 +429,15 @@ public class GameplayScreen extends InputAdapter implements Screen {
                 //hovered
                 if(callAFamilyMemberBoundingBox.contains(mousePosition)){
                     Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifelineBig, callAFamilyMemberPosition, Constants.LIFELINE_110_CENTER);
+                    if(callAFamilyMemberHoverTime == 0){
+                        callAFamilyMemberHoverTime = TimeUtils.nanoTime();
+                        Assets.instance.soundClass.familyMemberHoverSound.play();
+                    }
                 } else{//not hovered
                     Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.callAFamilyMemberLifeline, callAFamilyMemberPosition, Constants.LIFELINE_CENTER);
+                    if(callAFamilyMemberHoverTime > 0){
+                        callAFamilyMemberHoverTime = 0;
+                    }
                 }
 
             } else{
@@ -732,14 +757,17 @@ public class GameplayScreen extends InputAdapter implements Screen {
 
         if(askGoogleBoundingBox.contains(worldTouch) && !usedGoogleLifeline){
             Gdx.app.log(TAG, "TOUCHED ASK GOOGLE");
+            Assets.instance.soundClass.lifelineClickedSound.play();
             askedGoogle = true;
         }
         if(askAColleagueBoundingBox.contains(worldTouch) && !usedAColleagueLifeline){
             Gdx.app.log(TAG, "TOUCHED ASK A COLLEAGUE");
+            Assets.instance.soundClass.lifelineClickedSound.play();
             askedAColleague = true;
         }
         if(callAFamilyMemberBoundingBox.contains(worldTouch) && !usedCallAFamilyMember){
             Gdx.app.log(TAG, "TOUCHED CALL A FAMILY MEMBER");
+            Assets.instance.soundClass.lifelineClickedSound.play();
             calledAFamilyMember = true;
         }
 
@@ -1059,7 +1087,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
         choiceDButtonBoundingBoxText = new Rectangle(choiceDButtonCenterText.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, choiceDButtonCenterText.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
 
         //topic
-        topicCenter = new Vector2(viewport.getCamera().viewportWidth / 5.5f, viewport.getCamera().viewportHeight / 1.20f);
+        topicCenter = new Vector2(viewport.getCamera().viewportWidth / 4f, viewport.getCamera().viewportHeight / 1.20f);
         topicRectangleBounds = new Rectangle(topicCenter.x - Constants.ANSWERBUBBLE_BUTTON_WIDTH / 2, topicCenter.y - Constants.ANSWERBUBBLE_BUTTON_HEIGHT / 2, Constants.ANSWERBUBBLE_BUTTON_WIDTH, Constants.ANSWERBUBBLE_BUTTON_HEIGHT);
     }
 

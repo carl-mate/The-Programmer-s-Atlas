@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import util.Assets;
@@ -52,6 +53,23 @@ public class DifficultyScreen extends InputAdapter implements Screen {
     private boolean isBailOutButtonHovered;
     private boolean isBringItOnButtonHovered;
 
+    private long theoreticalVeryEasyButtonHoverTime;
+    private long theoreticalEasyButtonHoverTime;
+    private long theoreticalMediumButtonHoverTime;
+    private long theoreticalHardButtonHoverTime;
+    private long theoreticalVeryHardButtonHoverTime;
+
+    private long programmingVeryEasyButtonHoverTime;
+    private long programmingEasyButtonHoverTime;
+    private long programmingMediumButtonHoverTime;
+    private long programmingHardButtonHoverTime;
+    private long programmingVeryHardButtonHoverTime;
+    private long mysteryQuestionButtonHoverTime;
+    private long bailOutButtonHoverTime;
+    private long bringItOnButtonHoverTime;
+
+    private int userCounter;
+
     public DifficultyScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
         this.batch = batch;
@@ -64,6 +82,9 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
+        if(noOfAnsweredQuestions < 11){
+            Assets.instance.soundClass.pickAQuestionSound.play();
+        }
         Gdx.input.setInputProcessor(this);
     }
 
@@ -310,58 +331,85 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
 
         if(noOfAnsweredQuestions == 10 && mysteryQuestionButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.MYSTERY_QUESTION);
             Gdx.app.log(TAG, "CLICKED MYSTERY QUESTION");
         }
 
         if(theoreticalVeryEasyButtonBoundingBox.contains(worldTouch) && !isTheoreticalVeryEasyAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_VERY_EASY);
             Gdx.app.log(TAG, "CLICKED THEORETICAL VERY EASY");
         }
         if(theoreticalEasyButtonBoundingBox.contains(worldTouch) && !isTheoreticalEasyAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_EASY);
             Gdx.app.log(TAG, "CLICKED THEORETICAL EASY");
         }
         if(theoreticalMediumButtonBoundingBox.contains(worldTouch) && !isTheoreticalMediumAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_MEDIUM);
             Gdx.app.log(TAG, "CLICKED THEORETICAL MEDIUM");
         }
         if(theoreticalHardButtonBoundingBox.contains(worldTouch) && !isTheoreticalHardAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_HARD);
             Gdx.app.log(TAG, "CLICKED THEORETICAL HARD");
         }
         if(theoreticalVeryHardButtonBoundingBox.contains(worldTouch) && !isTheoreticalVeryHardAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.THEORETICAL_VERY_HARD);
             Gdx.app.log(TAG, "CLICKED THEORETICAL VERY HARD");
         }
 
         if(programmingVeryEasyButtonBoundingBox.contains(worldTouch) && !isProgrammingVeryEasyAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_VERY_EASY);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING VERY EASY");
         }
         if(programmingEasyButtonBoundingBox.contains(worldTouch) && !isProgrammingEasyAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_EASY);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING EASY");
         }
         if(programmingMediumButtonBoundingBox.contains(worldTouch) && !isProgrammingMediumAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_MEDIUM);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING MEDIUM");
         }
         if(programmingHardButtonBoundingBox.contains(worldTouch) && !isProgrammingHardAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_HARD);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING HARD");
         }
         if(programmingVeryHardButtonBoundingBox.contains(worldTouch) && !isProgrammingVeryHardAnswered){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showGameplayScreen(Difficulty.PROGRAMMING_VERY_HARD);
             Gdx.app.log(TAG, "CLICKED PROGRAMMING VERY HARD");
         }
 
         if(noOfAnsweredQuestions == 11){
             if(bailOutButtonBoundingBox.contains(worldTouch)){
-                programmerGame.showVictoryScreen();
+                Assets.instance.soundClass.buttonClickSound.play();
+                programmerGame.setPreviousScore(programmerGame.getPreviousScore());
+                programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.BAIL_OUT_POINTS);
+                //store the scores
+                while(true){
+                    if(!Constants.preferences.contains("user-"+userCounter)){
+                        Constants.preferences.putString("user-"+userCounter, Constants.MENU_SCREEN_NAME);
+                        Constants.preferences.putInteger("score-"+userCounter, programmerGame.getCurrentScore());
+                        break;
+                    } else{
+                        userCounter++;
+                    }
+                }
+                Constants.preferences.putInteger("userCounter", userCounter);
+                Constants.preferences.flush();
+                programmerGame.showVictoryScreen(false);
             }
 
             if(bringItOnButtonBoundingBox.contains(worldTouch)){
+                Assets.instance.soundClass.buttonClickSound.play();
                 programmerGame.showJigsawScreen();
             }
         }
@@ -433,20 +481,154 @@ public class DifficultyScreen extends InputAdapter implements Screen {
 
         isBailOutButtonHovered = bailOutButtonBoundingBox.contains(mousePosition);
         isBringItOnButtonHovered = bringItOnButtonBoundingBox.contains(mousePosition);
-
         isMysteryQuestionHovered = mysteryQuestionButtonBoundingBox.contains(mousePosition);
-
         isTheoreticalVeryEasyHovered = theoreticalVeryEasyButtonBoundingBox.contains(mousePosition);
         isTheoreticalEasyHovered = theoreticalEasyButtonBoundingBox.contains(mousePosition);
         isTheoreticalMediumHovered = theoreticalMediumButtonBoundingBox.contains(mousePosition);
         isTheoreticalHardHovered = theoreticalHardButtonBoundingBox.contains(mousePosition);
         isTheoreticalVeryHardHovered = theoreticalVeryHardButtonBoundingBox.contains(mousePosition);
-
         isProgrammingVeryEasyHovered = programmingVeryEasyButtonBoundingBox.contains(mousePosition);
         isProgrammingEasyHovered = programmingEasyButtonBoundingBox.contains(mousePosition);
         isProgrammingMediumHovered = programmingMediumButtonBoundingBox.contains(mousePosition);
         isProgrammingHardHovered = programmingHardButtonBoundingBox.contains(mousePosition);
         isProgrammingVeryHardHovered = programmingVeryHardButtonBoundingBox.contains(mousePosition);
+
+        if(noOfAnsweredQuestions == 11){
+            if(isBailOutButtonHovered){
+                if(bailOutButtonHoverTime == 0){
+                    bailOutButtonHoverTime = TimeUtils.nanoTime();
+                    Assets.instance.soundClass.buttonHoverSound.play();
+                }
+            } else{
+                if(bailOutButtonHoverTime > 0){
+                    bailOutButtonHoverTime = 0;
+                }
+            }
+            if(isBringItOnButtonHovered){
+                if(bringItOnButtonHoverTime == 0){
+                    bringItOnButtonHoverTime = TimeUtils.nanoTime();
+                    Assets.instance.soundClass.buttonHoverSound.play();
+                }
+            } else{
+                if(bringItOnButtonHoverTime > 0){
+                    bringItOnButtonHoverTime = 0;
+                }
+            }
+        }
+
+        if(noOfAnsweredQuestions == 10){
+            if(isMysteryQuestionHovered){
+                Gdx.app.log(TAG, "MYSTERY QUESTION HOVERED");
+                if(mysteryQuestionButtonHoverTime == 0){
+                    mysteryQuestionButtonHoverTime = TimeUtils.nanoTime();
+                    Assets.instance.soundClass.buttonHoverSound.play();
+                }
+            } else{
+                if(mysteryQuestionButtonHoverTime > 0){
+                    mysteryQuestionButtonHoverTime = 0;
+                }
+            }
+        }
+        if(isTheoreticalVeryEasyHovered && !isTheoreticalVeryEasyAnswered){
+            if(theoreticalVeryEasyButtonHoverTime == 0){
+                theoreticalVeryEasyButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(theoreticalVeryEasyButtonHoverTime > 0){
+                theoreticalVeryEasyButtonHoverTime = 0;
+            }
+        }
+        if(isTheoreticalEasyHovered && !isTheoreticalEasyAnswered){
+            if(theoreticalEasyButtonHoverTime == 0){
+                theoreticalEasyButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(theoreticalEasyButtonHoverTime > 0){
+                theoreticalEasyButtonHoverTime = 0;
+            }
+        }
+        if(isTheoreticalMediumHovered && !isTheoreticalMediumAnswered){
+            if(theoreticalMediumButtonHoverTime == 0){
+                theoreticalMediumButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(theoreticalMediumButtonHoverTime > 0){
+                theoreticalMediumButtonHoverTime = 0;
+            }
+        }
+        if(isTheoreticalHardHovered && !isTheoreticalHardAnswered){
+            if(theoreticalHardButtonHoverTime == 0){
+                theoreticalHardButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(theoreticalHardButtonHoverTime > 0){
+                theoreticalHardButtonHoverTime = 0;
+            }
+        }
+        if(isTheoreticalVeryHardHovered && !isTheoreticalVeryHardAnswered){
+            if(theoreticalVeryHardButtonHoverTime == 0){
+                theoreticalVeryHardButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(theoreticalVeryHardButtonHoverTime > 0){
+                theoreticalVeryHardButtonHoverTime = 0;
+            }
+        }
+        if(isProgrammingVeryEasyHovered && !isProgrammingVeryEasyAnswered){
+            if(programmingVeryEasyButtonHoverTime == 0){
+                programmingVeryEasyButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(programmingVeryEasyButtonHoverTime > 0){
+                programmingVeryEasyButtonHoverTime = 0;
+            }
+        }
+        if(isProgrammingEasyHovered && !isProgrammingEasyAnswered){
+            if(programmingEasyButtonHoverTime == 0){
+                programmingEasyButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(programmingEasyButtonHoverTime > 0){
+                programmingEasyButtonHoverTime = 0;
+            }
+        }
+        if(isProgrammingMediumHovered && !isProgrammingMediumAnswered){
+            if(programmingMediumButtonHoverTime == 0){
+                programmingMediumButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(programmingMediumButtonHoverTime > 0){
+                programmingMediumButtonHoverTime = 0;
+            }
+        }
+        if(isProgrammingHardHovered && !isProgrammingHardAnswered){
+            if(programmingHardButtonHoverTime == 0){
+                programmingHardButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(programmingHardButtonHoverTime > 0){
+                programmingHardButtonHoverTime = 0;
+            }
+        }
+        if(isProgrammingVeryHardHovered && !isProgrammingVeryHardAnswered){
+            if(programmingVeryHardButtonHoverTime == 0){
+                programmingVeryHardButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
+        } else{
+            if(programmingVeryHardButtonHoverTime > 0){
+                programmingVeryHardButtonHoverTime = 0;
+            }
+        }
     }
 
     public int getNoOfAnsweredQuestions() {

@@ -39,6 +39,13 @@ public class Constants {
     public static final Vector2 MAIN_MENU_BUTTON_CENTER = new Vector2(80, 25);
     public static final Vector2 BG_CENTER = new Vector2(480, 270);
 
+    //Options Screen Assets
+    public static final String MUSIC_ON = "music-on";
+    public static final String MUSIC_OFF = "music-off";
+    public static final Vector2 MUSIC_BUTTON_CENTER = new Vector2(65, 65);
+    public static final float MUSIC_BUTTON_WIDTH = 110;
+    public static final float MUSIC_BUTTON_HEIGHT = 93;
+
     //How to Play Screen Assets
     public static final String INSTRUCTIONS_BG = "instructions-bg";
     public static final String LIFELINE_BG = "lifeline-bg";
@@ -184,6 +191,7 @@ public class Constants {
 
     public static final int MYSTERY_QUESTION_POINTS = 1000000;
 
+    public static final int BAIL_OUT_POINTS = 1000000;
     public static final int IMPORTANT_FIGURE_CORRECT_POINTS = 2000000;
     public static final int IMPORTANT_FIGURE_INCORRECT_POINTS = 500000;
 

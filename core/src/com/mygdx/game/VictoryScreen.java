@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.util.ArrayList;
@@ -28,17 +29,29 @@ public class VictoryScreen extends InputAdapter implements Screen {
     private boolean isReturnToMenuButtonHovered;
     private boolean isHighScoresButtonHovered;
 
+    private int earnedPoints;
     private int previousScore;
     private int currentScore;
     private int increment;
 
     private float time;
 
-    public VictoryScreen(ProgrammerGame programmerGame, SpriteBatch batch){
+    private boolean victory;
+
+    private String praise;
+
+    private long returnToMenuHoverTime;
+    private long highScoresHoverTime;
+
+    public VictoryScreen(ProgrammerGame programmerGame, SpriteBatch batch, boolean victory){
         this.programmerGame = programmerGame;
         this.batch = batch;
+        this.victory = victory;
         this.previousScore = programmerGame.getPreviousScore();
         this.currentScore = programmerGame.getCurrentScore();
+        camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
+        viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
+        camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
         /* increment depends on the current score.
          * If currentScore <= 1000, then increment by 10
          *    currentScore <= 10000, then increment by 100
@@ -54,13 +67,15 @@ public class VictoryScreen extends InputAdapter implements Screen {
         } else{
             increment = 10000;
         }
-        camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
-        viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
-        camera.position.set(viewport.getWorldWidth() / 2f, viewport.getWorldHeight() / 2f, 0);
         //continue button
         continueButtonCenter = new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160);
         continueButtonBoundingBox = new Rectangle(continueButtonCenter.x - Constants.CONTINUE_BUTTON_WIDTH / 2, continueButtonCenter.y - Constants.CONTINUE_BUTTON_HEIGHT / 2, Constants.CONTINUE_BUTTON_WIDTH, Constants.CONTINUE_BUTTON_HEIGHT);
-
+        earnedPoints = currentScore - previousScore;
+        if(victory){
+            praise = "Victory!";
+        } else{
+            praise = "You did well!";
+        }
     }
 
     @Override
@@ -87,17 +102,23 @@ public class VictoryScreen extends InputAdapter implements Screen {
         Util.drawTextureRegion(batch, Assets.instance.victoryScreenAssets.victoryBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.VICTORY_BG_CENTER);
 
         //draw praise
-        Vector2 praiseCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2.15f);
+        Vector2 praiseCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 10);
         Rectangle praiseRectangleBounds = new Rectangle(praiseCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, praiseCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
-        Assets.instance.font.drawSourceCodeProBoldFont(batch, "praise", "Victory!", praiseRectangleBounds);
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "praise", praise, praiseRectangleBounds);
+
+        //draw earned points
+        Vector2 earnedPointsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 50);
+        Rectangle earnedPointsRectangleBounds = new Rectangle(earnedPointsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earnedPointsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
+
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "usernameEarnings", "You earned:" + "\n" + "$" + earnedPoints, earnedPointsRectangleBounds);
 
         //draw user earnings label
-        Vector2 usernameEarningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 55);
+        Vector2 usernameEarningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 85);
         Rectangle usernameEarningsRectangleBounds = new Rectangle(usernameEarningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, usernameEarningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "usernameEarnings", Constants.MENU_SCREEN_NAME + "'s Earnings:", usernameEarningsRectangleBounds);
 
         //draw user earnings
-        Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 95);
+        Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 115);
         Rectangle earningsRectangleBounds = new Rectangle(earningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
 
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
@@ -124,14 +145,28 @@ public class VictoryScreen extends InputAdapter implements Screen {
 
         if(!isReturnToMenuButtonHovered){
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.returnToMenuButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 4.8f), Constants.H_RTM_BUTTON_CENTER);
+            if(returnToMenuHoverTime > 0){
+                returnToMenuHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.returnToMenuButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 4.8f), Constants.H_RTM_BUTTON_BIG_CENTER);
+            if(returnToMenuHoverTime == 0){
+                returnToMenuHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         if(!isHighScoresButtonHovered){
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.highScoresButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 8), Constants.H_RTM_BUTTON_CENTER);
+            if(highScoresHoverTime > 0){
+                highScoresHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.highScoresButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 8), Constants.H_RTM_BUTTON_BIG_CENTER);
+            if(highScoresHoverTime == 0){
+                highScoresHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         batch.end();
@@ -150,7 +185,13 @@ public class VictoryScreen extends InputAdapter implements Screen {
         Rectangle highScoresButtonBoundingBox = new Rectangle(highScoresButtonCenter.x - Constants.H_RTM_BUTTON_WIDTH / 2, highScoresButtonCenter.y - Constants.H_RTM_BUTTON_HEIGHT / 2, Constants.H_RTM_BUTTON_WIDTH, Constants.H_RTM_BUTTON_HEIGHT);
 
         if(returnToMenuButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showMainMenuScreen();
+        }
+
+        if(highScoresButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
+            programmerGame.showHighScoresScreen();
         }
 
         return true;

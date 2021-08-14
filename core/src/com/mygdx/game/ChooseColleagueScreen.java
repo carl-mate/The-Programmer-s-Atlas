@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import util.Assets;
@@ -30,6 +31,12 @@ public class ChooseColleagueScreen extends InputAdapter implements Screen {
     private boolean isMikhailaHovered;
     private boolean isNickHovered;
 
+    private long clementHoverTime;
+    private long gennadyHoverTime;
+    private long michelleHoverTime;
+    private long mikhailaHoverTime;
+    private long nickHoverTime;
+
 
     public ChooseColleagueScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
@@ -45,6 +52,7 @@ public class ChooseColleagueScreen extends InputAdapter implements Screen {
     }
     @Override
     public void show() {
+        Assets.instance.soundClass.chooseColleagueSound.play();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -69,35 +77,70 @@ public class ChooseColleagueScreen extends InputAdapter implements Screen {
         //not hovered states
         if(!isClementHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.clementColleague, new Vector2(viewport.getCamera().viewportWidth / 2f + (Constants.COLLEAGUE_WIDTH + 10 * 2) * 2, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_CENTER);
+            if(clementHoverTime > 0){
+                clementHoverTime = 0;
+            }
         }
         if(!isGennadyHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.gennadyColleague, new Vector2(viewport.getCamera().viewportWidth / 2f + Constants.COLLEAGUE_WIDTH + 20, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_CENTER);
+            if(gennadyHoverTime > 0){
+                gennadyHoverTime = 0;
+            }
         }
         if(!isMichelleHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.michelleColleague, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_CENTER);
+            if(michelleHoverTime > 0){
+                michelleHoverTime = 0;
+            }
         }
         if(!isMikhailaHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.mikhailaColleague, new Vector2(viewport.getCamera().viewportWidth / 2f - Constants.COLLEAGUE_WIDTH - 20, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_CENTER);
+            if(mikhailaHoverTime > 0){
+                mikhailaHoverTime = 0;
+            }
         }
         if(!isNickHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.nickColleague, new Vector2(viewport.getCamera().viewportWidth / 2f - (Constants.COLLEAGUE_WIDTH + 10 * 2) * 2, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_CENTER);
+            if(nickHoverTime > 0){
+                nickHoverTime = 0;
+            }
         }
 
         //hovered states
         if(isClementHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.clementColleagueBig, new Vector2(viewport.getCamera().viewportWidth / 2f + (Constants.COLLEAGUE_WIDTH + 10 * 2) * 2, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_BIG_CENTER);
+            if(clementHoverTime == 0){
+                clementHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverOneSound.play();
+            }
         }
         if(isGennadyHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.gennadyColleagueBig, new Vector2(viewport.getCamera().viewportWidth / 2f + Constants.COLLEAGUE_WIDTH + 20, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_BIG_CENTER);
+            if(gennadyHoverTime == 0){
+                gennadyHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverOneSound.play();
+            }
         }
         if(isMichelleHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.michelleColleagueBig, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_BIG_CENTER);
+            if(michelleHoverTime == 0){
+                michelleHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverOneSound.play();
+            }
         }
         if(isMikhailaHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.mikhailaColleagueBig, new Vector2(viewport.getCamera().viewportWidth / 2f - Constants.COLLEAGUE_WIDTH - 20, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_BIG_CENTER);
+            if(mikhailaHoverTime == 0){
+                mikhailaHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverOneSound.play();
+            }
         }
         if(isNickHovered){
             Util.drawTextureRegion(batch, Assets.instance.chooseColleagueScreenAssets.nickColleagueBig, new Vector2(viewport.getCamera().viewportWidth / 2f - (Constants.COLLEAGUE_WIDTH + 10 * 2) * 2, viewport.getCamera().viewportHeight / 2), Constants.COLLEAGUE_BIG_CENTER);
+            if(nickHoverTime == 0){
+                nickHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverOneSound.play();
+            }
         }
 
 
@@ -136,26 +179,31 @@ public class ChooseColleagueScreen extends InputAdapter implements Screen {
 
         if(clementButtonBoundingBox.contains(worldTouch)){
             programmerGame.setColleague(Colleague.CLEMENT);
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showDifficultyScreen();
         }
 
         if(gennadyButtonBoundingBox.contains(worldTouch)){
             programmerGame.setColleague(Colleague.GENNADY);
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showDifficultyScreen();
         }
 
         if(michelleButtonBoundingBox.contains(worldTouch)){
             programmerGame.setColleague(Colleague.MICHELLE);
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showDifficultyScreen();
         }
 
         if(mikhailaButtonBoundingBox.contains(worldTouch)){
             programmerGame.setColleague(Colleague.MIKHAILA);
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showDifficultyScreen();
         }
 
         if(nickButtonBoundingBox.contains(worldTouch)){
             programmerGame.setColleague(Colleague.NICK);
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showDifficultyScreen();
         }
         return true;

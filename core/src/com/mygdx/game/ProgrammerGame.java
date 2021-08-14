@@ -4,15 +4,19 @@ import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.utils.TimeUtils;
 
 import entity.ImportantFigure;
 import util.Assets;
 import util.Enums;
 import util.Enums.Colleague;
 import util.Enums.Difficulty;
+import util.Util;
 
 public class ProgrammerGame extends Game {
 
@@ -35,16 +39,30 @@ public class ProgrammerGame extends Game {
 	private boolean usedAColleagueLifeline;
 	private boolean usedCallAFamilyMember;
 
+	private Music musicTheme;
+	private Music gameplayMusic;
+
+	private boolean musicOn;
+	private boolean hasNotPlayedYet;
+
+	private final long greetingStartTime;
+
+	public ProgrammerGame(){
+		greetingStartTime = TimeUtils.nanoTime();
+		hasNotPlayedYet = true;
+	}
+
 
 	@Override
 	public void create() {
 		am = new AssetManager();
 		Assets.instance.init(am);
 		batch = new SpriteBatch();
-//		initQuestions();
-//		initScreens();
-//		initVariables();
+		musicTheme = Assets.instance.musicClass.theme;
+		gameplayMusic = Assets.instance.musicClass.gameplayMusic;
+		musicOn = true;
 		showMainMenuScreen();
+		Assets.instance.soundClass.greetingsSound.play();
 	}
 
 	@Override
@@ -57,8 +75,48 @@ public class ProgrammerGame extends Game {
 		initQuestions();
 		initScreens();
 		initVariables();
+		setGameplayScreenMusicOff();
 		setScreen(new MainMenuScreen(this, this.batch));
+
+		if(musicOn){
+			setMenuScreenMusicOn();
+		} else{
+			setMenuScreenMusicPause();
+		}
+
 	}
+
+	public void showOptionsScreen(){
+		setScreen(new OptionsScreen(this, this.batch));
+	}
+
+	public void setMenuScreenMusicOn(){
+		musicTheme.setLooping(true);
+		musicTheme.setVolume(0.3f);
+		musicTheme.play();
+	}
+
+	public void setMenuScreenMusicOff(){
+		musicTheme.stop();
+	}
+
+	public void setMenuScreenMusicPause(){
+		musicTheme.pause();
+	}
+
+	public void setGameplayScreenMusicOn(){
+		gameplayMusic.setLooping(true);
+		gameplayMusic.play();
+	}
+
+	public void setGameplayScreenMusicOff(){
+		gameplayMusic.stop();
+	}
+
+	public void setGameplayScreenMusicPause(){
+		gameplayMusic.pause();
+	}
+
 
 	public void showHowToPlayScreen(){
 		setScreen(new HowToPlayScreen(this, this.batch));
@@ -68,26 +126,48 @@ public class ProgrammerGame extends Game {
 		setScreen(new ChooseColleagueScreen(this, this.batch));
 	}
 
-	public void showDifficultyScreen(){ setScreen(difficultyScreen);}
+	public void showDifficultyScreen(){
+		setGameplayScreenMusicOff();
+		setScreen(difficultyScreen);
+		if(musicOn){
+			setMenuScreenMusicOn();
+		} else{
+			setMenuScreenMusicPause();
+		}
+	}
 
 	public void showGameplayScreen(Difficulty difficulty){
+		setMenuScreenMusicOff();
 		this.difficulty = difficulty;
 		setScreen(new GameplayScreen(this, this.batch));
+
+		if(musicOn){
+			setGameplayScreenMusicOn();
+		} else{
+			setGameplayScreenMusicPause();
+		}
 	}
 
 	public void showGameOverScreen(){
+		setGameplayScreenMusicOff();
+		Assets.instance.soundClass.gameOverSound.play();
 		setScreen(new GameOverScreen(this, this.batch));
 	}
 
 	public void showHighScoresScreen(){
+		setGameplayScreenMusicOff();
 		setScreen(new HighScoresScreen(this, this.batch));
 	}
 
 	public void showCorrectAnswerScreen(){
+		setGameplayScreenMusicOff();
+		Assets.instance.soundClass.correctAnswerSound.play();
 		setScreen(new CorrectAnswerScreen(this, this.batch));
 	}
 
 	public void showJigsawScreen(){
+		setGameplayScreenMusicOff();
+		setMenuScreenMusicOff();
 		jigsawScreen.setClue(++noOfclues);
 		setScreen(jigsawScreen);
 	}
@@ -96,8 +176,11 @@ public class ProgrammerGame extends Game {
 		setScreen(new JigsawGuessResultScreen(this, this.batch, isGuessCorrect, importantFigureBiography));
 	}
 
-	public void showVictoryScreen(){
-		setScreen(new VictoryScreen(this, this.batch));
+	public void showVictoryScreen(boolean victory){
+		setGameplayScreenMusicOff();
+		setMenuScreenMusicOff();
+		Assets.instance.soundClass.victorySound.play();
+		setScreen(new VictoryScreen(this, this.batch, victory));
 	}
 
 
@@ -236,5 +319,17 @@ public class ProgrammerGame extends Game {
 
 	public Object getMysteryQuestion(){
 		return this.questions.getMysteryQuestion();
+	}
+
+	public boolean getMusicOn(){
+		return this.musicOn;
+	}
+
+	public void setMusicOnOrOff(){
+		if(musicOn){
+			musicOn = false;
+		} else{
+			musicOn = true;
+		}
 	}
 }

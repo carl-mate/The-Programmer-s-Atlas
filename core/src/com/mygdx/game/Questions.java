@@ -89,7 +89,7 @@ public class Questions {
             return theoreticalQArrayList.get(rand.nextInt(theoreticalQArrayList.size()));
 
         } else if(pick == 1){ //ProgrammingQ
-            return programmingQArrayList.get(rand.nextInt(theoreticalQArrayList.size()));
+            return programmingQArrayList.get(rand.nextInt(programmingQArrayList.size()));
         }
 
         return null;

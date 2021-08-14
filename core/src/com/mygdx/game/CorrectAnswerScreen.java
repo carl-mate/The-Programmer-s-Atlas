@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.util.ArrayList;
@@ -26,11 +27,14 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
     private Vector2 continueButtonCenter;
     private Rectangle continueButtonBoundingBox;
 
+    private int earnedPoints;
     private int previousScore;
     private int currentScore;
     private int increment;
 
     private boolean isContinueButtonHovered;
+    private long continueButtonHoverTime;
+    private long coinsSoundTime;
 
     private float time;
 
@@ -45,14 +49,17 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
          *    currentScore <= 100000, then increment by 1000
          *    currentScore <= 1000000+, then increment by 10000
          */
-        if(currentScore <= 9999){
+        earnedPoints = currentScore - previousScore;
+        if(earnedPoints <= 1000){
             increment = 10;
-        } else if(currentScore <= 99999){
+        } else if(earnedPoints <= 10000){
             increment = 100;
-        } else if(currentScore <= 999999){
+        } else if(earnedPoints <= 100000){
             increment = 1000;
-        } else{
+        } else if(earnedPoints <= 1000000){
             increment = 10000;
+        } else{
+            increment = 100000;
         }
         camera = new OrthographicCamera(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT);
         viewport = new ExtendViewport(Constants.WORLD_SIZE_WIDTH, Constants.WORLD_SIZE_HEIGHT, camera);
@@ -99,32 +106,35 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.correctAnswerBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.GAMEOVER_BG_CENTER);
 
         //draw praise
-        Vector2 praiseCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f);
+        Vector2 praiseCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f + 20);
         Rectangle praiseRectangleBounds = new Rectangle(praiseCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, praiseCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "praise", praise.get(0), praiseRectangleBounds);
 
+        //draw earned points
+        Vector2 earnedPointsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 25);
+        Rectangle earnedPointsRectangleBounds = new Rectangle(earnedPointsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earnedPointsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
+
+        Assets.instance.font.drawSourceCodeProBoldFont(batch, "usernameEarnings", "You earned:" + "\n" + "$" + earnedPoints, earnedPointsRectangleBounds);
+
         //draw user earnings label
-        Vector2 usernameEarningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 50);
+        Vector2 usernameEarningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 70);
         Rectangle usernameEarningsRectangleBounds = new Rectangle(usernameEarningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, usernameEarningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "usernameEarnings", Constants.MENU_SCREEN_NAME + "'s Earnings:", usernameEarningsRectangleBounds);
 
         //draw user earnings
-        Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 95);
+        Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 100);
         Rectangle earningsRectangleBounds = new Rectangle(earningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
-
-        //EDIT THIS
-//        if(previousScore+increment <= currentScore){
-//            previousScore += increment;
-//            Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
-//        } else{
-//            Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
-//        }
 
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "earnings", "$" + previousScore, earningsRectangleBounds);
         time += delta;
         if(time >= Constants.SCORE_DELAY){
             if(previousScore < currentScore){
                 previousScore += increment;
+                if(coinsSoundTime == 0){
+                    coinsSoundTime = TimeUtils.nanoTime();
+                    Assets.instance.soundClass.coinsSound.play();
+                }
+
             }
             time -= Constants.SCORE_DELAY;
 
@@ -140,8 +150,15 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         if(!isContinueButtonHovered){
             //continue button
             Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_CENTER);
+            if(continueButtonHoverTime > 0){
+                continueButtonHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 160), Constants.CONTINUE_BUTTON_BIG_CENTER);
+            if(continueButtonHoverTime == 0){
+                continueButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
         batch.end();
     }
@@ -157,6 +174,7 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
 
         if(continueButtonBoundingBox.contains(worldTouch)){
             //update the previous score
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.setPreviousScore(this.currentScore);
             programmerGame.showJigsawScreen();
         }

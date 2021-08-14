@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.util.ArrayList;
@@ -45,6 +46,9 @@ public class HighScoresScreen extends InputAdapter implements Screen {
 
     private final Vector2 highScoreFontFiveCenter;
     private final Rectangle highScoreFontFiveRectangleBounds;
+
+    private long clearDataHoverTime;
+    private long returnToMenuHoverTime;
 
     public HighScoresScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
@@ -141,14 +145,28 @@ public class HighScoresScreen extends InputAdapter implements Screen {
 
         if(!isReturnToMenuButtonHovered){
             Util.drawTextureRegion(batch, Assets.instance.highScoresScreenAssets.returnToMenuButtonWhite, new Vector2(viewport.getCamera().viewportWidth / 2 + 120, viewport.getCamera().viewportHeight / 2 - 220), Constants.CD_RTM_BUTTON_CENTER);
+            if(returnToMenuHoverTime > 0){
+                returnToMenuHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.highScoresScreenAssets.returnToMenuButtonWhiteBig, new Vector2(viewport.getCamera().viewportWidth / 2 + 120, viewport.getCamera().viewportHeight / 2 - 220), Constants.CD_RTM_BUTTON_BIG_CENTER);
+            if(returnToMenuHoverTime == 0){
+                returnToMenuHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         if(!isClearDataButtonHovered){
             Util.drawTextureRegion(batch, Assets.instance.highScoresScreenAssets.clearDataButton, new Vector2(viewport.getCamera().viewportWidth / 2 - 120, viewport.getCamera().viewportHeight / 2 - 220), Constants.CD_RTM_BUTTON_CENTER);
+            if(clearDataHoverTime > 0){
+                clearDataHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.highScoresScreenAssets.clearDataButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2 - 120, viewport.getCamera().viewportHeight / 2 - 220), Constants.CD_RTM_BUTTON_BIG_CENTER);
+            if(clearDataHoverTime == 0){
+                clearDataHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
         batch.end();
     }
@@ -164,12 +182,14 @@ public class HighScoresScreen extends InputAdapter implements Screen {
         Rectangle clearDataButtonRectangleBounds = new Rectangle(clearDataButtonCenter.x - Constants.CD_RTM_BUTTON_WIDTH / 2, clearDataButtonCenter.y - Constants.CD_RTM_BUTTON_HEIGHT / 2, Constants.CD_RTM_BUTTON_WIDTH, Constants.CD_RTM_BUTTON_HEIGHT);
 
         if(returnToMenuButtonRectangleBounds.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             Constants.preferences.putString("user", Constants.MENU_SCREEN_NAME);
             Constants.preferences.flush();
             programmerGame.showMainMenuScreen();
         }
 
         if(clearDataButtonRectangleBounds.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             this.totalUsers.clear();
             Constants.preferences.clear();
             Constants.preferences.flush();

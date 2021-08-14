@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import util.Assets;
@@ -29,6 +30,8 @@ public class GameOverScreen extends InputAdapter implements Screen {
     private Vector2 highScoresButtonCenter;
     private Rectangle highScoresButtonBoundingBox;
 
+    private long returnToMenuHoverTime;
+    private long highScoresHoverTime;
 
     public GameOverScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
@@ -65,12 +68,12 @@ public class GameOverScreen extends InputAdapter implements Screen {
         Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.gameOverBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.GAMEOVER_BG_CENTER);
 
         //draw user earnings label
-        Vector2 usernameEarningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 55);
+        Vector2 usernameEarningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 70);
         Rectangle usernameEarningsRectangleBounds = new Rectangle(usernameEarningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, usernameEarningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
         Assets.instance.font.drawSourceCodeProBoldFont(batch, "usernameEarnings", Constants.MENU_SCREEN_NAME + "'s Earnings:", usernameEarningsRectangleBounds);
 
         //draw user earnings
-        Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 95);
+        Vector2 earningsCenter = new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 2f - 100);
         Rectangle earningsRectangleBounds = new Rectangle(earningsCenter.x - Constants.GAMEOVER_BG_WIDTH / 2, earningsCenter.y - Constants.GAMEOVER_BG_HEIGHT / 2, Constants.GAMEOVER_BG_WIDTH, Constants.GAMEOVER_BG_HEIGHT);
 
         //get the index of the latest user
@@ -86,14 +89,28 @@ public class GameOverScreen extends InputAdapter implements Screen {
 
         if(!isReturnToMenuButtonHovered){
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.returnToMenuButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 4.8f), Constants.H_RTM_BUTTON_CENTER);
+            if(returnToMenuHoverTime > 0){
+                returnToMenuHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.returnToMenuButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 4.8f), Constants.H_RTM_BUTTON_BIG_CENTER);
+            if(returnToMenuHoverTime == 0){
+                returnToMenuHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         if(!isHighScoresButtonHovered){
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.highScoresButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 8), Constants.H_RTM_BUTTON_CENTER);
+            if(highScoresHoverTime > 0){
+                highScoresHoverTime = 0;
+            }
         } else{
             Util.drawTextureRegion(batch, Assets.instance.gameOverScreenAssets.highScoresButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 8), Constants.H_RTM_BUTTON_BIG_CENTER);
+            if(highScoresHoverTime == 0){
+                highScoresHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         batch.end();
@@ -117,10 +134,12 @@ public class GameOverScreen extends InputAdapter implements Screen {
         Rectangle highScoresButtonBoundingBox = new Rectangle(highScoresButtonCenter.x - Constants.H_RTM_BUTTON_WIDTH / 2, highScoresButtonCenter.y - Constants.H_RTM_BUTTON_HEIGHT / 2, Constants.H_RTM_BUTTON_WIDTH, Constants.H_RTM_BUTTON_HEIGHT);
 
         if(returnToMenuButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showMainMenuScreen();
         }
 
         if(highScoresButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showHighScoresScreen();
         }
 

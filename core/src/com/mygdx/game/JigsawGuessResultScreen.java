@@ -28,6 +28,7 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
 
     private boolean isContinueButtonHovered;
     private int isContinueButtonPressed;
+    private long continueButtonHoverTime;
 
     private int userCounter;
 
@@ -43,6 +44,21 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
+        Assets.instance.soundClass.clappingSound.play();
+        programmerGame.setPreviousScore(programmerGame.getPreviousScore());
+        programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
+        //store the scores
+        while(true){
+            if(!Constants.preferences.contains("user-"+userCounter)){
+                Constants.preferences.putString("user-"+userCounter, Constants.MENU_SCREEN_NAME);
+                Constants.preferences.putInteger("score-"+userCounter, programmerGame.getCurrentScore());
+                break;
+            } else{
+                userCounter++;
+            }
+        }
+        Constants.preferences.putInteger("userCounter", userCounter);
+        Constants.preferences.flush();
         Gdx.input.setInputProcessor(this);
     }
 
@@ -72,43 +88,53 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
                 Util.drawTextureRegion(batch, importantFigureBiography, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.IMPORTANT_FIGURE_BIOGRAPHY_CENTER);
                 if(!isContinueButtonHovered){
                     Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_CENTER);
+                    if(continueButtonHoverTime > 0){
+                        continueButtonHoverTime = 0;
+                    }
                 } else{
                     Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_BIG_CENTER);
+                    if(continueButtonHoverTime == 0){
+                        continueButtonHoverTime = TimeUtils.nanoTime();
+                        Assets.instance.soundClass.buttonHoverSound.play();
+                    }
                 }
             } else if(isContinueButtonPressed == 1){
                 Util.drawTextureRegion(batch, Assets.instance.jigsawGuessResultScreenAssets.correctGuessBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
                 if(!isContinueButtonHovered){
-                    //continue button
-                    Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_CENTER);
+                    Util.drawTextureRegion(batch, Assets.instance.jigsawScreenAssets.continueButtonWhite, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_CENTER);
+                    if(continueButtonHoverTime > 0){
+                        continueButtonHoverTime = 0;
+                    }
                 } else{
-                    Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_BIG_CENTER);
-                }
-            } else if(isContinueButtonPressed == 2){
-                programmerGame.setPreviousScore(programmerGame.getPreviousScore());
-                programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
-                //store the scores
-                while(true){
-                    if(!Constants.preferences.contains("user-"+userCounter)){
-                        Constants.preferences.putString("user-"+userCounter, Constants.MENU_SCREEN_NAME);
-                        Constants.preferences.putInteger("score-"+userCounter, programmerGame.getCurrentScore());
-                        break;
-                    } else{
-                        userCounter++;
+                    Util.drawTextureRegion(batch, Assets.instance.jigsawScreenAssets.continueButtonWhiteBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_BIG_CENTER);
+                    if(continueButtonHoverTime == 0){
+                        continueButtonHoverTime = TimeUtils.nanoTime();
+                        Assets.instance.soundClass.buttonHoverSound.play();
                     }
                 }
-                Constants.preferences.putInteger("userCounter", userCounter);
-                Constants.preferences.flush();
-                programmerGame.showVictoryScreen();
+            } else if(isContinueButtonPressed == 2){
+                programmerGame.showVictoryScreen(true);
             }
 
         } else{
-            Util.drawTextureRegion(batch, Assets.instance.jigsawGuessResultScreenAssets.incorrectGuessBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
-
-            if(!isContinueButtonHovered){
-                //continue button
-                Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButton, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_CENTER);
-            } else{
-                Util.drawTextureRegion(batch, Assets.instance.correctAnswerScreenAssets.continueButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_BIG_CENTER);
+            if(isContinueButtonPressed == 0){
+                Util.drawTextureRegion(batch, Assets.instance.jigsawGuessResultScreenAssets.normalBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+                Util.drawTextureRegion(batch, Assets.instance.jigsawGuessResultScreenAssets.incorrectGuessBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
+                //TODO
+                if(!isContinueButtonHovered){
+                    Util.drawTextureRegion(batch, Assets.instance.jigsawScreenAssets.continueButtonWhite, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_CENTER);
+                    if(continueButtonHoverTime > 0){
+                        continueButtonHoverTime = 0;
+                    }
+                } else{
+                    Util.drawTextureRegion(batch, Assets.instance.jigsawScreenAssets.continueButtonWhiteBig, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2f - 220), Constants.CONTINUE_BUTTON_WHITE_BIG_CENTER);
+                    if(continueButtonHoverTime == 0){
+                        continueButtonHoverTime = TimeUtils.nanoTime();
+                        Assets.instance.soundClass.buttonHoverSound.play();
+                    }
+                }
+            } else if(isContinueButtonPressed == 1){
+                programmerGame.showVictoryScreen(false);
             }
         }
         batch.end();
@@ -124,6 +150,7 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
 
         if(continueButtonBoundingBox.contains(worldTouch)){
             Gdx.app.log(TAG, "TOUCHED CONTINUE BUTTON");
+            Assets.instance.soundClass.buttonClickSound.play();
             isContinueButtonPressed++;
         }
 

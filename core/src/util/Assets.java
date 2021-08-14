@@ -5,6 +5,8 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
@@ -52,6 +54,9 @@ public class Assets implements Disposable, AssetErrorListener {
     public JigsawScreenAssets jigsawScreenAssets;
     public JigsawGuessResultScreenAssets jigsawGuessResultScreenAssets;
     public HighScoresScreenAssets highScoresScreenAssets;
+    public MusicClass musicClass;
+    public SoundClass soundClass;
+    public OptionsScreenAssets optionsScreenAssets;
 
     private AssetManager assetManager;
 
@@ -79,6 +84,9 @@ public class Assets implements Disposable, AssetErrorListener {
         jigsawScreenAssets = new JigsawScreenAssets(atlas);
         highScoresScreenAssets = new HighScoresScreenAssets(atlas);
         jigsawGuessResultScreenAssets = new JigsawGuessResultScreenAssets(atlas);
+        optionsScreenAssets = new OptionsScreenAssets(atlas);
+        musicClass = new MusicClass();
+        soundClass = new SoundClass();
     }
 
     @Override
@@ -93,6 +101,68 @@ public class Assets implements Disposable, AssetErrorListener {
 
     public void initResourcesFilePath(){
         resourcesFilePath = new ResourcesFilePath();
+    }
+
+    public class MusicClass{
+        public final Music theme;
+        public final Music gameplayMusic;
+        public MusicClass(){
+            theme = Gdx.audio.newMusic(Gdx.files.internal("music/game_theme.mp3"));
+            gameplayMusic = Gdx.audio.newMusic(Gdx.files.internal("music/gameplay_music.mp3"));
+        }
+    }
+
+    public class SoundClass{
+        public final Sound buttonHoverSound;
+        public final Sound buttonHoverOneSound;
+        public final Sound buttonHoverTwoSound;
+        public final Sound buttonClickSound;
+        public final Sound correctAnswerSound;
+        public final Sound victorySound;
+        public final Sound gameOverSound;
+        public final Sound coinsSound;
+        public final Sound clappingSound;
+        public final Sound greetingsSound;
+        public final Sound chooseColleagueSound;
+        public final Sound pickAQuestionSound;
+        public final Sound enterUsernameSound;
+        public final Sound googleHoverSound;
+        public final Sound colleagueHoverSound;
+        public final Sound familyMemberHoverSound;
+        public final Sound lifelineClickedSound;
+
+        public SoundClass(){
+            buttonHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/button_hover.mp3"));
+            buttonClickSound = Gdx.audio.newSound(Gdx.files.internal("sounds/button_click.mp3"));
+            buttonHoverOneSound = Gdx.audio.newSound(Gdx.files.internal("sounds/button_hover_1.mp3"));
+            buttonHoverTwoSound = Gdx.audio.newSound(Gdx.files.internal("sounds/button_hover_2.mp3"));
+            correctAnswerSound = Gdx.audio.newSound(Gdx.files.internal("sounds/correctanswer.mp3"));
+            victorySound = Gdx.audio.newSound(Gdx.files.internal("sounds/victory-sound-effect.mp3"));
+            gameOverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/gameover_sound.mp3"));
+            coinsSound = Gdx.audio.newSound(Gdx.files.internal("sounds/coins_sound.mp3"));
+            clappingSound = Gdx.audio.newSound(Gdx.files.internal("sounds/audience_clapping.mp3"));
+            greetingsSound = Gdx.audio.newSound(Gdx.files.internal("sounds/greetings_sound.mp3"));
+            chooseColleagueSound = Gdx.audio.newSound(Gdx.files.internal("sounds/choosecolleague_sound.mp3"));
+            pickAQuestionSound = Gdx.audio.newSound(Gdx.files.internal("sounds/pickaquestion_sound.mp3"));
+            enterUsernameSound = Gdx.audio.newSound(Gdx.files.internal("sounds/enterusername_sound.mp3"));
+            googleHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/google_hover.wav"));
+            colleagueHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/askcolleague_sound.mp3"));
+            familyMemberHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/callfamilymember_sound.mp3"));
+            lifelineClickedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/lifelineclicked.mp3"));
+        }
+    }
+
+    public class OptionsScreenAssets{
+        public final TextureAtlas.AtlasRegion musicOn;
+        public final TextureAtlas.AtlasRegion musicOff;
+        public final TextureAtlas.AtlasRegion normalBG;
+
+        public OptionsScreenAssets(TextureAtlas atlas){
+            musicOn = atlas.findRegion(Constants.MUSIC_ON);
+            musicOff = atlas.findRegion(Constants.MUSIC_OFF);
+            normalBG = atlas.findRegion(Constants.NORMAL_BG);
+
+        }
     }
 
     public class ImportantFigureAssets{
@@ -219,6 +289,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
         private ExtendViewport viewport;
         public FreeTypeFontGenerator sourceCodeProBoldFontGenerator;
+        public FreeTypeFontGenerator sourceCodeProFontGenerator;
         public final FreeTypeFontGenerator.FreeTypeFontParameter questionFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter choicesFontParameter;
         public final FreeTypeFontGenerator.FreeTypeFontParameter usernameFontParameter;
@@ -247,6 +318,7 @@ public class Assets implements Disposable, AssetErrorListener {
 
         public Font(){
             sourceCodeProBoldFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("SourceCodeProBold.ttf"));
+            sourceCodeProFontGenerator = new FreeTypeFontGenerator(Gdx.files.internal("SourceCodePro.ttf"));
 
             //font parameters
             usernameFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -257,12 +329,12 @@ public class Assets implements Disposable, AssetErrorListener {
             questionFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             questionFontParameter.size = 15;
             questionFontParameter.color = Color.BLACK;
-            questionFont = sourceCodeProBoldFontGenerator.generateFont(questionFontParameter);
+            questionFont = sourceCodeProFontGenerator.generateFont(questionFontParameter);
 
             choicesFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             choicesFontParameter.size = 12;
             choicesFontParameter.color = Color.BLACK;
-            choicesFont = sourceCodeProBoldFontGenerator.generateFont(choicesFontParameter);
+            choicesFont = sourceCodeProFontGenerator.generateFont(choicesFontParameter);
 
             usernameEarningsFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
             usernameEarningsFontParameter .size = 20;
@@ -275,7 +347,7 @@ public class Assets implements Disposable, AssetErrorListener {
             praiseFont = sourceCodeProBoldFontGenerator.generateFont(praiseFontParameter);
 
             earningsFontParameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-            earningsFontParameter.size = 40;
+            earningsFontParameter.size = 30;
             earningsFontParameter.color = Color.BLACK;
             earningsFont = sourceCodeProBoldFontGenerator.generateFont(earningsFontParameter);
 
@@ -339,7 +411,7 @@ public class Assets implements Disposable, AssetErrorListener {
                     drawCentered(instructionFont, batch, text, bounds);
                     break;
                 case "topic":
-                    drawCentered(topicFont, batch, text, bounds);
+                    drawLeftAligned(topicFont, batch, text, bounds);
                     break;
                 case "importantFigureNameClue":
                     drawCentered(importantFigureNameClueFont, batch, text, bounds);
@@ -621,11 +693,13 @@ public class Assets implements Disposable, AssetErrorListener {
         public final TextureAtlas.AtlasRegion continueButton;
         public final TextureAtlas.AtlasRegion continueButtonBig;
 
+
         public CorrectAnswerScreenAssets(TextureAtlas atlas){
             normalBG = atlas.findRegion(Constants.NORMAL_BG);
             correctAnswerBG = atlas.findRegion(Constants.CORRECTANSWER_BG);
             continueButton = atlas.findRegion(Constants.CONTINUE_BUTTON);
             continueButtonBig = atlas.findRegion(Constants.CONTINUE_BUTTON_BIG);
+
         }
     }
 
@@ -650,11 +724,14 @@ public class Assets implements Disposable, AssetErrorListener {
     public class JigsawScreenAssets{
         public final TextureAtlas.AtlasRegion confirmButton;
         public final TextureAtlas.AtlasRegion confirmButtonBig;
-
+        public final TextureAtlas.AtlasRegion continueButtonWhite;
+        public final TextureAtlas.AtlasRegion continueButtonWhiteBig;
 
         public JigsawScreenAssets(TextureAtlas atlas){
             confirmButton = atlas.findRegion(Constants.CONFIRM_BUTTON);
             confirmButtonBig = atlas.findRegion(Constants.CONFIRM_BUTTON_BIG);
+            continueButtonWhite = atlas.findRegion(Constants.CONTINUE_BUTTON_WHITE);
+            continueButtonWhiteBig = atlas.findRegion(Constants.CONTINUE_BUTTON_WHITE_BIG);
         }
     }
 

@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 
 import java.awt.image.VolatileImage;
@@ -32,6 +33,10 @@ public class MainMenuScreen extends InputAdapter implements Screen {
     private boolean isPlayButtonHovered;
     private boolean isOptionsButtonHovered;
     private boolean isHowToPlayButtonHovered;
+
+    private long playButtonHoverTime;
+    private long optionsButtonHoverTime;
+    private long howToPlayButtonHoverTime;
 
     public MainMenuScreen(ProgrammerGame programmerGame, SpriteBatch batch){
         this.programmerGame = programmerGame;
@@ -94,30 +99,51 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         if(!isPlayButtonHovered){
             //playButton
             Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.playButton, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+            if(playButtonHoverTime > 0){
+                playButtonHoverTime = 0;
+            }
         }
         if(!isOptionsButtonHovered){
             //optionsButton
             Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.optionsButton, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+            if(optionsButtonHoverTime > 0){
+                optionsButtonHoverTime = 0;
+            }
         }
         if(!isHowToPlayButtonHovered){
             //howToPlayButton
             Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.howToPlayButton, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_CENTER);
+            if(howToPlayButtonHoverTime > 0){
+                howToPlayButtonHoverTime = 0;
+            }
         }
 
         //hovered states
         if(isPlayButtonHovered){
             //playButton
             Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.playButtonBig, new Vector2(viewport.getCamera().viewportWidth / 3f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_BIG_CENTER);
+            if(playButtonHoverTime == 0){
+                playButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         if(isOptionsButtonHovered){
             //optionsButton
             Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.optionsButtonBig, new Vector2(viewport.getCamera().viewportWidth / 2f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_BIG_CENTER);
+            if(optionsButtonHoverTime == 0){
+                optionsButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
         if(isHowToPlayButtonHovered){
             //howToPlayButton
             Util.drawTextureRegion(batch, Assets.instance.mainMenuAssets.howToPlayButtonBig, new Vector2(viewport.getCamera().viewportWidth / 1.5f, viewport.getCamera().viewportHeight / 10), Constants.MAIN_MENU_BUTTON_BIG_CENTER);
+            if(howToPlayButtonHoverTime == 0){
+                howToPlayButtonHoverTime = TimeUtils.nanoTime();
+                Assets.instance.soundClass.buttonHoverSound.play();
+            }
         }
 
 
@@ -185,15 +211,20 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         if(playButtonBoundingBox.contains(worldTouch)){
             if(Constants.MENU_SCREEN_NAME != null){
                 Gdx.app.log(TAG, "CLICKED PLAY");
+                Assets.instance.soundClass.buttonClickSound.play();
                 programmerGame.showChooseColleagueScreen();
+            } else{
+                Assets.instance.soundClass.enterUsernameSound.play();
             }
         }
 
-//        if(optionsButtonBoundingBox.contains(worldTouch)){
-//            hackerGame.showOptionsScreen();
-//        }
-//
+        if(optionsButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
+            programmerGame.showOptionsScreen();
+        }
+
         if(howToPlayButtonBoundingBox.contains(worldTouch)){
+            Assets.instance.soundClass.buttonClickSound.play();
             programmerGame.showHowToPlayScreen();
         }
 
