@@ -675,6 +675,19 @@ public class GameplayScreen extends InputAdapter implements Screen {
                 difficulty == Difficulty.THEORETICAL_HARD || difficulty == Difficulty.THEORETICAL_VERY_HARD) {
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "topic", topic, this.topicRectangleBounds);
         } else{
+            Vector2 topicPosition = new Vector2(viewport.getCamera().viewportWidth / 2 - 400, viewport.getCamera().viewportHeight / 1.15f);
+            if(topic.equals("C++")){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.cppTopic, topicPosition, Constants.TOPIC_CENTER);
+            }
+            if(topic.equals("C")){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.cTopic, topicPosition, Constants.TOPIC_CENTER);
+            }
+            if(topic.equals("JAVA")){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.javaTopic, topicPosition, Constants.TOPIC_CENTER);
+            }
+            if(topic.equals("PYTHON")){
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.pythonTopic, this.topicCenter, Constants.TOPIC_CENTER);
+            }
 
         }
     }

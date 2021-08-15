@@ -205,13 +205,6 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-Untitled design
-  rotate: false
-  xy: 849, 61
-  size: 125, 125
-  orig: 125, 125
-  offset: 0, 0
-  index: -1
 askGoogle-lifeline-110
   rotate: false
   xy: 778, 412
@@ -224,13 +217,6 @@ askMichelle-lifeline-big
   xy: 564, 14
   size: 66, 66
   orig: 66, 66
-  offset: 0, 0
-  index: -1
-bailOut-button
-  rotate: false
-  xy: 849, 14
-  size: 148, 45
-  orig: 148, 45
   offset: 0, 0
   index: -1
 bg
@@ -247,6 +233,13 @@ clement-colleague-big
   orig: 198, 348
   offset: 0, 0
   index: -1
+confirm-button
+  rotate: false
+  xy: 849, 136
+  size: 160, 50
+  orig: 160, 50
+  offset: 0, 0
+  index: -1
 continue-button-big
   rotate: false
   xy: 364, 20
@@ -254,11 +247,25 @@ continue-button-big
   orig: 198, 60
   offset: 0, 0
   index: -1
+continue-button-white
+  rotate: false
+  xy: 849, 84
+  size: 160, 50
+  orig: 160, 50
+  offset: 0, 0
+  index: -1
 hard-button-big
   rotate: false
   xy: 2, 50
   size: 360, 72
   orig: 360, 72
+  offset: 0, 0
+  index: -1
+howToPlay-button
+  rotate: false
+  xy: 849, 32
+  size: 160, 50
+  orig: 160, 50
   offset: 0, 0
   index: -1
 michelle-colleague
@@ -317,6 +324,13 @@ username-textfield
   orig: 175, 25
   offset: 0, 0
   index: -1
+username-textfield-confirm
+  rotate: false
+  xy: 809, 2
+  size: 175, 25
+  orig: 175, 25
+  offset: 0, 0
+  index: -1
 
 the-programmer's-atlas.pack4.png
 size: 1024,1024
@@ -337,6 +351,13 @@ askNick-lifeline-big
   orig: 66, 66
   offset: 0, 0
   index: -1
+bailOut-button
+  rotate: false
+  xy: 870, 51
+  size: 148, 45
+  orig: 148, 45
+  offset: 0, 0
+  index: -1
 bailOut-button-big
   rotate: false
   xy: 2, 2
@@ -346,7 +367,7 @@ bailOut-button-big
   index: -1
 bringItOn-button
   rotate: false
-  xy: 870, 51
+  xy: 870, 4
   size: 148, 45
   orig: 148, 45
   offset: 0, 0
@@ -372,13 +393,6 @@ colleague-bg
   orig: 960, 540
   offset: 0, 0
   index: -1
-confirm-button
-  rotate: false
-  xy: 620, 6
-  size: 160, 50
-  orig: 160, 50
-  offset: 0, 0
-  index: -1
 confirm-button-big
   rotate: false
   xy: 802, 346
@@ -398,13 +412,6 @@ gennady-colleague-big
   xy: 2, 132
   size: 198, 348
   orig: 198, 348
-  offset: 0, 0
-  index: -1
-highScores-button-gradient
-  rotate: false
-  xy: 870, 6
-  size: 145, 43
-  orig: 145, 43
   offset: 0, 0
   index: -1
 howToPlay-button-big
@@ -442,6 +449,13 @@ nick-colleague-big
   orig: 198, 348
   offset: 0, 0
   index: -1
+options-button
+  rotate: false
+  xy: 620, 6
+  size: 160, 50
+  orig: 160, 50
+  offset: 0, 0
+  index: -1
 options-button-big
   rotate: false
   xy: 802, 160
@@ -476,25 +490,32 @@ size: 1024,1024
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+c++-topic
+  rotate: false
+  xy: 638, 211
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
+c-topic
+  rotate: false
+  xy: 703, 211
+  size: 63, 63
+  orig: 63, 63
+  offset: 0, 0
+  index: -1
 callAFamilyMember-lifeline-110
   rotate: false
-  xy: 638, 149
+  xy: 785, 298
   size: 66, 66
   orig: 66, 66
   offset: 0, 0
   index: -1
 clearData-button
   rotate: false
-  xy: 800, 321
+  xy: 860, 373
   size: 155, 43
   orig: 155, 43
-  offset: 0, 0
-  index: -1
-continue-button-white
-  rotate: false
-  xy: 698, 366
-  size: 160, 50
-  orig: 160, 50
   offset: 0, 0
   index: -1
 difficulty-bg
@@ -532,11 +553,18 @@ hard-button-locked
   orig: 300, 60
   offset: 0, 0
   index: -1
-howToPlay-button
+highScores-button-gradient
   rotate: false
-  xy: 860, 366
-  size: 160, 50
-  orig: 160, 50
+  xy: 638, 321
+  size: 145, 43
+  orig: 145, 43
+  offset: 0, 0
+  index: -1
+java-topic
+  rotate: false
+  xy: 638, 146
+  size: 63, 63
+  orig: 63, 63
   offset: 0, 0
   index: -1
 medium-button
@@ -567,39 +595,32 @@ nick-colleague
   orig: 165, 290
   offset: 0, 0
   index: -1
-options-button
+play-button
   rotate: false
-  xy: 638, 314
+  xy: 698, 366
   size: 160, 50
   orig: 160, 50
   offset: 0, 0
   index: -1
-play-button
+python-topic
   rotate: false
-  xy: 638, 262
-  size: 160, 50
-  orig: 160, 50
+  xy: 703, 146
+  size: 63, 63
+  orig: 63, 63
   offset: 0, 0
   index: -1
 returnToMenu-button-gradient
   rotate: false
-  xy: 800, 276
+  xy: 638, 276
   size: 145, 43
   orig: 145, 43
   offset: 0, 0
   index: -1
 returnToMenu-button-white
   rotate: false
-  xy: 638, 217
+  xy: 860, 328
   size: 155, 43
   orig: 155, 43
-  offset: 0, 0
-  index: -1
-username-textfield-confirm
-  rotate: false
-  xy: 304, 7
-  size: 175, 25
-  orig: 175, 25
   offset: 0, 0
   index: -1
 veryEasy-button

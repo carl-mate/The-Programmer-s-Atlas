@@ -136,6 +136,14 @@ public class Constants {
     public static final float LIFELINE_HEIGHT = 55;
     public static final Vector2 LIFELINE_CENTER = new Vector2(28, 28);
 
+    public static final String CPP_TOPIC = "c++-topic";
+    public static final String C_TOPIC = "c-topic";
+    public static final String JAVA_TOPIC = "java-topic";
+    public static final String PYTHON_TOPIC = "python-topic";
+    public static final float TOPIC_WIDTH = 63;
+    public static final float TOPIC_HEIGHT = 63;
+    public static final Vector2 TOPIC_CENTER = new Vector2(32,32);
+
     public static final String ASK_GOOGLE_LIFELINE_BIG = "askGoogle-lifeline-110";
     public static final String ASK_CLEMENT_LIFELINE_BIG = "askClement-lifeline-110";
     public static final String ASK_MICHELLE_LIFELINE_BIG = "askMichelle-lifeline-big";
