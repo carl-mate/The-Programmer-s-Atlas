@@ -14,7 +14,7 @@ import util.Assets;
 import util.Constants;
 import util.Util;
 /**
- *  This screen is displays the instructions on how to play the game
+ *  This screen displays the instructions on how to play the game
  */
 public class HowToPlayScreen extends InputAdapter implements Screen {
     private static final String TAG = HowToPlayScreen.class.getName();

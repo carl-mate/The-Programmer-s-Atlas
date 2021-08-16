@@ -44,11 +44,11 @@ public class CorrectAnswerScreen extends InputAdapter implements Screen {
         this.batch = batch;
         this.previousScore = programmerGame.getPreviousScore();
         this.currentScore = programmerGame.getCurrentScore();
-        /* increment depends on the current score.
-         * If currentScore <= 1000, then increment by 10
-         *    currentScore <= 10000, then increment by 100
-         *    currentScore <= 100000, then increment by 1000
-         *    currentScore <= 1000000+, then increment by 10000
+        /* increment depends on the earned points.
+         * If earnedPoints <= 1000, then increment by 10
+         *    earnedPoints <= 10000, then increment by 100
+         *    earnedPoints <= 100000, then increment by 1000
+         *    earnedPoints <= 1000000+, then increment by 10000
          */
         earnedPoints = currentScore - previousScore;
         if(earnedPoints <= 1000){
