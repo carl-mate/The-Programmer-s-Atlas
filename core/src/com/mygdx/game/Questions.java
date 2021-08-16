@@ -65,13 +65,13 @@ public class Questions {
             index 4 = Very Hard
          */
         theoreticalQuestion = new TheoreticalQ[5];
-        programmingQuestion = new ProgrammingQ[3];
+        programmingQuestion = new ProgrammingQ[5];
 
         //shuffle total pool of theoretical questions to ensure randomness
         Collections.shuffle(theoreticalQArrayList);
-
         //shuffle total pool of programming questions to ensure randomness
-//        Collections.shuffle(programmingQArrayList);
+        Collections.shuffle(programmingQArrayList);
+
         initializeTheoreticalQuestions();
         initializeProgrammingQuestions();
     }
@@ -149,21 +149,36 @@ public class Questions {
 
         for(ProgrammingQ x: programmingQArrayList){
             //temporary to test how image fits
-            if(programmingQuestionsCounter <= 3){
+            if(programmingQuestionsCounter <= 5){
                 if(x.getDifficulty().equals("VERY EASY") && programmingQuestion[0] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING VERY EASY");
                     programmingQuestion[0] = x;
                     programmingQuestionsCounter++;
+                    Gdx.app.log(TAG, programmingQuestion[0].getQuestion());
                 }
                 if(x.getDifficulty().equals("EASY") && programmingQuestion[1] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING EASY");
                     programmingQuestion[1] = x;
                     programmingQuestionsCounter++;
+                    Gdx.app.log(TAG, programmingQuestion[1].getQuestion());
                 }
                 if(x.getDifficulty().equals("MEDIUM") && programmingQuestion[2] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING MEDIUM");
                     programmingQuestion[2] = x;
                     programmingQuestionsCounter++;
+                    Gdx.app.log(TAG, programmingQuestion[2].getQuestion());
+                }
+                if(x.getDifficulty().equals("HARD") && programmingQuestion[3] == null){
+                    Gdx.app.log(TAG, "ADDED PROGRAMMING HARD");
+                    programmingQuestion[3] = x;
+                    programmingQuestionsCounter++;
+                    Gdx.app.log(TAG, programmingQuestion[3].getQuestion());
+                }
+                if(x.getDifficulty().equals("VERY HARD") && programmingQuestion[4] == null){
+                    Gdx.app.log(TAG, "ADDED PROGRAMMING HARD");
+                    programmingQuestion[4] = x;
+                    programmingQuestionsCounter++;
+                    Gdx.app.log(TAG, programmingQuestion[4].getQuestion());
                 }
             }
         }

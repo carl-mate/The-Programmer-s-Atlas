@@ -458,28 +458,483 @@ public class Assets implements Disposable, AssetErrorListener {
         public final HashMap<String, Texture> image;
 
         public ResourcesFilePath(){
-            theoreticalQuestionsInputStream = this.getClass().getResourceAsStream("/Resources/MCQ/TheoreticalQ/TheoreticalQ-Database.xlsx");
+            theoreticalQuestionsInputStream = this.getClass().getResourceAsStream("/Resources/MCQ/TheoreticalQ/TheoreticalQ-Database-t.xlsx");
             programmingQuestionsInputStream = this.getClass().getResourceAsStream("/Resources/MCQ/ProgrammingQ/ProgrammingQ-Database.xlsx");
 
             image = new HashMap<>();
+            //C FILES
+            //easy
+            image.put("e_c_question1.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_question1.png")));
+            image.put("e_c_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q1A.png")));
+            image.put("e_c_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q1B.png")));
+            image.put("e_c_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q1C.png")));
+            image.put("e_c_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q1D.png")));
 
-            image.put("ve_c++_question.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_question.png")));
-            image.put("ve_c++_choiceA.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceA.png")));
-            image.put("ve_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceB.png")));
-            image.put("ve_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceC.png")));
-            image.put("ve_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/ve_c++_choiceD.png")));
+            image.put("e_c_question2.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_question2.png")));
+            image.put("e_c_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q2A.png")));
+            image.put("e_c_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q2B.png")));
+            image.put("e_c_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q2C.png")));
+            image.put("e_c_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q2D.png")));
 
-            image.put("e_c++_question.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_question.png")));
-            image.put("e_c++_choiceA.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceA.png")));
-            image.put("e_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceB.png")));
-            image.put("e_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceC.png")));
-            image.put("e_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/e_c++_choiceD.png")));
+            image.put("e_c_question3.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_question3.png")));
+            image.put("e_c_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q3A.png")));
+            image.put("e_c_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q3B.png")));
+            image.put("e_c_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q3C.png")));
+            image.put("e_c_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q3D.png")));
 
-            image.put("m_c++_question.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_question.png")));
-            image.put("m_c++_choiceA.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceA.png")));
-            image.put("m_c++_choiceB.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceB.png")));
-            image.put("m_c++_choiceC.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceC.png")));
-            image.put("m_c++_choiceD.png", new Texture(Gdx.files.internal("Resources/Images/m_c++_choiceD.png")));
+            image.put("e_c_question4.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_question4.png")));
+            image.put("e_c_q4A.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q4A.png")));
+            image.put("e_c_q4B.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q4B.png")));
+            image.put("e_c_q4C.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q4C.png")));
+            image.put("e_c_q4D.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q4D.png")));
+
+            image.put("e_c_question5.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_question5.png")));
+            image.put("e_c_q5A.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5A.png")));
+            image.put("e_c_q5B.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5B.png")));
+            image.put("e_c_q5C.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5C.png")));
+            image.put("e_c_q5D.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5D.png")));
+
+            //hard
+            image.put("h_c_question1.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_question1.png")));
+            image.put("h_c_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q1A.png")));
+            image.put("h_c_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q1B.png")));
+            image.put("h_c_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q1C.png")));
+            image.put("h_c_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q1D.png")));
+
+            image.put("h_c_question2.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_question2.png")));
+            image.put("h_c_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q2A.png")));
+            image.put("h_c_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q2B.png")));
+            image.put("h_c_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q2C.png")));
+            image.put("h_c_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q2D.png")));
+
+            image.put("h_c_question3.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_question3.png")));
+            image.put("h_c_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q3A.png")));
+            image.put("h_c_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q3B.png")));
+            image.put("h_c_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q3C.png")));
+            image.put("h_c_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q3D.png")));
+
+            image.put("h_c_question4.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_question4.png")));
+            image.put("h_c_q4A.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q4A.png")));
+            image.put("h_c_q4B.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q4B.png")));
+            image.put("h_c_q4C.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q4C.png")));
+            image.put("h_c_q4D.png", new Texture(Gdx.files.internal("Resources/Images/C/h_c_q4D.png")));
+
+            image.put("h_c_question5.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_question5.png")));
+            image.put("h_c_q5A.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5A.png")));
+            image.put("h_c_q5B.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5B.png")));
+            image.put("h_c_q5C.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5C.png")));
+            image.put("h_c_q5D.png", new Texture(Gdx.files.internal("Resources/Images/C/e_c_q5D.png")));
+
+            //medium
+            image.put("m_c_question1.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_question1.png")));
+            image.put("m_c_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q1A.png")));
+            image.put("m_c_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q1B.png")));
+            image.put("m_c_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q1C.png")));
+            image.put("m_c_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q1D.png")));
+
+            image.put("m_c_question2.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_question2.png")));
+            image.put("m_c_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q2A.png")));
+            image.put("m_c_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q2B.png")));
+            image.put("m_c_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q2C.png")));
+            image.put("m_c_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q2D.png")));
+
+            image.put("m_c_question3.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_question3.png")));
+            image.put("m_c_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q3A.png")));
+            image.put("m_c_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q3B.png")));
+            image.put("m_c_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q3C.png")));
+            image.put("m_c_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q3D.png")));
+
+            image.put("m_c_question4.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_question4.png")));
+            image.put("m_c_q4A.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q4A.png")));
+            image.put("m_c_q4B.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q4B.png")));
+            image.put("m_c_q4C.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q4C.png")));
+            image.put("m_c_q4D.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q4D.png")));
+
+            image.put("m_c_question5.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_question5.png")));
+            image.put("m_c_q5A.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q5A.png")));
+            image.put("m_c_q5B.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q5B.png")));
+            image.put("m_c_q5C.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q5C.png")));
+            image.put("m_c_q5D.png", new Texture(Gdx.files.internal("Resources/Images/C/m_c_q5D.png")));
+
+            //very easy
+            image.put("ve_c_question1.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_question1.png")));
+            image.put("ve_c_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q1A.png")));
+            image.put("ve_c_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q1B.png")));
+            image.put("ve_c_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q1C.png")));
+            image.put("ve_c_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q1D.png")));
+
+            image.put("ve_c_question2.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_question2.png")));
+            image.put("ve_c_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q2A.png")));
+            image.put("ve_c_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q2B.png")));
+            image.put("ve_c_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q2C.png")));
+            image.put("ve_c_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q2D.png")));
+
+            image.put("ve_c_question3.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_question3.png")));
+            image.put("ve_c_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q3A.png")));
+            image.put("ve_c_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q3B.png")));
+            image.put("ve_c_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q3C.png")));
+            image.put("ve_c_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q3D.png")));
+
+            image.put("ve_c_question4.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_question4.png")));
+            image.put("ve_c_q4A.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q4A.png")));
+            image.put("ve_c_q4B.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q4B.png")));
+            image.put("ve_c_q4C.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q4C.png")));
+            image.put("ve_c_q4D.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q4D.png")));
+
+            image.put("ve_c_question5.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_question5.png")));
+            image.put("ve_c_q5A.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q5A.png")));
+            image.put("ve_c_q5B.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q5B.png")));
+            image.put("ve_c_q5C.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q5C.png")));
+            image.put("ve_c_q5D.png", new Texture(Gdx.files.internal("Resources/Images/C/ve_c_q5D.png")));
+
+            //very hard
+            image.put("vh_c_question1.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_question1.png")));
+            image.put("vh_c_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q1A.png")));
+            image.put("vh_c_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q1B.png")));
+            image.put("vh_c_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q1C.png")));
+            image.put("vh_c_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q1D.png")));
+
+            image.put("vh_c_question2.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_question2.png")));
+            image.put("vh_c_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q2A.png")));
+            image.put("vh_c_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q2B.png")));
+            image.put("vh_c_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q2C.png")));
+            image.put("vh_c_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q2D.png")));
+
+            image.put("vh_c_question3.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_question3.png")));
+            image.put("vh_c_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q3A.png")));
+            image.put("vh_c_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q3B.png")));
+            image.put("vh_c_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q3C.png")));
+            image.put("vh_c_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q3D.png")));
+
+            image.put("vh_c_question4.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_question4.png")));
+            image.put("vh_c_q4A.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q4A.png")));
+            image.put("vh_c_q4B.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q4B.png")));
+            image.put("vh_c_q4C.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q4C.png")));
+            image.put("vh_c_q4D.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q4D.png")));
+
+            image.put("vh_c_question5.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_question5.png")));
+            image.put("vh_c_q5A.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q5A.png")));
+            image.put("vh_c_q5B.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q5B.png")));
+            image.put("vh_c_q5C.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q5C.png")));
+            image.put("vh_c_q5D.png", new Texture(Gdx.files.internal("Resources/Images/C/vh_c_q5D.png")));
+
+            //C++ files
+            //easy
+            image.put("e_c++_question1.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_question1.png")));
+            image.put("e_c++_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q1A.png")));
+            image.put("e_c++_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q1B.png")));
+            image.put("e_c++_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q1C.png")));
+            image.put("e_c++_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q1D.png")));
+
+            image.put("e_c++_question2.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_question2.png")));
+            image.put("e_c++_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q2A.png")));
+            image.put("e_c++_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q2B.png")));
+            image.put("e_c++_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q2C.png")));
+            image.put("e_c++_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q2D.png")));
+
+            image.put("e_c++_question3.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_question3.png")));
+            image.put("e_c++_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q3A.png")));
+            image.put("e_c++_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q3B.png")));
+            image.put("e_c++_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q3C.png")));
+            image.put("e_c++_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C++/e_c++_q3D.png")));
+
+            //hard
+            image.put("h_c++_question1.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_question1.png")));
+            image.put("h_c++_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q1A.png")));
+            image.put("h_c++_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q1B.png")));
+            image.put("h_c++_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q1C.png")));
+            image.put("h_c++_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q1D.png")));
+
+            image.put("h_c++_question2.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_question2.png")));
+            image.put("h_c++_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q2A.png")));
+            image.put("h_c++_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q2B.png")));
+            image.put("h_c++_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q2C.png")));
+            image.put("h_c++_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q2D.png")));
+
+            image.put("h_c++_question3.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_question3.png")));
+            image.put("h_c++_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q3A.png")));
+            image.put("h_c++_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q3B.png")));
+            image.put("h_c++_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q3C.png")));
+            image.put("h_c++_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C++/h_c++_q3D.png")));
+
+            //medium
+            image.put("m_c++_question1.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_question1.png")));
+            image.put("m_c++_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q1A.png")));
+            image.put("m_c++_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q1B.png")));
+            image.put("m_c++_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q1C.png")));
+            image.put("m_c++_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q1D.png")));
+
+            image.put("m_c++_question2.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_question2.png")));
+            image.put("m_c++_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q2A.png")));
+            image.put("m_c++_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q2B.png")));
+            image.put("m_c++_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q2C.png")));
+            image.put("m_c++_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q2D.png")));
+
+            image.put("m_c++_question3.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_question3.png")));
+            image.put("m_c++_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q3A.png")));
+            image.put("m_c++_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q3B.png")));
+            image.put("m_c++_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q3C.png")));
+            image.put("m_c++_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C++/m_c++_q3D.png")));
+
+            //very easy
+            image.put("ve_c++_question1.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_question1.png")));
+            image.put("ve_c++_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q1A.png")));
+            image.put("ve_c++_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q1B.png")));
+            image.put("ve_c++_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q1C.png")));
+            image.put("ve_c++_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q1D.png")));
+
+            image.put("ve_c++_question2.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_question2.png")));
+            image.put("ve_c++_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q2A.png")));
+            image.put("ve_c++_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q2B.png")));
+            image.put("ve_c++_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q2C.png")));
+            image.put("ve_c++_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q2D.png")));
+
+            image.put("ve_c++_question3.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_question3.png")));
+            image.put("ve_c++_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q3A.png")));
+            image.put("ve_c++_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q3B.png")));
+            image.put("ve_c++_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q3C.png")));
+            image.put("ve_c++_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C++/ve_c++_q3D.png")));
+
+            //very hard
+            image.put("vh_c++_question1.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_question1.png")));
+            image.put("vh_c++_q1A.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q1A.png")));
+            image.put("vh_c++_q1B.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q1B.png")));
+            image.put("vh_c++_q1C.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q1C.png")));
+            image.put("vh_c++_q1D.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q1D.png")));
+
+            image.put("vh_c++_question2.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_question2.png")));
+            image.put("vh_c++_q2A.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q2A.png")));
+            image.put("vh_c++_q2B.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q2B.png")));
+            image.put("vh_c++_q2C.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q2C.png")));
+            image.put("vh_c++_q2D.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q2D.png")));
+
+            image.put("vh_c++_question3.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_question3.png")));
+            image.put("vh_c++_q3A.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q3A.png")));
+            image.put("vh_c++_q3B.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q3B.png")));
+            image.put("vh_c++_q3C.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q3C.png")));
+            image.put("vh_c++_q3D.png", new Texture(Gdx.files.internal("Resources/Images/C++/vh_c++_q3D.png")));
+
+            //Java files
+            //easy
+            image.put("e_java_question1.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_question1.png")));
+            image.put("e_java_q1A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q1A.png")));
+            image.put("e_java_q1B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q1B.png")));
+            image.put("e_java_q1C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q1C.png")));
+            image.put("e_java_q1D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q1D.png")));
+
+            image.put("e_java_question2.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_question2.png")));
+            image.put("e_java_q2A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q2A.png")));
+            image.put("e_java_q2B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q2B.png")));
+            image.put("e_java_q2C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q2C.png")));
+            image.put("e_java_q2D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q2D.png")));
+
+            image.put("e_java_question3.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_question3.png")));
+            image.put("e_java_q3A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q3A.png")));
+            image.put("e_java_q3B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q3B.png")));
+            image.put("e_java_q3C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q3C.png")));
+            image.put("e_java_q3D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q3D.png")));
+
+            image.put("e_java_question4.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_question4.png")));
+            image.put("e_java_q4A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q4A.png")));
+            image.put("e_java_q4B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q4B.png")));
+            image.put("e_java_q4C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q4C.png")));
+            image.put("e_java_q4D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q4D.png")));
+
+            image.put("e_java_question5.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_question5.png")));
+            image.put("e_java_q5A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q5A.png")));
+            image.put("e_java_q5B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q5B.png")));
+            image.put("e_java_q5C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q5C.png")));
+            image.put("e_java_q5D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/e_java_q5D.png")));
+
+            //hard
+            image.put("h_java_question1.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_question1.png")));
+            image.put("h_java_q1A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q1A.png")));
+            image.put("h_java_q1B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q1B.png")));
+            image.put("h_java_q1C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q1C.png")));
+            image.put("h_java_q1D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q1D.png")));
+
+            image.put("h_java_question2.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_question2.png")));
+            image.put("h_java_q2A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q2A.png")));
+            image.put("h_java_q2B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q2B.png")));
+            image.put("h_java_q2C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q2C.png")));
+            image.put("h_java_q2D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q2D.png")));
+
+            image.put("h_java_question3.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_question3.png")));
+            image.put("h_java_q3A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q3A.png")));
+            image.put("h_java_q3B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q3B.png")));
+            image.put("h_java_q3C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q3C.png")));
+            image.put("h_java_q3D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q3D.png")));
+
+            image.put("h_java_question4.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_question4.png")));
+            image.put("h_java_q4A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q4A.png")));
+            image.put("h_java_q4B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q4B.png")));
+            image.put("h_java_q4C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q4C.png")));
+            image.put("h_java_q4D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q4D.png")));
+
+            image.put("h_java_question5.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_question5.png")));
+            image.put("h_java_q5A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q5A.png")));
+            image.put("h_java_q5B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q5B.png")));
+            image.put("h_java_q5C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q5C.png")));
+            image.put("h_java_q5D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/h_java_q5D.png")));
+
+            //medium
+            image.put("m_java_question1.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_question1.png")));
+            image.put("m_java_q1A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q1A.png")));
+            image.put("m_java_q1B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q1B.png")));
+            image.put("m_java_q1C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q1C.png")));
+            image.put("m_java_q1D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q1D.png")));
+
+            image.put("m_java_question2.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_question2.png")));
+            image.put("m_java_q2A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q2A.png")));
+            image.put("m_java_q2B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q2B.png")));
+            image.put("m_java_q2C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q2C.png")));
+            image.put("m_java_q2D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q2D.png")));
+
+            image.put("m_java_question3.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_question3.png")));
+            image.put("m_java_q3A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q3A.png")));
+            image.put("m_java_q3B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q3B.png")));
+            image.put("m_java_q3C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q3C.png")));
+            image.put("m_java_q3D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q3D.png")));
+
+            image.put("m_java_question4.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_question4.png")));
+            image.put("m_java_q4A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q4A.png")));
+            image.put("m_java_q4B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q4B.png")));
+            image.put("m_java_q4C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q4C.png")));
+            image.put("m_java_q4D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q4D.png")));
+
+            image.put("m_java_question5.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_question5.png")));
+            image.put("m_java_q5A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q5A.png")));
+            image.put("m_java_q5B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q5B.png")));
+            image.put("m_java_q5C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q5C.png")));
+            image.put("m_java_q5D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/m_java_q5D.png")));
+
+            //very easy
+            image.put("ve_java_question1.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_question1.png")));
+            image.put("ve_java_q1A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q1A.png")));
+            image.put("ve_java_q1B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q1B.png")));
+            image.put("ve_java_q1C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q1C.png")));
+            image.put("ve_java_q1D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q1D.png")));
+
+            image.put("ve_java_question2.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_question2.png")));
+            image.put("ve_java_q2A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q2A.png")));
+            image.put("ve_java_q2B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q2B.png")));
+            image.put("ve_java_q2C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q2C.png")));
+            image.put("ve_java_q2D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q2D.png")));
+
+            image.put("ve_java_question3.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_question3.png")));
+            image.put("ve_java_q3A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q3A.png")));
+            image.put("ve_java_q3B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q3B.png")));
+            image.put("ve_java_q3C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q3C.png")));
+            image.put("ve_java_q3D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q3D.png")));
+
+            image.put("ve_java_question4.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_question4.png")));
+            image.put("ve_java_q4A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q4A.png")));
+            image.put("ve_java_q4B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q4B.png")));
+            image.put("ve_java_q4C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q4C.png")));
+            image.put("ve_java_q4D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q4D.png")));
+
+            image.put("ve_java_question5.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_question5.png")));
+            image.put("ve_java_q5A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q5A.png")));
+            image.put("ve_java_q5B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q5B.png")));
+            image.put("ve_java_q5C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q5C.png")));
+            image.put("ve_java_q5D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/ve_java_q5D.png")));
+
+            //very hard
+            image.put("vh_java_question1.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_question1.png")));
+            image.put("vh_java_q1A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q1A.png")));
+            image.put("vh_java_q1B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q1B.png")));
+            image.put("vh_java_q1C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q1C.png")));
+            image.put("vh_java_q1D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q1D.png")));
+
+            image.put("vh_java_question2.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_question2.png")));
+            image.put("vh_java_q2A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q2A.png")));
+            image.put("vh_java_q2B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q2B.png")));
+            image.put("vh_java_q2C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q2C.png")));
+            image.put("vh_java_q2D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q2D.png")));
+
+            image.put("vh_java_question3.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_question3.png")));
+            image.put("vh_java_q3A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q3A.png")));
+            image.put("vh_java_q3B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q3B.png")));
+            image.put("vh_java_q3C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q3C.png")));
+            image.put("vh_java_q3D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q3D.png")));
+
+            image.put("vh_java_question4.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_question4.png")));
+            image.put("vh_java_q4A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q4A.png")));
+            image.put("vh_java_q4B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q4B.png")));
+            image.put("vh_java_q4C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q4C.png")));
+            image.put("vh_java_q4D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q4D.png")));
+
+            image.put("vh_java_question5.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_question5.png")));
+            image.put("vh_java_q5A.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q5A.png")));
+            image.put("vh_java_q5B.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q5B.png")));
+            image.put("vh_java_q5C.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q5C.png")));
+            image.put("vh_java_q5D.png", new Texture(Gdx.files.internal("Resources/Images/JAVA/vh_java_q5D.png")));
+
+            //Python files
+            //easy
+            image.put("e_python_question1.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_question1.png")));
+            image.put("e_python_q1A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q1A.png")));
+            image.put("e_python_q1B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q1B.png")));
+            image.put("e_python_q1C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q1C.png")));
+            image.put("e_python_q1D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q1D.png")));
+
+            image.put("e_python_question2.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_question2.png")));
+            image.put("e_python_q2A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q2A.png")));
+            image.put("e_python_q2B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q2B.png")));
+            image.put("e_python_q2C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q2C.png")));
+            image.put("e_python_q2D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/e_python_q2D.png")));
+
+            //hard
+            image.put("h_python_question1.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_question1.png")));
+            image.put("h_python_q1A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q1A.png")));
+            image.put("h_python_q1B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q1B.png")));
+            image.put("h_python_q1C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q1C.png")));
+            image.put("h_python_q1D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q1D.png")));
+
+            image.put("h_python_question2.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_question2.png")));
+            image.put("h_python_q2A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q2A.png")));
+            image.put("h_python_q2B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q2B.png")));
+            image.put("h_python_q2C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q2C.png")));
+            image.put("h_python_q2D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/h_python_q2D.png")));
+
+            //medium
+            image.put("m_python_question1.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_question1.png")));
+            image.put("m_python_q1A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q1A.png")));
+            image.put("m_python_q1B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q1B.png")));
+            image.put("m_python_q1C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q1C.png")));
+            image.put("m_python_q1D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q1D.png")));
+
+            image.put("m_python_question2.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_question2.png")));
+            image.put("m_python_q2A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q2A.png")));
+            image.put("m_python_q2B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q2B.png")));
+            image.put("m_python_q2C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q2C.png")));
+            image.put("m_python_q2D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/m_python_q2D.png")));
+
+            //very easy
+            image.put("ve_python_question1.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_question1.png")));
+            image.put("ve_python_q1A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q1A.png")));
+            image.put("ve_python_q1B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q1B.png")));
+            image.put("ve_python_q1C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q1C.png")));
+            image.put("ve_python_q1D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q1D.png")));
+
+            image.put("ve_python_question2.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_question2.png")));
+            image.put("ve_python_q2A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q2A.png")));
+            image.put("ve_python_q2B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q2B.png")));
+            image.put("ve_python_q2C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q2C.png")));
+            image.put("ve_python_q2D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/ve_python_q2D.png")));
+
+            //very hard
+            image.put("vh_python_question1.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_question1.png")));
+            image.put("vh_python_q1A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q1A.png")));
+            image.put("vh_python_q1B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q1B.png")));
+            image.put("vh_python_q1C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q1C.png")));
+            image.put("vh_python_q1D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q1D.png")));
+
+            image.put("vh_python_question2.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_question2.png")));
+            image.put("vh_python_q2A.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q2A.png")));
+            image.put("vh_python_q2B.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q2B.png")));
+            image.put("vh_python_q2C.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q2C.png")));
+            image.put("vh_python_q2D.png", new Texture(Gdx.files.internal("Resources/Images/PYTHON/vh_python_q2D.png")));
 
         }
     }

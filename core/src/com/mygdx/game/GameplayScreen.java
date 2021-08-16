@@ -686,7 +686,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.javaTopic, topicPosition, Constants.TOPIC_CENTER);
             }
             if(topic.equals("PYTHON")){
-                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.pythonTopic, this.topicCenter, Constants.TOPIC_CENTER);
+                Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.pythonTopic, topicPosition, Constants.TOPIC_CENTER);
             }
 
         }
@@ -707,6 +707,12 @@ public class GameplayScreen extends InputAdapter implements Screen {
             Texture choiceCImage = Assets.instance.resourcesFilePath.image.get(choiceC);
             Texture choiceBImage = Assets.instance.resourcesFilePath.image.get(choiceB);
             Texture choiceDImage = Assets.instance.resourcesFilePath.image.get(choiceD);
+
+            Gdx.app.log(TAG, question);
+            Gdx.app.log(TAG, choiceA);
+            Gdx.app.log(TAG, choiceB);
+            Gdx.app.log(TAG, choiceC);
+            Gdx.app.log(TAG, choiceD);
 
             Util.drawTextureRegion(batch, choiceAImage, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f), new Vector2(choiceAImage.getWidth() / 2f, choiceAImage.getHeight() / 2f));
             Util.drawTextureRegion(batch, choiceCImage, new Vector2(viewport.getCamera().viewportWidth / 3.5f, viewport.getCamera().viewportHeight / 2.8f - 100), new Vector2(choiceCImage.getWidth() / 2f, choiceCImage.getHeight() / 2f));
@@ -1015,28 +1021,28 @@ public class GameplayScreen extends InputAdapter implements Screen {
             this.topic = programmingQ[2].getTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_HARD) {
             //temporarily using medium questions for initial testing
-            this.question = programmingQ[2].getQuestion();
-            this.choiceA = programmingQ[2].getChoice().get(0).getChoice();
-            this.choiceC = programmingQ[2].getChoice().get(1).getChoice();
-            this.choiceB = programmingQ[2].getChoice().get(2).getChoice();
-            this.choiceD = programmingQ[2].getChoice().get(3).getChoice();
-            this.isCorrectChoiceA = programmingQ[2].getChoice().get(0).isCorrectChoice();
-            this.isCorrectChoiceC = programmingQ[2].getChoice().get(1).isCorrectChoice();
-            this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
-            this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
+            this.question = programmingQ[3].getQuestion();
+            this.choiceA = programmingQ[3].getChoice().get(0).getChoice();
+            this.choiceC = programmingQ[3].getChoice().get(1).getChoice();
+            this.choiceB = programmingQ[3].getChoice().get(2).getChoice();
+            this.choiceD = programmingQ[3].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = programmingQ[3].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = programmingQ[3].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = programmingQ[3].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = programmingQ[3].getChoice().get(3).isCorrectChoice();
             this.topic = programmingQ[2].getTopic();
         } else if (difficulty == Difficulty.PROGRAMMING_VERY_HARD) {
             //temporarily using medium questions for initial testing
-            this.question = programmingQ[2].getQuestion();
-            this.choiceA = programmingQ[2].getChoice().get(0).getChoice();
-            this.choiceC = programmingQ[2].getChoice().get(1).getChoice();
-            this.choiceB = programmingQ[2].getChoice().get(2).getChoice();
-            this.choiceD = programmingQ[2].getChoice().get(3).getChoice();
-            this.isCorrectChoiceA = programmingQ[2].getChoice().get(0).isCorrectChoice();
-            this.isCorrectChoiceC = programmingQ[2].getChoice().get(1).isCorrectChoice();
-            this.isCorrectChoiceB = programmingQ[2].getChoice().get(2).isCorrectChoice();
-            this.isCorrectChoiceD = programmingQ[2].getChoice().get(3).isCorrectChoice();
-            this.topic = programmingQ[2].getTopic();
+            this.question = programmingQ[4].getQuestion();
+            this.choiceA = programmingQ[4].getChoice().get(0).getChoice();
+            this.choiceC = programmingQ[4].getChoice().get(1).getChoice();
+            this.choiceB = programmingQ[4].getChoice().get(2).getChoice();
+            this.choiceD = programmingQ[4].getChoice().get(3).getChoice();
+            this.isCorrectChoiceA = programmingQ[4].getChoice().get(0).isCorrectChoice();
+            this.isCorrectChoiceC = programmingQ[4].getChoice().get(1).isCorrectChoice();
+            this.isCorrectChoiceB = programmingQ[4].getChoice().get(2).isCorrectChoice();
+            this.isCorrectChoiceD = programmingQ[4].getChoice().get(3).isCorrectChoice();
+            this.topic = programmingQ[4].getTopic();
         }
     }
 

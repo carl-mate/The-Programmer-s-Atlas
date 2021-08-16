@@ -162,7 +162,7 @@ public class QuestionsManager {
                             break;
                     }
                 }
-                temp.add(new ProgrammingQ(topic, question, choiceA, choiceB, choiceC, choiceD, imageFilename, difficulty));
+                temp.add(new ProgrammingQ(topic, question + ".png", choiceA + ".png", choiceB + ".png", choiceC + ".png", choiceD + ".png", imageFilename, difficulty));
             }
 
             return temp;
