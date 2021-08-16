@@ -35,7 +35,11 @@ import java.util.HashMap;
 import javax.xml.soap.Text;
 
 import entity.ImportantFigure;
-
+/**
+ *  Singleton class that manages the Assets of the entire game.
+ *  Game Assets are loaded from the texture atlas while the Question-related
+ *  resources and sounds/music are loaded from the internal path. i.e. /android/assets
+ */
 public class Assets implements Disposable, AssetErrorListener {
     public static final String TAG = Assets.class.getName();
 
@@ -94,11 +98,17 @@ public class Assets implements Disposable, AssetErrorListener {
         Gdx.app.error(TAG, "Couldn't load asset: " + asset.fileName, throwable);
     }
 
+    /**
+     *  Dispose unused assets
+     */
     @Override
     public void dispose() {
         assetManager.dispose();
     }
 
+    /**
+     *  Initializes the question databases and its resources
+     */
     public void initResourcesFilePath(){
         resourcesFilePath = new ResourcesFilePath();
     }

@@ -34,11 +34,11 @@ import util.QuestionsManager.ProgrammingQ;
 import util.QuestionsManager.TheoreticalQ;
 import util.Util;
 
-
+/**
+ *  This screen displays the Questions and Lifelines.
+ */
 public class GameplayScreen extends InputAdapter implements Screen {
     private static final String TAG = GameplayScreen.class.getName();
-
-    private Sprite sprite;
 
     private ProgrammerGame programmerGame;
     private Questions questions;
@@ -101,8 +101,6 @@ public class GameplayScreen extends InputAdapter implements Screen {
     private long askAColleagueDummyStartTime;
     private long callAFamilyMemberDummyStartTime;
 
-    private long askAColleagueHoverStartTime;
-
     private long startTime;
 
     private TextureAtlas.AtlasRegion colleague;
@@ -159,7 +157,9 @@ public class GameplayScreen extends InputAdapter implements Screen {
         }
 
     }
-
+    /**
+     *  Called when this becomes the active screen in a Game
+     */
     @Override
     public void show() {
         askGooglePosition = new Vector2(viewport.getCamera().viewportWidth / 2 - 100, viewport.getCamera().viewportHeight / 1.15f);
@@ -185,6 +185,12 @@ public class GameplayScreen extends InputAdapter implements Screen {
         Gdx.input.setInputProcessor(this);
     }
 
+    /**
+     *  Gameloop:
+     * (1) process input
+     * (2) update game logic
+     * (3) render the graphics
+     */
     @Override
     public void render(float delta) {
         viewport.apply();
@@ -206,12 +212,6 @@ public class GameplayScreen extends InputAdapter implements Screen {
         batch.end();
     }
 
-    private float calculateAlpha(){
-        //utility function for lerp();
-        float currentTime = Gdx.graphics.getDeltaTime();
-        return currentTime;
-    }
-
     private void renderLifelines(){
         //askGoogle
         if(!usedGoogleLifeline){
@@ -228,7 +228,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
                         askGoogleHoverTime = TimeUtils.nanoTime();
                         Assets.instance.soundClass.googleHoverSound.play();
                     }
-                } else{
+                } else{ //not hovered
                     Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.askGoogleLifeline, askGooglePosition, Constants.LIFELINE_CENTER);
                     if(askGoogleHoverTime > 0){
                         askGoogleHoverTime = 0;
@@ -821,9 +821,18 @@ public class GameplayScreen extends InputAdapter implements Screen {
         return true;
     }
 
+    /**
+     *  This function judges the answer if it is correct or incorrect and awards the respective points depending on the Difficulty.
+     *  You may choose to enable "DEBUG MODE" by enabling Ask Google lifeline to never be set as "used".
+     *  Enabling debug mode will allow you to play the game all throughout the end without having to worry about losing the game too early.
+     */
     private void judgeAnswer(boolean correct) {
-        //update programmerGame if used a lifeline
+        //updates programmerGame if user used a lifeline
         if(askedGoogle){
+            /*
+             * Enable debug mode by commenting out programmerGame.setUsedGoogleLifeline(true);
+             * and setting it to programmerGame.setUsedGoogleLifeline(false); every time
+             */
 //            programmerGame.setUsedGoogleLifeline(true);
             //debug mode
             programmerGame.setUsedGoogleLifeline(false);

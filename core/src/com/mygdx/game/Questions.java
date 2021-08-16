@@ -15,26 +15,13 @@ import util.Enums.Difficulty;
 import util.QuestionsManager.TheoreticalQ;
 import util.QuestionsManager;
 import util.QuestionsManager.ProgrammingQ;
-
+/**
+ *  This class communicates with the QuestionsManager and retrieves the TheoreticalQ and ProgrammingQ questions
+ *  to be displayed in the Game.
+ */
 public class Questions {
 
     public static final String TAG = Questions.class.getName();
-
-    private String question;
-    private String choiceA;
-    private String choiceB;
-    private String choiceC;
-    private String choiceD;
-    private String correctChoice;
-    private String imageFileName;
-    private String questionDifficulty;
-
-
-//    private String programmingVeryEasyQuestion;
-//    private String programmingEasyQuestion;
-//    private String programmingMediumQuestion;
-//    private String programmingHardQuestion;
-//    private String programmingVeryHardQuestion;
 
     private ArrayList<TheoreticalQ> theoreticalQArrayList;
     private TheoreticalQ[] theoreticalQuestion;
@@ -43,11 +30,6 @@ public class Questions {
     private ArrayList<ProgrammingQ> programmingQArrayList;
     private ProgrammingQ[] programmingQuestion;
     private int programmingQuestionsCounter;
-
-
-    //    private String theoreticalVeryHardQuestion;
-//    private ArrayList<ProgrammingQ> programmingQArrayList;
-    private long startTime;
 
     public Questions() throws IOException {
         //initialize QuestionsManager to convert the Excel File to ArrayList
@@ -76,12 +58,12 @@ public class Questions {
         initializeProgrammingQuestions();
     }
 
+    /**
+     * This function handles the mystery question.
+     * Randomly selects between the two major categories TheoreticalQ and ProgrammingQ
+     * After one major category is randomly selected, it then randomly selects one question from its total pool of questions.
+     */
     public Object getMysteryQuestion(){
-        /*
-         * Randomly select between the two major categories TheoreticalQ and ProgrammingQ
-         * After one major category is selected, then randomly select from its total pool of questions
-         */
-
         Random rand = new Random();
         int pick = rand.nextInt(2);
 
@@ -189,10 +171,6 @@ public class Questions {
     }
 
     public ProgrammingQ[] getProgrammingQuestion(){ return this.programmingQuestion; }
-
-    public void resetStartTime() {
-        this.startTime = 0;
-    }
 
 
 }

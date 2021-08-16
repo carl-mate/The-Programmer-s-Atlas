@@ -14,7 +14,9 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen is shown whenever the user selects the incorrect answer
+ */
 public class GameOverScreen extends InputAdapter implements Screen {
     private ProgrammerGame programmerGame;
     private SpriteBatch batch;

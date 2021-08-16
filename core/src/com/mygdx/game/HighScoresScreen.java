@@ -19,7 +19,9 @@ import entity.TotalUsers;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen is displays the Top 5 users with the highest score
+ */
 public class HighScoresScreen extends InputAdapter implements Screen {
     private static final String TAG = HighScoresScreen.class.getName();
 

@@ -17,7 +17,9 @@ import java.util.Collections;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen is shown whenever the user selects the correct answer
+ */
 public class CorrectAnswerScreen extends InputAdapter implements Screen {
     private ProgrammerGame programmerGame;
     private SpriteBatch batch;

@@ -17,7 +17,9 @@ import java.util.Collections;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen is shown whenever the user manages to win the game overall or correctly answer the Mystery Question
+ */
 public class VictoryScreen extends InputAdapter implements Screen {
     private ProgrammerGame programmerGame;
     private SpriteBatch batch;

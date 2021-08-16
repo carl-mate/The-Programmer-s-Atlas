@@ -15,7 +15,9 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen is shown whenever the user chooses to guess the important figure
+ */
 public class JigsawGuessResultScreen extends InputAdapter implements Screen {
     private static final String TAG = JigsawGuessResultScreen.class.getName();
 

@@ -3,7 +3,9 @@ package util;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.Vector2;
-
+/**
+ *  This class stores the Constant values of the entire Game such as texture filenames, dimensions, and Screen name.
+ */
 public class Constants {
 
     public static final Color BACKGROUND_COLOR = Color.SKY;
@@ -13,8 +15,10 @@ public class Constants {
 
     public static final String TEXTURE_ATLAS = "images/the-programmer's-atlas.pack.atlas";
 
+    //stores the highscores list and can be stored even when the application is closed
     public static Preferences preferences;
 
+    //stores the menus screen name to be stored on the highscores list
     public static String MENU_SCREEN_NAME;
 
     //Main Menu Assets

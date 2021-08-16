@@ -16,7 +16,9 @@ import util.Constants;
 import util.Enums;
 import util.Enums.Colleague;
 import util.Util;
-
+/**
+ *  This screen will give the user the option to select among 5 different Colleagues to be used as a lifeline if the user chooses
+ */
 public class ChooseColleagueScreen extends InputAdapter implements Screen {
     private static final String TAG = ChooseColleagueScreen.class.getName();
 

@@ -28,7 +28,9 @@ import entity.PuzzlePiece;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen is shown whenever the user selects the correct answer and unlocks a clue
+ */
 public class JigsawScreen extends InputAdapter implements Screen {
     private static final String TAG = JigsawScreen.class.getName();
 

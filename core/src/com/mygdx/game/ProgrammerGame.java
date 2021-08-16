@@ -17,7 +17,10 @@ import util.Enums;
 import util.Enums.Colleague;
 import util.Enums.Difficulty;
 import util.Util;
-
+/**
+ *  This class runs after the DesktopLauncher is launched.
+ *  Organizes the screens as they appear in the game.
+ */
 public class ProgrammerGame extends Game {
 
 	private static final String TAG = ProgrammerGame.class.getName();
@@ -44,15 +47,6 @@ public class ProgrammerGame extends Game {
 	private Music gameplayMusic;
 
 	private boolean musicOn;
-	private boolean hasNotPlayedYet;
-
-	private final long greetingStartTime;
-
-	public ProgrammerGame(){
-		greetingStartTime = TimeUtils.nanoTime();
-		hasNotPlayedYet = true;
-	}
-
 
 	@Override
 	public void create() {
@@ -63,19 +57,25 @@ public class ProgrammerGame extends Game {
 		gameplayMusic = Assets.instance.musicClass.gameplayMusic;
 		musicOn = true;
 
+		//Splash screen closes when the AssetManager is finished loading
 		if(am.isFinished()){
 			splashWorker.closeSplashScreen();
 			showMainMenuScreen();
 			Assets.instance.soundClass.greetingsSound.play();
 		}
 	}
-
+	/**
+	 *  Disposes unused assets from the entire Game
+	 */
 	@Override
 	public void dispose() {
 		Assets.instance.dispose();
 		batch.dispose();
 	}
 
+	/**
+	 *  Initializes Questions, Screens, and Variables whenever the showMainMenuScreen() is called.
+	 */
 	public void showMainMenuScreen(){
 		initQuestions();
 		initScreens();

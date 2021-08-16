@@ -15,7 +15,9 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import util.Assets;
 import util.Constants;
 import util.Util;
-
+/**
+ *  This screen will give the user the option to turn the music on/off
+ */
 public class OptionsScreen extends InputAdapter implements Screen {
     private ProgrammerGame programmerGame;
     private SpriteBatch batch;

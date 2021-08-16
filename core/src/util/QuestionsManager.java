@@ -12,7 +12,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import util.Enums.Difficulty;
-
+/**
+ *  This class communicates with the .xslsx files directly.
+ *  TheoreticalQ and ProgrammingQ objects are created, formatted, and stored into its respective ArrayLists.
+ */
 public class QuestionsManager {
     public static final String TAG = QuestionsManager.class.getName();
     public static final QuestionsManager instance = new QuestionsManager();
@@ -22,16 +25,26 @@ public class QuestionsManager {
     private QuestionsManager() {
     }
 
+    /**
+     *  Getter function for TheoreticalQ
+     */
     public ArrayList<TheoreticalQ> getTheoreticalQItemArrayList() {
         Gdx.app.log(TAG, "GET THEORETICALQ ARRAYLIST");
         return this.theoreticalQArrayList;
     }
 
+    /**
+     *  Getter function for ProgrammingQ
+     */
     public ArrayList<ProgrammingQ> getProgrammingQItemArrayList() {
         Gdx.app.log(TAG, "GET PROGRAMMINGQ ARRAYLIST");
         return this.programmingQArrayList;
     }
 
+    /**
+     *  Initializes the theoreticalQArrayList and programmingQArrayList by retrieving the raw data from the excel file and
+     *  converting them into objects and storing them in ArrayLists.
+     */
     public void init() throws IOException {
         //fetch questions
         theoreticalQArrayList = ExcelFileToArrayList.convertTheoreticalQ();
@@ -169,6 +182,9 @@ public class QuestionsManager {
         }
     }
 
+    /**
+     *  Each choice is stored as an object to provide convenience in making sure that each question has a random set of choices.
+     */
         public static class Choice {
             private String choice;
             private boolean isCorrectChoice;
@@ -189,6 +205,10 @@ public class QuestionsManager {
 
         }
 
+    /**
+     *  TheoreticalQ class that stores the topic, question, ArrayList<Choice> choice, imageFilename (if any), and difficulty
+     *  of the Theoretical questions.
+     */
         public static class TheoreticalQ {
             private final String topic;
             private final String question;
@@ -234,6 +254,10 @@ public class QuestionsManager {
 
         }
 
+    /**
+     *  ProgrammingQ class that stores the topic, question, ArrayList<Choice> choice, imageFilename (if any), and difficulty
+     *  of the Programming questions.
+     */
     public static class ProgrammingQ {
         private final String topic;
         private final String question;

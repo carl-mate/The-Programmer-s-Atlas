@@ -48,7 +48,9 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         isOptionsButtonHovered = false;
         isHowToPlayButtonHovered = false;
     }
-
+    /**
+     *  Called when this becomes the active screen in a Game
+     */
     @Override
     public void show() {
         username = new StringBuilder();
@@ -57,6 +59,12 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         Gdx.input.setInputProcessor(this);
     }
 
+    /**
+     *  Gameloop:
+     * (1) process input
+     * (2) update game logic
+     * (3) render the graphics
+     */
     @Override
     public void render(float delta) {
         viewport.apply();
@@ -189,7 +197,9 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
         }
     }
-
+    /**
+     *  Checks for touch-down events
+     */
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
 
@@ -230,7 +240,9 @@ public class MainMenuScreen extends InputAdapter implements Screen {
 
         return true;
     }
-
+    /**
+     *  Updates the viewport
+     */
     @Override
     public void resize(int width, int height) {
         viewport.update(width, height, true);

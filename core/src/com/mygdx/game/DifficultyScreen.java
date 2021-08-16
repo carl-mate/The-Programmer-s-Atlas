@@ -15,7 +15,10 @@ import util.Assets;
 import util.Constants;
 import util.Enums.Difficulty;
 import util.Util;
-
+/**
+ *  This screen will give the user the option to select among 5 varying levels of difficulty between TheoreticalQ and ProgrammingQ
+ *  The mystery question is unlocked when the user manages to answer all 10 TheoreticalQ and ProgrammingQ questions
+ */
 public class DifficultyScreen extends InputAdapter implements Screen {
     private static final String TAG = DifficultyScreen.class.getName();
 
