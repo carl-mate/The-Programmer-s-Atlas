@@ -458,7 +458,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final HashMap<String, Texture> image;
 
         public ResourcesFilePath(){
-            theoreticalQuestionsInputStream = this.getClass().getResourceAsStream("/Resources/MCQ/TheoreticalQ/TheoreticalQ-Database-t.xlsx");
+            theoreticalQuestionsInputStream = this.getClass().getResourceAsStream("/Resources/MCQ/TheoreticalQ/TheoreticalQ-Database.xlsx");
             programmingQuestionsInputStream = this.getClass().getResourceAsStream("/Resources/MCQ/ProgrammingQ/ProgrammingQ-Database.xlsx");
 
             image = new HashMap<>();
