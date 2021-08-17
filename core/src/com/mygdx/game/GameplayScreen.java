@@ -719,7 +719,6 @@ public class GameplayScreen extends InputAdapter implements Screen {
             Util.drawTextureRegion(batch, choiceBImage, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f), new Vector2(choiceBImage.getWidth() / 2f, choiceBImage.getHeight() / 2f));
             Util.drawTextureRegion(batch, choiceDImage, new Vector2(viewport.getCamera().viewportWidth / 1.38f, viewport.getCamera().viewportHeight / 2.8f - 100), new Vector2(choiceDImage.getWidth() / 2f, choiceDImage.getHeight() / 2f));
 
-
             Assets.instance.font.drawSourceCodeProBoldFont(batch, "question", "PRESS AND HOLD Q TO VIEW QUESTION", this.instructionRectangleBounds);
             if (Gdx.input.isKeyPressed(Input.Keys.Q)) {
                 Util.drawTextureRegion(batch, Assets.instance.gameplayScreenAssets.fadeBG, new Vector2(viewport.getCamera().viewportWidth / 2, viewport.getCamera().viewportHeight / 2), Constants.BG_CENTER);
