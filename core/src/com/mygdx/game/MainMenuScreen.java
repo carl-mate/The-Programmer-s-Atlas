@@ -155,7 +155,7 @@ public class MainMenuScreen extends InputAdapter implements Screen {
         }
 
 
-        if(!handledUserName){
+        if(Constants.MENU_SCREEN_NAME == null){
             handleUsernameInput(batch);
              if(username.length() == 0){
                  //username textfield

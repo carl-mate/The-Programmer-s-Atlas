@@ -1,7 +1,6 @@
 package util;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
@@ -9,30 +8,19 @@ import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.math.Rectangle;
-import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.mygdx.game.ChooseColleagueScreen;
-import com.mygdx.game.CorrectAnswerScreen;
-import com.mygdx.game.GameOverScreen;
-import com.mygdx.game.GameplayScreen;
-import com.mygdx.game.JigsawScreen;
-import com.mygdx.game.VictoryScreen;
 
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.xml.soap.Text;
 
 import entity.ImportantFigure;
 /**
@@ -140,6 +128,7 @@ public class Assets implements Disposable, AssetErrorListener {
         public final Sound colleagueHoverSound;
         public final Sound familyMemberHoverSound;
         public final Sound lifelineClickedSound;
+        public final Sound awwwSound;
 
         public SoundClass(){
             buttonHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/button_hover.mp3"));
@@ -159,6 +148,7 @@ public class Assets implements Disposable, AssetErrorListener {
             colleagueHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/askcolleague_sound.mp3"));
             familyMemberHoverSound = Gdx.audio.newSound(Gdx.files.internal("sounds/callfamilymember_sound.mp3"));
             lifelineClickedSound = Gdx.audio.newSound(Gdx.files.internal("sounds/lifelineclicked.mp3"));
+            awwwSound = Gdx.audio.newSound(Gdx.files.internal("sounds/awww_sound.mp3"));
         }
     }
 

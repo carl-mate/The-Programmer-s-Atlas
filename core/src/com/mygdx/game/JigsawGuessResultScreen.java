@@ -46,9 +46,16 @@ public class JigsawGuessResultScreen extends InputAdapter implements Screen {
 
     @Override
     public void show() {
-        Assets.instance.soundClass.clappingSound.play();
-        programmerGame.setPreviousScore(programmerGame.getPreviousScore());
-        programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
+
+        if(isGuessCorrect){
+            Assets.instance.soundClass.clappingSound.play();
+            programmerGame.setPreviousScore(programmerGame.getPreviousScore());
+            programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_CORRECT_POINTS);
+        } else{
+            Assets.instance.soundClass.awwwSound.play();
+            programmerGame.setPreviousScore(programmerGame.getPreviousScore());
+            programmerGame.setCurrentScore(programmerGame.getPreviousScore() + Constants.IMPORTANT_FIGURE_INCORRECT_POINTS);
+        }
         //store the scores
         while(true){
             if(!Constants.preferences.contains("user-"+userCounter)){

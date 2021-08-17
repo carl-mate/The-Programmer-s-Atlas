@@ -1,20 +1,15 @@
 package com.mygdx.game;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.utils.TimeUtils;
-import com.badlogic.gdx.utils.viewport.Viewport;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Random;
 
-import util.Enums.Difficulty;
-import util.QuestionsManager.TheoreticalQ;
 import util.QuestionsManager;
 import util.QuestionsManager.ProgrammingQ;
+import util.QuestionsManager.TheoreticalQ;
 /**
  *  This class communicates with the QuestionsManager and retrieves the TheoreticalQ and ProgrammingQ questions
  *  to be displayed in the Game.
@@ -59,7 +54,7 @@ public class Questions {
     }
 
     /**
-     * This function handles the mystery question.
+     * Getter function for the mystery question.
      * Randomly selects between the two major categories TheoreticalQ and ProgrammingQ
      * After one major category is randomly selected, it then randomly selects one question from its total pool of questions.
      */
