@@ -5,7 +5,11 @@ import android.os.Bundle;
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
 import com.mygdx.game.ProgrammerGame;
-
+/**
+ * This class is not functional.
+ * But the authors decided to preserve the Android project structure in case they wish to launch the game in mobile.
+ *
+ */
 public class AndroidLauncher extends AndroidApplication {
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {

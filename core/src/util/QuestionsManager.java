@@ -222,6 +222,7 @@ public class QuestionsManager {
                 this.question = question.trim();
                 //store choices into ArrayList
                 choice = new ArrayList<>();
+                //choiceA is always the correct answer (please see excel file)
                 choice.add(new Choice(choiceA.trim(), true));
                 choice.add(new Choice(choiceB.trim(), false));
                 choice.add(new Choice(choiceC.trim(), false));
@@ -271,6 +272,7 @@ public class QuestionsManager {
             this.question = question.trim();
             //store choices into ArrayList
             choice = new ArrayList<>();
+            //choiceA is always the correct answer (please see excel file)
             choice.add(new Choice(choiceA.trim(), true));
             choice.add(new Choice(choiceB.trim(), false));
             choice.add(new Choice(choiceC.trim(), false));

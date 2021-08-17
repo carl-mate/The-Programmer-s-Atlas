@@ -131,31 +131,31 @@ public class Questions {
                     Gdx.app.log(TAG, "ADDED PROGRAMMING VERY EASY");
                     programmingQuestion[0] = x;
                     programmingQuestionsCounter++;
-                    Gdx.app.log(TAG, programmingQuestion[0].getQuestion());
+//                    Gdx.app.log(TAG, programmingQuestion[0].getQuestion());
                 }
                 if(x.getDifficulty().equals("EASY") && programmingQuestion[1] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING EASY");
                     programmingQuestion[1] = x;
                     programmingQuestionsCounter++;
-                    Gdx.app.log(TAG, programmingQuestion[1].getQuestion());
+//                    Gdx.app.log(TAG, programmingQuestion[1].getQuestion());
                 }
                 if(x.getDifficulty().equals("MEDIUM") && programmingQuestion[2] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING MEDIUM");
                     programmingQuestion[2] = x;
                     programmingQuestionsCounter++;
-                    Gdx.app.log(TAG, programmingQuestion[2].getQuestion());
+//                    Gdx.app.log(TAG, programmingQuestion[2].getQuestion());
                 }
                 if(x.getDifficulty().equals("HARD") && programmingQuestion[3] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING HARD");
                     programmingQuestion[3] = x;
                     programmingQuestionsCounter++;
-                    Gdx.app.log(TAG, programmingQuestion[3].getQuestion());
+//                    Gdx.app.log(TAG, programmingQuestion[3].getQuestion());
                 }
                 if(x.getDifficulty().equals("VERY HARD") && programmingQuestion[4] == null){
                     Gdx.app.log(TAG, "ADDED PROGRAMMING HARD");
                     programmingQuestion[4] = x;
                     programmingQuestionsCounter++;
-                    Gdx.app.log(TAG, programmingQuestion[4].getQuestion());
+//                    Gdx.app.log(TAG, programmingQuestion[4].getQuestion());
                 }
             }
         }

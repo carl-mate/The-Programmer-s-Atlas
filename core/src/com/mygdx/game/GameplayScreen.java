@@ -825,11 +825,11 @@ public class GameplayScreen extends InputAdapter implements Screen {
         if(askedGoogle){
             /*
              * Enable debug mode by commenting out programmerGame.setUsedGoogleLifeline(true);
-             * and setting it to programmerGame.setUsedGoogleLifeline(false); every time
+             * and setting it to programmerGame.setUsedGoogleLifeline(false);
              */
-//            programmerGame.setUsedGoogleLifeline(true);
+            programmerGame.setUsedGoogleLifeline(true);
             //debug mode
-            programmerGame.setUsedGoogleLifeline(false);
+//            programmerGame.setUsedGoogleLifeline(false);
         }
         if(askedAColleague){
             programmerGame.setUsedAColleagueLifeline(true);
@@ -1086,7 +1086,7 @@ public class GameplayScreen extends InputAdapter implements Screen {
     }
 
     private void initTextBounds() {
-        questionCenter = new Vector2(this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().viewportHeight / 1.8f);
+        questionCenter = new Vector2(this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().viewportHeight / 1.7f);
         questionRectangleBounds = new Rectangle(questionCenter.x - Constants.QUESTIONBUBBLE_WIDTH / 2, questionCenter.y - Constants.QUESTIONBUBBLE_HEIGHT / 2, Constants.QUESTIONBUBBLE_WIDTH, Constants.QUESTIONBUBBLE_HEIGHT);
 
         instructionCenter = new Vector2(this.viewport.getCamera().viewportWidth / 2, this.viewport.getCamera().viewportHeight / 1.6f);

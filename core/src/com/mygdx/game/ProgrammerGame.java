@@ -1,22 +1,15 @@
 package com.mygdx.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.MathUtils;
-import com.badlogic.gdx.utils.TimeUtils;
 
-import entity.ImportantFigure;
 import util.Assets;
-import util.Enums;
 import util.Enums.Colleague;
 import util.Enums.Difficulty;
-import util.Util;
 /**
  *  This class runs after the DesktopLauncher is launched.
  *  Organizes the screens as they appear in the game.
@@ -77,6 +70,7 @@ public class ProgrammerGame extends Game {
 	 *  Initializes Questions, Screens, and Variables whenever the showMainMenuScreen() is called.
 	 */
 	public void showMainMenuScreen(){
+
 		initQuestions();
 		initScreens();
 		initVariables();
